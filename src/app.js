@@ -2,6 +2,9 @@
 const express = require('express');
 const bp=require('body-parser');
 const app = express();
+const mongoose = require('mongoose'); // adds MongoDB to the Project
+
+
 
 app.use(bp.urlencoded({extended:true}));
 app.use(bp.json());
