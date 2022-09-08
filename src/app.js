@@ -9,6 +9,11 @@ app.use(bp.json());
 app.use(express.static('public'));
 app.set("view engine", "ejs");
 
+
+// test how are you ?
+
+
+
 app.set('views', __dirname + '/views');
 
 app.get('/', (req, res) => res.render('index'));
