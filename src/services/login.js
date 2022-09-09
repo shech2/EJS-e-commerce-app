@@ -1,6 +1,5 @@
 const User = require("../models/user")
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1:27017/Shop')
 
 function login(username, password) {
     return User.findOne({

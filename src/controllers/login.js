@@ -19,7 +19,7 @@ function login(req,res){
 }
 
 function register(req,res){
-    const result = loginService.register(req.body.username, req.body.password)
+    const result = loginService.register(req.body.username,req.body.email, req.body.password)
 
     result.then((r) => {
         console.log(r)
