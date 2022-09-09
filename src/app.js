@@ -5,14 +5,19 @@ const mongoose = require('mongoose'); // adds MongoDB to the Project
 const donenv = require("dotenv");
 
 donenv.config();
+app.use(express.urlencoded())
+
+const loginRouter = require('./routes/login');
+app.use('/' , loginRouter);
 
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfull!"))
 .catch((err) =>{
     console.log(err);
 }); // Connect to DB username : admin password: admin. you can try later.
 
+const cookieParser = require('cookie-parser');
 
-
+app.use(cookieParser());
 app.use(bp.urlencoded({extended:true}));
 app.use(bp.json());
 
