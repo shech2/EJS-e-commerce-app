@@ -8,7 +8,7 @@ donenv.config();
 
 app.use(express.urlencoded())
 
-const loginRouter = require("../routes/login");
+const loginRouter = require("./routes/login");
 app.use('/' , loginRouter);
 
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfull!"))
