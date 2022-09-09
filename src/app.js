@@ -1,7 +1,17 @@
-//create express app and listen on post 3001
 const express = require('express');
 const bp=require('body-parser');
 const app = express();
+const mongoose = require('mongoose'); // adds MongoDB to the Project
+const donenv = require("dotenv");
+
+donenv.config();
+
+mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfull!"))
+.catch((err) =>{
+    console.log(err);
+}); // Connect to DB username : admin password: admin. you can try later.
+
+
 
 app.use(bp.urlencoded({extended:true}));
 app.use(bp.json());
