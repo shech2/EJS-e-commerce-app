@@ -1,9 +1,9 @@
 const User = require("../models/user")
-const mongoose = require('mongoose')
 
 function login(username, password) {
     return User.findOne({
         "username": username,
+        "email": email,
         "password":password 
      });
 }
@@ -11,6 +11,7 @@ function login(username, password) {
 function register(username, password) {
     const user = new User({ 
         username: username,
+        email: email,
         password:password 
     });
     return user.save();
