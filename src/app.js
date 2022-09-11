@@ -5,6 +5,7 @@ const mongoose = require('mongoose'); // adds MongoDB to the Project
 const dotenv = require("dotenv");
 const authRouter = require("./routes/auth");
 const ProductRouter = require("./routes/Product");
+const verify = require("./routes/user");
 const morgan = require("morgan");
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.use("/api/auth" , authRouter);
 app.use(morgan('tiny'));
 app.use(express.static('public'));
 app.use("/api/",ProductRouter); 
+app.use("/api/users", verify);
 app.set("view engine", "ejs");
 
 
