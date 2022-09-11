@@ -1,5 +1,6 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
+<<<<<<< HEAD
 
 const verifyToken = (req,res,next) => {
     const authHeader = req.headers.token;
@@ -24,10 +25,46 @@ const verifyTokenAndAuthorization = (req,res,next)=>{
         }else{
             res.status(403).json("You are now allowed to do that!");
         }
+=======
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.token;
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+    jwt.verify(token, process.env.JWT_SEC, (err, user) => {
+      if (err) {
+        res.status(403).json("Token is not vaild!");
+      }
+      req.user = user;
+      next();
+>>>>>>> 0c67a9ff00f0c0a01a8354768cc0ea87619caf02
     });
+  } else {
+    return res.status(401).json("You are not authenticated!");
+  }
 };
 
+const verifytokeAndAuthorization = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.id === req.params.id || req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).json("You are now allowed to do that!");
+    }
+  });
+};
 
+const verifyTokeAndAdmin = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).json("You are now allowed to do that!");
+    }
+  });
+};
 
-
-module.exports = { verifyToken,verifytokeAndAuthorization };
+module.exports = {
+  verifyToken,
+  verifytokeAndAuthorization,
+  verifyTokeAndAdmin,
+};
