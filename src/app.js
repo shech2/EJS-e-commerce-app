@@ -1,11 +1,13 @@
 const express = require('express');
-const bp=require('body-parser');
 const app = express();
 const mongoose = require('mongoose'); // adds MongoDB to the Project
 const dotenv = require("dotenv");
 const authRouter = require("./routes/auth");
 const ProductRouter = require("./routes/Product");
 const verify = require("./routes/user");
+
+//middleware
+const bp=require('body-parser');
 const morgan = require("morgan");
 
 dotenv.config();
