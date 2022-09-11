@@ -2,10 +2,12 @@ const express = require('express');
 const bp=require('body-parser');
 const app = express();
 const mongoose = require('mongoose'); // adds MongoDB to the Project
-const donenv = require("dotenv");
+const dotenv = require("dotenv");
 const authRouter = require("./routes/auth");
+const ProductRouter = require("./routes/Product");
+const morgan = require("morgan");
 
-donenv.config();
+dotenv.config();
 
 app.use(express.urlencoded())
 app.use(express.json());
@@ -21,11 +23,12 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
 });
 
 // app.use(bp.urlencoded({extended:true}));
-// app.use(bp.json());
 
+app.use(bp.json());
 app.use("/api/auth" , authRouter);
-
+app.use(morgan('tiny'));
 app.use(express.static('public'));
+app.use("/api/",ProductRouter); 
 app.set("view engine", "ejs");
 
 
