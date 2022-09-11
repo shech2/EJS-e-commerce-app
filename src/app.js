@@ -8,10 +8,13 @@ const authRouter = require("./routes/auth");
 donenv.config();
 
 app.use(express.urlencoded())
+app.use(express.json());
+
 
 
 
  // Mongo DB Connection
+
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfull!"))
 .catch((err) =>{
     console.log(err);
@@ -19,8 +22,6 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
 
 // app.use(bp.urlencoded({extended:true}));
 // app.use(bp.json());
-
-app.use(express.json());
 
 app.use("/api/auth" , authRouter);
 
