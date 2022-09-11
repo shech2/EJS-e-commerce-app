@@ -2,21 +2,24 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose'); // adds MongoDB to the Project
 const dotenv = require("dotenv");
-const authRouter = require("./routes/auth");
-const ProductRouter = require("./routes/Product");
-const verify = require("./routes/user");
+
 
 //middleware
 const bp=require('body-parser');
 const morgan = require("morgan");
 
+//Routers
+const authRouter = require("./routes/auth");
+const ProductRouter = require("./routes/products");
+const userRouters = require("./routes/users");
+const orderRouters = require("./routes/orders");
+const categoryRouters = require("./routes/categories");
+
 dotenv.config();
 
-app.use(express.urlencoded())
 app.use(express.json());
-
-
-
+app.use(express.urlencoded())
+//app.use(bp.urlencoded({extended:true}));
 
  // Mongo DB Connection
 
@@ -25,16 +28,13 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
     console.log(err);
 });
 
-// app.use(bp.urlencoded({extended:true}));
-
 app.use(bp.json());
-app.use("/api/auth" , authRouter);
 app.use(morgan('tiny'));
+app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use("/api/",ProductRouter); 
-app.use("/api/users", verify);
-app.set("view engine", "ejs");
-
+app.use("/api/auth", authRouter);
+app.use("/api/users", userRouters);
 
 app.set('views', __dirname + '/views');
 
