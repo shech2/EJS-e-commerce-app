@@ -5,9 +5,10 @@ const {
 } = require("./verifyToken");
 const User = require("../models/User");
 const router = require("express").Router();
+const CryptoJS = require("crypto-js");
 
 // UPDATE
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/update/:id", verifyToken, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
@@ -30,7 +31,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 
 //DELETE
 
-router.delete("/:id", verifytokeAndAuthorization, async (req, res) => {
+router.delete("/delete/:id", verifytokeAndAuthorization, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.status(200).json("User has been deleted...");
