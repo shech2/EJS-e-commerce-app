@@ -19,7 +19,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded())
-//app.use(bp.urlencoded({extended:true}));
+app.use(bp.urlencoded({extended:true}));
 
  // Mongo DB Connection
 
