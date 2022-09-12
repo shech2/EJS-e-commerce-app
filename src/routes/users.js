@@ -8,7 +8,7 @@ const router = require("express").Router();
 const CryptoJS = require("crypto-js");
 
 // UPDATE
-router.put("/update/:id", verifyToken, async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
