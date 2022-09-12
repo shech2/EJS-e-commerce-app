@@ -1,0 +1,36 @@
+*{
+    font-family: 'Numans', sans-serif;
+}
+body{
+    background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+#move{
+    position: relative;
+    padding: 150px;
+    width: 200rem;
+}
+#form2Example3c{
+    position: relative;
+    right: 10px;
+    bottom: 5px;
+}
+.fas{
+    position: relative;
+    right: 10px;
+}
+.card{
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    color: #FFC312;
+}
+.btn{
+    background-color: #FFC312;
+    color: black;
+    
+}
+.btn:hover{
+    background-color:whitesmoke;
+    color: black;
+}
