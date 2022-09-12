@@ -22,8 +22,8 @@ dotenv.config();
 
 // EXPRESS:
 app.use(express.json());
-app.use(express.urlencoded())
-app.use(bp.urlencoded({extended:true}));
+app.use(express.urlencoded({extended: false}));
+app.use(bp.urlencoded({extended:false}));
 app.use(bp.json());
 
 // Mongo DB Connection
@@ -40,9 +40,9 @@ app.set('views', __dirname + '/views');
 app.get('/login', (req,res) => res.render('login.ejs'));
 app.get('/register', (req,res) => res.render('register.ejs'));
 app.post('/register' , authRouter,userRouters);
-app.post('/login' , authRouter);
+app.post('/login' , authRouter,userRouters);
 
-//app.get('/', (req, res) => res.render('index'));
+app.get('/', (req, res) => res.render('index'));
 
 
 
