@@ -37,8 +37,10 @@ app.use(express.static("public"));
 app.use('/css', express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
+// GET for login and signup
 app.get('/login', (req,res) => res.render('login.ejs'));
 app.get('/register', (req,res) => res.render('register.ejs'));
+// POST for login and signup
 app.post('/register' , authRouter,userRouters);
 app.post('/login' , authRouter,userRouters);
 
