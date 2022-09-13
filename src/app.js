@@ -58,7 +58,11 @@ app.get('/login', (req,res) => {
 
 app.get('/register', (req,res) => {
     const error = req.flash('error');
-    res.render('register.ejs' , { error })
+    res.render('register.ejs' , { error });
+});
+
+app.get('/homepage', (req,res) => {
+    res.render('homePage.ejs');
 });
 
 // POST for login and signup:
