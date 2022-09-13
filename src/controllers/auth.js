@@ -67,7 +67,7 @@ exports.auth_LogController = async (req, res) => {
          res.redirect("/");
     } catch (err) {
         console.log(err);
-        req.flash('error',err);
+        res.redirect("/login");
     }
 };
 //ys
