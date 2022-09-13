@@ -70,11 +70,6 @@ app.post('/login' , authRouter,userRouters);
 app.get('/', (req, res) => res.render('index'));
 
 
-<<<<<<< HEAD
-app.listen(3001, () => console.log(`Example app listening on port 2000!`));
-
-//yuval the killer
-=======
 
 // ROUTES:
 app.use("/api/",ProductRouter); 
@@ -83,4 +78,4 @@ app.use("/api/",ProductRouter);
 
 // Server Connection:
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));
->>>>>>> fb46532b43a5aac8720670492017d72730a0e6ae
+
