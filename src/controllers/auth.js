@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
-const passportStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 const { findOne } = require("../models/User");
 
