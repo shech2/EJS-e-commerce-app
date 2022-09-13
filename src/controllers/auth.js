@@ -3,6 +3,7 @@ const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
 const passportStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
+const { findOne } = require("../models/User");
 
 exports.auth_RegController  = async (req, res) => {
     const newUser = new User({
@@ -12,6 +13,20 @@ exports.auth_RegController  = async (req, res) => {
         isAdmin: req.body.isAdmin
     });
     try {
+        if(await User.findOne({
+            username : newUser.username
+        })){
+            req.flash('error','This user is already exists!');
+            res.redirect("/register");
+            return;
+        }
+        if(await User.findOne({
+            email : newUser.email
+        })){
+            req.flash('error','This email is already in use!');
+            res.redirect("/register");
+            return;
+        }
         const savedUser = await newUser.save();
         console.log(savedUser);
         res.redirect("/login");
