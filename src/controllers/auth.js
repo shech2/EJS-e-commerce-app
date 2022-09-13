@@ -52,6 +52,7 @@ exports.auth_LogController = async (req, res) => {
 
         if(Originalpassword != req.body.password){
             req.flash('error','Password is incorrect!');
+            res.redirect("/login");
         }
 
         const accessToken = jwt.sign({
@@ -64,7 +65,7 @@ exports.auth_LogController = async (req, res) => {
         const { password, ...others } = user._doc;
         // res.status(200).json({...others, accessToken});
         console.log(JSON.stringify({...others, accessToken}));
-         res.redirect("/login");
+         res.redirect("/");
     } catch (err) {
         console.log(err);
         req.flash('error',err);

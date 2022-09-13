@@ -49,18 +49,22 @@ app.use(express.static("public"));
 app.use('/css', express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
+
 // GET for login and signup
 app.get('/login', (req,res) => {
     const error = req.flash('error');
     res.render('login.ejs', { error });
 });
+
 app.get('/register', (req,res) => {
     const error = req.flash('error');
     res.render('register.ejs' , { error })
 });
+
 // POST for login and signup
 app.post('/register' , authRouter,userRouters);
 app.post('/login' , authRouter,userRouters);
+
 // Main Route
 app.get('/', (req, res) => res.render('index'));
 
@@ -68,8 +72,8 @@ app.get('/', (req, res) => res.render('index'));
 
 // ROUTES:
 app.use("/api/",ProductRouter); 
-app.use("/api/auth", authRouter);
-app.use("/api/users", userRouters);
+// app.use("/api/auth", authRouter);
+// app.use("/api/users", userRouters);
 
 // Server Connection
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));
