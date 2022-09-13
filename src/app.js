@@ -69,9 +69,6 @@ app.post('/login' , authRouter,userRouters);
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
 
-
-
-
 // ROUTES:
 app.use("/api/",ProductRouter); 
 // app.use("/api/auth", authRouter);
