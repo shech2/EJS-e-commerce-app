@@ -84,3 +84,14 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+#message{
+    position: relative;
+    color: #FFC312;
+    padding: 5px;
+    bottom: 10px;
+    font-size: 25px;
+}
+.card-footer{
+    position: relative;
+    bottom: 20px;
+}

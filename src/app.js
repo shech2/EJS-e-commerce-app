@@ -3,7 +3,8 @@ const app = express();
 const mongoose = require('mongoose'); // adds MongoDB to the Project
 const dotenv = require("dotenv");
 const ejs = require('ejs');
-
+const express_session = require("express-session");
+const flash = require("connect-flash");
 
 //middleware
 const bp=require('body-parser');
@@ -32,14 +33,32 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
     console.log(err);
 });
 
+// session + flash
+app.use(express_session({
+    secret: 'secret',
+    cookie: { maxAge : 6000},
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
+
+
+
 // EJS:
 app.use(express.static("public"));
 app.use('/css', express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
 // GET for login and signup
-app.get('/login', (req,res) => res.render('login.ejs'));
-app.get('/register', (req,res) => res.render('register.ejs'));
+app.get('/login', (req,res) => {
+    const error = req.flash('error');
+    res.render('login.ejs', { error });
+});
+app.get('/register', (req,res) => {
+    const error = req.flash('error');
+    res.render('login.ejs',{error});
+    res.render('register.ejs')
+});
 // POST for login and signup
 app.post('/register' , authRouter,userRouters);
 app.post('/login' , authRouter,userRouters);
