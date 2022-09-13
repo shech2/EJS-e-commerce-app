@@ -2,6 +2,7 @@
     font-family: 'Numans', sans-serif;
 }
 body{
+    position: relative;
     background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -15,17 +16,18 @@ body{
 #form2Example3c{
     position: relative;
     right: 10px;
-    bottom: 5px;
 }
 .fas{
     position: relative;
     right: 10px;
 }
 .card{
+    position: relative;
     background-color: rgba(0, 0, 0, 0.6) !important;
     color: #FFC312;
 }
 .btn{
+    position: relative;
     background-color: #FFC312;
     color: black;
     
@@ -33,4 +35,9 @@ body{
 .btn:hover{
     background-color:whitesmoke;
     color: black;
+}
+#message{
+    position: relative;
+    bottom: 10px;
+    font-size: 14px;
 }

@@ -65,6 +65,7 @@ app.get('/register', (req,res) => {
 app.post('/register' , authRouter,userRouters);
 app.post('/login' , authRouter,userRouters);
 
+
 // Main Route
 app.get('/', (req, res) => res.render('index'));
 
