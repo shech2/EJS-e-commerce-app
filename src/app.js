@@ -35,7 +35,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
 
 // session + flash
 app.use(express_session({
-    secret: 'secret',
+    secret: process.env.SESSION_SEC,
     cookie: { maxAge : 6000},
     resave: true,
     saveUninitialized: true
