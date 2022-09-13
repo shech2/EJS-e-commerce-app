@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
+const flash = require("connect-flash");
+const { findOne } = require("../models/User");
 
 exports.auth_RegController  = async (req, res) => {
     const newUser = new User({
@@ -10,10 +12,26 @@ exports.auth_RegController  = async (req, res) => {
         isAdmin: req.body.isAdmin
     });
     try {
+        if(await User.findOne({
+            username : newUser.username
+        })){
+            req.flash('error','This user is already exists!');
+            res.redirect("/register");
+            return;
+        }
+        if(await User.findOne({
+            email : newUser.email
+        })){
+            req.flash('error','This email is already in use!');
+            res.redirect("/register");
+            return;
+        }
         const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
+        console.log(savedUser);
+        res.redirect("/login");
     } catch (err) {
-        res.status(500).json(err);
+        console.log(err);
+        res.redirect("/register");
     }
 };
 
@@ -23,8 +41,8 @@ exports.auth_LogController = async (req, res) => {
             username: req.body.username
         });
         if(!user){ 
-            res.status(401).json("Wrong credentials!");
-            return;
+            req.flash('error','User has not been found!');
+            res.redirect("/login");
         };
 
         const hashedPassword = CryptoJS.AES.decrypt(user.password, process.env.PASS_SEC);
@@ -32,8 +50,8 @@ exports.auth_LogController = async (req, res) => {
         const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
         if(Originalpassword != req.body.password){
-            res.status(401).json("incorrect password!");
-            return;
+            req.flash('error','Password is incorrect!');
+            res.redirect("/login");
         }
 
         const accessToken = jwt.sign({
@@ -44,9 +62,12 @@ exports.auth_LogController = async (req, res) => {
         );
 
         const { password, ...others } = user._doc;
-        res.status(200).json({...others, accessToken});
+        // res.status(200).json({...others, accessToken});
+        console.log(JSON.stringify({...others, accessToken}));
+         res.redirect("/");
     } catch (err) {
-        res.status(500).json(err);
+        console.log(err);
+        res.redirect("/login");
     }
 };
 //ys

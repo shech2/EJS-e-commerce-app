@@ -2,46 +2,85 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose'); // adds MongoDB to the Project
 const dotenv = require("dotenv");
+const ejs = require('ejs');
+const express_session = require("express-session");
+const flash = require("connect-flash");
 
-
-//middleware
+//middleware:
 const bp=require('body-parser');
 const morgan = require("morgan");
+app.use(morgan('tiny'));
 
-//Routers
+//Routers:
 const authRouter = require("./routes/auth");
 const ProductRouter = require("./routes/products");
 const userRouters = require("./routes/users");
 const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 
+// DOTENV:
 dotenv.config();
 
+// EXPRESS:
 app.use(express.json());
-app.use(express.urlencoded())
-app.use(bp.urlencoded({extended:true}));
+app.use(express.urlencoded({extended: false}));
+app.use(bp.urlencoded({extended:false}));
+app.use(bp.json());
 
- // Mongo DB Connection
-
+// Mongo DB Connection:
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfull!"))
 .catch((err) =>{
     console.log(err);
 });
 
-app.use(bp.json());
-app.use(morgan('tiny'));
-app.set("view engine", "ejs");
-app.use(express.static('public'));
-app.use("/api/",ProductRouter); 
-app.use("/api/auth", authRouter);
-app.use("/api/users", userRouters);
+// session + flash:
+app.use(express_session({
+    secret: process.env.SESSION_SEC,
+    cookie: { maxAge : 6000},
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 
+
+
+// EJS:
+app.use(express.static("public"));
+app.use('/css', express.static(__dirname + "public"));
+app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
 
+// GET for login and signup:
+app.get('/login', (req,res) => {
+    const error = req.flash('error');
+    res.render('login.ejs', { error });
+});
+
+app.get('/register', (req,res) => {
+    const error = req.flash('error');
+    res.render('register.ejs' , { error })
+});
+
+// POST for login and signup:
+app.post('/register' , authRouter,userRouters);
+app.post('/login' , authRouter,userRouters);
+
+
+// Main Route:
 app.get('/', (req, res) => res.render('index'));
 
-// Server Connection
 
+<<<<<<< HEAD
 app.listen(3001, () => console.log(`Example app listening on port 2000!`));
 
 //yuval the killer
+=======
+
+// ROUTES:
+app.use("/api/",ProductRouter); 
+// app.use("/api/auth", authRouter);
+// app.use("/api/users", userRouters);
+
+// Server Connection:
+app.listen(3000, () => console.log(`Example app listening on port 3000!`));
+>>>>>>> fb46532b43a5aac8720670492017d72730a0e6ae
