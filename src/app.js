@@ -56,8 +56,7 @@ app.get('/login', (req,res) => {
 });
 app.get('/register', (req,res) => {
     const error = req.flash('error');
-    res.render('login.ejs',{error});
-    res.render('register.ejs')
+    res.render('register.ejs' , { error })
 });
 // POST for login and signup
 app.post('/register' , authRouter,userRouters);
