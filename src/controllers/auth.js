@@ -43,6 +43,7 @@ exports.auth_LogController = async (req, res) => {
         if(!user){ 
             req.flash('error','User has not been found!');
             res.redirect("/login");
+            return;
         };
 
         const hashedPassword = CryptoJS.AES.decrypt(user.password, process.env.PASS_SEC);
@@ -52,6 +53,7 @@ exports.auth_LogController = async (req, res) => {
         if(Originalpassword != req.body.password){
             req.flash('error','Password is incorrect!');
             res.redirect("/login");
+            return;
         }
 
         const accessToken = jwt.sign({
