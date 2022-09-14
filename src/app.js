@@ -68,7 +68,7 @@ app.get('/register', (req,res) => {
 });
 
 app.get('/homepage', (req,res) => {
-    res.render('homePage.ejs', { title: "Home Page"});
+    res.render('homePage.ejs', { title: "Home-Page"});
 });
 
 // POST for login and signup:
