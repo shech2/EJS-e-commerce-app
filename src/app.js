@@ -59,16 +59,16 @@ app.set('views', __dirname + '/views');
 // GET for login and signup:
 app.get('/login', (req,res) => {
     const error = req.flash('error');
-    res.render('login.ejs', { error, title: "Login"});
+    res.render('login.ejs', { error, title: "Login", cssfile: "/css/style-login.css" });
 });
 
 app.get('/register', (req,res) => {
     const error = req.flash('error');
-    res.render('register.ejs' , { error, title: "Register"});
+    res.render('register.ejs' , { error, title: "Register", cssfile: "/css/register.css" });
 });
 
 app.get('/homepage', (req,res) => {
-    res.render('homePage.ejs', { title: "Home-Page"});
+    res.render('homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css" });
 });
 
 // POST for login and signup:
