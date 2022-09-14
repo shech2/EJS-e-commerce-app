@@ -34,3 +34,22 @@ footer{
     top: 0px;
     right: 0px;
 }
+img{
+    height: 10vh;
+    margin-bottom: -18px;
+    margin-top: -18px;
+    margin-left: -2px;
+    margin-right: -2px;
+}
+.may{
+    position: relative;
+    left: 74%;
+    
+}
+.may:hover{
+    cursor: pointer;
+}
+.may2{
+    margin:0;
+    padding: 0;
+}

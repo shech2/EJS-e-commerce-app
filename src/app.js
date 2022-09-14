@@ -5,6 +5,12 @@ const dotenv = require("dotenv");
 const ejs = require('ejs');
 const express_session = require("express-session");
 const flash = require("connect-flash");
+const expressLayouts = require('express-ejs-layouts');
+
+//Layouts:
+app.use(expressLayouts);
+app.set('layout', "./layouts/full-width");
+
 
 //middleware:
 const bp=require('body-parser');
@@ -53,16 +59,16 @@ app.set('views', __dirname + '/views');
 // GET for login and signup:
 app.get('/login', (req,res) => {
     const error = req.flash('error');
-    res.render('login.ejs', { error });
+    res.render('login.ejs', { error, title: "Login"});
 });
 
 app.get('/register', (req,res) => {
     const error = req.flash('error');
-    res.render('register.ejs' , { error });
+    res.render('register.ejs' , { error, title: "Register"});
 });
 
 app.get('/homepage', (req,res) => {
-    res.render('homePage.ejs');
+    res.render('homePage.ejs', { title: "Home Page"});
 });
 
 // POST for login and signup:

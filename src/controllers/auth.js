@@ -41,7 +41,7 @@ exports.auth_LogController = async (req, res) => {
             username: req.body.username
         });
         if(!user){ 
-            req.flash('error','User has not been found!');
+            req.flash('error','User has not been found, Please register!');
             res.redirect("/login");
             return;
         };
@@ -66,7 +66,7 @@ exports.auth_LogController = async (req, res) => {
         const { password, ...others } = user._doc;
         // res.status(200).json({...others, accessToken});
         console.log(JSON.stringify({...others, accessToken}));
-         res.redirect("/");
+         res.redirect("/homepage");
     } catch (err) {
         console.log(err);
         res.redirect("/login");
