@@ -119,3 +119,7 @@ margin-left: 4px;
     height: 100%;
     padding-bottom: 10.2rem;
 }
+.navbar-nav{
+    position: relative;
+    left: 39rem;
+}

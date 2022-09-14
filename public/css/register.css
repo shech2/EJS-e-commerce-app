@@ -40,7 +40,6 @@ body{
     font-size: 14px;
 }
 .h-100{
-    position: relative;
     top: -72px;
 }
 img{
@@ -61,4 +60,8 @@ img{
 .may2{
     margin:0;
     padding: 0;
+}
+.navbar-nav{
+    position: relative;
+    left: 37rem;
 }
