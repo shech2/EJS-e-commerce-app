@@ -52,6 +52,7 @@ img{
 .may{
     position: relative;
     left: 74%;
+    display: none;
     
 }
 .may:hover{
@@ -63,5 +64,5 @@ img{
 }
 .navbar-nav{
     position: relative;
-    left: 37rem;
+    left: 40%;
 }
