@@ -2,38 +2,15 @@
     position: relative;
     left: 36%;
 }
-
-.navbar-brand {
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    position: relative;
+h6{
+    margin-bottom: -13px;
 }
-
 footer{
     position: absolute;
     width: 100%;
     bottom: 0;
     display: inline-block;
     flex-direction: column;
-}
-
-.my-4 {
-    margin-bottom: 0.8rem!important;
-}
-
-.h6 {
-    font-size: 0.9rem;
-    position: relative;
-    top: 0px;
-    right: 0px;
-}
-h6{
-    margin-bottom: -13px;
 }
 img{
     height: 10vh;

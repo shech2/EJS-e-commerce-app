@@ -71,6 +71,15 @@ app.get('/homepage', (req,res) => {
     res.render('homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css" });
 });
 
+// GET SHOP:
+app.get('/shop', (req,res) => {
+    res.render('Shop.ejs', { title: "Shop", cssfile: "/css/shop.css" });
+});
+// GET ABOUT:
+app.get('/about', (req,res) => {
+    res.render('About.ejs', { title: "About", cssfile: "/css/about.css" });
+});
+
 // POST for login and signup:
 app.post('/register' , authRouter,userRouters);
 app.post('/login' , authRouter,userRouters);
