@@ -75,9 +75,8 @@ app.get('/homepage', (req,res) => {
     res.render('homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css" });
 });
 
-app.get('/logout', authRouter ,(req,res) => {
-    res.render ('logout.ejs', { title: "Logout", cssfile: "/css/style-login.css" });
-});
+// LOGOUT:
+app.get('/logout', authRouter);
 
 // GET SHOP:
 app.get('/shop',authmw.authMiddleware,(req,res) => {
