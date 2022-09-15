@@ -63,16 +63,16 @@ app.set('views', __dirname + '/views');
 // GET for login and signup and logout:
 app.get('/login', (req,res) => {
     const error = req.flash('error');
-    res.render('login.ejs', { error, title: "Login", cssfile: "/css/style-login.css" });
+    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css" });
 });
 
 app.get('/register', (req,res) => {
     const error = req.flash('error');
-    res.render('register.ejs' , { error, title: "Register", cssfile: "/css/register.css" });
+    res.render('./pages/register.ejs' , { error, title: "Register", cssfile: "/css/register.css" });
 });
 
 app.get('/homepage', (req,res) => {
-    res.render('homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css" });
+    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css" });
 });
 
 // LOGOUT:
@@ -80,17 +80,17 @@ app.get('/logout', authRouter);
 
 // GET SHOP:
 app.get('/shop',authmw.authMiddleware,(req,res) => {
-    res.render('Shop.ejs', { title: "Shop", cssfile: "/css/shop.css" });
+    res.render('./pages/shop.ejs', { title: "Shop", cssfile: "/css/shop.css" });
 });
 
 // GET ABOUT:
 app.get('/about', (req,res) => {
-    res.render('About.ejs', { title: "About", cssfile: "/css/about.css" });
+    res.render('./pages/About.ejs', { title: "About", cssfile: "/css/about.css" });
 });
 
 // Admin page:
 app.get('/admin',authmw.authAdmin, (req,res) => {
-    res.render('admin.ejs', {title: "Admin page", cssfile: "/css/full-width.css" ,username: req.cookies.username});
+    res.render('./pages/admin.ejs', {title: "Admin page", cssfile: "/css/full-width.css" ,username: req.cookies.username});
 });
 
 // POST for login and signup:
