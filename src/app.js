@@ -52,8 +52,6 @@ app.use(express_session({
 }));
 app.use(flash());
 
-
-
 // EJS:
 app.use(express.static("public"));
 app.use('/css', express.static(__dirname + "public"));
