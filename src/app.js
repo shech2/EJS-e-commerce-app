@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const express_session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
+const productSchema = require("./models/Product");
 
 // COOKIES:
 const cookieparser = require('cookie-parser');
@@ -84,6 +85,11 @@ app.get('/shop',authmw.authMiddleware,(req,res) => {
 // GET ABOUT:
 app.get('/about', (req,res) => {
     res.render('./pages/About.ejs', { title: "About", cssfile: "/css/about.css" });
+});
+
+//Product-page:
+app.get('/product-page', (req,res) => {
+    res.render('./pages/product-page.ejs', { title: "Product-Page",productSchema, cssfile: "/css/product-page.css" });   
 });
 
 // Admin page:
