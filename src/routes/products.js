@@ -20,7 +20,9 @@ router.post("/create_product", (req,res) => {
         stock: req.body.stock,
         rating: req.body.rating,
         image: req.body.image,
-    })
+    });
+
+    
 
     product.save().then((createdProduct => {
         res.status(201).json(createdProduct);

@@ -89,7 +89,7 @@ app.get('/about', (req,res) => {
 
 //Product-page:
 app.get('/product-page', (req,res) => {
-    res.render('./pages/product-page.ejs', { title: "Product-Page",productSchema, cssfile: "/css/product-page.css" });   
+    res.render('./pages/product-page.ejs', { title: "Product-Page",productSchema, cssfile: "/css/full-width.css" });   
 });
 
 // Admin page:

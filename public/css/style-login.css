@@ -119,9 +119,12 @@ margin-left: 4px;
     left: 40%;
 }
 footer{
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 0;
-    display: inline-block;
+    height: 11.5rem;
     flex-direction: column;
+}
+main{
+    padding-bottom: 12.5rem;
 }
