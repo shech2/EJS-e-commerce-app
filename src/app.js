@@ -98,8 +98,8 @@ app.get('/admin',authmw.authAdmin, (req,res) => {
 });
 
 // POST for login and signup:
-app.post('/register' , authRouter,userRouters);
-app.post('/login' , authRouter,userRouters);
+app.post('/register' , authRouter);
+app.post('/login' , authRouter);
 
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
