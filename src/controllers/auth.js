@@ -78,9 +78,10 @@ exports.auth_LogController = async (req, res) => {
 
 
 exports.auth_LogoutController = (req, res) => {
-    if(req.cookies.jwt && req.cookies.isAdmin){
+    if(req.cookies.jwt){
         res.clearCookie("jwt");
         res.clearCookie("isAdmin");
+        res.clearCookie("username");
         res.redirect("/homepage");
     }
 };

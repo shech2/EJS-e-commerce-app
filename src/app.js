@@ -60,7 +60,7 @@ app.use('/css', express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
 
-// GET for login and signup and logout:
+// GET for login,signup and logout:
 app.get('/login', (req,res) => {
     const error = req.flash('error');
     res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css" });
