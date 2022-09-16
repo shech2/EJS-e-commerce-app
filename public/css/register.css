@@ -17,6 +17,7 @@ footer{
 }
 main{
     padding-bottom: 12.5rem;
+    padding-top: 2rem;
 }
 #move{
     position: relative;
@@ -64,6 +65,6 @@ main{
 }
 .navbar-nav{
     position: relative;
-    left: 40%;
+    left: 38%;
     z-index: 1000;
 }

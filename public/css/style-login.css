@@ -116,7 +116,7 @@ margin-left: 4px;
 }
 .navbar-nav{
     position: relative;
-    left: 40%;
+    left: 38%;
 }
 footer{
     position: fixed;
@@ -127,4 +127,5 @@ footer{
 }
 main{
     padding-bottom: 12.5rem;
+    padding-top: 2rem;
 }

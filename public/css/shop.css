@@ -1,6 +1,6 @@
 .mr-auto{
     position: relative;
-    left: 30%;
+    left: 33%;
 }
 h6{
     margin-bottom: -13px;
@@ -14,6 +14,7 @@ footer{
 }
 main{
     padding-bottom: 12.5rem;
+    padding-top: 2rem;
 }
 img{
     height: 10vh;
