@@ -1,54 +1,49 @@
-<div class="container product">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="/product-img/87da1b13-ed91-4379-b9da-4c90c834b6fd.png" alt="product image" class="img-fluid">
+<div id="b"> </div>
+
+<script>
+    "<% for (index = 0; index < ProductModel.length; index++) { %>"
+    var code = `<div class="pb-3">
+    <div class="container product">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="/product-img/87da1b13-ed91-4379-b9da-4c90c834b6fd.png" alt="product image"
+                            class="img-fluid">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h2><%= productSchema.title %></h2>
-                    <p class="price">$<%= productSchema.price %></p>
-                    <p class="description"><%= productSchema.description %></p>
-                    <p class="category"><%= productSchema.category %></p>
-                    <p class="stock"><%= productSchema.stock %></p>
-                    <p class="rating"><%= productSchema.rating %></p>
-                    <form action="/cart" method="POST">
-                        <input type="hidden" name="productId" value="<%= productSchema._id %>">
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container product">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="/product-img/87da1b13-ed91-4379-b9da-4c90c834b6fd.png" alt="product image" class="img-fluid">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h2><%= productSchema.title %></h2>
-                    <p class="price">$<%= productSchema.price %></p>
-                    <p class="description"><%= productSchema.description %></p>
-                    <p class="category"><%= productSchema.category %></p>
-                    <p class="stock"><%= productSchema.stock %></p>
-                    <p class="rating"><%= productSchema.rating %></p>
-                    <form action="/cart" method="POST">
-                        <input type="hidden" name="productId" value="<%= productSchema._id %>">
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </form>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>
+                            <%- ProductModel[index].Product_name %>
+                        </h2>
+                        <p class="price"><u>Price</u>: $<%=ProductModel[index].price %>
+                        </p>
+                        <p class="description">
+                            <u>Rating</u>: <%=ProductModel[index].rating %>
+                        </p>
+                        <p class="category">
+                            <u>Category</u>: <%=ProductModel[index].category %>
+                        </p>
+                        <p class="stock">
+                            <u>Stock</u>: <%=ProductModel[index].stock %>
+                        </p>
+                        <p class="rating">   
+                            <u>Description</u>: <%=ProductModel[index].description%>
+                        </p>
+                        <form action="/cart" method="POST">
+                            <input type="hidden" name="productId" value="<%= ProductModel[index]._id %>">
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>`;
+        document.querySelector("#b").innerHTML += code;
+        "<% } %>"
+</script>
 </div>

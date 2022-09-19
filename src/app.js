@@ -5,11 +5,12 @@ const dotenv = require("dotenv");
 const express_session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
-const productSchema = require("./models/Product");
+var parr = [];
 
 // COOKIES:
 const cookieparser = require('cookie-parser');
 app.use(cookieparser());
+
 
 //Layouts:
 app.use(expressLayouts);
@@ -28,6 +29,7 @@ const ProductRouter = require("./routes/products");
 const userRouters = require("./routes/users");
 const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
+const ProductModel = require("./models/Product");
 
 // DOTENV:
 dotenv.config();
@@ -43,6 +45,14 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
 .catch((err) =>{
     console.log(err);
 });
+
+// Product MODEL:
+ProductModel.find({}, async function(err, products){
+    if(err){
+        console.log(err);
+    }
+    parr = products;
+  });
 
 // session + flash:
 app.use(express_session({
@@ -78,8 +88,8 @@ app.get('/homepage', (req,res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop',authmw.authMiddleware,(req,res) => {
-    res.render('./pages/shop.ejs', { title: "Shop", cssfile: "/css/shop.css" });
+app.get('/shop',(req,res) => {
+    res.render('./pages/shop.ejs', { title: "Shop",ProductModel : parr, cssfile: "/css/shop.css" });
 });
 
 // GET ABOUT:
@@ -88,13 +98,18 @@ app.get('/about', (req,res) => {
 });
 
 //Product-page:
-app.get('/product-page', (req,res) => {
-    res.render('./pages/product-page.ejs', { title: "Product-Page",productSchema, cssfile: "/css/full-width.css" });   
+app.get('/product-page',(req,res) => {
+    res.render('./pages/product-page.ejs', { title: "Product-Page",ProductModel : parr ,cssfile: "/css/full-width.css" });   
 });
 
 // Admin page:
 app.get('/admin',authmw.authAdmin, (req,res) => {
     res.render('./pages/admin.ejs', {title: "Admin page", cssfile: "/css/full-width.css" ,username: req.cookies.username});
+});
+
+// Create-Product page:
+app.get('/create-product',authmw.authAdmin, (req,res) => {
+    res.render('./pages/CreateProduct.ejs', {title: "Create Product", cssfile: "/css/full-width.css"});
 });
 
 // POST for login and signup:
@@ -105,7 +120,7 @@ app.post('/login' , authRouter);
 app.get('/', (req, res) => res.render('index'));
 
 // ROUTES:
-app.use("/api/",ProductRouter); 
+app.use("/api/",ProductRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
 

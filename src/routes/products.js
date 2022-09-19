@@ -13,7 +13,7 @@ router.get("/products", async (req, res) => {
 
 router.post("/create_product", (req,res) => {
     const product = new Product({
-        Product_name: req.body.nameProduct,
+        Product_name: req.body.Product_Name,
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
@@ -22,10 +22,12 @@ router.post("/create_product", (req,res) => {
         image: req.body.image,
     });
 
+    console.log(product);
+
     
 
     product.save().then((createdProduct => {
-        res.status(201).json(createdProduct);
+        res.redirect("/shop");
     })).catch((err) => {
         res.status(500).json({
             error: err,

@@ -1,1 +1,76 @@
 <h1>Shop</h1>
+
+<div class="row g-0 text-center">
+    <div class="col-sm-6 col-md-8" id="b">
+    </div>
+    <div class="col-3 col-md-3">
+        <div class="list-group fixed">
+            <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list
+                group item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group
+                item</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    "<% for (index = 0; index < ProductModel.length; index++) { %>"
+    var code = `<div class="pb-3">
+    <div class="container product">
+        <div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="/product-img/87da1b13-ed91-4379-b9da-4c90c834b6fd.png" alt="product image"
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>
+                            <%- ProductModel[index].Product_name %>
+                        </h2>
+                        <p class="price"><u>Price</u>: $<%=ProductModel[index].price %>
+                        </p>
+                        <p class="description">
+                            <u>Rating</u>: <%=ProductModel[index].rating %>
+                        </p>
+                        <p class="category">
+                            <u>Category</u>: <%=ProductModel[index].category %>
+                        </p>
+                        <p class="stock">
+                            <u>Stock</u>: <%=ProductModel[index].stock %>
+                        </p>
+                        <p class="rating">   
+                            <u>Description</u>: <%=ProductModel[index].description%>
+                        </p>
+                        <form action="/cart" method="POST">
+                            <input type="hidden" name="productId" value="<%= ProductModel[index]._id %>">
+                            <button class="btn btn-primary">View Product</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`;
+    document.querySelector("#b").innerHTML += code;
+    "<% } %>"
+</script>
+</div>
