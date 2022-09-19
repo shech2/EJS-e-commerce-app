@@ -119,6 +119,7 @@ app.post('/login' , authRouter);
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
 
+
 // ROUTES:
 app.use("/api/",ProductRouter);
 app.use("/api/auth", authRouter);
@@ -126,4 +127,5 @@ app.use("/api/users", userRouters);
 
 // Server Connection:
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));
+
 
