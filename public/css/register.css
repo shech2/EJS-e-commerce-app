@@ -1,0 +1,70 @@
+body{
+    position: relative;
+    background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+h6{
+    margin-bottom: -13px;
+}
+footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 11.5rem;
+    flex-direction: column;
+}
+main{
+    padding-bottom: 12.5rem;
+    padding-top: 2rem;
+}
+#move{
+    position: relative;
+    padding: 150px;
+    width: 200rem;
+}
+#form2Example3c{
+    position: relative;
+    right: 10px;
+}
+.fas{
+    position: relative;
+    right: 10px;
+}
+.card{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    color: #FFC312;
+    top: -50px;
+}
+.btn{
+    position: relative;
+    background-color: #FFC312;
+    color: black;
+    
+}
+.btn:hover{
+    background-color:whitesmoke;
+    color: black;
+}
+#message{
+    position: relative;
+    bottom: 10px;
+    font-size: 14px;
+}
+/* img{
+    height: 10vh;
+    margin-bottom: -18px;
+    margin-top: -18px;
+    margin-left: -2px;
+    margin-right: -2px;
+} */
+.may{
+    display: none;   
+}
+.navbar-nav{
+    position: relative;
+    left: 38%;
+    z-index: 1000;
+}
