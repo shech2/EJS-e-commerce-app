@@ -89,7 +89,7 @@ app.get('/logout', authRouter);
 
 // GET SHOP:
 app.get('/shop',(req,res) => {
-    res.render('./pages/shop.ejs', { title: "Shop",ProductModel : parr, cssfile: "/css/shop.css" });
+    res.render('./pages/shop.ejs', { title: "Shop",ProductModel : parr, cssfile: "/css/shop.css" ,username: req.cookies.username});
 });
 
 // GET ABOUT:
@@ -124,6 +124,7 @@ app.get('/', (req, res) => res.render('index'));
 app.use("/api/",ProductRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
+app.use("/api/categories", categoryRouters);
 
 // Server Connection:
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));

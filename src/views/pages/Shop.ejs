@@ -1,4 +1,7 @@
 <h1>Shop</h1>
+
+<h1>Hello <%= username %></h1>
+
 <div class="dropdown">
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
       Sort by
@@ -37,9 +40,6 @@
     </div>
 </div>
 
-
-
-
 <script>
     "<% for (index = 0; index < ProductModel.length; index++) { %>"
     var code = `<div class="pb-3">
@@ -48,8 +48,8 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-body">
-                        <img src="/product-img/87da1b13-ed91-4379-b9da-4c90c834b6fd.png" alt="product image"
-                            class="img-fluid">
+                        <img src="<%= ProductModel[index].image %>" alt="product image"
+                      class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>
-                            <%- ProductModel[index].Product_name %>
+                            <%= ProductModel[index].Product_name %>
                         </h2>
                         <p class="price"><u>Price</u>: $<%=ProductModel[index].price %>
                         </p>
