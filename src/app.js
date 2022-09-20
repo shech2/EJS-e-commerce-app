@@ -41,7 +41,7 @@ app.use(bp.urlencoded({extended:false}));
 app.use(bp.json());
 
 // Mongo DB Connection:
-mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfull!"))
+mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfully!"))
 .catch((err) =>{
     console.log(err);
 });
