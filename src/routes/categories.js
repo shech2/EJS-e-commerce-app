@@ -41,7 +41,7 @@ router.delete("/category/:id", (req, res) => {
     });
 });
 
-// update category king
+// update category
 router.put("/category/:id", async (req, res) => {
   const category = await Category.findByIdAndUpdate(req.params.id,
     {
