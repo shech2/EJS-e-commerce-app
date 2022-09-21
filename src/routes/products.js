@@ -3,12 +3,21 @@ const Product = require("../models/Product");
 const Category = require("../models/category");
 
 router.get("/products", async (req, res) => {   
-    const productList = await Product.find();
+    const productList = await Product.find().populate('category');
 
     if(!productList) {
         res.status(500).json({success: false})
     }
     res.send(productList);
+})
+
+router.get("/products/:id", async (req, res) => {
+    const product = await Product.findById(req.params.id).populate('category');
+
+    if(!product) {
+        res.status(500).json({success: false})
+    }
+    res.send(product);
 })
 
 
