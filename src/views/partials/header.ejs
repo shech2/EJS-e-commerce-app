@@ -1,6 +1,15 @@
 <header>
+<script>
+    var altUserName='';
+    if (username==''){
+        altUserName="Guest"
+    }
+</script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/homepage">The Store</a>
+        <li class="nav-item">
+            <a  class="navbar-brand" href="/profile-page" id="hello">hello, <%= username %></a>
+        </li>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,6 +45,7 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" href="/about">About</a>
                 </li>
+            
                 
             </ul>
             <form class="form-inline my-2 my-lg-0">

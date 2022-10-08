@@ -30,6 +30,7 @@ const userRouters = require("./routes/users");
 const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 const ProductModel = require("./models/Product");
+const { $where } = require('./models/User');
 
 // DOTENV:
 dotenv.config();
@@ -70,18 +71,22 @@ app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
 
 // GET for login,signup and logout:
+var isLoggedIn = false;
+
+
+
 app.get('/login', (req,res) => {
     const error = req.flash('error');
-    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css" });
+    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css",username: "Guest" });
 });
 
 app.get('/register', (req,res) => {
     const error = req.flash('error');
-    res.render('./pages/register.ejs' , { error, title: "Register", cssfile: "/css/register.css" });
+    res.render('./pages/register.ejs' , { error, title: "Register", cssfile: "/css/register.css",username: "Guest" });
 });
 
 app.get('/homepage', (req,res) => {
-    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css" });
+    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css",username: req.cookies.username });
 });
 
 // LOGOUT:
@@ -94,7 +99,7 @@ app.get('/shop',(req,res) => {
 
 // GET ABOUT:
 app.get('/about', (req,res) => {
-    res.render('./pages/About.ejs', { title: "About", cssfile: "/css/about.css" });
+    res.render('./pages/About.ejs', { title: "About", cssfile: "/css/about.css",username: req.cookies.username });
 });
 
 //Product-page:
@@ -118,6 +123,7 @@ app.post('/login' , authRouter);
 
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
+
 
 
 // ROUTES:
