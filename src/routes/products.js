@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Product = require("../models/Product");
 const Category = require("../models/category");
+const category = require("../models/category");
 
 router.get("/products", async (req, res) => {   
     const productList = await Product.find();
@@ -29,6 +30,7 @@ router.post("/create_product", async (req,res) => {
 
     console.log(product);
 
+    
     product.save().then((createdProduct => {
         res.redirect("/shop");
     })).catch((err) => {

@@ -44,3 +44,11 @@ img{
  .card-img-top{
     height: 45vh;
  }
+ #b .img-fluid{
+    height: 35vh;
+    width: 300px;
+    
+ }
+ #b .card-body{
+    font-family: 'Roboto', sans-serif;
+ }

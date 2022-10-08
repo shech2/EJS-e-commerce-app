@@ -12,7 +12,7 @@ router.get("/category", async (req, res) => {
 
 //create category
 router.post("/category", async (req, res) => {
-  let category = new Category({
+    const category = new Category({
     name: req.body.name,
   });
   category = await category.save();
