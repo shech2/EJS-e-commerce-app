@@ -1,10 +1,6 @@
 const router = require("express").Router();
 const Product = require("../models/Product");
 const Category = require("../models/category");
-<<<<<<< HEAD
-=======
-const mongoose = require("mongoose");
->>>>>>> 7baa25910482dba2e2bea67c61bdd526e87557e3
 const category = require("../models/category");
 
 router.get("/products", async (req, res) => {

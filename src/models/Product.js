@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
     {
-<<<<<<< HEAD
     Product_name: {type: String, required: true},
     description: {type: String,required: true},
     price: {type: Number,required:true},
@@ -11,7 +10,7 @@ const productSchema = new Schema(
     stock: {type: Number,required:true},
     image: {type: String,required:true},
     rating: {type: Number,required:true},
-=======
+
     Product_name: {
         type: String,
          required: true
@@ -40,7 +39,6 @@ const productSchema = new Schema(
         type: Number,
         required:true
     },
->>>>>>> 7baa25910482dba2e2bea67c61bdd526e87557e3
 },
     { timestamps: true}
 );
