@@ -1,7 +1,6 @@
 const router = require("express").Router();
 
 //create 
-
 router.post("/", verifyToken, async (req, res) => {
     const newCart = new Cart(req.body);
 
