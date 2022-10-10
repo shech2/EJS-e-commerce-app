@@ -117,6 +117,10 @@ app.get('/admin',authmw.authAdmin, (req,res) => {
 app.get('/create-product',authmw.authAdmin, (req,res) => {
     res.render('./pages/CreateProduct.ejs', {title: "Create Product", cssfile: "/css/full-width.css" ,username: req.cookies.username});
 });
+// Cart page:
+app.get('/cart',authmw.authAdmin, (req,res) => {
+    res.render('./pages/cart.ejs', {title: "Cart", cssfile: "/css/full-width.css" ,username: req.cookies.username});
+});
 
 // POST for login and signup:
 app.post('/register' , authRouter);
