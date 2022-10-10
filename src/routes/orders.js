@@ -8,9 +8,10 @@ router.get("/", async (req, res) => {
     .sort({ dateOrdered: -1 }); // -1 it means descending order
 
   if (!orderList) {
-    res.status(500).json({ success: false });
+   res.status(500).json({ success: false });
+  
   }
-  res.send(orderList);
+  console.log(orderList);
 });
 
 router.get("/:id", async (req, res) => {

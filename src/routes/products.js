@@ -29,7 +29,7 @@ router.get("/products/:id", async (req, res) => {
     res.send(product);
 })
 
-
+//Create a new product
 router.post("/create_product", async (req,res) => {
     const category = await Category.findById(req.body.category);
     if(!category) return res.status(400).send("Invalid Category");
