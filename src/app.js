@@ -104,7 +104,7 @@ app.get('/about', (req,res) => {
 
 //Product-page:
 app.get('/product-page',(req,res) => {
-    res.render('./pages/product-page.ejs', { title: "Product-Page",ProductModel : parr ,cssfile: "/css/full-width.css" });   
+    res.render('./pages/product-page.ejs', { title: "Product-Page",ProductModel : parr ,cssfile: "/css/full-width.css" ,username: req.cookies.username});   
 });
 
 // Admin page:
@@ -114,7 +114,7 @@ app.get('/admin',authmw.authAdmin, (req,res) => {
 
 // Create-Product page:
 app.get('/create-product',authmw.authAdmin, (req,res) => {
-    res.render('./pages/CreateProduct.ejs', {title: "Create Product", cssfile: "/css/full-width.css"});
+    res.render('./pages/CreateProduct.ejs', {title: "Create Product", cssfile: "/css/full-width.css" ,username: req.cookies.username});
 });
 
 // POST for login and signup:
