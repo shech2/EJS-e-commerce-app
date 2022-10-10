@@ -4,7 +4,7 @@ const OrderItem = require("../models/order-item");
 
 router.get("/", async (req, res) => {
   const orderList = await Order.find()
-    .populate("user", "name")
+    .populate("user", "username")
     .sort({ dateOrdered: -1 }); // -1 it means descending order
 
   if (!orderList) {
@@ -12,11 +12,12 @@ router.get("/", async (req, res) => {
   
   }
   console.log(orderList);
+  res.send(orderList);
 });
 
 router.get("/:id", async (req, res) => {
   const order = await Order.findById(req.params.id)
-    .populate("user", "name")
+    .populate("user", "username")
     .populate({
       path: "orderItems",
       populate: {
@@ -29,6 +30,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ success: false });
   }
   console.log(order);
+  res.send(order);
 });
 
 //update order
@@ -48,7 +50,7 @@ router.put("/order/:id", async (req, res) => {
 
 
 //create the orders id
-router.post("/", async (req, res) => {
+router.post("/create-order", async (req, res) => {
   const orderItemsIds = Promise.all(
     req.body.orderItems.map(async (orderItem) => {
       let newOrderItem = new OrderItem({
@@ -82,6 +84,7 @@ router.post("/", async (req, res) => {
   if (!order) return res.status(400).send("the order cannot be created!");
 
   console.log(order);
+  res.send(order);
 });
 
 //delete order
