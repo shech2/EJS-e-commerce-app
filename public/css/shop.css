@@ -46,6 +46,7 @@ img{
  #b .img-fluid{
     height: 35vh;
     width: 300px;
+    margin-right: 0px;
     
  }
  #b .card-body{
