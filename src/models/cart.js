@@ -20,7 +20,8 @@ module.exports = class Cart {
         }
     }
         else {
-            cart = { products: [], totalPrice: 0 };
+            cart = { products: [], totalPrice: 
+                0 };
             cart.products.push(product);
             cart.totalPrice = product.price;
         }
