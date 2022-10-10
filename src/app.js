@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const express_session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
+const Cart = require("./models/cart");
 var parr = [];
 
 // COOKIES:
@@ -119,7 +120,7 @@ app.get('/create-product',authmw.authAdmin, (req,res) => {
 });
 // Cart page:
 app.get('/cart',authmw.authAdmin, (req,res) => {
-    res.render('./pages/cart.ejs', {title: "Cart", cssfile: "/css/full-width.css" ,username: req.cookies.username});
+    res.render('./pages/cart.ejs', {title: "Cart", cssfile: "/css/full-width.css" ,cart : Cart.getCart(),username: req.cookies.username});
 });
 
 // POST for login and signup:
