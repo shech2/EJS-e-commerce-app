@@ -23,11 +23,16 @@
                 </div>
             <% } %>
             <div class="may">
-                <a class="may2">
-                    <a class="login kol" href="/login"><img src="/img/login2.png" alt="login"></a>
-                    <a class="logout kol" href="/logout"><img style="height: 62px;left: 62px;position: relative;"
-                            src="https://cdn-icons-png.flaticon.com/512/2699/2699313.png" alt="login"></a>
-                </a>
+                <% if(username){  %>  <!--if user is logged in-->
+                    <a class="may2">
+                        <a class="logout kol" href="/logout"><img style="height: 62px;left: 62px;position: relative;"
+                            src="https://cdn-icons-png.flaticon.com/512/2699/2699313.png" alt="logout"></a>
+                    </a>
+                <% }else{ %>  <!--if user is not logged in-->
+                    <a class="may2">
+                        <a class="login kol" href="/login"><img src="/img/login2.png" alt="login">
+                        </a>
+                    <% } %>
             </div>
 
             <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
