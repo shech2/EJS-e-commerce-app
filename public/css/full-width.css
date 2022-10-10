@@ -47,10 +47,10 @@ img{
     margin-right: -2px;
 }
 .may{
-    position: relative;
-    left: 55%;
-    
+    position: sticky;
+    left: 67%;
 }
+
 .may:hover{
     cursor: pointer;
 }
