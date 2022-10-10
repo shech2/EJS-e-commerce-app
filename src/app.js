@@ -120,7 +120,7 @@ app.get('/create-product',authmw.authAdmin, (req,res) => {
 });
 // Cart page:
 app.get('/cart',authmw.authAdmin, (req,res) => {
-    res.render('./pages/cart.ejs', {title: "Cart", cssfile: "/css/full-width.css" ,cart : Cart.getCart(),username: req.cookies.username});
+    res.render('./pages/cart.ejs', {title: "Cart", cssfile: "/css/cart.css" ,cart : Cart.getCart(),username: req.cookies.username});
 });
 
 // POST for login and signup:
