@@ -24,6 +24,7 @@ const morgan = require("morgan");
 app.use(morgan('tiny'));
 
 //Routers:
+const cartRouter = require('./routes/cart');
 const authRouter = require("./routes/auth");
 const ProductRouter = require("./routes/products");
 const userRouters = require("./routes/users");
@@ -132,6 +133,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
 app.use("/api/categories", categoryRouters);
 app.use("/api/orders", orderRouters);
+app.use("/", cartRouter);
 
 // Server Connection:
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));

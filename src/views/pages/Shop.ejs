@@ -42,9 +42,9 @@
                         <p class="rating">   
                             <u>Description</u>: <%=ProductModel[index].description%>
                         </p>
-                        <form action="/cart" method="POST">
+                        <form action="/add-to-cart" method="POST">
                             <input type="hidden" name="productId" value="<%= ProductModel[index]._id %>">
-                            <button class="btn btn-primary">View Product</button>
+                            <button class="btn btn-primary">Add to cart</button>
                         </form>
                     </div>
                 </div>
