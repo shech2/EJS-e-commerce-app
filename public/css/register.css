@@ -68,6 +68,6 @@ main{
 }
 .navbar-nav{
     position: relative;
-    left: 38%;
+    left: 35%;
     z-index: 1000;
 }
