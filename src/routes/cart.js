@@ -10,7 +10,6 @@ router.post("/add-to-cart", async (req, res) => {
 
     Cart.save(AddedProduct);
     console.log(Cart.getCart());
-    res.send('ok');
 });
 
 
