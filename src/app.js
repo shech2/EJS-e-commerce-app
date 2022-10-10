@@ -126,6 +126,7 @@ app.get('/cart',authmw.authAdmin, (req,res) => {
 // POST for login and signup:
 app.post('/register' , authRouter);
 app.post('/login' , authRouter);
+app.post('/add-to-cart', authmw.authMiddleware);
 
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
