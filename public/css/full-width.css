@@ -47,8 +47,8 @@ img{
     margin-right: -60px;
 }
 .may{
-    position: sticky;
-    left: 67%;
+    position: relative;
+    left: 60%;
     padding: 0px;
 }
 
