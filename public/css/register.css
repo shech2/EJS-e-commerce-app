@@ -63,6 +63,9 @@ main{
 .may{
     display: none;   
 }
+.cartImg{
+    display: none;
+}
 .navbar-nav{
     position: relative;
     left: 38%;
