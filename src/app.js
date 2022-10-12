@@ -119,8 +119,8 @@ app.get('/create-product',authmw.authAdmin, (req,res) => {
     res.render('./pages/CreateProduct.ejs', {title: "Create Product", cssfile: "/css/full-width.css" ,username: req.cookies.username});
 });
 // Cart page:
-app.get('/cart',authmw.authAdmin, (req,res) => {
-    res.render('./pages/cart.ejs', {title: "Cart", cssfile: "/css/cart.css" ,cart : Cart.getCart(),username: req.cookies.username});
+app.get('/cart2',authmw.authAdmin, (req,res) => {
+    res.render('./pages/cart2.ejs', {title: "Cart", cssfile: "/css/cart.css" ,cart : Cart.getCart(),username: req.cookies.username});
 });
 
 // POST for login and signup:
