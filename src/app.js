@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const express_session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
+const Cart = require("./models/cart");
 var parr = [];
 
 // COOKIES:
@@ -24,6 +25,7 @@ const morgan = require("morgan");
 app.use(morgan('tiny'));
 
 //Routers:
+const cartRouter = require('./routes/cart');
 const authRouter = require("./routes/auth");
 const ProductRouter = require("./routes/products");
 const userRouters = require("./routes/users");
@@ -116,10 +118,15 @@ app.get('/admin',authmw.authAdmin, (req,res) => {
 app.get('/create-product',authmw.authAdmin, (req,res) => {
     res.render('./pages/CreateProduct.ejs', {title: "Create Product", cssfile: "/css/full-width.css" ,username: req.cookies.username});
 });
+// Cart page:
+app.get('/cart',authmw.authAdmin, (req,res) => {
+    res.render('./pages/cart.ejs', {title: "Cart", cssfile: "/css/cart.css" ,cart : Cart.getCart(),username: req.cookies.username});
+});
 
 // POST for login and signup:
 app.post('/register' , authRouter);
 app.post('/login' , authRouter);
+app.post('/add-to-cart', authmw.authMiddleware);
 
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
@@ -132,6 +139,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
 app.use("/api/categories", categoryRouters);
 app.use("/api/orders", orderRouters);
+app.use("/", cartRouter);
 
 // Server Connection:
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));

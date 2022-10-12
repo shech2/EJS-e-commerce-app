@@ -1,14 +1,12 @@
 <h1>Shop</h1>
 
-<h1>Hello <%= username %></h1>
-
     <div class="row g-0 text-center">
         <div class="col-sm-6 col-md-8">
             <div class="d-flex col-12" id="b">
                 
             </div>
         </div>
-        <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+        <div class="col-6 col-md-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni modi ipsa sed facere nisi, dignissimos tenetur architecto consequatur officiis omnis iste deserunt, magnam necessitatibus. Repellat, expedita! Facere neque dolor voluptates perferendis expedita. Aliquid commodi laborum perspiciatis repellat eveniet iusto exercitationem sequi voluptatem. Expedita vel doloribus vero deserunt nostrum nobis exercitationem eligendi numquam asperiores atque voluptates, sapiente cum earum explicabo quis repellendus corporis id blanditiis reiciendis, dolorem porro. Quidem voluptate quasi est rem porro sunt eligendi consequatur architecto delectus labore, iusto tenetur, unde asperiores quibusdam velit? Esse similique commodi harum consectetur corporis blanditiis nemo asperiores perferendis sapiente, adipisci provident laboriosam ad. Deleniti voluptatibus voluptas autem eaque sequi. Consectetur ipsam natus, blanditiis et quidem dolorum cupiditate eum beatae excepturi nam vero, voluptatem ullam? Commodi ut repudiandae quae debitis rem, ad nulla cum. Assumenda molestias voluptates fugit eius, architecto doloremque, et itaque consequatur iste velit modi unde exercitationem, vel necessitatibus ea ducimus maxime totam. Provident numquam odio doloribus adipisci modi soluta reiciendis neque, ducimus dolorum quia omnis et libero, ipsam aspernatur, placeat ad iure earum voluptates vel illo ut asperiores delectus esse repellat. Ab rem doloremque a dolor error! Cumque beatae voluptatem veniam in asperiores totam deleniti, perferendis corrupti dolore voluptatum ullam neque quidem aspernatur voluptas saepe vel? Quod doloribus praesentium perferendis iusto numquam explicabo dolore soluta, tempore qui porro molestias voluptatem voluptate ad, eveniet excepturi exercitationem, recusandae assumenda unde? Possimus asperiores unde aperiam voluptate. Itaque, doloribus vel? Excepturi, impedit! Distinctio accusantium iste aut autem ullam atque minima quod tempora tenetur optio eos neque suscipit accusamus laboriosam aspernatur incidunt dignissimos qui nihil, iure possimus vel harum soluta excepturi. Aperiam pariatur alias maxime praesentium accusamus, deserunt magni hic facilis voluptates, accusantium nobis neque nesciunt! Fugiat eaque pariatur minima a aliquam corrupti iusto. Sequi doloribus rem quo inventore reprehenderit rerum debitis. Consequatur doloremque explicabo facere at deleniti, voluptates quam possimus est cupiditate. Totam ullam expedita porro facere accusantium vitae maxime debitis officiis eos consequatur quas nostrum aperiam itaque laudantium culpa quidem et pariatur ex aliquam eveniet, laborum rem atque ipsam. Animi ex eligendi deleniti corrupti natus excepturi, ipsam eaque, debitis, ipsum aperiam rerum. Aspernatur odit dignissimos ipsam maxime! Tenetur ipsum magni assumenda nostrum a. Unde temporibus cupiditate similique, esse atque vero maiores perferendis rem aperiam cumque dolor ad, quis dolorum animi. Consectetur praesentium velit doloribus aperiam ipsa, nobis in asperiores voluptas labore beatae facilis eligendi! Nesciunt itaque quod consequuntur inventore, corporis eum officia sit ea laudantium qui non facere nihil perspiciatis dolor optio quas eligendi laboriosam est! Sint quisquam quasi tempora nostrum quia voluptatibus repudiandae aliquam odio blanditiis eius praesentium distinctio hic exercitationem ut, commodi minima facere rerum sed vero perspiciatis aliquid ipsum consequuntur provident! Sit quasi, sequi deleniti inventore repellat odio eum voluptates facere aperiam non! Reprehenderit alias dolorum dicta mollitia fugit tempora, fugiat blanditiis dolorem necessitatibus, dolor quo iure magnam corporis saepe, nam non architecto nostrum. Expedita modi iste voluptate minima ducimus asperiores libero in voluptatum necessitatibus illum aliquam consequuntur porro atque vitae, quaerat laboriosam quo tempore suscipit quam culpa labore cumque eveniet.</div>
       </div>
 
 <script>
@@ -44,9 +42,9 @@
                         <p class="rating">   
                             <u>Description</u>: <%=ProductModel[index].description%>
                         </p>
-                        <form action="/cart" method="POST">
+                        <form action="/add-to-cart" method="POST">
                             <input type="hidden" name="productId" value="<%= ProductModel[index]._id %>">
-                            <button class="btn btn-primary">View Product</button>
+                            <button class="btn btn-primary">Add to cart</button>
                         </form>
                     </div>
                 </div>
