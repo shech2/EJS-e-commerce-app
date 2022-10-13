@@ -131,8 +131,6 @@ app.post('/add-to-cart', authmw.authMiddleware);
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
 
-
-
 // ROUTES:
 app.use("/api/",ProductRouter);
 app.use("/api/auth", authRouter);
