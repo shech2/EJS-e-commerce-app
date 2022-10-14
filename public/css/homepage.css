@@ -61,4 +61,10 @@ img{
 }
 .h-100{
     padding-bottom: 10px;
- }
+}
+
+#map {
+ width:400px;
+  height:250px;
+  border:0;
+}
