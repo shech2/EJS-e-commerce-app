@@ -88,7 +88,7 @@ app.get('/register', (req,res) => {
 });
 
 app.get('/homepage', (req,res) => {
-    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/full-width.css",username: req.cookies.username });
+    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/homepage.css",username: req.cookies.username });
 });
 
 // LOGOUT:
