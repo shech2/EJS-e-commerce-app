@@ -122,7 +122,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 });
 // Cart page:
 app.get('/cart2', authmw.authAdmin, (req, res) => {
-    res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", cart: Cart.getCart(), username: req.cookies.username });
+    res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username });
 });
 
 // POST for login and signup:

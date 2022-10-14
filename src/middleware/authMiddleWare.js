@@ -33,7 +33,6 @@ exports.authAdmin = (req, res, next) => {
                 res.redirect("/login");
             } else {
                 if(decodedToken.isAdmin){
-                    req.user = user;
                     next();
                 } else {
                     res.redirect("/login");
