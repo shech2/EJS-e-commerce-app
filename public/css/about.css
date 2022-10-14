@@ -25,15 +25,15 @@ img{
     margin-left: -2px;
     margin-right: -60px;
 }
-.may{
+.forms{
     position: relative;
     left: 60%;
     
 }
-.may:hover{
+.forms:hover{
     cursor: pointer;
 }
-.may2{
+.log{
     margin:0;
     padding: 0;
 }
