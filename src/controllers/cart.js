@@ -1,65 +1,51 @@
-const Cart = require('../models/cart');
+const CartController = require('../models/cart');
 
-exports.addItemToCart =  (req, res) => {
+exports.addItemToCart = (req, res) => {
 
-    Cart.findOne({ user: req.session.user.id })
+    CartController.findOne({ user: req.cookies.user })
         .exec((error, cart) => {
-            if(error) return console.log(error);
-            if(cart) {
-                // if cart already exists then update cart by quantity
+            if (error) return console.log(error);
+            if (cart) {
+                if (cart.cartItems) {   // if cart already exists then update cart by quantity
 
-                const product = req.body.cartItems.product;
-                const item = cart.cartItems.find(c => c.product == product)
+                        const product = req.body.productId;
+                        const item = cart.cartItems.find(c => c.product == product) // find the product in the cart
 
-                if(item) {
-                    Cart.findOneAndUpdate({ "user": req.session.user.id, "cartItems.product": product }, {
-                        "$set": {
-                            "cartItems": {
-                                ...req.body.cartItems,
-                                quantity: item.quantity + req.body.cartItems.quantity
-                        }
+                    if (item) {
+                        CartController.findOneAndUpdate({ "user": req.cookies.user, "cartItems.product": product }, {
+                            "$set": {
+                                "cartItems": {
+                                    ...req.body.cartItems,
+                                    quantity: item.quantity + 1
+                                }
+                            }
+                        })
+
+                            .exec((error, _cart) => {
+                                if (error) return console.log(error);
+                                if (_cart) {
+                                    return console.log(res.status(201).json({ cart: _cart }));
+                                }
+                            })
+
+                    } else {
+                        const product = req.body.productId
+                        CartController.findOneAndUpdate({ user: req.cookies.user }, {
+                            "$push": {
+                                "cartItems": {product}
+                            }
+                        })
+
+                            .exec((error, _cart) => {
+                                if (error) return console.log(error);
+                                if (_cart) {
+                                    return console.log(res.status(201).json({ cart: _cart }));
+                                }
+                            })
                     }
-                })
-    
-                    .exec((error, _cart) => {
-                        if(error) return console.log(error);
-                        if(_cart) {
-                            return console.log(res.status(201).json({ cart: _cart }));
-                        }
-                    })    
-
-                } else {
-                    Cart.findOneAndUpdate({ user: req.session.user.id }, {
-                        "$push": {
-                            "cartItems": req.body.cartItems
-                        }
-                    })
-    
-                    .exec((error, _cart) => {
-                        if(error) return console.log(error);
-                        if(_cart) {
-                            return console.log(res.status(201).json({ cart: _cart }));
-                        }
-                    })     
                 }
             }
-            else {
-                // if cart not exists then create a new cart
-
-                const cart = new Cart({
-                    user: req.session.user.id,
-                    cartItems: [req.body.cartItems]
-                });
-
-                cart.save((error, cart) => {
-                    if(error) return console.log(error);
-                    if(cart) {
-                        return console.log(res.status(201).json({ cart }));
-                    }
-                });
-            }
-
-        })
+       })
 }
 
 
