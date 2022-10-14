@@ -41,7 +41,7 @@ dotenv.config();
 // EXPRESS:
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bp.urlencoded({ extended: true }));
+app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 
 // Mongo DB Connection:
@@ -122,13 +122,12 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 });
 // Cart page:
 app.get('/cart2', authmw.authAdmin, (req, res) => {
-    res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", cart: Cart.getCart(), username: req.cookies.username });
+    res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username });
 });
 
 // POST for login and signup:
 app.post('/register', authRouter);
 app.post('/login', authRouter);
-app.post('/add-to-cart', authmw.authMiddleware);
 
 // Main Route:
 app.get('/', (req, res) => res.render('index'));
