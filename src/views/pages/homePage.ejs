@@ -1,19 +1,38 @@
-<h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam, aliquam aspernatur! Magnam totam est saepe reiciendis, reprehenderit cupiditate minus, ex aliquid quia quasi, odio deserunt! Adipisci nemo quae, alias repudiandae quaerat vel incidunt tenetur asperiores similique tempore possimus ducimus. Delectus ut dolore nam enim velit laboriosam at aliquam harum vitae soluta quia aliquid, exercitationem dicta quis quo, voluptatum eaque amet porro ducimus. Maiores earum dolor quam quasi explicabo dignissimos voluptates commodi quis, expedita tempora nihil a ratione laudantium distinctio, quibusdam magni atque minima doloribus ab? Accusantium dolore quod atque est dolorum quasi molestias nobis obcaecati vero eos, quidem similique illo dolor ratione rerum quisquam optio veniam? Officiis sequi eligendi repellendus odio accusamus, molestias animi nemo adipisci. Modi, iusto architecto? Maiores recusandae doloremque ipsa cumque eveniet molestias similique corporis! Ipsum, rem beatae nisi aspernatur architecto quos minus excepturi saepe quas facilis nemo et ea itaque quaerat, porro illo velit aperiam reprehenderit! Ut veritatis commodi doloremque reiciendis, dolore, molestias temporibus animi officiis optio fuga possimus eveniet saepe sit distinctio quasi totam quia fugiat pariatur sed? Tempore obcaecati quia repellat, cupiditate sint delectus animi, rerum vitae commodi facilis consequuntur officiis vero libero nobis nemo. Quos dolore similique placeat consequatur nihil. Recusandae natus adipisci, minus velit sit aut impedit. Reprehenderit a ex dignissimos repudiandae necessitatibus! Eius sint molestiae porro odio quae rem earum natus accusamus consequuntur, aliquam sapiente similique, dolore delectus veniam ex obcaecati iusto illum! Inventore vero mollitia blanditiis enim iusto architecto voluptatum assumenda, sequi voluptate ipsum, laborum non sunt distinctio odit nostrum quos laboriosam beatae molestiae pariatur! Sint omnis pariatur consequuntur, atque iure ex debitis! Neque sunt temporibus aliquam dolore, sapiente fugiat esse unde harum! Architecto dolorum perferendis repellat deleniti ratione laborum ex laboriosam reprehenderit tempore qui inventore, possimus sint harum facilis officia accusantium adipisci. Modi autem illo veritatis, nulla magnam quaerat repellendus soluta harum blanditiis delectus? Facere odio maiores, explicabo laborum quisquam aut molestias ea recusandae blanditiis soluta dignissimos, necessitatibus facilis debitis. Iste eos ad eum earum cupiditate optio placeat a voluptate eaque provident. Quisquam, totam nisi, ipsum at suscipit doloremque expedita dolorem cupiditate fugiat eaque, facere omnis excepturi temporibus alias. Consequatur exercitationem mollitia nesciunt esse et perspiciatis similique quibusdam consequuntur optio distinctio at repellendus, maiores explicabo molestiae cumque ullam ut voluptates tempore numquam possimus, non dignissimos. Eius quae tempore perferendis. Saepe quidem ratione impedit natus asperiores assumenda ea cum quia odit doloribus hic deserunt quod expedita soluta in quasi et nesciunt fugiat, itaque dolorum quaerat! Culpa, explicabo et. Excepturi ex ut commodi. Modi labore cupiditate deleniti facere dolorum corrupti debitis. Ab, deleniti dicta qui officia nobis, veniam totam alias illum dolorum molestiae doloribus. Aut in quaerat dolorum earum, quod ex nulla quam, iusto odit saepe odio numquam optio voluptates, at magnam error quisquam. Eius sed impedit accusantium ab maiores minus ad amet aperiam animi voluptate quibusdam tenetur explicabo inventore iure suscipit a pariatur eaque hic ipsam earum, aspernatur quisquam! Magnam aliquid sunt asperiores ea exercitationem minus, ex laboriosam atque neque nisi debitis voluptas tempore accusamus nam fugiat officiis quod nihil?</h1>
+
+<section id="hero">
+  <h4>Trade-in-offer</h4>
+  <h2>Super value deals</h2>
+  <h1>On all products</h1>
+  <p>Save more with coupons & up to 70% off! </p>
+  <button>Shop Now</button>
+</section>
 
 <div id="map"></div>
 
 <script>
   function initMap() {
-     
-    const RishonShop = { lat: 31.990756, lng: 34.774752 };
+    const Center = { lat:32.030552, lng: 34.758286 };
+    const BatyamShop = { lat: 32.016580, lng: 34.750212 };
+    const TelAvivShop = { lat: 32.040052, lng: 34.752212 };
+    const HolonShop = { lat: 32.020364, lng: 34.776494 };
      
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
-      center: RishonShop,
+      zoom: 13,
+      center: Center,
     });
      
-    const marker = new google.maps.Marker({
-      position: RishonShop,
+    const marker1 = new google.maps.Marker({
+      position: BatyamShop,
+      map: map,
+    });
+
+    const marker2 = new google.maps.Marker({
+      position: TelAvivShop,
+      map: map,
+    });
+
+    const marker3 = new google.maps.Marker({
+      position: HolonShop,
       map: map,
     });
   }
