@@ -1,7 +1,10 @@
 
 #map {
-    height: 250px;
+    height: 300px;
     width: 400px;
+    position: absolute;
+    bottom: 12rem;
+    left: 40%;
 }
 .mr-auto{
     position: relative;
