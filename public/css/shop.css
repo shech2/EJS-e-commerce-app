@@ -21,15 +21,15 @@ main{
 }
 img{
     height: 10vh;
-    /* margin-bottom: -28px; */
-    /* margin-top: -28px; */
-    /* margin-left: -10px; */
-    padding: 5px;
+    margin-bottom: -28px;
+    margin-top: -28px;
+    margin-left: -10px;
     /* margin-right: -60px;  */
+    padding: 5px;
 }
 .forms{
     position: relative;
-    left: 58%;
+    left: 60%;
 }
 .forms:hover{
     cursor: pointer;
@@ -48,6 +48,9 @@ img{
     height: 35vh;
     width: 300px;
     margin-right: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px; 
     
  }
  #b .card-body{
