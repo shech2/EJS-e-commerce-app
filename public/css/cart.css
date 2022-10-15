@@ -41,10 +41,11 @@ h6{
 }
 img{
     height: 10vh;
-    margin-bottom: -18px;
-    margin-top: -18px;
-    margin-left: -2px;
-    margin-right: -60px;
+    margin-bottom: -28px;
+    margin-top: -28px;
+    margin-left: -10px;
+    padding: 5px;
+    /* margin-right: -60px; */
 }
 .forms{
     position: relative;
@@ -62,71 +63,12 @@ img{
 .h-100{
     padding-bottom: 10px;
  }
-.mr-auto{
+ .logo{
+    height: 45px;
     position: relative;
-    left: 33%;
-}
-
-.navbar-brand {
-    display: inline-block;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    position: relative;
 }
-
-footer{
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    height: 11.5rem;
-    flex-direction: column;
-}
-main{
-    padding-bottom: 11.5rem;
-    padding-top: 2rem;
-}
-
-.my-4 {
-    margin-bottom: 0.8rem!important;
-}
-
-.h6 {
-    font-size: 0.9rem;
-    position: relative;
-    top: 0px;
-    right: 0px;
-}
-h6{
-    margin-bottom: -13px;
-}
-img{
-    height: 10vh;
-    /* margin-bottom: -18px; */
-    /* margin-top: -18px; */
-    /* margin-left: -10px; */
-    padding: 5px;
-    /* margin-right: -60px; */
-}
-.forms{
-    position: relative;
-    left: 58%;
-    padding: 0px;
-}
-
-.forms:hover{
-    cursor: pointer;
-}
-.log{
-    margin:0;
-    padding: 0;
-}
-.h-100{
-    padding-bottom: 10px;
- }
 
 
 /*------cart2 css-------*/
