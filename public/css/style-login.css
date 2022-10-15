@@ -107,7 +107,7 @@ margin-left: 4px;
     margin-right: -2px;
 }
 .forms{
-    display: none;    
+    display: none; 
 }
 .cartImg{
     display: none;
@@ -138,5 +138,4 @@ main{
     position: relative;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-    padding: 5px;
 }

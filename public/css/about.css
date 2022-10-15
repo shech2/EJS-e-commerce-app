@@ -1,6 +1,6 @@
 .mr-auto{
     position: relative;
-    left: 33%;
+    left: 30%;
 }
 
 footer{
@@ -47,16 +47,4 @@ img{
     position: relative;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-}
-
-.navbar-brand {
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-left: 15px;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    position: relative;
 }

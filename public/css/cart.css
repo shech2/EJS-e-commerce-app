@@ -1,6 +1,6 @@
 .mr-auto{
     position: relative;
-    left: 33%;
+    left: 30%;
 }
 
 .navbar-brand {
@@ -105,15 +105,15 @@ h6{
 }
 img{
     height: 10vh;
-    margin-bottom: -18px;
-    margin-top: -18px;
-    margin-left: -10px;
+    /* margin-bottom: -18px; */
+    /* margin-top: -18px; */
+    /* margin-left: -10px; */
     padding: 5px;
     /* margin-right: -60px; */
 }
 .forms{
     position: relative;
-    left: 60%;
+    left: 58%;
     padding: 0px;
 }
 

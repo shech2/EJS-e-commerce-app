@@ -38,9 +38,10 @@ h6{
 }
 img{
     height: 10vh;
-    margin-bottom: -18px;
-    margin-top: -18px;
-    margin-left: -2px;
+    /* margin-bottom: -18px; */
+    /* margin-top: -18px; */
+    /* margin-left: -2px; */
+    padding: 5px;
     /* margin-right: -60px; */
 }
 .forms{

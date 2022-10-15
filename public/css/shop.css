@@ -1,9 +1,9 @@
 .mr-auto{
     position: relative;
-    left: 33%;
+    left: 30%;
 }
-h6{
-    margin-bottom: -13px;
+ h6{
+    margin-bottom: -10px;
 }
 h1{
     margin-bottom: 20px;
@@ -21,15 +21,15 @@ main{
 }
 img{
     height: 10vh;
-    margin-bottom: -28px;
-    margin-top: -28px;
-    margin-left: -10px;
+    /* margin-bottom: -28px; */
+    /* margin-top: -28px; */
+    /* margin-left: -10px; */
     padding: 5px;
     /* margin-right: -60px;  */
 }
 .forms{
     position: relative;
-    left: 60%;
+    left: 58%;
 }
 .forms:hover{
     cursor: pointer;
@@ -59,16 +59,4 @@ img{
     position: relative;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-}
-
-.navbar-brand {
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-left: 15px;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    position: relative;
 }
