@@ -65,3 +65,10 @@ main{
     left: 35%;
     z-index: 1000;
 }
+
+.logo{
+    height: 45px;
+    position: relative;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+}

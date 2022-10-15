@@ -1,6 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/homepage">The Store</a>
+        <a href="#"><img src="img/icon.jpg" class="logo" alt=""></a>
+        <a class="navbar-brand" href="/homepage">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp The Store</a>
         <li class="nav-item">
             <a class="navbar-brand" href="/profile-page" id="hello">
                 <% if(username){ %>
@@ -25,12 +26,13 @@
             <div class="forms">
                 <% if(username){  %>  <!--if user is logged in-->
                     <a class="log">
-                        <a class="logout kol" href="/logout"><img style="height: 45px;left: 62px;position: relative;"
+                        <a class="logout kol" href="/logout"><img style="height: 45px;left:62px;position: relative;"
                             src="/img/logout-exit.png" alt="logout"></a>
                     </a>
                 <% }else{ %>  <!--if user is not logged in-->
                     <a class="log">
-                        <a class="login kol" href="/login"><img src="/img/login2.png" alt="login">
+                        <a class="login kol" href="/login"><img style="position: relative;" 
+                           src="/img/login2.png" alt="login">
                         </a>
                     <% } %>
             </div>

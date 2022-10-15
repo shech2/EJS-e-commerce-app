@@ -1,20 +1,39 @@
-<h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime natus doloremque porro quam, omnis mollitia harum
-</h1>
-<div id="map">
-</div>
+<h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime natus doloremque porro quam, omnis mollitia harum</h1>
 
-<script>// Initialize and add the map
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="map"></div>
+
+<script>
   function initMap() {
-    // The location of Uluru
-    const uluru = { lat: 31.990756, lng: 34.774752 };
-    // The map, centered at Uluru
+     
+    const RishonShop = { lat: 31.990756, lng: 34.774752 };
+     
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 15,
-      center: uluru,
+      center: RishonShop,
     });
-    // The marker, positioned at Uluru
+     
     const marker = new google.maps.Marker({
-      position: uluru,
+      position: RishonShop,
       map: map,
     });
   }
@@ -26,15 +45,3 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP7uy1RAI6EFoBYx11EJK1_DhU2syTKcQ&callback=initMap&v=weekly"
   defer></script>
 
-
-  <!-- 
-<iframe
-width="400"
-height="250"
-style="border:0"
-loading="lazy"
-allowfullscreen
-referrerpolicy="no-referrer-when-downgrade"
-src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCP7uy1RAI6EFoBYx11EJK1_DhU2syTKcQ
-  &q=קניון עופר רחובות,Israel">
-</iframe> -->

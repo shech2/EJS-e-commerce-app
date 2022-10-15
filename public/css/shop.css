@@ -52,3 +52,10 @@ img{
  #b .card-body{
     font-family: 'Roboto', sans-serif;
  }
+
+ .logo{
+    height: 45px;
+    position: relative;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+}

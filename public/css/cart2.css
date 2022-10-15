@@ -19,3 +19,10 @@ th{
     background: #ff523b;
     font-weight: normal;
 }
+
+.logo{
+    height: 45px;
+    position: relative;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+}
