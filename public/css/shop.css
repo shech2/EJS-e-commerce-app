@@ -21,10 +21,11 @@ main{
 }
 img{
     height: 10vh;
-    margin-bottom: -18px;
-    margin-top: -18px;
-    margin-left: -2px;
-    margin-right: -60px;
+    margin-bottom: -28px;
+    margin-top: -28px;
+    margin-left: -10px;
+    padding: 5px;
+    /* margin-right: -60px;  */
 }
 .forms{
     position: relative;

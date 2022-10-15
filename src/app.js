@@ -81,12 +81,12 @@ app.set('views', __dirname + '/views');
 
 app.get('/login', (req, res) => {
     const error = req.flash('error');
-    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css", username: "Guest" });
+    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css", username: req.cookies.username});
 });
 
 app.get('/register', (req, res) => {
     const error = req.flash('error');
-    res.render('./pages/register.ejs', { error, title: "Register", cssfile: "/css/register.css", username: "Guest" });
+    res.render('./pages/register.ejs', { error, title: "Register", cssfile: "/css/register.css",username: req.cookies.username});
 });
 
 app.get('/homepage', (req,res) => {
