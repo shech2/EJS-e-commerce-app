@@ -9,12 +9,12 @@ exports.authMiddleware = (req, res, next) => {
                 console.log(err.message);
                 res.redirect("/login");
             } else {
+                req.user = decodedToken;
+                console.log(req.user);
                 next();
             }
         });
-        const user =  jwt.verify(token,process.env.JWT_SEC);
-        req.user = user;
-
+        
     }
     else{
         res.redirect("/login");
@@ -32,14 +32,14 @@ exports.authAdmin = (req, res, next) => {
                 res.redirect("/login");
             } else {
                 if(decodedToken.isAdmin){
+                    req.user = decodedToken;
+                    console.log(req.user);
                     next();
                 } else {
                     res.redirect("/login");
                 }
             }
         });
-        const user =  jwt.verify(token,process.env.JWT_SEC);
-        req.user = user;
     }
     else{
         res.redirect("/login");

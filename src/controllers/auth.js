@@ -70,14 +70,13 @@ exports.auth_LogController = async (req, res) => {
         }, process.env.JWT_SEC,
             { expiresIn: "3d" }
         );
-
+        
         const { password, ...others } = user._doc;
         // res.status(200).json({...others, accessToken});
         console.log(JSON.stringify({ ...others, accessToken }));
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.cookie("isAdmin", user.isAdmin, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.cookie("username", user.username, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
-        res.cookie("user", user, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.redirect("/homepage");
     } catch (err) {
         console.log(err);

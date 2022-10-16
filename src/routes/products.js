@@ -39,7 +39,7 @@ router.post("/create_product", async (req,res) => {
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
-        stock: req.body.stock,
+        quantity: req.body.quantity,
         rating: req.body.rating,
         image: req.body.image,
     });
@@ -73,7 +73,7 @@ router.put("/products/:id", async (req, res) => {
       price: req.body.price,
       description: req.body.description,
       category: req.body.category,
-      stock: req.body.stock,
+      quantity: req.body.quantity,
       rating: req.body.rating,
       image: req.body.image,
     },

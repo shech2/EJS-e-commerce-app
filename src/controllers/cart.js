@@ -1,51 +1,48 @@
 const CartController = require('../models/cart');
+const product = require('../models/Product');
 
-exports.addItemToCart = (req, res) => {
+exports.addItemToCart = async (req, res) => {
+    const POSTProduct = await product.findById(req.body.productId);
 
-    CartController.findOne({ user: req.cookies.user })
-        .exec((error, cart) => {
-            if (error) return console.log(error);
-            if (cart) {
-                if (cart.cartItems) {   // if cart already exists then update cart by quantity
 
-                        const product = req.body.productId;
-                        const item = cart.cartItems.find(c => c.product == product) // find the product in the cart
-
-                    if (item) {
-                        CartController.findOneAndUpdate({ "user": req.cookies.user, "cartItems.product": product }, {
-                            "$set": {
-                                "cartItems": {
-                                    quantity: item.quantity + 1
-                                }
-                            }
-                        })
-
-                            .exec((error, _cart) => {
-                                if (error) return console.log(error);
-                                if (_cart) {
-                                    return console.log(res.status(201).json({ cart: _cart }));
-                                }
-                            })
-
-                    } else {
-                        const product = req.body.productId
-                        CartController.findOneAndUpdate({ user: req.cookies.user }, {
-                            "$push": {
-                                "cartItems": {product}
-                            }
-                        })
-
-                            .exec((error, _cart) => {
-                                if (error) return console.log(error);
-                                if (_cart) {
-                                    return console.log(res.status(201).json({ cart: _cart }));
-                                }
-                            })
+    CartController.findOne({ user: req.user.id }).exec((error, cart) => {
+        if (error) return res.status(400).json({ error });
+        if (cart) { // if cart already exists // if cartItem does not exist
+            const product = cart.cartItems.find(c => c.product == POSTProduct.id);
+            if (product) {
+                console.log("product already exists in cart");
+                console.log(product);
+                cart.updateOne({
+                    "product" : req.body.productId
+                },
+                { $set : {
+                    cartItems: {
+                        quantity: product.quantity + 1
                     }
                 }
+                
+                }).exec((error,_cart) => {
+                    if (error) return res.status(400).json({ error });
+                    if(_cart){
+                        return res.status(201).json({ cart: _cart});
+                    }
+                })
+            } else {
+                cart.updateOne({
+                    $push: {
+                        cartItems: {
+                            product: POSTProduct._id,
+                            quantity: POSTProduct.quantity,
+                            price: POSTProduct.price
+                        }
+                    }
+                }).exec((error, _cart) => {
+                    if (error) return res.status(400).json({ error });
+                    if (_cart) {
+                        return res.status(201).json({ cart: _cart });
+                    }
+                })
             }
-       })
+        }
+    })
 }
-
-
-
