@@ -70,7 +70,7 @@ exports.auth_LogController = async (req, res) => {
         }, process.env.JWT_SEC,
             { expiresIn: "3d" }
         );
-
+        
         const { password, ...others } = user._doc;
         // res.status(200).json({...others, accessToken});
         console.log(JSON.stringify({ ...others, accessToken }));

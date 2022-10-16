@@ -97,7 +97,7 @@ app.get('/homepage', (req,res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop', (req, res) => {
+app.get('/shop',authmw.authMiddleware, (req, res) => {
     res.render('./pages/shop.ejs', { title: "Shop", ProductModel: parr, cssfile: "/css/shop.css", username: req.cookies.username , user: req.user });
 });
 
