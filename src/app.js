@@ -97,8 +97,8 @@ app.get('/homepage', (req,res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop',authmw.authMiddleware, (req, res) => {
-    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: parr, cssfile: "/css/shop.css", username: req.cookies.username , user: req.user });
+app.get('/shop', (req, res) => {
+    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: parr, cssfile: "/css/shop.css", username: req.cookies.username});
 });
 
 // GET ABOUT:
@@ -118,7 +118,7 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
 
 // Create-Product page:
 app.get('/create-product', authmw.authAdmin, (req, res) => {
-    res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username });
+    res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username});
 });
 // Cart page:
 app.get('/cart2', authmw.authAdmin, (req, res) => {
