@@ -43,7 +43,7 @@
                             <u>Description</u>: <%=ProductModel[index].description%>
                         </p>
                         <form action="/add-to-cart" method="POST">
-                            <input type="hidden" name="productId" value="<%= ProductModel[index]._id %>">
+                            <input type="hidden" name="productId" value="<%- ProductModel[index]._id %>">
                             <button class="btn btn-primary">Add to cart</button>
                         </form>
                     </div>
