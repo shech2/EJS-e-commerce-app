@@ -119,12 +119,12 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
     res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username });
 });
 // Cart page:
-app.get('/cart2', authmw.authMiddleware, (req, res) => {
+app.get('/cart', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.user.id }, (err, cart) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
+        res.render('./pages/cart.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
     }
     ).populate('cartItems.product');
 });
