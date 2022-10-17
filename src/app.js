@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const express_session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
-const Cart = require("./controllers/cart");
+const Cart = require("./models/cart");
 const passport = require("passport");
 var parr = [];
 
@@ -83,16 +83,16 @@ ProductModel.find({}, async function (err, products) {
 
 app.get('/login', (req, res) => {
     const error = req.flash('error');
-    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css", username: req.cookies.username});
+    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css", username: req.cookies.username });
 });
 
 app.get('/register', (req, res) => {
     const error = req.flash('error');
-    res.render('./pages/register.ejs', { error, title: "Register", cssfile: "/css/register.css",username: req.cookies.username});
+    res.render('./pages/register.ejs', { error, title: "Register", cssfile: "/css/register.css", username: req.cookies.username });
 });
 
-app.get('/homepage', (req,res) => {
-    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/homepage.css",username: req.cookies.username });
+app.get('/homepage', (req, res) => {
+    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/homepage.css", username: req.cookies.username });
 });
 
 // LOGOUT:
@@ -100,7 +100,7 @@ app.get('/logout', authRouter);
 
 // GET SHOP:
 app.get('/shop', (req, res) => {
-    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: parr, cssfile: "/css/shop.css", username: req.cookies.username});
+    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: parr, cssfile: "/css/shop.css", username: req.cookies.username });
 });
 
 // GET ABOUT:
@@ -120,11 +120,18 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
 
 // Create-Product page:
 app.get('/create-product', authmw.authAdmin, (req, res) => {
-    res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username});
+    res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username });
 });
 // Cart page:
-app.get('/cart2',authmw.authMiddleware,(req, res) => {
-    res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username});
+app.get('/cart2', authmw.authMiddleware, (req, res) => {
+    Cart.findOne({ user: req.user.id }, (err, cart) => {
+        if (err) {
+            console.log(err);
+        }
+        // console.log(cart.cartItems[0].product);
+        res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
+    }
+    );
 });
 
 // POST for login and signup:

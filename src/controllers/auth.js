@@ -77,6 +77,7 @@ exports.auth_LogController = async (req, res) => {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.cookie("isAdmin", user.isAdmin, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.cookie("username", user.username, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
+        res.cookie("user",user, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.redirect("/homepage");
     } catch (err) {
         console.log(err);

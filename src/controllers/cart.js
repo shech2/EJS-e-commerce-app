@@ -19,7 +19,7 @@ exports.addItemToCart = async (req, res) => {
                                 "cartItems.$": {
                                     product: POSTProduct.id,
                                     quantity: POSTProduct.quantity + item.quantity,
-                                    price: POSTProduct.price
+                                    price: POSTProduct.price + item.price
                                 }
                             }
                         }).exec((error, _cart) => {
@@ -28,13 +28,6 @@ exports.addItemToCart = async (req, res) => {
                                 res.status(201).json({ cart: _cart });
                             }
                         })
-                        console.log(item2);
-                        console.log(cart.cartItems[0].product);
-                        if(cart.cartItems[0].product == product.id){
-                            console.log("true");
-                        }else{
-                            console.log("false");
-                        }
                     }
                 });
             }
@@ -58,15 +51,10 @@ exports.addItemToCart = async (req, res) => {
             })
         }
 
-// exports.getCart = async (req, res) => {
-//     CartController.findOne({ user: req.user }).exec((error, cart) => {
-//         if (error) return res.status(400).json({ error });
-//         if (cart) {
-//             let cartItems = {};
-//             cart.cartItems.forEach((item, index) => {
-//                 cartItems[item.product] = item;
-//             });
-//             res.status(200).json({ cartItems });
-//         }
-//     });
-// }
+exports.getCart = async (req, res) => {
+    const Cart = CartController.find({user: req.user.id}).exec((error, cart) => {
+        if(cart){
+            
+        }
+    })
+}
