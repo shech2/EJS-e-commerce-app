@@ -19,7 +19,7 @@ exports.addItemToCart = async (req, res) => {
                                 "cartItems.$": {
                                     product: POSTProduct.id,
                                     quantity: POSTProduct.quantity + item.quantity,
-                                    price: POSTProduct.price + item.price
+                                    price: POSTProduct.price
                                 }
                             }
                         }).exec((error, _cart) => {
