@@ -11,42 +11,37 @@ exports.addItemToCart = async (req, res) => {
             const product = POSTProduct;
             const item = cart.cartItems.find(c => c.product == product.id);
             if (item) {
-                CartController.findOne({ user: req.user.id}).exec((error, cart) => {
-                    if(error) res.status(400).json({error});
-                    if(cart){
-                        const item2 = CartController.findOneAndUpdate({ user: req.user.id , "cartItems.product" : product }, {
-                            "$set": {
-                                "cartItems.$": {
-                                    product: POSTProduct.id,
-                                    quantity: POSTProduct.quantity + item.quantity,
-                                    price: POSTProduct.price
-                                }
-                            }
-                        }).exec((error, _cart) => {
-                            if(error) res.status(400).json({error});
-                            if(_cart){
-                                res.redirect('/cart2');
-                            }
-                        })
+                const item2 = CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": product }, {
+                    "$set": {
+                        "cartItems.$": {
+                            product: POSTProduct.id,
+                            quantity: POSTProduct.quantity + item.quantity,
+                            price: POSTProduct.price
+                        }
                     }
-                });
+                }).exec((error, _cart) => {
+                    if (error) res.status(400).json({ error });
+                    if (_cart) {
+                        res.redirect('/cart2');
+                    }
+                })
             }
-                    else {
-                        cart.updateOne({
-                            $push: {
-                                cartItems: {
-                                    product: product.id,
-                                    quantity: product.quantity,
-                                    price: product.price
-                                }
-                            }
-                        }).exec((error, _cart) => {
-                            if (error) return res.status(400).json({ error });
-                            if (_cart) {
-                                return res.redirect('/cart2');
-                            }
-                        })
+            else {
+                cart.updateOne({
+                    $push: {
+                        cartItems: {
+                            product: product.id,
+                            quantity: product.quantity,
+                            price: product.price
+                        }
                     }
-                }
-            })
+                }).exec((error, _cart) => {
+                    if (error) return res.status(400).json({ error });
+                    if (_cart) {
+                        return res.redirect('/cart2');
+                    }
+                })
+            }
         }
+    })
+}
