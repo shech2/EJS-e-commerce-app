@@ -7,7 +7,6 @@ const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
 const Cart = require("./models/cart");
 const passport = require("passport");
-var parr = [];
 
 // COOKIES:
 const cookieparser = require('cookie-parser');
@@ -69,14 +68,6 @@ app.use('/css', express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
 
-// Product MODEL:
-ProductModel.find({}, async function (err, products) {
-    if (err) {
-        console.log(err);
-    }
-    parr = products;
-});
-
 
 
 // GET for login,signup and logout:
@@ -100,7 +91,12 @@ app.get('/logout', authRouter);
 
 // GET SHOP:
 app.get('/shop', (req, res) => {
-    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: parr, cssfile: "/css/shop.css", username: req.cookies.username });
+    ProductModel.find({}, async function (err, products) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username });
+    });
 });
 
 // GET ABOUT:
@@ -124,13 +120,14 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 });
 // Cart page:
 app.get('/cart2', authmw.authMiddleware, (req, res) => {
-    Cart.findOne({ user: req.user.id }, (err, cart) => {
+    const i = Cart.findOne({ user: req.user.id }, (err, cart) => {
         if (err) {
             console.log(err);
         }
         res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
     }
-    );
+    ).populate('cartItems.product');
+    console.log(i);
 });
 
 // POST for login and signup:

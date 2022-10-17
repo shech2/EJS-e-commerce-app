@@ -5,7 +5,7 @@
     var code = `<div class="small-container cart-page">
     <table>
         <tr>
-            <th>"<%= cartItems[i].product %>"</th>
+            <th><%= cartItems[i].product.Product_name %></th>
             <th><%= cartItems[i].quantity %></th>
             <th><%= cartItems[i].price * cartItems[i].quantity %></th>
         </tr> 
@@ -13,10 +13,10 @@
         <tr>
             <td>
                 <div class="cart-info">
-                    <img src="// pull from DB">
+                    <img src="<%= cartItems[i].product.image %>">
                     <div>
-                        <p>description (from DB)</p>
-                        <small>price: "<%= cartItems[i].price%>"</small>
+                        <p>description: <%= cartItems[i].product.description %></p>
+                        <small>price: $<%= cartItems[i].price%></small>
                         <br>
                         <a href="">Remove product</a>
                     </div>
