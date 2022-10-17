@@ -19,11 +19,8 @@ exports.addItemToCart = async (req, res) => {
                             price: POSTProduct.price
                         }
                     }
-                }).exec((error, _cart) => {
+                }).exec((error) => {
                     if (error) res.status(400).json({ error });
-                    if (_cart) {
-                        res.redirect('/cart');
-                    }
                 })
             }
             else {
@@ -35,11 +32,8 @@ exports.addItemToCart = async (req, res) => {
                             price: product.price
                         }
                     }
-                }).exec((error, _cart) => {
+                }).exec((error) => {
                     if (error) return res.status(400).json({ error });
-                    if (_cart) {
-                        return res.redirect('/cart');
-                    }
                 })
             }
         }
@@ -48,9 +42,7 @@ exports.addItemToCart = async (req, res) => {
 
 exports.RemoveFromCart = async (req, res) => {
     const productId = req.body.productId;
-    console.log(productId);
     const productPOST = await product.findById(productId);
-    console.log(productPOST);
     if (product) {
         CartController.findOneAndUpdate({ user: req.user.id }, {
             $pull: {
