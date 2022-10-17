@@ -21,6 +21,7 @@ exports.addItemToCart = async (req, res) => {
                     }
                 }).exec((error) => {
                     if (error) res.status(400).json({ error });
+                    res.redirect('/shop');
                 })
             }
             else {
@@ -34,6 +35,7 @@ exports.addItemToCart = async (req, res) => {
                     }
                 }).exec((error) => {
                     if (error) return res.status(400).json({ error });
+                    res.redirect('/shop');
                 })
             }
         }
