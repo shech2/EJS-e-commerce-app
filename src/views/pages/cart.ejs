@@ -45,14 +45,15 @@
                 <% for(j=0 ; j < cartItems.length ; j++) { %>
                     <% total +=cartItems[j].price * cartItems[j].quantity %>
                         <% } %>
-                        <div class="container cart-page" style="position: relative;margin: 0 auto;left: 19%;">
-                            <h1>Total Price : <%= total %>
-                            </h1>
-                            
-                            <from action="/checkout" method="POST">
-                                <button class="btn btn-warning">Checkout</button>
-                            </from>
-                            
+                            <div class="container cart-page">
+                                <h1>Total Price : <%= total %>
+                                </h1>
+
+                                <form action="/checkout" method="POST">
+                                    <input type="" name="total" value="<%= total %>">
+                                    <button class="btn btn-warning">Checkout</button>
+                                </form>
+
                             </div>
 
                             <% }else { %>
