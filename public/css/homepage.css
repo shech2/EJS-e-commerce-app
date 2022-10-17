@@ -35,6 +35,14 @@ p {
     margin: 15px 0 20px 0;
 }
 
+.section-p1{
+    padding: 40px 80px;
+}
+
+.section-m1{
+    margin: 40px 0;
+}
+
 .mr-auto{
     position: relative;
     left: 30%;
@@ -144,3 +152,13 @@ img{
     font-weight: 700;
     font-size: 15px;
   }
+
+  #features .fe-box{
+    width: 180px;
+    text-align: center;
+    padding: 25px 15px;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0 , 0.03);
+    border: 1px solid #cce7d0;
+    border-radius: 4px;
+    margin: 15px 0;
+   }
