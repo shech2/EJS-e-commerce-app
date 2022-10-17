@@ -50,11 +50,3 @@ exports.addItemToCart = async (req, res) => {
                 }
             })
         }
-
-exports.getCart = async (req, res) => {
-    const Cart = CartController.find({user: req.user.id}).exec((error, cart) => {
-        if(cart){
-            
-        }
-    })
-}

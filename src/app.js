@@ -120,7 +120,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 });
 // Cart page:
 app.get('/cart2', authmw.authMiddleware, (req, res) => {
-    const i = Cart.findOne({ user: req.user.id }, (err, cart) => {
+    Cart.findOne({ user: req.user.id }, (err, cart) => {
         if (err) {
             console.log(err);
         }
