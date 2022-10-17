@@ -96,7 +96,7 @@ app.get('/shop', (req, res) => {
             console.log(err);
         }
         res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username });
-    });
+    }).populate('category');
 });
 
 // GET ABOUT:
