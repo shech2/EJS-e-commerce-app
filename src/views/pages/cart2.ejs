@@ -1,8 +1,8 @@
-<div class="c"></div>
 
-<script>
-    "<% for (i = 0; i < cartItems.length; i++) { %>"
-    var code = `<div class="small-container cart-page">
+
+
+    <% for (i = 0; i < cartItems.length; i++) { %>
+    <div class="small-container cart-page">
     <table>
         <tr>
             <th><%= cartItems[i].product.Product_name %></th>
@@ -18,6 +18,7 @@
                         <p>description: <%= cartItems[i].product.description %></p>
                         <small>price: $<%= cartItems[i].price%></small>
                         <br>
+                       
                         <a href="">Remove product</a>
                     </div>
                 </div>
@@ -30,7 +31,6 @@
             </td>
         </tr>
     </table>
-</div>`;
-        document.querySelector(".c").innerHTML += code;
-        "<% } %>"
-</script>
+</div>;
+        
+        <% } %>
