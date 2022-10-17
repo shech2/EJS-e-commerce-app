@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const express_session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
-const Cart = require("./models/cart");
+const Cart = require("./controllers/cart");
 const passport = require("passport");
 var parr = [];
 
@@ -50,14 +50,6 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
         console.log(err);
     });
 
-// Product MODEL:
-ProductModel.find({}, async function (err, products) {
-    if (err) {
-        console.log(err);
-    }
-    parr = products;
-});
-
 // session + flash:
 app.use(express_session({
     secret: process.env.SESSION_SEC,
@@ -76,6 +68,16 @@ app.use(express.static("public"));
 app.use('/css', express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
+
+// Product MODEL:
+ProductModel.find({}, async function (err, products) {
+    if (err) {
+        console.log(err);
+    }
+    parr = products;
+});
+
+
 
 // GET for login,signup and logout:
 
@@ -121,8 +123,8 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
     res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username});
 });
 // Cart page:
-app.get('/cart2', authmw.authAdmin, (req, res) => {
-    res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username });
+app.get('/cart2',authmw.authMiddleware,(req, res) => {
+    res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username});
 });
 
 // POST for login and signup:
@@ -139,6 +141,7 @@ app.use("/api/users", userRouters);
 app.use("/api/categories", categoryRouters);
 app.use("/api/orders", orderRouters);
 app.use("/", cartRouter);
+
 
 // Server Connection:
 app.listen(3000, () => console.log(`Example app listening on port 3000!`));

@@ -57,3 +57,16 @@ exports.addItemToCart = async (req, res) => {
                 }
             })
         }
+
+// exports.getCart = async (req, res) => {
+//     CartController.findOne({ user: req.user }).exec((error, cart) => {
+//         if (error) return res.status(400).json({ error });
+//         if (cart) {
+//             let cartItems = {};
+//             cart.cartItems.forEach((item, index) => {
+//                 cartItems[item.product] = item;
+//             });
+//             res.status(200).json({ cartItems });
+//         }
+//     });
+// }
