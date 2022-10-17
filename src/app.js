@@ -128,7 +128,6 @@ app.get('/cart2', authmw.authMiddleware, (req, res) => {
         if (err) {
             console.log(err);
         }
-        // console.log(cart.cartItems[0].product);
         res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
     }
     );
