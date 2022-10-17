@@ -127,7 +127,6 @@ app.get('/cart2', authmw.authMiddleware, (req, res) => {
         res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
     }
     ).populate('cartItems.product');
-    console.log(i);
 });
 
 // POST for login and signup:
