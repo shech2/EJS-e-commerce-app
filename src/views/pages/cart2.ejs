@@ -18,8 +18,10 @@
                         <p>description: <%= cartItems[i].product.description %></p>
                         <small>price: $<%= cartItems[i].price%></small>
                         <br>
-                       
-                        <a href="">Remove product</a>
+                       <form method="POST" action="/remove-product" >
+                        <input name="productID" type="hidden"  value="<%= cartItems[i]._id %>">
+                        <button class="btn btn-warning">Remove product</button>
+                        </form>
                     </div>
                 </div>
             </td>
