@@ -90,7 +90,6 @@ exports.auth_LogoutController = (req, res) => {
         res.clearCookie("jwt");
         res.clearCookie("isAdmin");
         res.clearCookie("username");
-        res.clearCookie("user");
         res.redirect("/homepage");
     }
 };
