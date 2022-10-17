@@ -1,40 +1,58 @@
-<% if (cartItems.length > 0) { %> 
-<% for (i = 0; i < cartItems.length; i++) { %>
-    <div class="small-container cart-page">
-    <table>
-        <tr>
-            <th><%= cartItems[i].product.Product_name %></th>
-            <th><%= cartItems[i].quantity %></th>
-            <th><%= cartItems[i].price * cartItems[i].quantity %></th>
-        </tr> 
-        
+<% if (cartItems.length> 0) { %>
+    <% for (i=0; i < cartItems.length; i++) { %>
+        <div class="small-container cart-page">
+            <table>
+                <tr>
+                    <th>
+                        <%= cartItems[i].product.Product_name %>
+                    </th>
+                    <th>
+                        <%= cartItems[i].quantity %>
+                    </th>
+                    <th>
+                        <%= cartItems[i].price * cartItems[i].quantity %>
+                    </th>
+                </tr>
 
-        <tr>
-            <td>
-                <div class="cart-info">
-                    <img src="<%= cartItems[i].product.image %>">
-                    <div>
-                        <p>description: <%= cartItems[i].product.description %></p>
-                        <small>price: $<%= cartItems[i].price%></small>
-                        <br>
-                       <form action="/remove-from-cart" method="POST">
-                        <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
-                        <button class="btn btn-warning">Remove Product</button>
-                    </form>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <input type="number" value="1">
-            </td>
-            <td>  
-                <%= cartItems[i].price * cartItems[i].quantity %>
-            </td>
-        </tr>
-    </table>
-</div>;
-        
+
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="<%= cartItems[i].product.image %>">
+                            <div>
+                                <p>description: <%= cartItems[i].product.description %>
+                                </p>
+                                <small>price: $<%= cartItems[i].price%></small>
+                                <br>
+                                <form action="/remove-from-cart" method="POST">
+                                    <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
+                                    <button class="btn btn-warning">Remove Product</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" value="1">
+                    </td>
+                    <td>
+                        <%= cartItems[i].price * cartItems[i].quantity %>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <% } %>
-        <% }else { %>
-        <h1>Cart is empty</h1>
-        <% } %>
+            <% var total=0 %>
+                <% for(j=0 ; j < cartItems.length ; j++) { %>
+                    <% total +=cartItems[j].price * cartItems[j].quantity %>
+                        <% } %>
+                        <div class="container cart-page" style="position: relative;margin: 0 auto;left: 19%;">
+                            <h1>Total Price : <%= total %>
+                            </h1>
+                            
+                            <from action="/checkout" method="POST">
+                                <button class="btn btn-warning">Checkout</button>
+                            </div>
+
+                            <% }else { %>
+                                <h1>Cart is empty</h1>
+                                <% } %>

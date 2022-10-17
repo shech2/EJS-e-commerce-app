@@ -1,3 +1,4 @@
+const { response } = require('express');
 const CartController = require('../models/cart');
 const product = require('../models/Product');
 
@@ -11,7 +12,7 @@ exports.addItemToCart = async (req, res) => {
             const product = POSTProduct;
             const item = cart.cartItems.find(c => c.product == product.id);
             if (item) {
-                const item2 = CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": product }, {
+                CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": product }, {
                     "$set": {
                         "cartItems.$": {
                             product: POSTProduct.id,
@@ -21,7 +22,6 @@ exports.addItemToCart = async (req, res) => {
                     }
                 }).exec((error) => {
                     if (error) res.status(400).json({ error });
-                    res.redirect('/shop');
                 })
             }
             else {
@@ -35,7 +35,6 @@ exports.addItemToCart = async (req, res) => {
                     }
                 }).exec((error) => {
                     if (error) return res.status(400).json({ error });
-                    res.redirect('/shop');
                 })
             }
         }
