@@ -62,7 +62,7 @@
                         <h2>
                             <%= ProductModel[index].Product_name %>
                         </h2>
-                        <p class="price"><u>Price</u>: $<%=ProductModel[index].price %>
+                        <p class="price"><u>Price</u>: <b>$<%=ProductModel[index].price %></b>
                         </p>
                         <p class="description">
                             <u>Rating</u>: <%=ProductModel[index].rating %>
@@ -70,8 +70,8 @@
                         <p class="category">
                             <u>Category</u>: <%=ProductModel[index].category.name %>
                         </p>
-                        <p class="stock">
-                            <u>Stock</u>: <%=ProductModel[index].stock %>
+                        <p class="quantity">
+                            <u>quantity</u>: <%=ProductModel[index].quantity %>
                         </p>
                         <p class="rating">   
                             <u>Description</u>: <%=ProductModel[index].description%>
