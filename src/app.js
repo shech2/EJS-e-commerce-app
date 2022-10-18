@@ -107,7 +107,7 @@ app.get('/shop', (req, res) => {
                 ProductModel.find({}, async function (err, products) {
                     if (err) { console.log(err); }
                     res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username});
-                })
+                }).populate('category');
             }
         }).populate('category');
 });
