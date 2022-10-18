@@ -14,45 +14,33 @@
 </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="map"></div>
-
 <script>
+const Center = { lat:32.030552, lng: 34.758286 };
+const BatyamShop = { lat: 32.016580, lng: 34.750212 };
+const TelAvivShop = { lat: 32.040052, lng: 34.752212 };
+const HolonShop = { lat: 32.020364, lng: 34.776494 };
+
+
   function initMap() {
-    const Center = { lat:32.030552, lng: 34.758286 };
-    const BatyamShop = { lat: 32.016580, lng: 34.750212 };
-    const TelAvivShop = { lat: 32.040052, lng: 34.752212 };
-    const HolonShop = { lat: 32.020364, lng: 34.776494 };
+
      
-    const map = new google.maps.Map(document.getElementById("map"), {
+    var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,
       center: Center,
     });
      
-    const marker1 = new google.maps.Marker({
+    var marker1 = new google.maps.Marker({
       position: BatyamShop,
       map: map,
     });
 
-    const marker2 = new google.maps.Marker({
+    var marker2 = new google.maps.Marker({
       position: TelAvivShop,
       map: map,
     });
 
-    const marker3 = new google.maps.Marker({
+    var marker3 = new google.maps.Marker({
       position: HolonShop,
       map: map,
     });
