@@ -106,7 +106,13 @@ app.get('/about', (req, res) => {
 
 //Product-page:
 app.get('/product-page', (req, res) => {
-    res.render('./pages/product-page.ejs', { title: "Product-Page", ProductModel: parr, cssfile: "/css/full-width.css", username: req.cookies.username });
+    ProductModel.find({}, async function (err, products) {
+        if (err) {
+            console.log(err);
+        }
+    res.render('./pages/product-page.ejs', { title: "Product-Page", ProductModel : products, cssfile: "/css/full-width.css", username: req.cookies.username });
+
+    }).populate('category');
 });
 
 // Admin page:
