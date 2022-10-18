@@ -90,13 +90,17 @@ app.get('/homepage', (req, res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop', (req, res) => {
-    ProductModel.find({}, async function (err, products) {
-        if (err) {
-            console.log(err);
-        }
-        res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username,params : req });
-    }).populate('category');
+app.get('/shop', authmw.authMiddleware, (req, res) => {
+        ProductModel.find({ "category.name" : "Nike" }, async function (err, items) {
+            if (err) { console.log(err); }
+                // res.render('./pages/shop.ejs', { title: "Shop", cssfile: "/css/shop.css", username: req.cookies.username, items: items });
+                console.log(items);
+        }).populate('category');
+        ProductModel.find({}, async function (err, products) {
+            if (err) { console.log(err); }
+            if(req.query.search){}
+            res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username});
+        }).populate('category');
 });
 
 // GET ABOUT:
@@ -110,7 +114,7 @@ app.get('/product-page', (req, res) => {
         if (err) {
             console.log(err);
         }
-    res.render('./pages/product-page.ejs', { title: "Product-Page", ProductModel : products, cssfile: "/css/full-width.css", username: req.cookies.username });
+        res.render('./pages/product-page.ejs', { title: "Product-Page", ProductModel: products, cssfile: "/css/full-width.css", username: req.cookies.username });
 
     }).populate('category');
 });
@@ -130,7 +134,7 @@ app.get('/cart', authmw.authMiddleware, (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
+        res.render('./pages/cart.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems });
     }
     ).populate('cartItems.product');
 });
