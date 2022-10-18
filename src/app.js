@@ -140,7 +140,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 
 // Checkout page:
 app.get('/checkout', authmw.authMiddleware, (req, res) => {
-    res.render('./pages/checkout.ejs', { title: "Checkout",headercss : "/css/header.css", cssfile: "/css/full-width.css", username: req.cookies.username });
+    res.render('./pages/checkout.ejs', { title: "Checkout",headercss : "/css/header.css", cssfile: "/css/checkout.css", username: req.cookies.username });
 });
 
 
