@@ -75,16 +75,16 @@ app.set('views', __dirname + '/views');
 
 app.get('/login', (req, res) => {
     const error = req.flash('error');
-    res.render('./pages/login.ejs', { error, title: "Login", cssfile: "/css/style-login.css", username: req.cookies.username });
+    res.render('./pages/login.ejs', { error, title: "Login", headercss : "/css/header.css",cssfile: "/css/style-login.css", username: req.cookies.username });
 });
 
 app.get('/register', (req, res) => {
     const error = req.flash('error');
-    res.render('./pages/register.ejs', { error, title: "Register", cssfile: "/css/register.css", username: req.cookies.username });
+    res.render('./pages/register.ejs', { error, title: "Register", headercss : "/css/header.css",cssfile: "/css/register.css", username: req.cookies.username });
 });
 
 app.get('/homepage', (req, res) => {
-    res.render('./pages/homePage.ejs', { title: "Home-Page", cssfile: "/css/homepage.css", username: req.cookies.username });
+    res.render('./pages/homePage.ejs', { title: "Home-Page", headercss : "/css/header.css",cssfile: "/css/homepage.css", username: req.cookies.username });
 });
 
 // LOGOUT:
@@ -101,12 +101,12 @@ app.get('/shop', (req, res) => {
                         updatedItems.push(items[i]);  
                     }
                 }
-                res.render('./pages/shop.ejs', { title: "Shop", cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems });
+                res.render('./pages/shop.ejs', { title: "Shop", headercss : "/css/header.css",cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems });
             }else{
                 
                 ProductModel.find({}, async function (err, products) {
                     if (err) { console.log(err); }
-                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username});
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss : "/css/header.css",cssfile: "/css/shop.css", username: req.cookies.username});
                 }).populate('category').populate('brand');
             }
         }).populate('category').populate('brand');
@@ -114,7 +114,7 @@ app.get('/shop', (req, res) => {
 
 // GET ABOUT:
 app.get('/about', (req, res) => {
-    res.render('./pages/About.ejs', { title: "About", cssfile: "/css/about.css", username: req.cookies.username });
+    res.render('./pages/About.ejs', { title: "About", headercss : "/css/header.css",cssfile: "/css/about.css", username: req.cookies.username });
 });
 
 //Product-page:
@@ -123,19 +123,24 @@ app.get('/product-page', (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/product-page.ejs', { title: "Product-Page", ProductModel: products, cssfile: "/css/full-width.css", username: req.cookies.username });
+        res.render('./pages/product-page.ejs', { title: "Product-Page",headercss : "/css/header.css", ProductModel: products, cssfile: "/css/full-width.css", username: req.cookies.username });
 
     }).populate('category');
 });
 
 // Admin page:
 app.get('/admin', authmw.authAdmin, (req, res) => {
-    res.render('./pages/admin.ejs', { title: "Admin page", cssfile: "/css/full-width.css", username: req.cookies.username });
+    res.render('./pages/admin.ejs', { title: "Admin page",headercss : "/css/header.css", cssfile: "/css/full-width.css", username: req.cookies.username });
 });
 
 // Create-Product page:
 app.get('/create-product', authmw.authAdmin, (req, res) => {
-    res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username });
+    res.render('./pages/CreateProduct.ejs', { title: "Create Product",headercss : "/css/header.css", cssfile: "/css/full-width.css", username: req.cookies.username });
+});
+
+// Checkout page:
+app.get('/checkout', authmw.authMiddleware, (req, res) => {
+    res.render('./pages/checkout.ejs', { title: "Checkout",headercss : "/css/header.css", cssfile: "/css/full-width.css", username: req.cookies.username });
 });
 // Cart page:
 app.get('/cart', authmw.authMiddleware, (req, res) => {
@@ -143,7 +148,7 @@ app.get('/cart', authmw.authMiddleware, (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems });
+        res.render('./pages/cart.ejs', { title: "Cart",headercss : "/css/header.css", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems });
     }
     ).populate('cartItems.product');
 });
@@ -160,8 +165,8 @@ app.use("/api/", ProductRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
 app.use("/api/", categoryRouters);
-app.use("/api/orders", orderRouters);
 app.use("/api/", brandRouters);
+app.use("/api/orders", orderRouters);
 app.use("/", cartRouter);
 
 

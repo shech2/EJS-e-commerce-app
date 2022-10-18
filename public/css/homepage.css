@@ -115,9 +115,6 @@ img{
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
 }
-.logout{
-    z-index: 1000;
-}
 
 #map {
     height: 300px;

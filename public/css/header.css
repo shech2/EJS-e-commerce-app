@@ -1,0 +1,11 @@
+ul > li {
+    display:inline-block;
+    margin: 5px;
+}
+.main-navbar{
+    position:relative;
+
+}
+.form-inline{
+    padding-left:520px;
+}
