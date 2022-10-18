@@ -90,7 +90,7 @@ app.get('/homepage', (req, res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop', (req, res) => {
+app.get('/shop',authmw.authMiddleware, (req, res) => {
     ProductModel.find({}, async function (err, products) {
         if (err) {
             console.log(err);
@@ -106,13 +106,7 @@ app.get('/about', (req, res) => {
 
 //Product-page:
 app.get('/product-page', (req, res) => {
-    ProductModel.find({}, async function (err, products) {
-        if (err) {
-            console.log(err);
-        }
-    res.render('./pages/product-page.ejs', { title: "Product-Page", ProductModel : products, cssfile: "/css/full-width.css", username: req.cookies.username });
-
-    }).populate('category');
+    res.render('./pages/product-page.ejs', { title: "Product-Page", ProductModel: parr, cssfile: "/css/full-width.css", username: req.cookies.username });
 });
 
 // Admin page:
@@ -125,12 +119,12 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
     res.render('./pages/CreateProduct.ejs', { title: "Create Product", cssfile: "/css/full-width.css", username: req.cookies.username });
 });
 // Cart page:
-app.get('/cart', authmw.authMiddleware, (req, res) => {
+app.get('/cart2', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.user.id }, (err, cart) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
+        res.render('./pages/cart2.ejs', { title: "Cart", cssfile: "/css/cart.css", username: req.cookies.username , cartItems: cart.cartItems});
     }
     ).populate('cartItems.product');
 });
@@ -146,7 +140,7 @@ app.get('/', (req, res) => res.render('index'));
 app.use("/api/", ProductRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
-app.use("/api/", categoryRouters);
+app.use("/api/categories", categoryRouters);
 app.use("/api/orders", orderRouters);
 app.use("/", cartRouter);
 
