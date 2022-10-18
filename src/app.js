@@ -90,7 +90,7 @@ app.get('/homepage', (req, res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop', authmw.authMiddleware, (req, res) => {
+app.get('/shop', (req, res) => {
     updatedItems = [];
         ProductModel.find({}, async function (err, items) {
             if (err) { console.log(err); }
@@ -106,7 +106,7 @@ app.get('/shop', authmw.authMiddleware, (req, res) => {
                 ProductModel.find({}, async function (err, products) {
                     if (err) { console.log(err); }
                     res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username});
-                })
+                }).populate('category');
             }
         }).populate('category');
 });
