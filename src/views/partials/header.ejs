@@ -4,10 +4,12 @@
             display:inline-block;
             margin: 5px;
         }
-        nav{
-            width: 100%;
+        .main-navbar{
+            position:relative;
+            
         }
     </style>
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="header-list">
             <li>
@@ -39,24 +41,24 @@
                     
                     <% } %>
             </li> 
+            <li>
                     <% if(username){  %>  <!--if user is logged in-->
-                       <li>
+                       
                             <a class="log">
                                 <a class="logout kol" href="/logout"><img style="height: 45px;left:62px;position: relative;"
                                 src="/img/logout-exit.png" alt="logout"></a>
-                            </a>
-                        </li>
+                            
                     <% }else{ %>  <!--if user is not logged in-->
-                        <li>
+                        
                             <a class="log">
                                 <a class="login kol" href="/login"><img style="position: relative;" 
                                 src="/img/login2.png" alt="login">
                             </a>
-                        </li>
+                       
                     
                         <% } %>
-                
-            <li>
+            </li>
+            <li class="main-navbar">
                     <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
@@ -88,4 +90,5 @@
             </li>
             
     </nav>
+
 </header>
