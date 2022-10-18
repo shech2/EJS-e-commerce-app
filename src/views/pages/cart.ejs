@@ -46,7 +46,7 @@
                     <% total +=cartItems[j].price * cartItems[j].quantity %>
                         <% } %>
                             <div class="container cart-page">
-                                <h1>Total Price : <%= total %>
+                                <h1>Total Price : $<%= total %>
                                 </h1>
 
                                 <form action="/checkout" method="POST">
