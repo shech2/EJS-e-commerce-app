@@ -26,7 +26,7 @@
                                 <br></b>
                                 <form action="/remove-from-cart" method="POST">
                                     <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
-                                    <button class="btn" style="background-color: #ff523b;">Remove Product</button>
+                                    <button class="btn" style="background-color: #ff523b; color: white;">Remove Product</button>
                                 </form>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
 
                                 <form action="/checkout" method="POST">
                                     <input type="hidden" name="total" value="<%= total %>">
-                                    <button class="btn" style="background-color: #ff523b;">Checkout</button>
+                                    <button class="btn" style="background-color: #ff523b ; color: white;">Checkout</button>
                                 </form>
 
                             </div>
