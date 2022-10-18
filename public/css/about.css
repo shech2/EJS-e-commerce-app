@@ -7,6 +7,14 @@
     font-family: 'Spartan', sans-serif;
 }
 
+h1{
+    padding-left: 25px;
+}
+
+p{
+    padding-left: 25px;
+}
+
 .mr-auto{
     position: relative;
     left: 25%;
