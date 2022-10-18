@@ -6,41 +6,7 @@
                 
             </div>
         </div>
-        <div class="col-6 col-md-4">
-            
-            <nav class="navbar navbar-default sidebar" role="navigation">
-                <div class="container-fluid">
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>      
-                </div>
-                <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-                  <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
-                      <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="{{URL::to('createusuario')}}">Crear</a></li>
-                        <li><a href="#">Modificar</a></li>
-                        <li><a href="#">Reportar</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Informes</a></li>
-                      </ul>
-                    </li>          
-                    <li ><a href="#">Libros<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        
-                    <li ><a href="#">Tags<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
-            
-        </div>
+        <div class="col-6 col-md-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni modi ipsa sed facere nisi.</div>
       </div>
 
 <script>
@@ -62,22 +28,23 @@
                         <h2>
                             <%= ProductModel[index].Product_name %>
                         </h2>
-                        <p class="price"><u>Price</u>: <b>$<%=ProductModel[index].price %></b>
+                        <p class="price"><u>Price</u>: $<%=ProductModel[index].price %>
                         </p>
                         <p class="description">
                             <u>Rating</u>: <%=ProductModel[index].rating %>
                         </p>
                         <p class="category">
-                            <u>Category</u>: <%=ProductModel[index].category.name %>
+                            <u>Category</u>: <%=ProductModel[index].category %>
                         </p>
-                        <p class="quantity">
-                            <u>quantity</u>: <%=ProductModel[index].quantity %>
+                        <p class="stock">
+                            <u>Stock</u>: <%=ProductModel[index].stock %>
                         </p>
                         <p class="rating">   
                             <u>Description</u>: <%=ProductModel[index].description%>
                         </p>
-                        <form action="/add-to-cart" method="POST" id="Myform">
+                        <form action="/add-to-cart" method="POST">
                             <input type="hidden" name="productId" value="<%- ProductModel[index]._id %>">
+                            
                             <button class="btn btn-primary">Add to cart</button>
                         </form>
                     </div>
@@ -88,6 +55,5 @@
 </div>`;
     document.querySelector("#b").innerHTML += code;
     "<% } %>"
-
 </script>
 </div>

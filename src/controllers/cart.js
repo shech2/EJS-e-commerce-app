@@ -1,4 +1,3 @@
-const { response } = require('express');
 const CartController = require('../models/cart');
 const product = require('../models/Product');
 
@@ -12,50 +11,42 @@ exports.addItemToCart = async (req, res) => {
             const product = POSTProduct;
             const item = cart.cartItems.find(c => c.product == product.id);
             if (item) {
-                CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": product }, {
-                    "$set": {
-                        "cartItems.$": {
-                            product: POSTProduct.id,
-                            quantity: POSTProduct.quantity + item.quantity,
-                            price: POSTProduct.price
-                        }
+                CartController.findOne({ user: req.user.id}).exec((error, cart) => {
+                    if(error) res.status(400).json({error});
+                    if(cart){
+                        const item2 = CartController.findOneAndUpdate({ user: req.user.id , "cartItems.product" : product }, {
+                            "$set": {
+                                "cartItems.$": {
+                                    product: POSTProduct.id,
+                                    quantity: POSTProduct.quantity + item.quantity,
+                                    price: POSTProduct.price
+                                }
+                            }
+                        }).exec((error, _cart) => {
+                            if(error) res.status(400).json({error});
+                            if(_cart){
+                                res.redirect('/cart2');
+                            }
+                        })
                     }
-                }).exec((error) => {
-                    if (error) res.status(400).json({ error });
-                })
+                });
             }
-            else {
-                cart.updateOne({
-                    $push: {
-                        cartItems: {
-                            product: product.id,
-                            quantity: product.quantity,
-                            price: product.price
-                        }
+                    else {
+                        cart.updateOne({
+                            $push: {
+                                cartItems: {
+                                    product: product.id,
+                                    quantity: product.quantity,
+                                    price: product.price
+                                }
+                            }
+                        }).exec((error, _cart) => {
+                            if (error) return res.status(400).json({ error });
+                            if (_cart) {
+                                return res.redirect('/cart2');
+                            }
+                        })
                     }
-                }).exec((error) => {
-                    if (error) return res.status(400).json({ error });
-                })
-            }
-        }
-    })
-}
-
-exports.RemoveFromCart = async (req, res) => {
-    const productId = req.body.productId;
-    const productPOST = await product.findById(productId);
-    if (product) {
-        CartController.findOneAndUpdate({ user: req.user.id }, {
-            $pull: {
-                cartItems: {
-                    product: productPOST.id
                 }
-            }
-        }).exec((error, _cart) => {
-            if (error) return res.status(400).json({ error });
-            if (_cart) {
-                return res.redirect('/cart');
-            }
-        })
-    }
-}
+            })
+        }

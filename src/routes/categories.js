@@ -1,4 +1,3 @@
-const category = require("../models/category");
 const Category = require("../models/category");
 const router = require("express").Router();
 
@@ -13,7 +12,7 @@ router.get("/category", async (req, res) => {
 
 //create category
 router.post("/category", async (req, res) => {
-    var category = new Category({
+    const category = new Category({
     name: req.body.name,
   });
   category = await category.save();
@@ -22,15 +21,6 @@ router.post("/category", async (req, res) => {
 
   res.send(category);
 });
-
-router.get("/category/:id", async (req, res) => {
-  const category = await Category.findById(req.params.id)
-
-  if(!category) {
-      res.status(500).json({success: false})
-  }
-  res.send(category);
-})
 
 //delete category
 router.delete("/category/:id", (req, res) => {
