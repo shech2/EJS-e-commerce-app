@@ -20,13 +20,13 @@
                         <div class="cart-info">
                             <img style="height: 200px;width: 200px;" src="<%= cartItems[i].product.image %>">
                             <div style="position:relative;left:75px;top:50px">
-                                <p>description: <%= cartItems[i].product.description %>
+                                <b><p>description: <%= cartItems[i].product.description %>
                                 </p>
                                 <small>price: $<%= cartItems[i].price%></small>
-                                <br>
+                                <br></b>
                                 <form action="/remove-from-cart" method="POST">
                                     <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
-                                    <button class="btn btn-warning">Remove Product</button>
+                                    <button class="btn" style="background-color: #ff523b;">Remove Product</button>
                                 </form>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                         <input type="number" value="1">
                     </td>
                     <td>
-                        <%= cartItems[i].price * cartItems[i].quantity %>
+                        <b><%= cartItems[i].price * cartItems[i].quantity %></b>
                     </td>
                 </tr>
             </table>
@@ -45,13 +45,13 @@
                 <% for(j=0 ; j < cartItems.length ; j++) { %>
                     <% total +=cartItems[j].price * cartItems[j].quantity %>
                         <% } %>
-                            <div class="container" style="border:10px rgb(100, 100, 100) solid ;border-radius: 30px;padding: 15px;max-width: 40rem;">
+                            <div class="container" style="border:10px #ff523b solid ;border-radius: 30px;padding: 15px;max-width: 40rem;">
                                 <h1>Total Price : $<%= total %>
                                 </h1>
 
                                 <form action="/checkout" method="POST">
                                     <input type="hidden" name="total" value="<%= total %>">
-                                    <button class="btn btn-warning">Checkout</button>
+                                    <button class="btn" style="background-color: #ff523b;">Checkout</button>
                                 </form>
 
                             </div>
