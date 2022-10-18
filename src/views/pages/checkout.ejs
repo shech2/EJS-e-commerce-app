@@ -1,3 +1,6 @@
+<%console.log(cart.cartItems); %>
+<% { %> 
+    <% var tax = total * 0.17 %>
 <div class="container wrapper">
     <div class="row cart-head">
         <div class="container">
@@ -67,18 +70,18 @@
                     <div class="form-group">
                         <div class="col-xs-12">
                             <strong>Subtotal</strong>
-                            <div class="pull-right"><span>$</span><span>200.00</span></div>
+                            <div class="pull-right"><span>$</span><span><%= total %> </span></div>
                         </div>
                         <div class="col-xs-12">
                             <small>Shipping</small>
-                            <div class="pull-right"><span>-</span></div>
+                            <div class="pull-right"><span><%= tax %> </span></div>
                         </div>
                     </div>
                     <div class="form-group"><hr /></div>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <strong>Order Total</strong>
-                            <div class="pull-right"><span>$</span><span>150.00</span></div>
+                            <div class="pull-right"><span>$</span><span><%= +tax +  + total %> </span></div>
                         </div>
                     </div>
                 </div>
@@ -237,3 +240,4 @@
 
     </div>
 </div>
+<% } %>
