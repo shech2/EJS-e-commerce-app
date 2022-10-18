@@ -10,7 +10,6 @@ exports.authMiddleware = (req, res, next) => {
                 res.redirect("/login");
             } else {
                 req.user = decodedToken;
-                console.log(req.user);
                 next();
             }
         });
@@ -33,7 +32,6 @@ exports.authAdmin = (req, res, next) => {
             } else {
                 if(decodedToken.isAdmin){
                     req.user = decodedToken;
-                    console.log(req.user);
                     next();
                 } else {
                     res.redirect("/login");

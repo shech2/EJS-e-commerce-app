@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="#"><img src="img/icon.jpg" class="logo" alt=""></a>
+        <a href="/homepage"><img src="img/icon.jpg" class="logo" alt=""></a>
         <a class="navbar-brand" href="/homepage">The Store</a>
         <li class="nav-item">
             <a class="navbar-brand" href="/profile-page" id="hello">
@@ -19,7 +19,7 @@
         </a>
         <% if(username){ %>
             <div class="cartImg">
-            <a href="/cart2"><img style="height: 35px;position: relative;"
+            <a href="/cart"><img style="height: 35px;position: relative;left: 20px;"
                     src="/img/Cart.png"></a>
                 </div>
             <% } %>
@@ -61,8 +61,8 @@
                     </li>
 
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" action="/shop" method="get">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
