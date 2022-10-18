@@ -31,7 +31,7 @@ h6 {
 
 p {
     font-size: 16px;
-    color: #222;
+    color: rgb(3, 3, 3);
     margin: 15px 0 20px 0;
 }
 
@@ -69,13 +69,13 @@ main{
 h6{
     margin-bottom: -13px;
 }
-img{
+/* img{
     height: 10vh;
     margin-bottom: -28px;
     margin-top: -28px;
     margin-left: -10px;
     padding: 5px;
-} 
+}  */
 
 .forms{
     position: relative;
@@ -95,7 +95,7 @@ img{
 }
 
  .logo{
-    height: 45px;
+    height: 7rem;
     position: relative;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
