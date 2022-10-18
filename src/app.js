@@ -142,6 +142,8 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 app.get('/checkout', authmw.authMiddleware, (req, res) => {
     res.render('./pages/checkout.ejs', { title: "Checkout",headercss : "/css/header.css", cssfile: "/css/full-width.css", username: req.cookies.username });
 });
+
+
 // Cart page:
 app.get('/cart', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.user.id }, (err, cart) => {

@@ -49,8 +49,8 @@
                                 <h1>Total Price : $<%= total %>
                                 </h1>
 
-                                <form action="/checkout" method="POST">
-                                    <input type="hidden" name="total" value="<%= total %>">
+                                <form action="/checkout">
+                                    <input type="hidden">
                                     <button class="btn" style="background-color: #ff523b ; color: white;">Checkout</button>
                                 </form>
 
