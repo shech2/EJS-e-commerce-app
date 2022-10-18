@@ -31,6 +31,7 @@ const ProductRouter = require("./routes/products");
 const userRouters = require("./routes/users");
 const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
+const brandRouters = require("./routes/brands");
 const ProductModel = require("./models/Product");
 const { $where } = require('./models/User');
 
@@ -90,7 +91,7 @@ app.get('/homepage', (req, res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop', authmw.authMiddleware, (req, res) => {
+app.get('/shop', (req, res) => {
     updatedItems = [];
         ProductModel.find({}, async function (err, items) {
             if (err) { console.log(err); }
@@ -160,7 +161,9 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
 app.use("/api/", categoryRouters);
 app.use("/api/orders", orderRouters);
+app.use("/api/", brandRouters);
 app.use("/", cartRouter);
+
 
 
 // Server Connection:
