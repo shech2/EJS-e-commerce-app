@@ -1,5 +1,4 @@
-const category = require("../models/brand");
-const Category = require("../models/brand");
+const Brand = require("../models/brand");
 const router = require("express").Router();
 
 router.get("/brand", async (req, res) => {
