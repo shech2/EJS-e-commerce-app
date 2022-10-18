@@ -91,27 +91,12 @@ app.get('/logout', authRouter);
 
 // GET SHOP:
 app.get('/shop',authmw.authMiddleware, (req, res) => {
-    console.log(req.params)
-    if(req.params.find){
-        ProductModel.find({user: req.user.id , "category.name" : "Nike"}, async function (err, shoes) {
-            if(err){
-                console.log(err);
-            }
-            for (let i = 0; i < shoes.length; i++) {
-                if(shoes[i].category.name == req.params.find){
-                console.log(shoes[i]);
-                }
-                res.render('./pages/shop.ejs', { title: "Shop", ProductModel: shoes, cssfile: "/css/shop.css", username: req.cookies.username });
-            }
-        }).populate('category');
-    }else{
-        ProductModel.find({}, async function (err, products) {
-            if (err) {
-                console.log(err);
-            }
-            res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username });
-        }).populate('category');
-    }
+    ProductModel.find({}, async function (err, products) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username });
+    }).populate('category');
 });
 
 // GET ABOUT:
