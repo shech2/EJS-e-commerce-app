@@ -146,7 +146,7 @@ app.get('/', (req, res) => res.render('index'));
 app.use("/api/", ProductRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
-app.use("/api/categories", categoryRouters);
+app.use("/api/", categoryRouters);
 app.use("/api/orders", orderRouters);
 app.use("/", cartRouter);
 
