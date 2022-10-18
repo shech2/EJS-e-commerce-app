@@ -16,6 +16,7 @@
 }
 h1{
     margin-bottom: 20px;
+    padding-left: 25px;
 }
 footer{
     position: fixed;
@@ -33,8 +34,11 @@ img{
     margin-bottom: -28px;
     margin-top: -28px;
     margin-left: -10px;
-    /* margin-right: -60px;  */
     padding: 5px;
+}
+
+.input-group{
+    padding-left: 20px;
 }
 .forms{
     position: relative;
