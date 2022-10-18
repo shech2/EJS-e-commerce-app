@@ -43,21 +43,6 @@ p {
     margin: 40px 0;
 }
 
-.mr-auto{
-    position: relative;
-    left: 25%;
-}
-
-.navbar-brand {
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    position: relative;
-}
 
 footer{
     position: fixed;
@@ -84,6 +69,7 @@ main{
 h6{
     margin-bottom: -13px;
 }
+
 img{
     height: 10vh;
     margin-bottom: -28px;

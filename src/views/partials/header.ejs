@@ -1,16 +1,18 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar">
+        <!---LOGO-->
+        <a href="/homepage"><img src="img/icon.jpg" class="logo" alt=""></a>
         <ul class="header-list">
+                 <!-- USING CHECKBOX HACK -->
+       <input type="checkbox" id="checkbox_toggle" />
+       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+       <!---nav menu-->
+       <div class="menu">
             <li>
-                <a href="/homepage"><img src="img/icon.jpg" class="logo" alt=""></a>
+                <a href="/about">M.Y.S.O.</a>
             </li>
             <li>
-                <a class="navbar-brand" href="/about">M.Y.S.O.</a>
-            </li>
-            <li>
-                <a class="navbar-brand" href="/profile-page" id="hello">
-            
-            
+                <a href="/profile-page">
                     <% if(username){ %>
                         Hello, <%= username %>
                             <% } else { %>
@@ -20,64 +22,48 @@
             </li>
            
 
+
+
+            <li>
+                <a href="/homepage">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+                <a href="/shop">Shop</a>
+            </li>
+            <li class="pruducts-dropdown">
+                <a href="/">products</a>
+                <!-- DROPDOWN MENU -->
+                <ul class="dropdown">
+                    <li><a class="dropdown-item" href="#">Men</a></li>
+                    <li><a class="dropdown-item" href="#">Women</a></li>
+                    <li><a class="dropdown-item" href="#">Kids</a></li>
+                </ul>
+                </li>
+            <li class="nav-item">
+                <a href="/about">About</a>
+                
+            </li>
             <li>
                 <% if(username){ %>
-                    
-                    <div class="cartImg" style="margin-left: 40px;">
-                    <a href="/cart"><img style="height: 35px;position: relative;"
-                            src="/img/Cart.png"></a>
-                        </div>
-                    
+                    <a href="/cart"><img src="/img/Cart.png" class="cart-img"></a>       
                     <% } %>
             </li> 
             <li>
                     <% if(username){  %>  <!--if user is logged in-->
-                       
-                            <a class="log" style="margin-left: 40px;">
-                                <a class="logout kol" href="/logout"><img style="height: 45px;position: relative;"
-                                src="/img/logout-exit.png" alt="logout"></a>
-                            
+                                <a href="/logout"><img class="logout-img" src="/img/logout-exit.png" alt="logout"></a>                          
                     <% }else{ %>  <!--if user is not logged in-->
-                        
-                            <a class="log">
-                                <a class="login kol" href="/login"><img style="position: relative;" 
-                                src="/img/login2.png" alt="login">
-                            </a>
-                       
-                    
+                                <a class="login kol" href="/login"><img class="login-img" src="/img/login2.png" alt="login"></a>
                         <% } %>
             </li>
-            <li class="main-navbar">
-                    <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/homepage">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/shop">Shop</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Products
-                                </a>
-                                <div id="dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Men</a>
-                                    <a class="dropdown-item" href="#">Women</a>
-                                    <a class="dropdown-item" href="#">Kids</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="/about">About</a>
-                            </li>
             </li>
-            <li>
+           
                     <form class="form-inline my-2 my-lg-0" action="/shop" method="get">
                         <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
-            </li>
             
+        </div>
+        </ul>
     </nav>
 
 </header>
