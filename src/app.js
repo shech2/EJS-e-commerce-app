@@ -91,15 +91,23 @@ app.get('/logout', authRouter);
 
 // GET SHOP:
 app.get('/shop', authmw.authMiddleware, (req, res) => {
-        ProductModel.find({ "category.name" : "Nike" }, async function (err, items) {
+    updatedItems = [];
+        ProductModel.find({}, async function (err, items) {
             if (err) { console.log(err); }
-                // res.render('./pages/shop.ejs', { title: "Shop", cssfile: "/css/shop.css", username: req.cookies.username, items: items });
-                console.log(items);
-        }).populate('category');
-        ProductModel.find({}, async function (err, products) {
-            if (err) { console.log(err); }
-            if(req.query.search){}
-            res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username});
+            if(req.query.search){
+                for(var i = 0; i < items.length; i++){
+                    if(items[i].category.name == req.query.search){
+                        updatedItems.push(items[i]);  
+                    }
+                }
+                res.render('./pages/shop.ejs', { title: "Shop", cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems });
+            }else{
+                
+                ProductModel.find({}, async function (err, products) {
+                    if (err) { console.log(err); }
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, cssfile: "/css/shop.css", username: req.cookies.username});
+                })
+            }
         }).populate('category');
 });
 
