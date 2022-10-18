@@ -26,24 +26,39 @@
 
 .header-list a{
     color:#000;
-
 }
 
 ul > li{
     text-align: center;
 }
+
 .logo{
     padding-bottom: 10px;
     height: 50px;
 }
+
 .cart-img{
-    height: 50px;
+    height: 60px;
+    margin-bottom: -28px;
+    margin-top: -28px;
+    margin-left: -10px;
+    padding: 5px;
 }
+
 .logout-img{
-    height: 70px;
+    height: 60px;
+    margin-bottom: -28px;
+    margin-top: -28px;
+    margin-left: -10px;
+    padding: 5px;
 }
 .login-img{
-    height: 50px;
+   
+    height: 70px;
+    margin-bottom: -28px;
+    margin-top: -28px;
+    margin-left: -10px;
+    padding: 5px;
 }
 
 .menu{
@@ -131,6 +146,6 @@ input[type=checkbox]{
      transform: translateX(35%);
     }
     .dropdown li:hover {
-     background-color: #4c9e9e;
+     background-color: #e8eaea;
     }
 }
