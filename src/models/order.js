@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
     orderItems: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "OrderItem",
+        ref: "Product",
         required: true,
     }],
     shippingAddress1: {
