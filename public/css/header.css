@@ -88,6 +88,7 @@ padding: 5px 14px;
     display: none;
     border-radius: 8px;
     top: 35px;
+    z-index: 1;
 }
 
 .dropdown li + li {
