@@ -35,7 +35,7 @@ p {
     margin: 15px 0 20px 0;
 }
 
-.section-p1{
+.section-p1 {
     padding: 40px 80px;
 }
 
@@ -69,13 +69,13 @@ main{
 h6{
     margin-bottom: -13px;
 }
-/* img{
+ /* img{
     height: 10vh;
     margin-bottom: -28px;
     margin-top: -28px;
     margin-left: -10px;
     padding: 5px;
-}  */
+}   */
 
 .forms{
     position: relative;
@@ -126,8 +126,6 @@ h6{
     padding-bottom: 15px;
   }
   
-
-  
   #hero button{
     background-image: url("/img/button.jpg");
     background-color: transparent;
@@ -140,12 +138,30 @@ h6{
     font-size: 15px;
   }
 
-  #features .fe-box{
-    width: 180px;
+  #feature .fe-box{
+    width: 250px;
     text-align: center;
     padding: 25px 15px;
     box-shadow: 20px 20px 34px rgba(0, 0, 0 , 0.03);
     border: 1px solid #cce7d0;
     border-radius: 4px;
     margin: 15px 0;
+   }
+
+   #feature .fe-box:hover{
+    box-shadow: 10px 10px 54px rgba(70, 62, 221, 0.1);
+   }
+
+   #feature .fe-box img{
+    width: 100%;
+    margin-bottom: 10px;
+   }
+
+   #feature .fe-box h6{
+    display: inline-block;
+    padding: 9px 8px 6px 8px;   
+    line-height: 1;
+    border-radius: 4px;
+    color:#088178;
+    background-color: #fddde4;
    }
