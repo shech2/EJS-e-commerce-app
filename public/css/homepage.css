@@ -138,6 +138,13 @@ h6{
     font-size: 15px;
   }
 
+  #feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
   #feature .fe-box{
     width: 250px;
     text-align: center;
