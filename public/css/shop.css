@@ -55,9 +55,14 @@ img{
     padding-bottom: 10px;
  }
  
+ .card{
+    flex-wrap: wrap;
+ }
+
  .card-img-top{
     height: 45vh;
  }
+ 
  #b .img-fluid{
     height: 200px;
     width: 200px;
