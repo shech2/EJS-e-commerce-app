@@ -173,6 +173,26 @@ h6{
     background-color: #fddde4;
    }
 
+   #feature .fe-box:nth-child(2) h6 {
+    background-color: #cdebbc;
+   }
+
+   #feature .fe-box:nth-child(3) h6 {
+    background-color: #d1e8f2;
+   }
+
+   #feature .fe-box:nth-child(4) h6 {
+    background-color: #cdd4f8;
+   }
+
+   #feature .fe-box:nth-child(5) h6 {
+    background-color: #f6dbf6;
+   }
+
+   #feature .fe-box:nth-child(6) h6 {
+    background-color: #fff2e5;
+   }
+
    #product1 {
     text-align:center;
    }
@@ -242,4 +262,16 @@ h6{
     background-color: #e8f6ea;
     font-weight: 500;
     color: #088178;
+    border: 1px solid #cce7d0;
+    position: absolute;
+    bottom: 20px;
+    right:10px;
+   }
+
+   #banner{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
    }
