@@ -101,12 +101,12 @@ app.get('/shop', (req, res) => {
                         updatedItems.push(items[i]);  
                     }
                 }
-                res.render('./pages/shop.ejs', { title: "Shop", headercss : "/css/header.css",cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems });
+                res.render('./pages/shop2.ejs', { title: "Shop", headercss : "/css/header.css",cssfile: "/css/shop2.css", username: req.cookies.username, ProductModel: updatedItems });
             }else{
                 
                 ProductModel.find({}, async function (err, products) {
                     if (err) { console.log(err); }
-                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss : "/css/header.css",cssfile: "/css/shop.css", username: req.cookies.username});
+                    res.render('./pages/shop2.ejs', { title: "Shop", ProductModel: products, headercss : "/css/header.css",cssfile: "/css/shop2.css", username: req.cookies.username});
                 }).populate('category').populate('brand');
             }
         }).populate('category').populate('brand');

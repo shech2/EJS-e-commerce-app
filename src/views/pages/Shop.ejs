@@ -7,8 +7,9 @@
 
 <script>
     "<% for (index = 0; index < ProductModel.length; index++) { %>"
-    var code = `<div class="pb-3">
-    <div class="container product">
+    var code = `
+    <div class="pb-3">
+      <div class="container product">
         <div>
             <div">
                 <div class="card">
@@ -24,7 +25,8 @@
                         <h2>
                             <%= ProductModel[index].Product_name %>
                         </h2>
-                        <p class="price"><u>Price</u>: <b>$<%=ProductModel[index].price %></b>
+                        <p class="price">
+                            <u>Price</u>: <b>$<%=ProductModel[index].price %></b>
                         </p>
                         <p class="description">
                             <u>Rating</u>: <%=ProductModel[index].rating %>
