@@ -20,13 +20,6 @@ p{
     left: 25%;
 }
 
-footer{
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    height: 11.5rem;
-    flex-direction: column;
-}
 main{
     padding-bottom: 12.5rem;
     padding-top: 2rem;
