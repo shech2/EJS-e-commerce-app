@@ -145,7 +145,7 @@ h6{
   }
 
   #feature .fe-box{
-    width: 250px;
+    width: 200px;
     text-align: center;
     padding: 25px 15px;
     box-shadow: 20px 20px 34px rgba(0, 0, 0 , 0.03);
@@ -159,9 +159,11 @@ h6{
    }
 
    #feature .fe-box img{
-    width: 100%;
+    width: 160px;
+    height: 110px;
     margin-bottom: 10px;
    }
+
 
    #feature .fe-box h6{
     display: inline-block;
@@ -221,7 +223,8 @@ h6{
    }
 
    #product1 .pro img{
-    width: 100%;
+    width: 210px;
+    height: 160px;
     border-radius: 20px;
    }
 

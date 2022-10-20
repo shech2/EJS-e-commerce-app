@@ -4,7 +4,7 @@
             <table>
                 <tr>
                     <th>
-                        <b>Product</b>
+                        <b><div><%= cartItems[i].product.Product_name %></div></b>
                     </th>
                     <th>
                         <b>Quantity</b>
@@ -14,15 +14,12 @@
                     </th>
                 </tr>
 
-
                 <tr>
                     <td>
                         <div class="cart-info">
                             <img style="height: 200px;width: 200px;" src="<%= cartItems[i].product.image %>">
                             <div style="position:relative;left:75px">
-                                <div><b>product name:</b> <%= cartItems[i].product.Product_name %></div>
-                                <div><b>brand:</b> <%= cartItems[i].product.brand %></div>
-                                <div><b>Description:</b> <%= cartItems[i].product.description %></div>
+                                <div><b>brand:</b> <%= cartItems[i].product.brand.name %></div>
                                 <div><b>Size:</b> </div>
                                 <div><small>price: <%= cartItems[i].product.price %> $</small></div>
                                 <form action="/remove-from-cart" method="POST">

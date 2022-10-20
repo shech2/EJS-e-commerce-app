@@ -17,7 +17,8 @@ exports.addItemToCart = async (req, res) => {
                         "cartItems.$": {
                             product: POSTProduct.id,
                             quantity: POSTProduct.quantity + item.quantity,
-                            price: POSTProduct.price
+                            price: POSTProduct.price,
+                            brand: POSTProduct.brand
                         }
                     }
                 }).exec((error) => {
@@ -30,7 +31,8 @@ exports.addItemToCart = async (req, res) => {
                         cartItems: {
                             product: product.id,
                             quantity: product.quantity,
-                            price: product.price
+                            price: product.price,
+                            brand: product.brand
                         }
                     }
                 }).exec((error) => {

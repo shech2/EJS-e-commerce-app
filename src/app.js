@@ -72,7 +72,6 @@ app.set('views', __dirname + '/views');
 
 
 // GET for login,signup and logout:
-
 app.get('/login', (req, res) => {
     const error = req.flash('error');
     res.render('./pages/login.ejs', { error, title: "Login", headercss : "/css/header.css",footercss : "/css/footer.css",cssfile: "/css/style-login.css", username: req.cookies.username });
@@ -120,16 +119,17 @@ app.get('/shop', (req, res) => {
                         updatedItems.push(items[i]);  
                     }
                 }
-                res.render('./pages/shop2.ejs', { title: "Shop", headercss : "/css/header.css",footercss : "/css/footer.css",cssfile: "/css/shop2.css", username: req.cookies.username, ProductModel: updatedItems });
+                res.render('./pages/shop.ejs', { title: "Shop", headercss : "/css/header.css",footercss : "/css/footer.css",cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems });
             }else{
                 
                 ProductModel.find({}, async function (err, products) {
                     if (err) { console.log(err); }
-                    res.render('./pages/shop2.ejs', { title: "Shop", ProductModel: products, headercss : "/css/header.css",footercss : "/css/footer.css",cssfile: "/css/shop2.css", username: req.cookies.username});
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss : "/css/header.css",footercss : "/css/footer.css",cssfile: "/css/shop.css", username: req.cookies.username});
                 }).populate('category').populate('brand');
             }
         }).populate('category').populate('brand');
-});
+        
+    });
 
 // GET ABOUT:
 app.get('/about', (req, res) => {
@@ -174,10 +174,13 @@ app.get('/cart', authmw.authMiddleware, (req, res) => {
         if (err) {
             console.log(err);
         }
+        console.log(cart.cartItems);
         res.render('./pages/cart.ejs', { title: "Cart",headercss : "/css/header.css",footercss : "/css/footer.css", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems });
     }
-    ).populate('cartItems.product');
+    ).populate({path: 'cartItems.product', populate: {path: 'brand'}});
 });
+
+
 
 // POST for login and signup:
 app.post('/register', authRouter);
