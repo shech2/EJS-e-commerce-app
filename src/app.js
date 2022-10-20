@@ -83,9 +83,28 @@ app.get('/register', (req, res) => {
     res.render('./pages/register.ejs', { error, title: "Register", headercss : "/css/header.css",cssfile: "/css/register.css", username: req.cookies.username });
 });
 
+// GET THE PRODUCTS AT THE HOMEPAGE
 app.get('/homepage', (req, res) => {
-    res.render('./pages/homePage.ejs', { title: "Home-Page", headercss : "/css/header.css",cssfile: "/css/homepage.css", username: req.cookies.username });
+    updatedItems = [];
+    ProductModel.find({}, async function (err, items) {
+        if (err) { console.log(err); }
+        if(req.query.search){
+            for(var i = 0; i < items.length; i++){
+                if(items[i].category.name == req.query.search){
+                    updatedItems.push(items[i]);  
+                }
+            }
+            res.render('./pages/homePage.ejs', { title: "Home-Page", headercss : "/css/header.css",cssfile: "/css/homepage.css", username: req.cookies.username, ProductModel: updatedItems });
+        }else{
+            
+            ProductModel.find({}, async function (err, products) {
+                if (err) { console.log(err); }
+                res.render('./pages/homePage.ejs', { title: "Home-Page", ProductModel: products, headercss : "/css/header.css",cssfile: "/css/homepage.css", username: req.cookies.username});
+            }).populate('category').populate('brand');
+        }
+    }).populate('category').populate('brand');
 });
+
 
 // LOGOUT:
 app.get('/logout', authRouter);
