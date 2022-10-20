@@ -1,0 +1,54 @@
+<h1>Shop</h1> 
+
+<section id="product1" class="section-p1">
+    <h2>Our Products</h2>
+    <p>Summer Collection New Morden Design</p>
+
+    <script>
+        "<% for (index = 0; index < ProductModel.length; index++) { %>"
+        var code = `<div class="pb-3">
+        <div class="pro-container">
+            <div>
+                <div">
+                    <div class="card">
+                        <div class="pro">
+                            <img src="<%= ProductModel[index].image %>" alt="product image"
+                          class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>
+                                <%= ProductModel[index].Product_name %>
+                            </h5>
+                            <h4 class="price"><u>Price</u>: <b>$<%=ProductModel[index].price %></b>
+                            </h4>
+                            <p class="rating">  rating
+                                <u>Rating</u>: <%=ProductModel[index].rating %>
+                            </p>
+                            <p class="category">
+                                <u>Category</u>: <%=ProductModel[index].category.name %>
+                            </p>
+                            <span class="brand">
+                                <u>Brand</u>: <%=ProductModel[index].brand.name %>
+                            </span>
+                            <p class="description">   
+                                <u>Description</u>: <%=ProductModel[index].description%>
+                            </p>
+                            <form action="/add-to-cart" method="POST" id="Myform">
+                                <input type="hidden" name="productId" value="<%- ProductModel[index]._id %>">
+                                <button class="btn btn-primary">Add to cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+        document.querySelector("#b").innerHTML += code;
+        "<% } %>"
+    
+    </script>
+    </div>
