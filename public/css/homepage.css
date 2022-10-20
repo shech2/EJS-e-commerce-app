@@ -56,13 +56,6 @@ button.normal {
     transition: 0.2s;
 }
 
-footer{
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    height: 11.5rem;
-    flex-direction: column;
-}
 main{
     padding-bottom: 11.5rem;
     padding-top: 2rem;
@@ -81,13 +74,7 @@ main{
 h6{
     margin-bottom: -13px;
 }
- /* img{
-    height: 10vh;
-    margin-bottom: -28px;
-    margin-top: -28px;
-    margin-left: -10px;
-    padding: 5px;
-}   */
+
 
 .forms{
     position: relative;

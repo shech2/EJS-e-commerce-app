@@ -1,0 +1,25 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 11.5rem;
+    flex-direction: column;
+}
+
+.h6 {
+    font-size: 0.9rem;
+    position: relative;
+    top: 0px;
+    right: 0px;
+}
+h6{
+    margin-bottom: -13px;
+}
+
