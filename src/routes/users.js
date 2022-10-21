@@ -2,7 +2,7 @@ const middleware = require("../middleware/authMiddleware");
 const User = require("../models/User");
 const router = require("express").Router();
 const CryptoJS = require("crypto-js");
-
+const Cart = require("../models/cart");
 // UPDATE
 router.put("/:id", middleware.authAdmin, async (req, res) => {
   if (req.body.password) {
@@ -30,6 +30,7 @@ router.put("/:id", middleware.authAdmin, async (req, res) => {
 router.delete("/:id", middleware.authAdmin, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
+    await Cart.findOneAndDelete({ user: req.params.id });
     res.status(200).json("User has been deleted...");
   } catch (err) {
     res.status(500).json(err);

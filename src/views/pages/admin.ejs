@@ -9,11 +9,14 @@
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
                 <th scope="col">Admin</th>
+                <th scope="col">Update</th>
                 <th scope="col">Delete</th>
+
             </tr>
         </thead>
         <tbody>
             <% for(let i=0; i < users.length; i++){ %>
+                <div class="r<%= i %>" >
                 <tr>
                     <th scope="row">
                         <%= users[i].id %>
@@ -31,6 +34,11 @@
                         <%= users[i].isAdmin %>
                     </td>
                     <td>
+                        <button onclick="updateMenu()" id="Btn" style="border: none;">
+                                Update
+                            </button>
+                    </td>
+                    <td>
                         <form method="POST" action="/api/users/<%=users[i].id%>">
                             <button id="Btn" style="border: none;">
                                 Delete
@@ -38,9 +46,23 @@
                     </td>
                     </form>
                 </tr>
+                <th scope="row">
+                <div id="update">
+                    <!-- <form method="POST" action="/api/users/<%=users[i].id%>">
+                        <input type="text" name="username" placeholder="Username">
+                        <input type="text" name="email" placeholder="Email">
+                        <input type="text" name="password" placeholder="Password">
+                        <input type="text" name="isAdmin" placeholder="Admin">
+                        <button id="Btn" style="border: none;">
+                            Update
+                        </button>
+                    </form> -->
+                </div>
+                </th>
                 <% } %>
         </tbody>
     </table>
+    </div>
 </div>
 <div class="p">
 
@@ -68,5 +90,15 @@
             x.style.display = "none";
         }
     }
+
+        function updateMenu() {
+            var x = document.getElementById("update");
+            
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
 
 </script>
