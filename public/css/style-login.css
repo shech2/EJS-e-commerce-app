@@ -126,7 +126,7 @@ margin-left: 4px;
 .forms{
     display: none; 
 }
-.form-control{
+.input-group .form-control{
     position: relative;
     bottom: 34px;
     width: 32rem !important;
