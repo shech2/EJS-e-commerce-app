@@ -102,7 +102,7 @@ app.get('/homepage', (req, res) => {
             }).populate('category').populate('brand');
         }
     }).populate('category').populate('brand');
-});
+}); // Ori
 
 
 // LOGOUT:
