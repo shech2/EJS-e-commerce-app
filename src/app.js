@@ -164,7 +164,7 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
         if(cart){
         res.render('./pages/checkout.ejs', { title: "Checkout",headercss : "/css/header.css",footercss : "/css/footer.css", cssfile: "/css/checkout.css", username: req.cookies.username , cart : cart, total : req.query.total });
         }
-    });
+    }).populate({path : 'cartItems.product' , populate: {path : 'brand'}});
 });
 
 
@@ -174,7 +174,6 @@ app.get('/cart', authmw.authMiddleware, (req, res) => {
         if (err) {
             console.log(err);
         }
-        console.log(cart.cartItems);
         res.render('./pages/cart.ejs', { title: "Cart",headercss : "/css/header.css",footercss : "/css/footer.css", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems });
     }
     ).populate({path: 'cartItems.product', populate: {path: 'brand'}});
