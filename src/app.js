@@ -142,7 +142,7 @@ app.get('/product-page', (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/product-page.ejs', { title: "Product-Page",headercss : "/css/header.css",footercss : "/css/footer.css", ProductModel: products, cssfile: "/css/full-width.css", username: req.cookies.username });
+        res.render('./pages/product-page.ejs', { title: "Product-Page",headercss : "/css/header.css",footercss : "/css/footer.css", ProductModel: products, cssfile: "/css/product-page2.css", username: req.cookies.username });
 
     }).populate('category');
 });
