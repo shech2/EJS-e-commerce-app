@@ -1,4 +1,7 @@
 <button onclick="usersMenu()">Users Menu</button>
+<button onclick="usersMenu()">Products Menu</button>
+<button onclick="usersMenu()">Statistics Menu</button>
+
 <div id="users">
     <h1>Users</h1>
     <table class="table table-striped">
@@ -16,39 +19,41 @@
         </thead>
         <tbody>
             <% for(let i=0; i < users.length; i++){ %>
-                <div class="r<%= i %>" >
-                <tr>
-                    <th scope="row">
-                        <%= users[i].id %>
-                    </th>
-                    <td>
-                        <%= users[i].username %>
-                    </td>
-                    <td>
-                        <%= users[i].email %>
-                    </td>
-                    <td>
-                        <%= users[i].password %>
-                    </td>
-                    <td>
-                        <%= users[i].isAdmin %>
-                    </td>
-                    <td>
-                        <button onclick="updateMenu()" id="Btn" style="border: none;">
-                                Update
-                            </button>
-                    </td>
-                    <td>
+                <div class="r<%= i %>">
+                    <tr>
+                        <th scope="row">
+                            <%= users[i].id %>
+                        </th>
+                        <td>
+                            <%= users[i].username %>
+                        </td>
+                        <td>
+                            <%= users[i].email %>
+                        </td>
+                        <td>
+                            <%= users[i].password %>
+                        </td>
+                        <td>
+                            <%= users[i].isAdmin %>
+                        </td>
+                        <td>
+                                <!-- <form method="POST" action="api/users/<%= users[i].id %>"> -->
+                                    <button onclick="updateMenu()" id="Btn" style="border: none;">
+                                        Update
+                                    </button>
+                        </td>
+                        </form>
+                <td>
                         <form method="POST" action="/api/users/<%=users[i].id%>">
                             <button id="Btn" style="border: none;">
                                 Delete
                             </button>
                     </td>
-                    </form>
+                </form>
                 </tr>
                 <th scope="row">
-                <div id="update">
-                    <!-- <form method="POST" action="/api/users/<%=users[i].id%>">
+                    <div id="update">
+                        <!-- <form method="POST" action="/api/users/<%=users[i].id%>">
                         <input type="text" name="username" placeholder="Username">
                         <input type="text" name="email" placeholder="Email">
                         <input type="text" name="password" placeholder="Password">
@@ -57,19 +62,19 @@
                             Update
                         </button>
                     </form> -->
-                </div>
+                    </div>
                 </th>
                 <% } %>
         </tbody>
     </table>
-    </div>
+</div>
 </div>
 <div class="p">
 
 </div>
 <script>
 
-    $('form').submit(function (e) {
+    $("form").submit(function (e) {
         e.preventDefault();
         var formAction = $(this).attr('action');
         $.ajax({
@@ -81,7 +86,6 @@
         });
     });
 
-
     function usersMenu() {
         var x = document.getElementById("users");
         if (x.style.display === "none") {
@@ -91,14 +95,14 @@
         }
     }
 
-        function updateMenu() {
-            var x = document.getElementById("update");
-            
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+    function updateMenu() {
+        var x = document.getElementById("update");
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
         }
+    }
 
 </script>
