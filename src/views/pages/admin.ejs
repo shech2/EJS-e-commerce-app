@@ -1,3 +1,4 @@
+<button onclick="usersMenu()">Users Menu</button>
 <div id="users">
     <h1>Users</h1>
     <table class="table table-striped">
@@ -35,4 +36,13 @@
         </tbody>
     </table>
 </div>
-</div>
+<script>
+    function usersMenu() {
+        var x = document.getElementById("users");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+    }
+</script>
