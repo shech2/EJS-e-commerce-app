@@ -154,7 +154,7 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users, username: req.cookies.username });
+            res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users, username: req.cookies.username ,req : req });
         }
     });
 });
