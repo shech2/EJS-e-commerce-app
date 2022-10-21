@@ -162,7 +162,6 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.user.id }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            console.log(cart.cartItems);
             res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", username: req.cookies.username, cart: cart, total: req.query.total });
         }
     }).populate({
@@ -170,7 +169,7 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
         populate: ([
             { path: 'category' },
             { path: 'brand' }
-        ])
+        ]) // Multiple populate populate([{},{}]) --> this is the syntax .
     });
 });
 
