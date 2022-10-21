@@ -1,1 +1,38 @@
-<p>Hello <%- username %> </p>
+<div id="users">
+    <h1>Users</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Admin</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0; i < users.length; i++){ %>
+                <tr>
+                    <th scope="row">
+                        <%= users[i].id %>
+                    </th>
+                    <td>
+                        <%= users[i].username %>
+                    </td>
+                    <td>
+                        <%= users[i].email %>
+                    </td>
+                    <td>
+                        <%= users[i].password %>
+                    </td>
+                    <td>
+                        <%= users[i].isAdmin %>
+                    </td>
+                    <td><a href="/admin?delete=<%= users[i].id %>">Delete</a></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</div>
+</div>

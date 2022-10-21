@@ -6,6 +6,7 @@ const express_session = require("express-session");
 const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
 const Cart = require("./models/cart");
+const User = require("./models/User");
 const passport = require("passport");
 
 // COOKIES:
@@ -149,7 +150,13 @@ app.get('/product-page', (req, res) => {
 
 // Admin page:
 app.get('/admin', authmw.authAdmin, (req, res) => {
-    res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", username: req.cookies.username });
+    User.find({}, async function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users, username: req.cookies.username });
+        }
+    });
 });
 
 // Create-Product page:
