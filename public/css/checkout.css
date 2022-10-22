@@ -226,13 +226,13 @@ ol, ul {
 .panel-footer{
     background:#fff;
 }
-.btn{
+.btn1{
     border-radius: 1px;
     background-color: #ff523b;
     border-color: #ff523b;
     color: white;
 }
-.btn::hover{
+.btn1::hover{
     background-color: #ff523b;
     border-color: #ff523b;
 }
