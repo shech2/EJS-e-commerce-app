@@ -200,7 +200,13 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
 
 // Create-Product page:
 app.get('/create-product', authmw.authAdmin, (req, res) => {
-    res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", username: req.cookies.username });
+    Cart.findOne({user: req.user.id}, async function (err, cart) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", username: req.cookies.username , Cart : cart.cartItems});
+    });
+        
 });
 
 // Checkout page:
