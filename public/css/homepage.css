@@ -224,8 +224,7 @@ h6{
 
    #product1 .pro img{
     width: 210px;
-    height: 160px;
-    border-radius: 20px;
+    height: 160px; 
    }
 
    #product1 .pro .des{
