@@ -57,7 +57,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                 </tr>
                 <th scope="row">
                     <div id="update">
-                        <!-- <form method="POST" action="/api/users/<%=users[i].id%>">
+                        <form id="UpdateForm" method="POST" action="/api/users/<%=users[i].id%>">
                         <input type="text" name="username" placeholder="Username">
                         <input type="text" name="email" placeholder="Email">
                         <input type="text" name="password" placeholder="Password">
@@ -65,7 +65,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                         <button id="Btn" style="border: none;">
                             Update
                         </button>
-                    </form> -->
+                    </form>
                     </div>
                 </th>
                 <% } %>
@@ -86,6 +86,18 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             type: 'DELETE',
             success: function (data) {
                 console.log(data);
+            }
+        });
+    });
+    $('form#UpdateForm').submit(function (e) {
+        e.preventDefault();
+        var formAction = $(this).attr('action');
+        $.ajax({
+            url: formAction,
+            data : $(this).serialize(),
+            type: 'PUT',
+            success: function (data) {
+                console.log(JSON.stringify(data));
             }
         });
     });
