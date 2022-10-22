@@ -54,7 +54,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                         </td>
                         </form>
                     </tr>
-                    <th scope="row" id="r<%= i %>">
+                    <th scope="row" id="r<%= i %>" style="display: none;">
                         <div id="update">
                             <form id="UpdateForm" method="POST" action="/api/users/<%=users[i].id%>">
                                 <input type="text" name="username" placeholder="Username">
