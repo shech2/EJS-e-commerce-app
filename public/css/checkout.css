@@ -226,13 +226,13 @@ ol, ul {
 .panel-footer{
     background:#fff;
 }
-.btn{
+.btn1{
     border-radius: 1px;
     background-color: #ff523b;
     border-color: #ff523b;
     color: white;
 }
-.btn::hover{
+.btn1::hover{
     background-color: #ff523b;
     border-color: #ff523b;
 }
@@ -283,7 +283,23 @@ hr{
 select{
     height: 30px !important;
 }
-
+.img-responsive{
+    padding-left: 10px;
+    height: 50px;
+    align-items: left;
+}
+.product{
+    height: 80px;
+}
+.product-info{
+    text-align: center !important;
+    bottom:50px;
+    position: relative;
+}
+.price{
+    bottom: 50px;
+    position: relative;
+}
 /** MEDIA QUERIES **/
 @media only screen and (max-width: 989px){
     .span1{
