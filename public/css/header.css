@@ -153,9 +153,9 @@ input[type=checkbox]{
  /* Cart notification */
   
   .notification .badge {
-    position: absolute;
-    top: 95px;
-    left: 68%;
+    position: relative;
+    right: 12px;
+    top: 20px;
     height: 15px;
     width: 25px;
     background: lightcoral;  
