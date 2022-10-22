@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+const product = require("../models/Product");
+const Schema = mongoose.Schema; 
 const productSchema = new Schema(
     {
     Product_name: {
@@ -15,6 +15,8 @@ const productSchema = new Schema(
         type: Number,
         required:true
     },
+    size: [{type: Array,sizeQuantity: Number}],
+    
     brand: {
         type: mongoose.Schema.Types.ObjectId,
          ref: 'Brand', 
