@@ -18,11 +18,11 @@
                 <tr>
                     <td>
                         <div class="cart-info">
-                            <img style="height: 200px;width: 200px;" src="<%= cartItems[i].product.image %>">
+                            <img style="height: 130px;width: 160px;" src="<%= cartItems[i].product.image %>">
                             <div style="position:relative;left:75px">
                                 <div><b>brand:</b> <%= cartItems[i].product.brand.name %></div>
                                 <div><b>Size:</b> </div>
-                                <div><small>price: <%= cartItems[i].product.price %> $</small></div>
+                                <div><small>price:$<%= cartItems[i].product.price %></small></div>
                                 <form action="/remove-from-cart" method="POST">
                                     <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
                                     <button class="btn" style="background-color: #ff523b; color: white;">Remove Product</button>
@@ -35,7 +35,7 @@
                         
                     </td>
                     <td>
-                        <b><%= cartItems[i].price * cartItems[i].quantity %> $</b>
+                        <b>$<%= cartItems[i].price * cartItems[i].quantity %></b>
                     </td>
                 </tr>
             </table>
