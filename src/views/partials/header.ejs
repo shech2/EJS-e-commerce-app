@@ -41,7 +41,9 @@
             </li>
             <li>
                 <% if(username){ %>
-                    <a href="/cart"><img src="/img/Cart.png" class="cart-img"></a>       
+                    <a href="/cart" class="notification"><img src="/img/Cart.png" class="cart-img">
+                        <span class="badge"><%= Cart.length %> </span>
+                      </a>       
                     <% } %>
             </li> 
             <li>

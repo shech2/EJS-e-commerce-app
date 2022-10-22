@@ -84,7 +84,7 @@ app.get('/register', (req, res) => {
 });
 
 // GET THE PRODUCTS AT THE HOMEPAGE
-app.get('/homepage', (req, res) => {
+app.get('/homepage', authmw.authMiddleware, (req, res) => {
     updatedItems = [];
     ProductModel.find({}, async function (err, items) {
         if (err) { console.log(err); }
@@ -99,8 +99,17 @@ app.get('/homepage', (req, res) => {
 
             ProductModel.find({}, async function (err, products) {
                 if (err) { console.log(err); }
-                res.render('./pages/homePage.ejs', { title: "Home-Page", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/homepage.css", username: req.cookies.username });
-            }).populate('category').populate('brand');
+                Cart.findOne({ user: req.user.id }, async function (err, cart) {
+                    if (err) { console.log(err); }
+                    res.render('./pages/homePage.ejs', { title: "Home-Page", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/homepage.css", username: req.cookies.username, Cart: cart.cartItems });
+                }).populate({
+                    path: 'cartItems.product',
+                    populate: ([
+                        { path: 'category' },
+                        { path: 'brand' }
+                    ]) // Multiple populate populate([{},{}]) --> this is the syntax .
+                });
+            });
         }
     }).populate('category').populate('brand');
 }); // Ori
@@ -110,7 +119,7 @@ app.get('/homepage', (req, res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop', (req, res) => {
+app.get('/shop',authmw.authMiddleware, (req, res) => {
     updatedItems = [];
     ProductModel.find({}, async function (err, items) {
         if (err) { console.log(err); }
@@ -120,31 +129,56 @@ app.get('/shop', (req, res) => {
                     updatedItems.push(items[i]);
                 }
             }
-            res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems });
+            Cart.findOne({ user: req.user.id }, async function (err, cart) {
+                if (err) { console.log(err); }
+                res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems , Cart : cart.cartItems });
+            }).populate({
+                path: 'cartItems.product',
+                populate: ([
+                    { path: 'category' },
+                    { path: 'brand' }
+                ]) // Multiple populate populate([{},{}]) --> this is the syntax .
+            });
+                
         } else {
 
             ProductModel.find({}, async function (err, products) {
                 if (err) { console.log(err); }
-                res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", username: req.cookies.username });
-            }).populate('category').populate('brand');
+                Cart.findOne({ user: req.user.id }, async function (err, cart) {
+                    if (err) { console.log(err); }
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", username: req.cookies.username, Cart: cart.cartItems });
+
+                }).populate({
+                    path: 'cartItems.product',
+                    populate: ([
+                        { path: 'category' },
+                        { path: 'brand' }
+                    ]) // Multiple populate populate([{},{}]) --> this is the syntax .
+                });
+            });
         }
     }).populate('category').populate('brand');
 
 });
 
 // GET ABOUT:
-app.get('/about', (req, res) => {
-    res.render('./pages/About.ejs', { title: "About", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/about.css", username: req.cookies.username });
+app.get('/about',authmw.authMiddleware, (req, res) => {
+    Cart.findOne({ user: req.user.id }, async function (err, cart) {
+        if (err) { console.log(err); }
+        res.render('./pages/About.ejs', { title: "About", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/about.css", username: req.cookies.username , Cart: cart.cartItems });
+    }); 
 });
 
 //Product-page:
-app.get('/product-page', (req, res) => {
+app.get('/product-page',authmw.authMiddleware, (req, res) => {
     ProductModel.find({}, async function (err, products) {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: products, cssfile: "/css/product-page2.css", username: req.cookies.username });
-
+        Cart.findOne({ user: req.user.id }, async function (err, cart) {
+            if (err) { console.log(err); }
+            res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: products, cssfile: "/css/product-page2.css", username: req.cookies.username , Cart: cart.cartItems });
+        }); 
     }).populate('category');
 });
 
@@ -154,7 +188,12 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users, username: req.cookies.username , request : req });
+            Cart.findOne({user: req.user.id}, async function (err, cart) {
+                if (err) {
+                    console.log(err);
+                }
+                res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users, username: req.cookies.username, Cart : cart.cartItems});
+            });     
         }
     });
 });
@@ -169,7 +208,7 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.user.id }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", username: req.cookies.username, cart: cart, total: req.query.total });
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", username: req.cookies.username, cart: cart, total: req.query.total, Cart: cart.cartItems });
         }
     }).populate({
         path: 'cartItems.product',
@@ -187,7 +226,7 @@ app.get('/cart', authmw.authMiddleware, (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart.ejs', { title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems });
+        res.render('./pages/cart.ejs', { title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems , Cart : cart.cartItems });
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });

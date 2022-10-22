@@ -150,3 +150,12 @@ input[type=checkbox]{
      background-color: #e8eaea;
     }
 }
+ /* Cart notification */
+  
+  .notification .badge {
+    position: absolute;
+    top: 90px;
+    left: 68%;
+    background: black;  
+    color: white;
+  }
