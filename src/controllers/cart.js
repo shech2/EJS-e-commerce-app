@@ -23,7 +23,7 @@ exports.addItemToCart = async (req, res) => {
                     }
                 }).exec((error) => {
                     if (error) res.status(400).json({ error });
-                })
+                });
             }
             else {
                 cart.updateOne({
