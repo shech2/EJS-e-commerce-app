@@ -46,7 +46,10 @@
           var code = `
       
             <div class="pro">
-                <a href="#"><img src="<%= ProductModel[index].image %>" alt=""></a>
+              <form action="/shop" method="GET">
+                <button style="border: none;"><img src="<%= ProductModel[index].image %>" alt=""></button>
+                  <input type="hidden" name="id" value="<%= ProductModel[index].id %>">
+                  </form>
             <div class="des">
             <span><%=ProductModel[index].brand.name %></span>
             -&nbsp<span><%=ProductModel[index].category.name %></span><br>
