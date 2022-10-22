@@ -22,7 +22,7 @@
                             <div style="position:relative;left:75px">
                                 <div><b>brand:</b> <%= cartItems[i].product.brand.name %></div>
                                 <div><b>Size:</b> </div>
-                                <div><small>price: <%= cartItems[i].product.price %> $</small></div>
+                                <div><small>price: $<%= cartItems[i].product.price %></small></div>
                                 <form action="/remove-from-cart" method="POST">
                                     <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
                                     <button class="btn" style="background-color: #ff523b; color: white;">Remove Product</button>
