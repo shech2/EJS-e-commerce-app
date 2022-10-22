@@ -23,7 +23,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
         </thead>
         <tbody>
             <% for(let i=0; i < users.length; i++){ %>
-                <div class="r<%= i %>">
+                <div>
                     <tr>
                         <th scope="row">
                             <%= users[i].id %>
@@ -41,34 +41,33 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                             <%= users[i].isAdmin %>
                         </td>
                         <td>
-                                <!-- <form method="POST" action="api/users/<%= users[i].id %>"> -->
-                                    <button onclick="updateMenu()" id="Btn" style="border: none;">
-                                        Update
-                                    </button>
+                            <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none;">
+                                Update
+                            </button>
                         </td>
                         </form>
-                <td>
-                        <form id="PutForm" method="POST" action="/api/users/<%=users[i].id%>">
-                            <button id="Btn" style="border: none;">
-                                Delete
-                            </button>
-                    </td>
-                </form>
-                </tr>
-                <th scope="row">
-                    <div id="update">
-                        <form id="UpdateForm" method="POST" action="/api/users/<%=users[i].id%>">
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="text" name="email" placeholder="Email">
-                        <input type="text" name="password" placeholder="Password">
-                        <input type="text" name="isAdmin" placeholder="Admin">
-                        <button id="Btn" style="border: none;">
-                            Update
-                        </button>
-                    </form>
-                    </div>
-                </th>
-                <% } %>
+                        <td>
+                            <form id="PutForm" method="POST" action="/api/users/<%=users[i].id%>">
+                                <button id="Btn" style="border: none;">
+                                    Delete
+                                </button>
+                        </td>
+                        </form>
+                    </tr>
+                    <th scope="row" id="r<%= i %>">
+                        <div id="update">
+                            <form id="UpdateForm" method="POST" action="/api/users/<%=users[i].id%>">
+                                <input type="text" name="username" placeholder="Username">
+                                <input type="text" name="email" placeholder="Email">
+                                <input type="text" name="password" placeholder="Password">
+                                <input type="text" name="isAdmin" placeholder="Admin">
+                                <button id="Btn" style="border: none;">
+                                    Update
+                                </button>
+                            </form>
+                        </div>
+                    </th>
+                    <% } %>
         </tbody>
     </table>
 </div>
@@ -94,7 +93,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
         var formAction = $(this).attr('action');
         $.ajax({
             url: formAction,
-            data : $(this).serialize(),
+            data: $(this).serialize(),
             type: 'PUT',
             success: function (data) {
                 console.log(JSON.stringify(data));
@@ -110,9 +109,9 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             x.style.display = "none";
         }
     }
-
-    function updateMenu() {
-        var x = document.getElementById("update");
+    function updateMenu(i) {
+        var x = document.querySelector("#r" + i);
+        console.log(x);
 
         if (x.style.display === "none") {
             x.style.display = "block";
