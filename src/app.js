@@ -74,17 +74,17 @@ app.set('views', __dirname + '/views');
 
 // GET for login,signup and logout:
 app.get('/login', (req, res) => {
-    const error = req.flash('error');
-    res.render('./pages/login.ejs', { error, title: "Login", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/style-login.css", username: req.cookies.username });
+            const error = req.flash('error');
+            res.render('./pages/login.ejs', { error, title: "Login", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/style-login.css", username: req.cookies.username});
 });
 
 app.get('/register', (req, res) => {
     const error = req.flash('error');
-    res.render('./pages/register.ejs', { error, title: "Register", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/register.css", username: req.cookies.username });
+    res.render('./pages/register.ejs', { error, title: "Register", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/register.css",username: req.cookies.username});
 });
 
 // GET THE PRODUCTS AT THE HOMEPAGE
-app.get('/homepage', authmw.authMiddleware, (req, res) => {
+app.get('/homepage', (req, res) => {
     updatedItems = [];
     ProductModel.find({}, async function (err, items) {
         if (err) { console.log(err); }
@@ -94,14 +94,14 @@ app.get('/homepage', authmw.authMiddleware, (req, res) => {
                     updatedItems.push(items[i]);
                 }
             }
-            res.render('./pages/homePage.ejs', { title: "Home-Page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/homepage.css", username: req.cookies.username, ProductModel: updatedItems });
+            res.render('./pages/homePage.ejs', { title: "Home-Page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/homepage.css",username: req.cookies.username, user: req.cookies.user, ProductModel: updatedItems });
         } else {
 
             ProductModel.find({}, async function (err, products) {
                 if (err) { console.log(err); }
-                Cart.findOne({ user: req.user.id }, async function (err, cart) {
+                Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                     if (err) { console.log(err); }
-                    res.render('./pages/homePage.ejs', { title: "Home-Page", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/homepage.css", username: req.cookies.username, Cart: cart.cartItems });
+                    res.render('./pages/homePage.ejs', { title: "Home-Page", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/homepage.css", username: req.cookies.username,user: req.cookies.user, Cart: cart });
                 }).populate({
                     path: 'cartItems.product',
                     populate: ([
@@ -119,7 +119,7 @@ app.get('/homepage', authmw.authMiddleware, (req, res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop',authmw.authMiddleware, (req, res) => {
+app.get('/shop', (req, res) => {
     updatedItems = [];
     ProductModel.find({}, async function (err, items) {
         if (err) { console.log(err); }
@@ -129,9 +129,9 @@ app.get('/shop',authmw.authMiddleware, (req, res) => {
                     updatedItems.push(items[i]);
                 }
             }
-            Cart.findOne({ user: req.user.id }, async function (err, cart) {
+            Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                 if (err) { console.log(err); }
-                res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", username: req.cookies.username, ProductModel: updatedItems , Cart : cart.cartItems });
+                res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css",username: req.cookies.username, user: req.cookies.user, ProductModel: updatedItems , Cart : cart.cartItems });
             }).populate({
                 path: 'cartItems.product',
                 populate: ([
@@ -144,9 +144,9 @@ app.get('/shop',authmw.authMiddleware, (req, res) => {
 
             ProductModel.find({}, async function (err, products) {
                 if (err) { console.log(err); }
-                Cart.findOne({ user: req.user.id }, async function (err, cart) {
+                Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                     if (err) { console.log(err); }
-                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", username: req.cookies.username, Cart: cart.cartItems });
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", username: req.cookies.username,user: req.cookies.user, Cart: cart.cartItems });
 
                 }).populate({
                     path: 'cartItems.product',
@@ -162,22 +162,22 @@ app.get('/shop',authmw.authMiddleware, (req, res) => {
 });
 
 // GET ABOUT:
-app.get('/about',authmw.authMiddleware, (req, res) => {
-    Cart.findOne({ user: req.user.id }, async function (err, cart) {
+app.get('/about', (req, res) => {
+    Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
         if (err) { console.log(err); }
-        res.render('./pages/About.ejs', { title: "About", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/about.css", username: req.cookies.username , Cart: cart.cartItems });
+        res.render('./pages/About.ejs', { title: "About", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/about.css", username: req.cookies.username,user: req.cookies.user , Cart: cart.cartItems });
     }); 
 });
 
 //Product-page:
-app.get('/product-page',authmw.authMiddleware, (req, res) => {
+app.get('/product-page', (req, res) => {
     ProductModel.find({}, async function (err, products) {
         if (err) {
             console.log(err);
         }
-        Cart.findOne({ user: req.user.id }, async function (err, cart) {
+        Cart.findOne({ user: req.coookies.user }, async function (err, cart) {
             if (err) { console.log(err); }
-            res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: products, cssfile: "/css/product-page2.css", username: req.cookies.username , Cart: cart.cartItems });
+            res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: products, cssfile: "/css/product-page2.css", username: req.cookies.username,user: req.cookies.user , Cart: cart.cartItems });
         }); 
     }).populate('category');
 });
@@ -192,7 +192,7 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-                res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users, username: req.cookies.username, Cart : cart.cartItems});
+                res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users,username: req.cookies.username, user: req.cookies.user, Cart : cart.cartItems});
             });     
         }
     });
@@ -204,17 +204,17 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", username: req.cookies.username , Cart : cart.cartItems});
+        res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css",username: req.cookies.username, user: req.cookies.user , Cart : cart.cartItems});
     });
         
 });
 
 // Checkout page:
-app.get('/checkout', authmw.authMiddleware, (req, res) => {
-    Cart.findOne({ user: req.user.id }, function (err, cart) {
+app.get('/checkout', (req, res) => {
+    Cart.findOne({ user: req.cookies.user }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", username: req.cookies.username, cart: cart, total: req.query.total, Cart: cart.cartItems });
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", username: req.cookies.username,user: req.cookies.user, cart: cart, total: req.query.total, Cart: cart.cartItems });
         }
     }).populate({
         path: 'cartItems.product',
@@ -227,12 +227,12 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
 
 
 // Cart page:
-app.get('/cart', authmw.authMiddleware, (req, res) => {
-    Cart.findOne({ user: req.user.id }, (err, cart) => {
+app.get('/cart', (req, res) => {
+    Cart.findOne({ user: req.cookies.user }, (err, cart) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart.ejs', { title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", username: req.cookies.username, cartItems: cart.cartItems , Cart : cart.cartItems });
+        res.render('./pages/cart.ejs', { title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css",username: req.cookies.username, user: req.cookies.user, cartItems: cart.cartItems , Cart : cart.cartItems });
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });
