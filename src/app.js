@@ -177,7 +177,7 @@ app.get('/product-page', (req, res) => {
         }
         Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
             if (err) { console.log(err); }
-            res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: products, cssfile: "/css/product-page2.css",isAdmin:req.cookies.isAdmin, username: req.cookies.username,user: req.cookies.user , Cart: cart });
+            res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: products, cssfile: "/css/product-page.css",isAdmin:req.cookies.isAdmin, username: req.cookies.username,user: req.cookies.user , Cart: cart });
         }); 
     }).populate('category');
 });
