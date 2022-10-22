@@ -21,8 +21,11 @@ exports.addItemToCart = async (req, res) => {
                             brand: POSTProduct.brand
                         }
                     }
-                }).exec((error) => {
+                }).exec((error,cart) => {
                     if (error) res.status(400).json({ error });
+                    if (cart) {
+                    res.status(201).json({ cart });
+                    }
                 });
             }
             else {
@@ -35,8 +38,11 @@ exports.addItemToCart = async (req, res) => {
                             brand: product.brand
                         }
                     }
-                }).exec((error) => {
+                }).exec((error,cart) => {
                     if (error) return res.status(400).json({ error });
+                    if (cart) {
+                    res.status(201).json({ cart });
+                    }
                 })
             }
         }
