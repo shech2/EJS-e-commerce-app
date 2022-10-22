@@ -300,6 +300,13 @@ select{
     bottom: 50px;
     position: relative;
 }
+.form-horizontal{
+    width: 100%;
+}
+.area{
+    position: relative;
+    width: 100%;
+}
 /** MEDIA QUERIES **/
 @media only screen and (max-width: 989px){
     .span1{
