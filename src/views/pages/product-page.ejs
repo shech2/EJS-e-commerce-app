@@ -1,6 +1,6 @@
 <section class="container sproduct my-5 pt-5">
     <div class="row mt-5">
-        <div class="col-lg-5 col-md-12 col-12">
+        <div class="col-lg-5 col-md-12 col-12" id="product">
 
             <script>
                 "<% for (index = 0; index < ProductModel.length; index++) { %>"
@@ -46,6 +46,8 @@
             An off-white midsole and translucent purple rubber outsole complete this intriguing take on the classic running shoe</span>
     </div>
     </div>`
+                "<% } %>"
+                document.getElementById("product").innerHTML = code;
 </script> 
 
 </section>
