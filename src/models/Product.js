@@ -28,10 +28,10 @@ const productSchema = new Schema(
         default: 1,
         required:true
     },
-    image: {
+    image: [{
         type: String,
         required:true
-    },
+    }],
     rating: {
         type: Number,
         required:true
