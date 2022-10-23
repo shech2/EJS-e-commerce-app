@@ -72,7 +72,68 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
     </table>
 </div>
 </div>
-<div class="p">
+<div class="Products">
+    <h1>Products</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">Size</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0; i < Products.length; i++){ %>
+                <div>
+                    <tr>
+                        <th scope="row">
+                            <%= Products[i].id %>
+                        </th>
+                        <td>
+                            <%= Products[i].Product_name %>
+                        </td>
+                        <td>
+                            <%= Products[i].price %>
+                        </td>
+                        <td>
+                            <%= Products[i].description %>
+                        </td>
+                        <td>
+                            <%= console.log(Products[i].size) %>
+                        <td>
+                            <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none;">
+                                Update
+                            </button>
+                        </td>
+                        </form>
+                        <td>
+                            <form id="PutForm" method="POST" action="/api/Products/<%=Products[i].id%>">
+                                <button id="Btn" style="border: none;">
+                                    Delete
+                                </button>
+                        </td>
+                        </form>
+                    </tr>
+                    <th scope="row" id="r<%= i %>" style="display: none;">
+                        <div id="update">
+                            <form id="UpdateForm" method="POST" action="/api/Products/<%=Products[i].id%>">
+                                <input type="text" name="name" placeholder="Name">
+                                <input type="text" name="price" placeholder="Price">
+                                <input type="text" name="description" placeholder="Description">
+                                <input type="text" name="image" placeholder="Image">
+                                <button id="Btn" style="border: none;">
+                                    Update
+                                </button>
+                            </form>
+                        </div>
+                    </th>
+                    <% } %>
+        </tbody>
+    </table>
 
 </div>
 <script>

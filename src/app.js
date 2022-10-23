@@ -195,10 +195,16 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-                res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users,isAdmin:req.cookies.isAdmin,username: req.cookies.username, user: req.cookies.user, Cart : cart});
-            });     
+                ProductModel.find({}, async function (err, products) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log(products);
+                    res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users,isAdmin:req.cookies.isAdmin,username: req.cookies.username, user: req.cookies.user, Cart : cart, Products : products });
+                }).populate('category').populate('brand').populate('size');
+            })
         }
-    });
+    })
 });
 
 // Create-Product page:
