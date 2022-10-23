@@ -7,6 +7,7 @@ const flash = require("connect-flash");
 const expressLayouts = require('express-ejs-layouts');
 const Cart = require("./models/cart");
 const User = require("./models/User");
+const Category = require("./models/category");
 const passport = require("passport");
 
 // COOKIES:
@@ -35,6 +36,7 @@ const categoryRouters = require("./routes/categories");
 const brandRouters = require("./routes/brands");
 const ProductModel = require("./models/Product");
 const { $where } = require('./models/User');
+const category = require('./models/category');
 
 // DOTENV:
 dotenv.config();
@@ -204,9 +206,14 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css",isAdmin:req.cookies.isAdmin,username: req.cookies.username, user: req.cookies.user , Cart : cart});
+        Category.find({}, async function (err, categories) {
+            if (err) {
+                console.log(err);
+            }
+            res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css",isAdmin:req.cookies.isAdmin,username: req.cookies.username, user: req.cookies.user , Cart : cart ,category : categories});       
     });
         
+});
 });
 
 // Checkout page:
