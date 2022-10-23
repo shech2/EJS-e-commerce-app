@@ -6,90 +6,100 @@
     <!-- 2 column grid layout with text inputs for the first and last names -->
     <div class="row mb-4">
       <div class="col">
-        <div class="form-outline">
+        <div class="form-outline mb-4">
           <input name="Product_Name" type="text" id="form6Example1" class="form-control" />
           <label class="form-label" for="form6Example1">Product name</label>
         </div>
       </div>
       <div class="col">
-        <div class="form-outline">
+        <div class="form-outline mb-4">
           <label class="form-label" for="form6Example2">Category</label>
-              <input autocomplete="off" list="categories" name="category">
-            <datalist id="categories">
-              <option value="<%= category[0].id  %>">
-                <%= category[0].name %>
+          <input autocomplete="off" list="categories" name="category">
+          <datalist id="categories">
+            <% for (i=0; i < category.length; i++) { %>
+              <option value="<%= category[i].id  %>">
+                <%= category[i].name %>
               </option>
-              <option value="<%= category[1].id  %>">
-                <%= category[1].name %>
-              </option>
-            </datalist>
+              <% } %>
+          </datalist>
         </div>
       </div>
     </div>
+
     <!--Brand Input-->
-    <div class="form-outline mb-4">
-      <input name="brand" type="text" id="form6Example3" class="form-control" />
-      <label class="form-label" for="form6Example3">Brand</label>
+    <div class="col">
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form6Example3">Brand</label>
+        <input autocomplete="off" list="brands" name="brand">
+        <datalist id="brands">
+          <% for (j=0; j < brand.length; j++) { %>
+            <option value="<%= brand[j].id  %>">
+              <%= brand[j].name %>
+            </option>
+            <% } %>
+        </datalist>
+      </div>
     </div>
+</div>
 
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input name="rating" type="number" id="form6Example3" class="form-control" max="5" min="1" />
-      <label class="form-label" for="form6Example3">Rating</label>
-    </div>
+<!-- Text input -->
+<div class="form-outline mb-4">
+  <input name="rating" type="number" id="form6Example3" class="form-control" max="5" min="1" />
+  <label class="form-label" for="form6Example3">Rating</label>
+</div>
 
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input name="image" type="text" id="form6Example4" class="form-control" />
-      <label class="form-label" for="form6Example4">Image 1</label>
-    </div>
+<!-- Text input -->
+<div class="form-outline mb-4">
+  <input name="image" type="text" id="form6Example4" class="form-control" />
+  <label class="form-label" for="form6Example4">Image 1</label>
+</div>
 
-    <div class="form-outline mb-4">
-      <input name="image" type="text" id="form6Example4" class="form-control" />
-      <label class="form-label" for="form6Example4">Image 2</label>
-    </div>
+<div class="form-outline mb-4">
+  <input name="image" type="text" id="form6Example4" class="form-control" />
+  <label class="form-label" for="form6Example4">Image 2</label>
+</div>
 
-    <div class="form-outline mb-4">
-      <input name="image" type="text" id="form6Example4" class="form-control" />
-      <label class="form-label" for="form6Example4">Image 3</label>
-    </div>
+<div class="form-outline mb-4">
+  <input name="image" type="text" id="form6Example4" class="form-control" />
+  <label class="form-label" for="form6Example4">Image 3</label>
+</div>
 
-    <div class="form-outline mb-4">
-      <input name="image" type="text" id="form6Example4" class="form-control" />
-      <label class="form-label" for="form6Example4">Image 4</label>
-    </div>
+<div class="form-outline mb-4">
+  <input name="image" type="text" id="form6Example4" class="form-control" />
+  <label class="form-label" for="form6Example4">Image 4</label>
+</div>
 
-    <!-- Size input -->
-    <div class="form-outline mb-4">
-      <input name="size" type="number" id="form6Example5" class="form-control" />
-      <label class="form-label" for="form6Example5">Size</label>
-    </div>
+<!-- Size input -->
+<div class="form-outline mb-4">
+  <input name="size" type="number" id="form6Example5" class="form-control" />
+  <label class="form-label" for="form6Example5">Size</label>
+</div>
 
-    <!-- Quan input -->
-    <div class="form-outline mb-4">
-      <input name="quantity2" type="number" id="form6Example5" class="form-control" />
-      <label class="form-label" for="form6Example5">Quantity2</label>
-    </div>
+<!-- Quan input -->
+<div class="form-outline mb-4">
+  <input name="quantity2" type="number" id="form6Example5" class="form-control" />
+  <label class="form-label" for="form6Example5">Quantity2</label>
+</div>
 
-    <!-- Quantity input -->
-    <div class="form-outline mb-4">
-      <input name="quantity" type="number" id="form6Example5" class="form-control" />
-      <label class="form-label" for="form6Example5">Quantity</label>
-    </div>
+<!-- Quantity input -->
+<div class="form-outline mb-4">
+  <input name="quantity" type="number" id="form6Example5" class="form-control" />
+  <label class="form-label" for="form6Example5">Quantity</label>
+</div>
 
-    <!-- Number input -->
-    <div class="form-outline mb-4">
-      <input name="price" type="number" id="form6Example6" class="form-control" />
-      <label class="form-label" for="form6Example6">Price</label>
-    </div>
+<!-- Number input -->
+<div class="form-outline mb-4">
+  <input name="price" type="number" id="form6Example6" class="form-control" />
+  <label class="form-label" for="form6Example6">Price</label>
+</div>
 
-    <!-- Message input -->
-    <div class="form-outline mb-4">
-      <textarea name="description" class="form-control" id="form6Example7" rows="4"></textarea>
-      <label class="form-label" for="form6Example7">Description</label>
-    </div>
+<!-- Message input -->
+<div class="form-outline mb-4">
+  <textarea name="description" class="form-control" id="form6Example7" rows="4"></textarea>
+  <label class="form-label" for="form6Example7">Description</label>
+</div>
 
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Create </button>
-  </form>
+<!-- Submit button -->
+<button type="submit" class="btn btn-primary btn-block mb-4">Create </button>
+</form>
 </div>

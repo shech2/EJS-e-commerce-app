@@ -8,6 +8,7 @@ const expressLayouts = require('express-ejs-layouts');
 const Cart = require("./models/cart");
 const User = require("./models/User");
 const Category = require("./models/category");
+const Brand = require("./models/brand");
 const passport = require("passport");
 
 // COOKIES:
@@ -181,7 +182,7 @@ app.get('/product-page', (req, res) => {
             if (err) { console.log(err); }
             res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: products, cssfile: "/css/product-page.css",isAdmin:req.cookies.isAdmin, username: req.cookies.username,user: req.cookies.user , Cart: cart });
         }); 
-    }).populate('category');
+    }).populate('category').populate('brand');
 });
 
 // Admin page:
@@ -210,11 +211,15 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
             if (err) {
                 console.log(err);
             }
-            res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css",isAdmin:req.cookies.isAdmin,username: req.cookies.username, user: req.cookies.user , Cart : cart ,category : categories});       
-    });
-        
+            Brand.find({}, async function (err, brands) {
+                if (err) {
+                    console.log(err);
+                }
+            res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css",isAdmin:req.cookies.isAdmin,username: req.cookies.username, user: req.cookies.user , Cart : cart ,category : categories , brand : brands});});   
+            });    
+    });      
 });
-});
+
 
 // Checkout page:
 app.get('/checkout', (req, res) => {
