@@ -2,7 +2,7 @@
 left: 50%;
 transform: translate(-50%, -50%); margin-top: 3rem;">
     <button style="border-radius: 5px; padding: 10px;" onclick="usersMenu()">Users Menu</button>
-    <button style="border-radius: 5px;padding: 10px;">Products Menu</button>
+    <button style="border-radius: 5px;padding: 10px;" onclick="productMenu()">Products Menu</button>
     <button style="border-radius: 5px;padding: 10px;">Statistics Menu</button>
 </div>
 
@@ -72,7 +72,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
     </table>
 </div>
 </div>
-<div class="Products">
+<div id="Products" style="display: none;">
     <h1>Products</h1>
     <table class="table table-striped">
         <thead>
@@ -105,26 +105,35 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                         <td>
                             <%= console.log(Products[i].size) %>
                         <td>
-                            <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none;">
+                            <button onclick="updateMenu2(name)" name="<%= i %> " id="Btn" style="border: none;">
                                 Update
                             </button>
                         </td>
                         </form>
                         <td>
-                            <form id="PutForm" method="POST" action="/api/Products/<%=Products[i].id%>">
+                            <form id="PutForm2" method="POST" action="/api/products/<%=Products[i].id%>">
                                 <button id="Btn" style="border: none;">
                                     Delete
                                 </button>
                         </td>
                         </form>
                     </tr>
-                    <th scope="row" id="r<%= i %>" style="display: none;">
+                    <th scope="row" id="u<%= i %>" style="display: none;">
                         <div id="update">
-                            <form id="UpdateForm" method="POST" action="/api/Products/<%=Products[i].id%>">
-                                <input type="text" name="name" placeholder="Name">
-                                <input type="text" name="price" placeholder="Price">
+                            <form id="UpdateForm2" method="POST" action="/api/products/<%=Products[i].id%>">
+                                <input type="text" name="Product_name" placeholder="Name">
                                 <input type="text" name="description" placeholder="Description">
-                                <input type="text" name="image" placeholder="Image">
+                                <input type="text" name="price" placeholder="Price">
+                                <input type="text" name="size" placeholder="Size (array)">
+                                <input type="text" name="quantity2" placeholder="Size Quantity">
+                                <input type="text" name="brand" placeholder="Brand">
+                                <input type="text" name="category" placeholder="Category">
+                                <input type="text" name="quantity" placeholder="Quantity">
+                                <input type="text" name="image" placeholder="Image1">
+                                <input type="text" name="image" placeholder="Image2">
+                                <input type="text" name="image" placeholder="Image3">
+                                <input type="text" name="image" placeholder="Image4">
+                                <input type="text" name="raing" placeholder="Rating">
                                 <button id="Btn" style="border: none;">
                                     Update
                                 </button>
@@ -161,6 +170,29 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             }
         });
     });
+    $('form#PutForm2').submit(function (e) {
+        e.preventDefault();
+        var formAction = $(this).attr('action');
+        $.ajax({
+            url: formAction,
+            type: 'DELETE',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+    $('form#UpdateForm2').submit(function (e) {
+        e.preventDefault();
+        var formAction = $(this).attr('action');
+        $.ajax({
+            url: formAction,
+            data: $(this).serialize(),
+            type: 'PUT',
+            success: function (data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+    });
 
     function usersMenu() {
         var x = document.getElementById("users");
@@ -170,8 +202,26 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             x.style.display = "none";
         }
     }
+    function productMenu() {
+        var x = document.getElementById("Products");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
     function updateMenu(i) {
         var x = document.querySelector("#r" + i);
+        console.log(x);
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    function updateMenu2(i) {
+        var x = document.querySelector("#u" + i);
         console.log(x);
 
         if (x.style.display === "none") {

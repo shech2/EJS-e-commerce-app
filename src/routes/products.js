@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Product = require("../models/Product");
 const Category = require("../models/category");
 const category = require("../models/category");
+const mongoose = require("mongoose");
 
 router.get("/products", async (req, res) => {
     let filter = {};
@@ -87,8 +88,6 @@ router.put("/products/:id", async (req, res) => {
   if (!product) {
     return res.status(500).send("The product cannot be updated");
   }
-
-  res.send(product);
 });
 
 //Delete product
