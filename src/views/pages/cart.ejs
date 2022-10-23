@@ -1,69 +1,80 @@
-
-        <div class="row">
-            <div style="display: table; margin: auto;">
-                <span class="step step_complete"> <a href="/cart" class="check-bc">Cart</a> <span class="step_line step_complete"> </span> <span class="step_line backline"> </span> </span>
-                <span class="step "> <a class="check-bc">Checkout</a> <span class="step_line"> </span> <span class="step_line "> </span> </span>
-                <span class="step ">Thank you</span>
-            </div>
-        </div>
+<div class="row">
+    <div style="display: table; margin: auto;">
+        <span class="step step_complete"> <a href="/cart" class="check-bc">Cart</a> <span
+                class="step_line step_complete"> </span> <span class="step_line backline"> </span> </span>
+        <span class="step "> <a class="check-bc">Checkout</a> <span class="step_line"> </span> <span
+                class="step_line "> </span> </span>
+        <span class="step ">Thank you</span>
+    </div>
+</div>
 <%console.log(cartItems); %>
-<% if (cartItems.length> 0) { %>
-    <% for (i=0; i < cartItems.length; i++) { %>
-        <div class="small-container cart-page" style="border: 5px solid #ff523b;border-radius:30px;padding:15px">
-            <table>
-                <tr>
-                    <th>
-                        <b><div><%= cartItems[i].product.Product_name %></div></b>
-                    </th>
-                    <th>
-                        <b>Quantity</b>
-                    </th>
-                    <th>
-                        <b>Subtotal</b>
-                    </th>
-                </tr>
+    <% if (cartItems.length> 0) { %>
+        <% for (i=0; i < cartItems.length; i++) { %>
+            <div class="small-container cart-page" style="border: 5px solid #ff523b;border-radius:30px;padding:15px">
+                <table>
+                    <tr>
+                        <th>
+                            <b>
+                                <div>
+                                    <%= cartItems[i].product.Product_name %>
+                                </div>
+                            </b>
+                        </th>
+                        <th>
+                            <b>Quantity</b>
+                        </th>
+                        <th>
+                            <b>Subtotal</b>
+                        </th>
+                    </tr>
 
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img style="height: 130px;width: 160px;" src="<%= cartItems[i].product.image %>">
-                            <div style="position:relative;left:75px">
-                                <div><b>brand:</b> <%= cartItems[i].product.brand.name %></div>
-                                <div><b>Size:</b> </div>
-                                <div><small>price:$<%= cartItems[i].product.price %></small></div>
-                                <form action="/remove-from-cart" method="POST">
-                                    <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
-                                    <button class="btn" style="background-color: #ff523b; color: white;">Remove Product</button>
-                                </form>
+                    <tr>
+                        <td>
+                            <div class="cart-info">
+                                <img style="height: 130px;width: 160px;" src="<%= cartItems[i].product.image %>">
+                                <div style="position:relative;left:75px">
+                                    <div><b>brand:</b>
+                                        <%= cartItems[i].product.brand.name %>
+                                    </div>
+                                    <div><b>Size:</b> </div>
+                                    <div><small>price:$<%= cartItems[i].product.price %></small></div>
+                                    <form action="/remove-from-cart" method="POST">
+                                        <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
+                                        <button class="btn" style="background-color: #ff523b; color: white;">Remove
+                                            Product</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <input id ="quantity" type="number" value="<%= cartItems[i].quantity %>">
-                        
-                    </td>
-                    <td>
-                        <b>$<%= cartItems[i].price * cartItems[i].quantity %></b>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <% } %>
-            <% var total=0 %>
-                <% for(j=0 ; j < cartItems.length ; j++) { %>
-                    <% total +=cartItems[j].price * cartItems[j].quantity %>
-                        <% } %>
-                            <div class="container" style="border:10px #ff523b solid ;border-radius: 30px;padding: 15px;max-width: 40rem;">
-                                <h1>Total Price : $<%= total %>
-                                </h1>
+                        </td>
+                            <button class="btn" style="background-color: #ff523b; color: white; position: relative; left:58%; top: 10.5rem;">Update</button>
+                        <td>
+                            <input id="quantity" type="number" value="<%= cartItems[i].quantity %>">
 
-                                <form action="/checkout">
-                                    <input type="hidden" name="total" value="<%= total %>">
-                                    <button class="btn" style="background-color: #ff523b ; color: white;">Checkout</button>
-                                </form>
+                        </td>
+                        <td>
+                            <b>$<%= cartItems[i].price * cartItems[i].quantity %></b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <% } %>
+                <% var total=0 %>
+                    <% for(j=0 ; j < cartItems.length ; j++) { %>
+                        <% total +=cartItems[j].price * cartItems[j].quantity %>
+                            <% } %>
+                                <div class="container"
+                                    style="border:10px #ff523b solid ;border-radius: 30px;padding: 15px;max-width: 40rem;">
+                                    <h1>Total Price : $<%= total %>
+                                    </h1>
 
-                            </div>
+                                    <form action="/checkout">
+                                        <input type="hidden" name="total" value="<%= total %>">
+                                        <button class="btn"
+                                            style="background-color: #ff523b ; color: white;">Checkout</button>
+                                    </form>
 
-                            <% }else { %>
-                                <h1>Cart is empty</h1>
-                                <% } %>
+                                </div>
+
+                                <% }else { %>
+                                    <h1>Cart is empty</h1>
+                                    <% } %>
