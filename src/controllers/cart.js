@@ -10,7 +10,7 @@ exports.addItemToCart = async (req, res) => {
         if (error) return res.status(400).json({ error });
         if (cart) { // if cart already exists // if cartItem does not exist
             const product = POSTProduct;
-            const item = cart.cartItems.yfind(c => c.product == product.id);
+            const item = cart.cartItems.find(c => c.product == product.id);
             if (item) {
                 CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": product }, {
                     "$set": {
