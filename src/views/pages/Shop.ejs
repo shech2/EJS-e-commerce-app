@@ -1,12 +1,12 @@
 <div id="product1" class="section-p1">
-    <h2>Our Products</h2>
-    <p>Summer Collection New Modern Design</p>
+  <h2>Our Products</h2>
+  <p>Summer Collection New Modern Design</p>
 
-    <div>
-            <div class="pro-container" id="container"></div>
-        <script>
-            "<% for (index = 0; index < ProductModel.length; index++) { %>"
-            var code = `
+  <div>
+    <div class="pro-container" id="container"></div>
+    <script>
+      "<% for (index = 0; index < ProductModel.length; index++) { %>"
+      var code = `
         
               <div class="pro">
                   <img src="<%= ProductModel[index].image[0] %>" alt="">
@@ -34,13 +34,14 @@
                  </button>
              </form>
             </div>`;
-            document.querySelector("#container").innerHTML += code;
-            "<% } %>"
-        </script>
-    </div>
+      document.querySelector("#container").innerHTML += code;
+      "<% } %>"
+    </script>
+  </div>
 </div>
 
 <script>
+  $(document).ready(() => {
     $("form").submit(function (e) {
       e.preventDefault();
       $.ajax({
@@ -48,13 +49,10 @@
         data: $(this).serialize(),
         type: 'POST',
         success: function (data) {
-          console.log(data);
+          $('.notification').load(" .notification");
         }
       });
     });
+  });
 
-
-  </script>
-
-    
-        
+</script>

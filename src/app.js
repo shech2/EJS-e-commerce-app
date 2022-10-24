@@ -228,11 +228,11 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 
 
 // Checkout page:
-app.get('/checkout', (req, res) => {
+app.get('/checkout',authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.cookies.user }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css",isAdmin:req.cookies.isAdmin, username: req.cookies.username,user: req.cookies.user, cart: cart, total: req.query.total, Cart: cart });
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css",isAdmin:req.cookies.isAdmin, username: req.cookies.username,user: req.user, total: req.query.total, Cart: cart });
         }
     }).populate({
         path: 'cartItems.product',
@@ -270,7 +270,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouters);
 app.use("/api/", categoryRouters);
 app.use("/api/", brandRouters);
-app.use("/api/orders", orderRouters);
+app.use("/", orderRouters);
 app.use("/", cartRouter);
 
 

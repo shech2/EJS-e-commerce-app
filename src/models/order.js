@@ -7,14 +7,15 @@ const orderSchema = new Schema({
         ref: "Product",
         required: true,
     }],
-    shippingAddress1: {
+    shippingAddress: {
         type: String,
         required: true,
     },
-    shippingAddress2: {
-        type: String,
-    },
     city: {
+        type: String,
+        required: true,
+    },    
+    state: {
         type: String,
         required: true,
     },
@@ -46,7 +47,7 @@ const orderSchema = new Schema({
         type: Date,
         default: Date.now, //creates the time where the post request is made
     },  
-})
+});
 
 orderSchema.virtual("id").get(function() {
     return this._id.toHexString();
