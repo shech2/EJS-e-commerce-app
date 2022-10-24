@@ -55,7 +55,7 @@ router.post("/create-order", async (req, res) => {
   //attach the orderItemsIds to the order
   let order = new Order({
     orderItems: req.body.orderItems,
-    shippingAddress1: req.body.shippingAddress1,
+    shippingAddress: req.body.shippingAddress,
     city: req.body.city,
     state: req.body.state,
     zip: req.body.zip,

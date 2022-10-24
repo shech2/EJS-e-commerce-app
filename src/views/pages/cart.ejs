@@ -38,7 +38,7 @@
                                     </div>
                                     <div><b>Size:</b> </div>
                                     <div><small>price:$<%= cartItems[i].product.price %></small></div>
-                                    <form action="/remove-from-cart" method="POST">
+                                    <form id="remForm" action="/remove-from-cart" method="POST">
                                         <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
                                         <button class="btn" style="background-color: #ff523b; color: white;">Remove
                                             Product</button>
@@ -53,7 +53,9 @@
 
                         </td>
                         <td>
+                            <div id="subtotal">
                             <b>$<%= cartItems[i].price * cartItems[i].quantity %></b>
+                        </div>
                         </td>
                     </tr>
                 </table>
@@ -84,12 +86,25 @@
                                         <script>
                                             $(document).ready(() => {
 
-                                                $("form").submit(function (e) {
+                                                $("form#remForm").submit(function (e) {
                                                     e.preventDefault();
                                                     $.ajax({
                                                         url: "/remove-from-cart",
                                                         data: $(this).serialize(),
                                                         type: 'POST',
+                                                        success: function (data) {
+                                                            $('.notification').load(" .notification");
+                                                            $('main').load(" main");
+                                                        }
+                                                    });
+                                                });
+
+                                                $("#quantity").change(function (e) {
+                                                    var data = $(this).val();
+                                                    var subtotal = $("#subtotal").html().toString();
+                                                    console.log(subtotal);
+                                                    console.log(data);
+                                                    $.ajax({
                                                         success: function (data) {
                                                             $('.notification').load(" .notification");
                                                             $('main').load(" main");
