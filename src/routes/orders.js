@@ -51,7 +51,7 @@ router.put("/order/:id", async (req, res) => {
 
 //create the orders id
 router.post("/create-order", async (req, res) => {
-
+  console.log(req.body.orderItems);
   //attach the orderItemsIds to the order
   let order = new Order({
     orderItems: req.body.orderItems,
@@ -63,7 +63,7 @@ router.post("/create-order", async (req, res) => {
     phone: req.body.phone,
     status: req.body.status,
     totalPrice: req.body.totalPrice,
-    user: req.user,
+    user: req.body.user,
   });
   order = await order.save();
 
