@@ -7,7 +7,6 @@
         <span class="step ">Thank you</span>
     </div>
 </div>
-<%console.log(cartItems); %>
     <% if (cartItems.length> 0) { %>
         <% for (i=0; i < cartItems.length; i++) { %>
             <div class="small-container cart-page" id="prod"
@@ -85,18 +84,18 @@
                                         <script>
                                             $(document).ready(() => {
 
-                                                // $("form").submit(function (e) {
-                                                //     e.preventDefault();
-                                                //     $.ajax({
-                                                //         url: "/remove-from-cart",
-                                                //         data: $(this).serialize(),
-                                                //         type: 'POST',
-                                                //         success: function (data) {
-                                                //             $('.notification').load(" .notification");
-                                                //             $("main").load(" .main*");
-                                                //         }
-                                                //     });
-                                                // });
+                                                $("form").submit(function (e) {
+                                                    e.preventDefault();
+                                                    $.ajax({
+                                                        url: "/remove-from-cart",
+                                                        data: $(this).serialize(),
+                                                        type: 'POST',
+                                                        success: function (data) {
+                                                            $('.notification').load(" .notification");
+                                                            $('main').load(" main");
+                                                        }
+                                                    });
+                                                });
 
                                             });
                                         </script>
