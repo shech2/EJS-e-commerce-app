@@ -232,8 +232,12 @@ app.get('/checkout',authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.cookies.user }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            req.body.orderItems = cart.cartItems;
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css",isAdmin:req.cookies.isAdmin, username: req.cookies.username,user: req.user, total: req.query.total, Cart: cart});
+            var ItemsID = []
+             for (let index = 0; index < cart.cartItems.length; index++) {
+                ItemsID.push(cart.cartItems[index]._id);
+            }
+            console.log(ItemsID);
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css",isAdmin:req.cookies.isAdmin, username: req.cookies.username,user: req.user, total: req.query.total, Cart: cart, orderItems: ItemsID });
         }
     }).populate({
         path: 'cartItems.product',

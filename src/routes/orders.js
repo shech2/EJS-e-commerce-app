@@ -51,7 +51,6 @@ router.put("/order/:id", async (req, res) => {
 
 //create the orders id
 router.post("/create-order", async (req, res) => {
-  console.log(req.body.orderItems);
   //attach the orderItemsIds to the order
   let order = new Order({
     orderItems: req.body.orderItems,
