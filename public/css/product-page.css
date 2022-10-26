@@ -79,7 +79,7 @@ h4 {
 }
 
 #product .single-pro-details{
-    width: 50%;
+    width: 40%;
     padding-top: 30px;
 }
 
@@ -105,8 +105,16 @@ h4 {
     margin-right: 10px;
 }
 
+#product .single-pro-details input:focus{
+    outline: none;
+}
+
 #product .single-pro-details button{
     background: #088178;
     color: #fff;
+}
+
+#product .single-pro-details span{
+    line-height: 25px;
 }
 
