@@ -1,7 +1,7 @@
 <section id="product" class="section-p1">
-            <script>
-                "<% for (index = 0; index < ProductModel.length; index++) { %>"
-                var code = `
+    <script>
+        "<% for (index = 0; index < ProductModel.length; index++) { %>"
+        var code = `
             <div class="single-pro-image">
                 <img src="<%= ProductModel[index].image[0] %>" width="100%" id="MainImg" alt="">
 
@@ -23,7 +23,7 @@
    
     <div class="single-pro-details">
         <h6>Home / Shoes</h6>
-        <h4 class="py-4"><%=ProductModel[index].Product_name %></h4>
+        <h4><%=ProductModel[index].Product_name %></h4>
         <h2>$<%=ProductModel[index].price %></h2>
         <select>
             <option>Select Size</option>
@@ -36,19 +36,18 @@
             <option>45</option>
         </select>
         <input type="number" value="1">
-        <button>Add to Cart</button>
+        <button class="normal">Add To Cart</button>
         <h4>Product Details</h4>
         <span>
             The Women’s Nike Air Max 1 “Mini Symbols” emerges in a premium, multi-color ensemble covered in miniature symbols
             This sneaker features an arrangement of leather, synthetic Hyperfuse and mesh materials coming together throughout the upper in a refreshing layout
             Shades of teal, purple, pink and blue for the Hyperfuse panels feature glossy patterns of dots, stars and other symbols for a unique look
             An off-white midsole and translucent purple rubber outsole complete this intriguing take on the classic running shoe
-            </span>
+        </span>
     </div>
     </div>`
-                "<% } %>"
-                document.getElementById("product").innerHTML = code;
-</script> 
+        "<% } %>"
+        document.getElementById("product").innerHTML = code;
+    </script>
 
 </section>
-

@@ -7,6 +7,23 @@
     font-family: 'Spartan', sans-serif;
 }
 
+.section-m1{
+    margin: 40px 0;
+}
+
+button.normal {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+}
+
 h1 {
     font-size: 50px;
     line-height:64px;
@@ -24,15 +41,11 @@ h4 {
     color: #222;
 }
 
-h6 {
-    font-weight: 700;
-    font-size: 12px;
-}
-
-p {
-    font-size: 16px;
-    color: rgb(3, 3, 3);
-    margin: 15px 0 20px 0;
+.h6 {
+    font-size: 0.9rem;
+    position: relative;
+    top: 0px;
+    right: 0px;
 }
 
 .section-p1 {
@@ -68,5 +81,32 @@ p {
 #product .single-pro-details{
     width: 50%;
     padding-top: 30px;
+}
+
+#product .single-pro-details h4{
+    padding-top: 40px 0 20px 0;
+}
+
+#product .single-pro-details h2{
+    font-size: 26px;
+}
+
+#product .single-pro-details select{
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+#product .single-pro-details input{
+    width: 50px;
+    height: 47px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#product .single-pro-details button{
+    background: #088178;
+    color: #fff;
 }
 
