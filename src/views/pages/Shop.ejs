@@ -41,18 +41,22 @@
 </div>
 
 <script>
-  $(document).ready(() => {
-    $("form").submit(function (e) {
-      e.preventDefault();
-      $.ajax({
-        url: "/add-to-cart",
-        data: $(this).serialize(),
-        type: 'POST',
-        success: function (data) {
-          $('.notification').load(" .notification");
-        }
+    $(document).ready(() => {
+      $("form").submit(function (e) {
+        "<% if(typeof user  === 'undefined'){ %>"
+        window.location.href = "/homepage"
+        "<% }else{ %>"
+        e.preventDefault();
+        $.ajax({
+          url: "/add-to-cart",
+          data: $(this).serialize(),
+          type: 'POST',
+          success: function (data) {
+            $('.notification').load(" .notification");
+          }
+        });
+        "<% } %>"
       });
     });
-  });
 
 </script>

@@ -75,8 +75,6 @@ exports.auth_LogController = async (req, res) => {
         // res.status(200).json({...others, accessToken});
         console.log(JSON.stringify({ ...others, accessToken }));
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
-        res.cookie("isAdmin", user.isAdmin, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
-        res.cookie("username", user.username, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.cookie("user", user, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
 
         res.redirect("/homepage");
@@ -90,8 +88,6 @@ exports.auth_LogController = async (req, res) => {
 exports.auth_LogoutController = (req, res) => {
     if (req.cookies.jwt) {
         res.clearCookie("jwt");
-        res.clearCookie("isAdmin");
-        res.clearCookie("username");
         res.clearCookie("user");
         res.redirect("/homepage");
     }

@@ -129,6 +129,9 @@
   <script>
     $(document).ready(() => {
       $("form").submit(function (e) {
+        "<% if(typeof user  === 'undefined'){ %>"
+        window.location.href = "/homepage"
+        "<% }else{ %>"
         e.preventDefault();
         $.ajax({
           url: "/add-to-cart",
@@ -138,6 +141,7 @@
             $('.notification').load(" .notification");
           }
         });
+        "<% } %>"
       });
     });
   </script>

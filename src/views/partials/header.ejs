@@ -13,8 +13,8 @@
             </li>
             <li>
                 <a href="#">
-                    <% if(username){ %>
-                        Hello, <%= username %>
+                    <% if(user){ %>
+                        Hello, <%= user.username %>
                             <% } else { %>
                                 Hello, Guest
                                 <% } %>
@@ -28,7 +28,7 @@
                 <a href="/shop">Shop</a>
             </li>
             <li class="pruducts-dropdown">
-                <a href="#">products</a>
+                <a href="#">Products</a>
                 <!-- DROPDOWN MENU -->
                 <ul class="dropdown">
                     <li><a class="dropdown-item" href="/shop?search=Men">Men</a></li>
@@ -40,26 +40,28 @@
                 
             </li>
             <li>
-                <% if(username){ %>
+                <% if(user){ %>
                     <a href="/cart" class="notification"><img src="/img/Cart.png" class="cart-img">
                         <span class="badge"><%= Cart.cartItems.length %> </span>
                       </a>       
                     <% } %>
             </li> 
             <li>
-                    <% if(username){  %>  <!--if user is logged in-->
+                    <% if(user){  %>  <!--if user is logged in-->
                                 <a href="/logout"><img class="logout-img" src="/img/logout-exit.png" alt="logout"></a>                          
                     <% }else{ %>  <!--if user is not logged in-->
                                 <a class="login kol" href="/login"><img class="login-img" src="/img/login2.png" alt="login"></a>
                         <% } %>
             </li>
             </li>
-            <li>
-                <%if(isAdmin === "true") { %>
+            <li> <% if(user) { %> 
+                <% console.log(user) %> 
+                <% if(user.isAdmin === true) { %>
                 <button id="adminPanel" style="border: none;background-color: transparent;">
                     <a href="/admin">Admin Panel</a>
                 </button>
                 <% } %> 
+                <% } %>
 
             </li>
            

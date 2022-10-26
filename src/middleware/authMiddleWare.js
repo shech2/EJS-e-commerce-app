@@ -23,7 +23,7 @@ exports.authMiddleware = (req, res, next) => {
 
 exports.authAdmin = (req, res, next) => {
     const token = req.cookies.jwt;
-    const isAdmin = req.cookies.isAdmin;
+    const isAdmin = req.cookies.user.isAdmin;
     if(token && isAdmin){
         jwt.verify(token, process.env.JWT_SEC, (err, decodedToken) => {
             if(err){
