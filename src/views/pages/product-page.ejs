@@ -1,33 +1,31 @@
-<section class="container sproduct my-5 pt-5">
-    <div class="row mt-5">
-        <div class="col-lg-5 col-md-12 col-12" id="product">
-
+<section id="product" class="section-p1">
             <script>
                 "<% for (index = 0; index < ProductModel.length; index++) { %>"
                 var code = `
-            <img class="img-fluid w-100 pb-1" src="<%= ProductModel[index].image[0] %>" id="MainImg" alt="">
+            <div class="single-pro-image">
+                <img src="<%= ProductModel[index].image[0] %>" width="100%" id="MainImg" alt="">
 
             <div class="small-img-group">
                 <div class="small-img-col">
-                    <img src="<%= ProductModel[index].image[0] %>" width="110px" height="70px" class="small-img" alt="">
+                    <img src="<%= ProductModel[index].image[0] %>" width="110px" height:70px" class="small-img" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="<%= ProductModel[index].image[1] %>" width="110px" height="70px" class="small-img" alt="">
+                    <img src="<%= ProductModel[index].image[1] %>" width="110px" height:70px" class="small-img" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="<%= ProductModel[index].image[2] %>" width="110px" height="70px" class="small-img" alt="">
+                    <img src="<%= ProductModel[index].image[2] %>" width="110px" height:70px" class="small-img" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="<%= ProductModel[index].image[3] %>" width="110px" height="70px" class="small-img" alt="">
+                    <img src="<%= ProductModel[index].image[3] %>" width="110px" height:70px" class="small-img" alt="">
                 </div>
             </div>
         </div>
    
-    <div class="col-lg-6 col-md-12 col-12">
+    <div class="single-pro-details">
         <h6>Home / Shoes</h6>
-        <h3 class="py-4">"<%=ProductModel[index].category.name %>"</h3>
+        <h4 class="py-4"><%=ProductModel[index].Product_name %></h4>
         <h2>$<%=ProductModel[index].price %></h2>
-        <select class="my-3">
+        <select>
             <option>Select Size</option>
             <option>39</option>
             <option>40</option>
@@ -38,12 +36,14 @@
             <option>45</option>
         </select>
         <input type="number" value="1">
-        <button class="buy-btn">Add to Cart</button>
-        <h4 class="mt-5 mb-5">Product Details</h4>
-        <span>The Women’s Nike Air Max 1 “Mini Symbols” emerges in a premium, multi-color ensemble covered in miniature symbols
+        <button>Add to Cart</button>
+        <h4>Product Details</h4>
+        <span>
+            The Women’s Nike Air Max 1 “Mini Symbols” emerges in a premium, multi-color ensemble covered in miniature symbols
             This sneaker features an arrangement of leather, synthetic Hyperfuse and mesh materials coming together throughout the upper in a refreshing layout
             Shades of teal, purple, pink and blue for the Hyperfuse panels feature glossy patterns of dots, stars and other symbols for a unique look
-            An off-white midsole and translucent purple rubber outsole complete this intriguing take on the classic running shoe</span>
+            An off-white midsole and translucent purple rubber outsole complete this intriguing take on the classic running shoe
+            </span>
     </div>
     </div>`
                 "<% } %>"
@@ -51,22 +51,4 @@
 </script> 
 
 </section>
-
-    <!-- var MainImg = document.gerElementById('MainImg');
-    var smallimg = document.getElementsByClassName('small-img');
-
-    smallimg[0].onclick = function(){
-        MainImg.src = smallimg[0].src;
-    }
-
-    smallimg[1].onclick = function(){
-        MainImg.src = smallimg[1].src;
-    } 
-    smallimg[2].onclick = function(){
-        MainImg.src = smallimg[2].src;
-    } 
-    smallimg[3].onclick = function(){
-        MainImg.src = smallimg[3].src;
-    } -->
-
 
