@@ -200,7 +200,7 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
                         console.log(err);
                     }
                     console.log(products);
-                    res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", users: users, user: req.cookies.user, Cart : cart, Products : products });
+                    res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/admin.css", users: users, user: req.cookies.user, Cart : cart, Products : products });
                 }).populate('category').populate('brand').populate('size');
             })
         }
