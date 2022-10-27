@@ -166,7 +166,8 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             url: formAction,
             type: 'DELETE',
             success: function (data) {
-                console.log(data);
+                $("main").load(" main");
+                $('#users').style.display = "block";
             }
         });
     });
