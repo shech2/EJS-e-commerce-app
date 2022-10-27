@@ -46,7 +46,7 @@
       var code = `
       
             <div class="pro">
-              <form action="/shop" method="GET">
+              <form id="prodForm" action="/product-page" method="GET">
                 <button style="border: none;"><img src="<%= ProductModel[index].image %>" alt=""></button>
                   <input type="hidden" name="id" value="<%= ProductModel[index].id %>">
                   </form>
@@ -79,8 +79,7 @@
     </script>
   </div>
   </div>
-
-
+</section>
 
 
   <section id="banner" class="section-m1">
@@ -128,7 +127,7 @@
 
   <script>
     $(document).ready(() => {
-      $("form").submit(function (e) {
+      $("form#myForm").submit(function (e) {
         "<% if(typeof user  === 'undefined'){ %>"
         window.location.href = "/homepage"
         "<% }else{ %>"
