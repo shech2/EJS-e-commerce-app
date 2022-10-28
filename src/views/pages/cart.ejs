@@ -93,23 +93,23 @@
                                                         type: 'POST',
                                                         success: function (data) {
                                                             $('.notification').load(" .notification");
-                                                            $('main').load(" main");
+                                                            $("main").load(" main");
                                                         }
                                                     });
                                                 });
 
-                                                $("#quantity").change(function (e) {
-                                                    var data = $(this).val();
-                                                    var subtotal = $("#subtotal").html().toString();
-                                                    console.log(subtotal);
-                                                    console.log(data);
-                                                    $.ajax({
-                                                        success: function (data) {
-                                                            $('.notification').load(" .notification");
-                                                            $('main').load(" main");
-                                                        }
-                                                    });
-                                                });
+                                                // $("#quantity").change(function (e) {
+                                                //     var data = $(this).val();
+                                                //     var subtotal = $("#subtotal").html().toString();
+                                                //     console.log(subtotal);
+                                                //     console.log(data);
+                                                //     $.ajax({
+                                                //         success: function (data) {
+                                                //             $('.notification').load(" .notification");
+                                                //             $('main').load(" main");
+                                                //         }
+                                                //     });
+                                                // });
 
                                             });
                                         </script>
