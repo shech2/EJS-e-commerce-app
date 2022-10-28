@@ -20,7 +20,7 @@
         </div>
     </div>    
     <div class="row cart-body">
-        <form class="form-horizontal" method="POST" action="/create-order">
+        <form class="form-horizontal" method="POST" action="/create-order" id="createForm">
         <div class="area review">
             <!--REVIEW ORDER-->
             <div class="panel panel-info">
@@ -207,3 +207,23 @@
     </div>
 </div>
 <% } %>
+
+<script>
+    $(document).ready(() => {
+      $("form#createForm").submit(function (e) {
+        "<% if(typeof user  === 'undefined'){ %>"
+        window.location.href = "/login";
+        "<% }else{ %>"
+        e.preventDefault();
+        $.ajax({
+          url: "/create-order",
+          data: $(this).serialize(),
+          type: 'POST',
+          success: function (data) {
+            console.log(data);
+          }
+        });
+        "<% } %>"
+      });
+    });
+</script>
