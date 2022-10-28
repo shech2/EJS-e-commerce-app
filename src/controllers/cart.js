@@ -67,3 +67,21 @@ exports.RemoveFromCart = async (req, res) => {
         })
     }
 }
+// exports.RemoveAll = async (req, res) => {
+//     const productId = req.body.productId;
+//     const productPOST = await product.findById(productId);
+//     if (product) {
+//         CartController.findOneAndUpdate({ user: req.user.id }, {
+//             $pull: {
+//                 cartItems: {
+//                     product: productPOST.id
+//                 }
+//             }
+//         }).exec((error, _cart) => {
+//             if (error) return res.status(400).json({ error });
+//             if (_cart) {
+//                 return res.redirect('/cart');
+//             }
+//         })
+//     }
+// }
