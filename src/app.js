@@ -239,7 +239,7 @@ app.get('/checkout',authmw.authMiddleware, (req, res) => {
                 ItemsID.push(cart.cartItems[index]._id);
             }
             console.log(ItemsID);
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.user, total: req.query.total, Cart: cart, orderItems: ItemsID });
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.cookies.user, total: req.query.total, Cart: cart, orderItems: ItemsID });
         }
     }).populate({
         path: 'cartItems.product',
