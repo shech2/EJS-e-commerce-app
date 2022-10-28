@@ -130,7 +130,6 @@ h6{
    #product1 .pro img{
     width: 210px;
     height: 160px;
-    border-radius: 20px;
    }
 
    #product1 .pro .des{
@@ -212,5 +211,6 @@ h6{
         padding-top: 10px;
     }
 
-
-
+   #prodForm button:focus{
+    outline: none;
+   }

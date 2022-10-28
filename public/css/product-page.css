@@ -194,3 +194,8 @@ h4 {
     bottom: 20px;
     right:10px;
    }
+
+   .pro button:focus{
+    outline: none;
+   }
+   

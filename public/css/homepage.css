@@ -302,3 +302,7 @@ h6{
     color: #fff;
    }
 
+   #prodForm button:focus{
+    outline: none;
+   }
+
