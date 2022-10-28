@@ -53,7 +53,6 @@ router.put("/order/:id", async (req, res) => {
 //create the orders id
 router.post("/create-order", async (req, res) => {
   const orders = JSON.parse(req.body.orderItems);
-  console.log(orders);
   const orderItemsIds = Promise.all(
     orders.map(async (orderItem) => {
       let newOrderItem = new OrderItem({
