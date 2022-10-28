@@ -78,10 +78,10 @@
         var code = `
         
               <div class="pro">
-                <form action="/shop" method="GET">
-                  <button style="border: none;"><img src="<%= ProductModels[index].image %>" alt=""></button>
-                    <input type="hidden" name="id" value="<%= ProductModels[index].id %>">
-                    </form>
+                <form id="prodForm" action="/product-page" method="GET">
+                <button style="border: none;"><img src="<%= ProductModels[index].image %>" alt=""></button>
+                  <input type="hidden" name="id" value="<%= ProductModels[index].id %>">
+                  </form>
               <div class="des">
               <span><%=ProductModels[index].brand.name %></span>
               &nbsp<span><%=ProductModels[index].category.name %></span><br>
@@ -112,4 +112,24 @@
     </div>
     </div>
   </section>
-  
+
+
+  <script>
+    $(document).ready(() => {
+      $("form#Myform").submit(function (e) {
+        "<% if(typeof user  === 'undefined'){ %>"
+        window.location.href = "/homepage"
+        "<% }else{ %>"
+        e.preventDefault();
+        $.ajax({
+          url: "/add-to-cart",
+          data: $(this).serialize(),
+          type: 'POST',
+          success: function (data) {
+            $('.notification').load(" .notification");
+          }
+        });
+        "<% } %>"
+      });
+    });
+  </script>
