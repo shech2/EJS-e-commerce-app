@@ -1,4 +1,5 @@
 const Order = require("../models/order");
+const OrderItem = require("../models/orderItem");
 const router = require("express").Router();
 // const OrderItem = require("../models/order-item");
 
@@ -51,9 +52,26 @@ router.put("/order/:id", async (req, res) => {
 
 //create the orders id
 router.post("/create-order", async (req, res) => {
+  const orders = JSON.parse(req.body.orderItems);
+  console.log(orders);
+  const orderItemsIds = Promise.all(
+    orders.map(async (orderItem) => {
+      let newOrderItem = new OrderItem({
+        quantity: orderItem.quantity,
+        product: orderItem.product,
+      });
+
+      newOrderItem = await newOrderItem.save();
+
+      return newOrderItem._id;
+    })
+  );
+
+  const orderItemsIdsResolved = await orderItemsIds;
+  
   //attach the orderItemsIds to the order
   let order = new Order({
-    orderItems: req.body.orderItems,
+    orderItems: orderItemsIdsResolved,
     shippingAddress: req.body.shippingAddress,
     city: req.body.city,
     state: req.body.state,

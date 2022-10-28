@@ -129,7 +129,7 @@
     $(document).ready(() => {
       $("form#Myform").submit(function (e) {
         "<% if(typeof user  === 'undefined'){ %>"
-        window.location.href = "/homepage"
+        window.location.href = "/login";
         "<% }else{ %>"
         e.preventDefault();
         $.ajax({

@@ -234,12 +234,8 @@ app.get('/checkout',authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.cookies.user }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            var ItemsID = []
-             for (let index = 0; index < cart.cartItems.length; index++) {
-                ItemsID.push(cart.cartItems[index]._id);
-            }
-            console.log(ItemsID);
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.cookies.user, total: req.query.total, Cart: cart, orderItems: ItemsID });
+            req.body.orderItems = cart.cartItems;
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.user, total: req.query.total, Cart: cart, cartItems : cart.cartItems});
         }
     }).populate({
         path: 'cartItems.product',
@@ -249,7 +245,6 @@ app.get('/checkout',authmw.authMiddleware, (req, res) => {
         ]) // Multiple populate populate([{},{}]) --> this is the syntax .
     });
 });
-
 
 // Cart page:
 app.get('/cart', (req, res) => {
@@ -261,9 +256,6 @@ app.get('/cart', (req, res) => {
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });
-
-
-
 // POST for login and signup:
 app.post('/register', authRouter);
 app.post('/login', authRouter);
