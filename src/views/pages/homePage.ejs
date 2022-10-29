@@ -121,24 +121,46 @@
         </li>
       </div>
     </div>
+ 
+<div id="map"></div>
+<script>
 
-    <div class="map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13535.501721384688!2d34.78299677013251!3d31.99139219945924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b47f95fcdd09%3A0xaac254158c3ee7ab!2z16fXoNeZ15XXnyDXlNeW15TXkQ!5e0!3m2!1siw!2sil!4v1667027719395!5m2!1siw!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-  </section>
+  const Center = { lat: 32.030552, lng: 34.758286 };
+  const BatyamShop = { lat: 32.016580, lng: 34.750212 };
+  const TelAvivShop = { lat: 32.040052, lng: 34.752212 };
+  const HolonShop = { lat: 32.020364, lng: 34.776494 };
 
+    function initMap() {
 
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: Center,
+      });
 
+      var marker1 = new google.maps.Marker({
+        position: BatyamShop,
+        map: map,
+      });
 
+      var marker2 = new google.maps.Marker({
+        position: TelAvivShop,
+        map: map,
+      });
 
+      var marker3 = new google.maps.Marker({
+        position: HolonShop,
+        map: map,
+      });
+    }
 
+    window.initMap = initMap;
+  </script>
 
-
-
-
-
-
-
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP7uy1RAI6EFoBYx11EJK1_DhU2syTKcQ&callback=initMap&v=weekly"
+    defer></script>
+  </div>
+</section>
 
   <script>
     $(document).ready(() => {
