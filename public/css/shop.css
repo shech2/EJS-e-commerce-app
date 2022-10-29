@@ -187,71 +187,77 @@ h6{
     padding: 14px;
    }
 
-    #page-header p{
-     margin-left: 80px;
-    } 
-
-    #prodForm button:focus{
-        outline: none;
-    } 
-
-
-
-
-
-
-
-    
-
-    .pagination{
-        text-align: center;
-        margin: 30px 30px 60px;
-        user-select: none;
+    #page-header p {
+        margin-left: 80px;
     }
-
-    .pagination li{
+    
+    #prodForm button:focus {
+       outline: none;
+    }
+    
+    .pagination {
+       text-align: center;
+       margin: 30px 30px 60px;
+       user-select: none;
+    }
+    
+    .pagination li {
         display: inline-block;
         margin: 5px;
         box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
     }
-
-    .pagination li a{
+    
+    
+    .pagination li a {
         color: #fff;
         text-decoration: none;
         font-size: 1.2rem;
-        line-height: 45px;
+        line-height: 35px;
+        background: rgb(103, 103, 103);
     }
 
-    .previous-page, .next-page{
-        background-color: #088178;
-        width: 80px;
+    .pagination li a:hover {
+        background: #0ab1ce;
+        color:#fff;
+    }
+
+    .previous-page,.next-page {
+        background: #0ab1ce;
+        width: 70px;
         border-radius: 45px;
         cursor: pointer;
         transition: 0.3s ease;
-    }   
-
-    .previous-page:hover{
-     transform: translateX(-5px);
-    }   
-
-    .next-page:hover{
-        transform: translateX(5px);
-    }   
-
-       
-    .current-page, .dots{
-        background-color: #ccc;
+    }
+    
+    .current-page,.dots {
+        background: #ccc;
         width: 45px;
         border-radius: 50%;
         cursor: pointer;
     }
-
-    .active{
-        background-color: #088178;   
+    
+    .previous-page:hover{
+        transform: translateX(-5px);
+    }
+    
+    .next-page:hover {
+        transform: translateX(5px);
+    }
+    
+    .active {
+        background: #0ab1ce;
+    }
+    
+    .disable {
+        background: #ccc;
     }
 
-    .disable{
-        background-color: #ccc;
+    
+
+    .pagination li a, .pagination li span{
+        float: none;
+        border-radius: 45px;
     }
+
 
     
