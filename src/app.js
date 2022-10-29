@@ -9,6 +9,7 @@ const Cart = require("./models/cart");
 const User = require("./models/User");
 const Category = require("./models/category");
 const Brand = require("./models/brand");
+const Order = require("./models/order");
 const passport = require("passport");
 
 
@@ -52,8 +53,6 @@ const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 const brandRouters = require("./routes/brands");
 const ProductModel = require("./models/Product");
-const { $where } = require('./models/User');
-const category = require('./models/category');
 
 // DOTENV:
 dotenv.config();
@@ -217,8 +216,13 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                    console.log(products);
-                    res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/admin.css", users: users, user: req.cookies.user, Cart : cart, Products : products });
+                    Order.find({}, async function (err, orders) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        console.log(orders);
+                        res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/admin.css", users: users, user: req.cookies.user, Cart : cart, Products : products , Orders : orders});
+                    }).populate({ path : 'orderItems', populate : { path : 'product' }});
                 }).populate('category').populate('brand').populate('size');
             })
         }
