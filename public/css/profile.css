@@ -6,3 +6,48 @@
     box-sizing: border-box;
     font-family: 'Spartan', sans-serif;
 }
+
+body {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: black;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: grey
+}
+
+.profile-button:focus {
+    background: grey;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: grey;
+    box-shadow: none
+}
+
+.back:hover {
+    color: grey;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: grey;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px grey
+}
