@@ -21,24 +21,16 @@
                                     %>
             </li>
            
-            <li>
-                <a href="/homepage">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li>
-                <a href="/shop">Shop</a>
-            </li>
-            <li class="pruducts-dropdown">
-                <a href="#">Products</a>
+            <li><a href="/homepage">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li class="pruducts-dropdown"><a href="#">Products</a>
                 <!-- DROPDOWN MENU -->
                 <ul class="dropdown">
                     <li><a class="dropdown-item" href="/shop?search=Men">Men</a></li>
                     <li><a class="dropdown-item" href="/shop?search=Women">Women</a></li>
                 </ul>
                 </li>
-            <li class="nav-item">
-                <a href="/about">About</a>
-                
-            </li>
+            <li class="nav-item"><a href="/about">About</a></li>
             <li>
                 <% if(user){ %>
                     <a href="/cart" class="notification"><img src="/img/Cart.png" class="cart-img">
@@ -64,12 +56,10 @@
                 <% } %>
 
             </li>
-           
                     <form class="form-inline my-2 my-lg-0" action="/shop" method="get">
                         <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
-            
         </div>
         </ul>
     </nav>

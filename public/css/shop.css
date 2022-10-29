@@ -187,30 +187,71 @@ h6{
     padding: 14px;
    }
 
-
     #page-header p{
      margin-left: 80px;
     } 
 
-    #pagination{
+    #prodForm button:focus{
+        outline: none;
+    } 
+
+
+
+
+
+
+
+    
+
+    .pagination{
         text-align: center;
+        margin: 30px 30px 60px;
+        user-select: none;
     }
 
-    #pagination a{
-        text-decoration: none;
-        background-color: #088178;
-        padding: 15px 20px;
-        border-radius: 4px;
+    .pagination li{
+        display: inline-block;
+        margin: 5px;
+        box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+    }
+
+    .pagination li a{
         color: #fff;
-        font-weight: 600;
+        text-decoration: none;
+        font-size: 1.2rem;
+        line-height: 45px;
     }
 
-    #pagination a i{
-        font-size: 16px;
-        font-weight: 600;
-        padding-top: 10px;
+    .previous-page, .next-page{
+        background-color: #088178;
+        width: 80px;
+        border-radius: 45px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }   
+
+    .previous-page:hover{
+     transform: translateX(-5px);
+    }   
+
+    .next-page:hover{
+        transform: translateX(5px);
+    }   
+
+       
+    .current-page, .dots{
+        background-color: #ccc;
+        width: 45px;
+        border-radius: 50%;
+        cursor: pointer;
     }
 
-   #prodForm button:focus{
-    outline: none;
-   }
+    .active{
+        background-color: #088178;   
+    }
+
+    .disable{
+        background-color: #ccc;
+    }
+
+    
