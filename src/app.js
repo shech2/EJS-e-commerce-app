@@ -275,6 +275,19 @@ app.get('/cart', (req, res) => {
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });
+
+// User Profile Page:
+app.get('/profile', authmw.authMiddleware, (req, res) => {
+    Order.find({ user: req.user.id }, async function (err, orders) {
+        if (err) {
+            console.log(err);
+        }
+        Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
+            if (err) { console.log(err); }
+            res.render('./pages/Profile.ejs', { title: "Profile", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/profile.css", user: req.cookies.user, orders: orders, Cart: cart });
+        });
+    });
+});
 // POST for login and signup:
 app.post('/register', authRouter);
 app.post('/login', authRouter);
