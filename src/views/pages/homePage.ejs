@@ -88,42 +88,57 @@
     <a href="/shop"><button class="normal">Explore More</button></a>
   </section>
 
-  <div id="map"></div>
-  <script>
-    const Center = { lat: 32.030552, lng: 34.758286 };
-    const BatyamShop = { lat: 32.016580, lng: 34.750212 };
-    const TelAvivShop = { lat: 32.040052, lng: 34.752212 };
-    const HolonShop = { lat: 32.020364, lng: 34.776494 };
+  <section id="contact-details" class="section-p1">
+    <div class="details">
+      <span>GET IN TOUCH</span>
+      <h2>Visit one of our agency locations or contact us today</h2>
+      <h3>Head Office</h3>
+      <div>
+        <li>
+          <i class="fal fa-map"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fal fa-map" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+          </svg></i>
+          <p>32 David Arlozorov , Rishon-Lezion , Isreal</p>
+        </li>
+        <li>
+          <i class="far fa-envelope"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="far fa-envelope" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+          </svg></i>
+          <p>contact@example.com</p>
+        </li>
+        <li>
+          <i class="fas fa-phone-alt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-phone-alt" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+          </svg></i>
+          <p>contact@example.com</p>
+        </li>
+        <li>
+          <i class="far fa-clock"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="far fa-clock" viewBox="0 0 16 16">
+            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+          </svg></i>
+          <p>Monday to Saturday: 9.00am to 16.pm</p>
+        </li>
+      </div>
+    </div>
 
-    function initMap() {
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13535.501721384688!2d34.78299677013251!3d31.99139219945924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b47f95fcdd09%3A0xaac254158c3ee7ab!2z16fXoNeZ15XXnyDXlNeW15TXkQ!5e0!3m2!1siw!2sil!4v1667027719395!5m2!1siw!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+  </section>
 
-      var map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
-        center: Center,
-      });
 
-      var marker1 = new google.maps.Marker({
-        position: BatyamShop,
-        map: map,
-      });
 
-      var marker2 = new google.maps.Marker({
-        position: TelAvivShop,
-        map: map,
-      });
 
-      var marker3 = new google.maps.Marker({
-        position: HolonShop,
-        map: map,
-      });
-    }
 
-    window.initMap = initMap;
-  </script>
 
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP7uy1RAI6EFoBYx11EJK1_DhU2syTKcQ&callback=initMap&v=weekly"
-    defer></script>
+
+
+
+
+
+
+
 
   <script>
     $(document).ready(() => {
