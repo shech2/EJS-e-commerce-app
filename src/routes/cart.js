@@ -6,7 +6,7 @@ router.post('/add-to-cart', authmw.authMiddleware , CartController.addItemToCart
 
 router.post('/remove-from-cart', authmw.authMiddleware , CartController.RemoveFromCart);
 
-// router.post('/remove-all', authmw.authMiddleware , CartController.removeAll);
+router.post('/remove-all', authmw.authMiddleware , CartController.removeAll);
 
 
 
