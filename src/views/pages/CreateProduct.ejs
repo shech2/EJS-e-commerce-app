@@ -2,7 +2,7 @@
   <u>
     <h1 class="text-center">Create New Product:</h1>
   </u>
-  <form action="/api/create_product" method="POST">
+  <form action="/api/create_product" method="POST" id="myForm">
     <!-- 2 column grid layout with text inputs for the first and last names -->
     <div class="row mb-4">
       <div class="col">
@@ -104,3 +104,32 @@
 </form>
 </div>
 </div>
+
+<script>
+  var token = "EAAHXdUsF3nQBAJy1Dvo1OUsm2oCqQL1m7uG1RtRA7T0JtlCI654Wg69U9ESR6PZBvVDXnKoOPcGJyZBYIBNGAtiMSp7OxtUKTBm23W933sjbP6xZCp28UdyQXIe8EEK4HOlZA1GaP0CvQ4rVFLmtqFiayDapReRmVOYxYdWSXZCBkcBeXkIa1WJQATDtpNF7D9GMhzqflN6XDVQAORbEZC";
+
+  $(document).ready(function() {
+    $('#myForm').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: '/api/create_product',
+        data: $(this).serialize(),
+        type: 'POST',
+        success: function(data) {
+          console.log(data);
+          $.ajax({
+            url: 'https://graph.facebook.com/104491532469853/feed',
+            data: {
+              message: data.Product_name + " " + data.price + " " + data.description,
+              access_token: token
+            },
+            type: 'POST',
+            success: function(data) {
+              window.location.href = "/shop";
+            }
+          });
+        },
+      });
+    });
+  });
+</script>
