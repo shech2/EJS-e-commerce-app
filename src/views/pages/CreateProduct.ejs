@@ -116,10 +116,12 @@
         data: $(this).serialize(),
         type: 'POST',
         success: function(data) {
+          var image = 'localhost:3000/product-page?id=' + data.id;
           $.ajax({
-            url: 'https://graph.facebook.com/104491532469853/feed',
+            url: 'https://graph.facebook.com/104491532469853/photos',
             data: {
-              message: data.Product_name + " " + data.price + " " + data.description,
+              message: "Just in! " + data.Product_name + " is now available for purchase. Click the link below to purchase." + "\n" + image,
+              url: data.image[0],
               access_token: token
             },
             type: 'POST',
