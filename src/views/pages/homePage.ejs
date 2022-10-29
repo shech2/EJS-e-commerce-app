@@ -132,16 +132,36 @@
 
     function initMap() {
 
+var map = new google.maps.Map(document.getElementById("map"), {
+  zoom: 13,
+  center: Center,
+});
 
+var marker1 = new google.maps.Marker({
+  position: BatyamShop,
+  map: map,
+});
 
+var marker2 = new google.maps.Marker({
+  position: TelAvivShop,
+  map: map,
+});
 
+var marker3 = new google.maps.Marker({
+  position: HolonShop,
+  map: map,
+});
+}
 
+window.initMap = initMap;
+</script>
 
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP7uy1RAI6EFoBYx11EJK1_DhU2syTKcQ&callback=initMap&v=weekly"
+defer></script>
 
-
-
-
-
+  </div>
+</section>
 
   <script>
     $(document).ready(() => {
