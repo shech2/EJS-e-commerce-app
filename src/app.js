@@ -220,7 +220,6 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
                         if (err) {
                             console.log(err);
                         }
-                        console.log(orders);
                         res.render('./pages/admin.ejs', { title: "Admin page", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/admin.css", users: users, user: req.cookies.user, Cart : cart, Products : products , Orders : orders});
                     }).populate({ path : 'orderItems', populate : { path : 'product' }}).populate('user');
                 }).populate('category').populate('brand').populate('size');
