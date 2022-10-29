@@ -106,7 +106,7 @@
 </div>
 
 <script>
-  var token = "EAAHXdUsF3nQBAJy1Dvo1OUsm2oCqQL1m7uG1RtRA7T0JtlCI654Wg69U9ESR6PZBvVDXnKoOPcGJyZBYIBNGAtiMSp7OxtUKTBm23W933sjbP6xZCp28UdyQXIe8EEK4HOlZA1GaP0CvQ4rVFLmtqFiayDapReRmVOYxYdWSXZCBkcBeXkIa1WJQATDtpNF7D9GMhzqflN6XDVQAORbEZC";
+  var token = "EAAHXdUsF3nQBAIFzZAJ7ZCnGU9oZBWXYDcmfefcd5CPwaUzTvts51kDZB4IrtX9WQZA99m7wj5FHoCP0FkuqfQFz9j8OA6FZCGlK9Ljaf4EgY48zuEncobMNCHnjxcoOVpj0rcQl4x1ZAuIygLIL0RwOS0aZBiaY7wpjiDBzisQYKGUQHxE5cP6T7hmZC80AHzutHYUvJkH6ITdGW4b0LoE5O";
 
   $(document).ready(function() {
     $('#myForm').submit(function(e) {
@@ -116,7 +116,6 @@
         data: $(this).serialize(),
         type: 'POST',
         success: function(data) {
-          console.log(data);
           $.ajax({
             url: 'https://graph.facebook.com/104491532469853/feed',
             data: {
