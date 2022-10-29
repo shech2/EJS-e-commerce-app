@@ -12,7 +12,6 @@ router.get("/", async (req, res) => {
    res.status(500).json({ success: false });
   
   }
-  console.log(orderList);
   res.send(orderList);
 });
 
@@ -30,7 +29,6 @@ router.get("/:id", async (req, res) => {
   if (!order) {
     res.status(500).json({ success: false });
   }
-  console.log(order);
   res.send(order);
 });
 
@@ -46,7 +44,7 @@ router.put("/order/:id", async (req, res) => {
 
   if (!order) return res.status(400).send("the category cannot be created!");
 
-  console.log(order);
+  res.send(order);
 });
 
 
@@ -85,7 +83,6 @@ router.post("/create-order", async (req, res) => {
 
   if (!order) return res.status(400).send("the order cannot be created!");
 
-  console.log(order);
   res.send(order);
 });
 

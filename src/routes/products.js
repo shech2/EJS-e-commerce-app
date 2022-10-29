@@ -86,6 +86,7 @@ router.put("/products/:id", async (req, res) => {
     if (!product) {
         return res.status(500).send("The product cannot be updated");
     }
+    res.send(product);
 });
 
 //Delete product
