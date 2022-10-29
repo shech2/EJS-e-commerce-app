@@ -11,6 +11,22 @@ const Category = require("./models/category");
 const Brand = require("./models/brand");
 const passport = require("passport");
 
+
+
+// SOCKET IO
+const ws = require('ws');
+const wss = new ws.WebSocketServer({ port : 3001 });
+
+wss.on('connection', function connection(ws) {
+    console.log("Client" + ws.listeners() + " Connected to Server on PORT : 3001");
+  ws.on('message', function message(data) {
+    console.log('received: %s', data);
+  });
+
+    ws.send('Welcome to the M.Y.S.O');
+});
+
+
 // COOKIES:
 const cookieparser = require('cookie-parser');
 app.use(cookieparser());
@@ -260,7 +276,7 @@ app.post('/register', authRouter);
 app.post('/login', authRouter);
 
 // Main Route:
-app.get('/', (req, res) => res.render('index'));
+// app.get('/', (req, res) => res.render('index'));
 
 // ROUTES:
 app.use("/api/", ProductRouter);
