@@ -59,8 +59,8 @@ dotenv.config();
 
 // EXPRESS:
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(bp.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true , limit : '50mb' }));
+app.use(bp.urlencoded({ extended: false , limit : '50mb' }));
 app.use(bp.json());
 
 // Mongo DB Connection:
