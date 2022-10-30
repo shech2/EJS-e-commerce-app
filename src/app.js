@@ -85,6 +85,7 @@ app.use(passport.session());
 // EJS:
 app.use(express.static("public"));
 app.use('/css', express.static(__dirname + "public"));
+app.use('/images', express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 app.set('views', __dirname + '/views');
 

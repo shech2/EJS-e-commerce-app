@@ -32,25 +32,27 @@
 <script>
 
     $(document).ready(function() {
-        document.querySelector('#profilePicture').addEventListener("change", function() {
-            const reader = new FileReader();
+        // document.querySelector('#profilePicture').addEventListener("change", function() {
+        //     const reader = new FileReader();
 
-            reader.addEventListener("load" , () => {
-                localStorage.setItem("profilePicture", reader.result);
-            });
+        //     reader.addEventListener("load" , () => {
+        //         localStorage.setItem("profilePicture", reader.result);
+        //     });
 
-            reader.readAsDataURL(this.files[0]);
-        })
+        //     reader.readAsDataURL(this.files[0]);
+        // })
 
-        document.querySelector('#pr').src = localStorage.getItem("profilePicture");
+        // document.querySelector('#pr').src = localStorage.getItem("profilePicture");
 
         $('#profileImg').submit(function(e){
             e.preventDefault();
-            // const profilePicture = localStorage.getItem("profilePicture");
+            const File = document.querySelector('#profilePicture').files[0];
             $.ajax({
                 url: '/api/users/profile',
                 type: 'POST',
-                data: $(this),
+                data: {
+                    profilePicture: File
+                },
                 success: function(data) {
                     console.log(data);
                 }
