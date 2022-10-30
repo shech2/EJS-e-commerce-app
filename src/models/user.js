@@ -10,6 +10,10 @@ const userSchema = new Schema(
         type: Boolean,
         default: false
     },
+    profilePicture: {
+        type: String,
+        default: "",
+    },
 },
     { timestamps: true}
 );

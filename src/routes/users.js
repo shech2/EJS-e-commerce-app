@@ -90,4 +90,20 @@ router.get("/stats", middleware.authAdmin, async (req, res) => {
   }
 });
 
+router.post('/profile', middleware.authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      req.cookies.user,
+      {
+        $set: {
+          profilePicture: req.body.profilePicture,
+        }
+      })
+      res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 module.exports = router;
