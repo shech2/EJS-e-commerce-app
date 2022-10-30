@@ -245,6 +245,11 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                     <% } %>
                 </tbody>
             </table>
+            <% var totalOrders = 0 %>
+            <% for(var i = 0 ; i < Orders.length;i++) {  %>
+            <% totalOrders += Orders[i].totalPrice %>
+                <% } %>
+                <h1 class="container" style="left: 15%;position:relative;padding:10px">Total Orders price : $<%= totalOrders%></h1>
 <script>
 
     $('form#PutForm').submit(function (e) {
