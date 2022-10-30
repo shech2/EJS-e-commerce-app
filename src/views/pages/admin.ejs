@@ -173,6 +173,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                 <th scope="col">Phone</th>
                 <th scope="col">Status</th>
                 <th scope="col">TotalPrice</th>
+                <th scope="col">Date Ordered</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
 
@@ -190,8 +191,8 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                             <%= Orders[i].user.username %>
                         </td>
                         <% for(let j = 0 ; j < Orders[i].orderItems.length ; j++) { %>
-                        <td style="display: block;">
-                            <%= "Item " + (j+1) + ": " + Orders[i].orderItems[j].product.Product_name %>
+                        <td style="display: block;color: black;">
+                            <%=  "Item " + (j+1) + ": " + Orders[i].orderItems[j].product.Product_name %>
                         </td>
                         <% } %>
                         <td>
@@ -217,6 +218,9 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                         </td>
                         <td>
                             <%= "$"+Orders[i].totalPrice %>
+                        </td>
+                        <td>
+                            <%= Orders[i].dateOrdered %>
                         </td>
                         <td>
                             <button onclick="updateMenu3(name)" name="<%= i %> " id="Btn" style="border: none;">
