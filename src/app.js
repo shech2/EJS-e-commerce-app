@@ -43,6 +43,7 @@ const authmw = require('./middleware/authMiddleWare');
 const bp = require('body-parser');
 const morgan = require("morgan");
 app.use(morgan('tiny'));
+const pgMiddleware = require('./middleware/paginationMiddleWare');
 
 //Routers:
 const cartRouter = require('./routes/cart');
@@ -138,7 +139,7 @@ app.get('/homepage', (req, res) => {
 app.get('/logout', authRouter);
 
 // GET SHOP:
-app.get('/shop', (req, res) => {
+app.get('/shop',pgMiddleware.paginatedResults(ProductModel), (req, res) => {
     updatedItems = [];
     ProductModel.find({}, async function (err, items) {
         if (err) { console.log(err); }
