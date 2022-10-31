@@ -166,7 +166,7 @@ app.get('/shop',pgMiddleware.paginatedResults(ProductModel), (req, res) => {
                 if (err) { console.log(err); }
                 Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                     if (err) { console.log(err); }
-                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: products, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart });
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: res.paginatedResults, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart });
 
                 }).populate({
                     path: 'cartItems.product',
