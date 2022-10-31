@@ -6,6 +6,7 @@
                 class="step_line "> </span> </span>
     </div>
 </div>
+<div class="ajax">
     <% if (cartItems.length> 0) { %>
         <% for (i=0; i < cartItems.length; i++) { %>
             <div class="small-container cart-page" id="prod"
@@ -37,9 +38,9 @@
                                     </div>
                                     <div><b>Size:</b> </div>
                                     <div><small>price:$<%= cartItems[i].product.price %></small></div>
-                                    <form id="remForm" action="/remove-from-cart" method="POST">
+                                    <form id="remForm">
                                         <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
-                                        <button class="btn" style="background-color: #ff523b; color: white;">Remove
+                                        <button class="btn" type="submit" style="background-color: #ff523b; color: white;">Remove
                                             Product</button>
                                     </form>
                                 </div>
@@ -80,12 +81,10 @@
                                 <% }else { %>
                                     <h1>Cart is empty</h1>
                                     <% } %>
-
+                                </div>
 
                                         <script>
-                                            $(document).ready(() => {
-
-                                                $("form#remForm").submit(function (e) {
+                                                $(document).on('click',"form#remForm",function (e) {
                                                     e.preventDefault();
                                                     $.ajax({
                                                         url: "/remove-from-cart",
@@ -93,23 +92,8 @@
                                                         type: 'POST',
                                                         success: function (data) {
                                                             $('.notification').load(" .notification");
-                                                            $("main").load(" main");
+                                                            $(".ajax").load(" .ajax");
                                                         }
                                                     });
                                                 });
-
-                                                // $("#quantity").change(function (e) {
-                                                //     var data = $(this).val();
-                                                //     var subtotal = $("#subtotal").html().toString();
-                                                //     console.log(subtotal);
-                                                //     console.log(data);
-                                                //     $.ajax({
-                                                //         success: function (data) {
-                                                //             $('.notification').load(" .notification");
-                                                //             $('main').load(" main");
-                                                //         }
-                                                //     });
-                                                // });
-
-                                            });
                                         </script>
