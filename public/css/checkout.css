@@ -124,23 +124,19 @@ html,body,.wrapper{
 }
 
 .login-container-submit {
-  /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,0.1); 
-  background-color: #ff523b;/*#4d90fe;*/
+  background-color: #ff523b;
   padding: 17px 0px;
   font-family: roboto;
   font-size: 14px;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
 .login-container-submit:hover {
-  /* border: 1px solid #2f5bb7; */
   border: 0px;
   text-shadow: 0 1px rgba(0,0,0,0.3);
   background-color: #ff523b;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
 .login-help{
@@ -228,13 +224,13 @@ ol, ul {
 }
 .btn1{
     border-radius: 1px;
-    background-color: #ff523b;
-    border-color: #ff523b;
+    background-color: #088178;;
+    border-color: #088178;
     color: white;
 }
-.btn1::hover{
-    background-color: #ff523b;
-    border-color: #ff523b;
+.btn1:hover{
+    background-color: hsl(176, 92%, 20%);
+    border-color: hsl(176, 92%, 20%);
 }
 .btn-sm, .btn-group-sm > .btn{
     border-radius: 1px;
