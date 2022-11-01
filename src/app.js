@@ -224,6 +224,7 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
                     if (err) {
                         console.log(err);
                     }
+                    console.log(products);
                     Order.find({}, async function (err, orders) {
                         if (err) {
                             console.log(err);
