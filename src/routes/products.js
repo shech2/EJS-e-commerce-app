@@ -39,7 +39,7 @@ router.post("/create_product", async (req, res) => {
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
-        size: [{ size: req.body.size, sizeQuantity: req.body.quantity2 }],
+        size: [{ Product_name: req.body.Product_Name, size: req.body.size, quantity: req.body.quantity2 }],
         brand: req.body.brand,
         quantity: req.body.quantity,
         rating: req.body.rating,
