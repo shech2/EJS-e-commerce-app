@@ -8,6 +8,9 @@ router.post('/remove-from-cart', authmw.authMiddleware , CartController.RemoveFr
 
 router.post('/remove-all', authmw.authMiddleware , CartController.removeAll);
 
+router.post('/update-cart', authmw.authMiddleware , CartController.updateQuantity);
+
+
 
 
 module.exports = router;
