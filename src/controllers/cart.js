@@ -2,7 +2,7 @@ const { response } = require('express');
 const CartController = require('../models/cart');
 const product = require('../models/Product');
 const { post } = require('../routes/cart');
-
+// Add item to cart
 exports.addItemToCart = async (req, res) => {
     const POSTProduct = await product.findById(req.body.productId);
 
@@ -49,7 +49,7 @@ exports.addItemToCart = async (req, res) => {
         }
     })
 }
-
+// Remove item from cart
 exports.RemoveFromCart = async (req, res) => {
     const productId = req.body.productId;
     const productPOST = await product.findById(productId);
@@ -68,6 +68,8 @@ exports.RemoveFromCart = async (req, res) => {
         })
     }
 }
+
+// Remove all items from cart
 exports.removeAll = async (req, res) => {
     if (product) {
         CartController.findOneAndUpdate({ user: req.user.id }, {
@@ -82,7 +84,7 @@ exports.removeAll = async (req, res) => {
         })
     }
 }
-
+// Update quantity of item in cart
 exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
     const quantity = req.body.quantity;
@@ -104,5 +106,29 @@ exports.updateQuantity = async (req, res) => {
                 }
             })
         }
+}
+// Add size to an Item in the cart
+exports.addSizeToCart = async (req, res) => {
+    const productId = req.body.productId;
+    const size = req.body.size;
+    const productPOST = await product.findById(productId);
+    if (product) {
+        CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
+            "$set": {
+                "cartItems.$": {
+                    product: productPOST.id,
+                    quantity: productPOST.quantity,
+                    price: productPOST.price,
+                    brand: productPOST.brand,
+                    size: [size]
+                }
+            }
+        }).exec((error, _cart) => {
+            if (error) return res.status(400).json({ error });
+            if (_cart) {
+                res.status(201).json({ _cart });
+            }
+        })
+    }
 }
 
