@@ -157,16 +157,8 @@ td img{
     background: 0;
     border-left: 16px solid #088178;
 }
-.step_thankyou {
-    float: left;
-    padding: 7px 13px;
-    border-radius: 1px;
-    text-align: center;
-    width: 100px;
-}
-.step.check_step {
-    margin-left: 5px;
-}
+
+
 .step{
 background-color: white !important;
 }
