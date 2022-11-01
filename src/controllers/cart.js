@@ -89,6 +89,7 @@ exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
     const quantity = req.body.quantity;
     const productPOST = await product.findById(productId);
+    if(quantity > 0){
     if (product) {
         CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
             "$set": {
@@ -106,6 +107,10 @@ exports.updateQuantity = async (req, res) => {
             }
         })
     }
+}else{
+    return res.status(400).json({ error: 'Quantity cannot be less than 1' });
+
+}
 }
 // Add size to an Item in the cart
 exports.addSizeToCart = async (req, res) => {

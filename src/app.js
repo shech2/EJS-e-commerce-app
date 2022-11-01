@@ -280,7 +280,7 @@ app.get('/cart', (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart.ejs', { title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", user: req.cookies.user, cartItems: cart.cartItems, Cart: cart });
+        res.render('./pages/cart.ejs', {title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", user: req.cookies.user, cartItems: cart.cartItems, Cart: cart });
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });
