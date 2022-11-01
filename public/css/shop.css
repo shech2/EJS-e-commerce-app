@@ -190,6 +190,10 @@ h6{
     #page-header p {
         margin-left: 80px;
     }
+
+    #product1 .pro .cart:focus{
+        outline: none;
+    }
     
     #prodForm button:focus {
        outline: none;
@@ -251,8 +255,6 @@ h6{
     .disable {
         background: #ccc;
     }
-
-    
 
     .pagination li a, .pagination li span{
         float: none;

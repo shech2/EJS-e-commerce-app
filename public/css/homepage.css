@@ -269,6 +269,14 @@ h6{
     right:10px;
    }
 
+   #product1 .pro .cart:focus{
+    outline: none;
+   }
+
+   #prodForm button:focus{
+    outline: none;
+   }
+
    #banner{
     display: flex;
     flex-direction: column;
@@ -300,10 +308,6 @@ h6{
    #banner button:hover{
     background-color: #088178;
     color: #fff;
-   }
-
-   #prodForm button:focus{
-    outline: none;
    }
 
    #contact-details{
