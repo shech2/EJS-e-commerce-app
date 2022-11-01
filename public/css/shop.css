@@ -209,11 +209,11 @@ h6{
         display: inline-block;
         margin: 5px;
         box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+        color: #fff;
     }
     
     
     .pagination li a {
-        color: #fff;
         text-decoration: none;
         font-size: 1.2rem;
         line-height: 35px;
