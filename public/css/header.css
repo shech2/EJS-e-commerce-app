@@ -155,9 +155,8 @@ input[type=checkbox]{
   .notification .badge {
     position: relative;
     right: 12px;
-    /* top: 20px; */
     height: 15px;
     width: 25px;
-    background: #088178;;  
+    background: lightcoral;;  
     color: white;
   }
