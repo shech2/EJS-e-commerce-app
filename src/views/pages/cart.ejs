@@ -94,7 +94,7 @@
                                                 });
 
                                                 $(document).on('change',"#quantity",function (e){
-                                                    const quantity = $("#quantity").val();
+                                                    const quantity = $(this).val();
                                                     const product = $(this).parent().parent().parent().parent().find("input[name='productId']").val();
                                                     $.ajax({
                                                         url: "/update-cart",

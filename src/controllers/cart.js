@@ -87,7 +87,6 @@ exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
     const quantity = req.body.quantity;
     const productPOST = await product.findById(productId);
-    if (productPOST.quantity < quantity) {
         if (product) {
             CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
                 "$set": {
@@ -105,24 +104,5 @@ exports.updateQuantity = async (req, res) => {
                 }
             })
         }
-    } else {
-        if (product) {
-            CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
-                "$set": {
-                    "cartItems.$": {
-                        product: productPOST.id,
-                        quantity: productPOST.quantity,
-                        price: productPOST.price,
-                        brand: productPOST.brand
-                    }
-                }
-            }).exec((error, _cart) => {
-                if (error) return res.status(400).json({ error });
-                if (_cart) {
-                    res.status(201).json({ _cart });
-                }
-            })
-        }
-    }
 }
 
