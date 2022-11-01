@@ -47,7 +47,7 @@ html,body,.wrapper{
     top: -3px
 }
 .step_complete {
-    background: #ff523b;
+    background: #088178;
     color: white;
 }
 .step_complete a.check-bc, .step_complete a.check-bc:hover,.afix-1,.afix-1:hover{
@@ -55,7 +55,7 @@ html,body,.wrapper{
 }
 .step_line.step_complete {
     background: 0;
-    border-left: 16px solid #ff523b;
+    border-left: 16px solid #088178;
 }
 .step_thankyou {
     float: left;
@@ -346,9 +346,3 @@ select{
     }
     
 }
-/*
-@media only screen and (max-width: 777px){
-    .container{
-        overflow-x: hidden;
-    }
-}*/
