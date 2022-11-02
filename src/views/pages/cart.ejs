@@ -98,8 +98,7 @@
 
                                                 $(document).on('change',"#quantity",function (e){
                                                     const quantity = $(this).val();
-                                                    const me = $(this);
-                                                    const product = $(this).parent().parent().parent().parent().find("input[name='productId']").val();
+                                                    const product = $(this).parent().parent().parent().find("input[name='productId']").val();
                                                     $.ajax({
                                                         url: "/update-cart",
                                                         data: {
