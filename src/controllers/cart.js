@@ -49,6 +49,8 @@ exports.addItemToCart = async (req, res) => {
         }
     })
 }
+
+
 // Remove item from cart
 exports.RemoveFromCart = async (req, res) => {
     const productId = req.body.productId;
@@ -84,6 +86,8 @@ exports.removeAll = async (req, res) => {
         })
     }
 }
+
+
 // Update quantity of item in cart
 exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
@@ -112,6 +116,8 @@ exports.updateQuantity = async (req, res) => {
 
 }
 }
+
+
 // Add size to an Item in the cart
 exports.addSizeToCart = async (req, res) => {
     const productId = req.body.productId;
