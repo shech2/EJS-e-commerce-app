@@ -7,6 +7,7 @@
     </div>
 </div>
 <div class="ajax">
+    <div style="overflow-x:auto;">
             <section id="cart" class="section-p1">
                 <table width="100%">
                     <thead>
@@ -21,10 +22,10 @@
                     </thead>
                 </table>
             </section>
-                    <% if (cartItems.length> 0) { %>
-                        <% for (i=0; i < cartItems.length; i++) { %>
             <section id="cart" class="section-p1">
                 <table width="100%">  
+                    <% if (cartItems.length> 0) { %>
+                        <% for (i=0; i < cartItems.length; i++) { %>
                     <tbody>
                         <tr>
                           <td>
@@ -43,9 +44,10 @@
                          <td>$<%=cartItems[i].price * cartItems[i].quantity%></td>
                         </tr>
                     </tbody>
-                </table>
-            </section>
-            <% } %>
+                    <% } %>
+                </section>
+        </table>
+    </div>
                 <% var total=0 %>
                     <% for(j=0 ; j < cartItems.length ; j++) { %>
                         <% total +=cartItems[j].price * cartItems[j].quantity %>
@@ -77,6 +79,7 @@
                                 <% }else { %>
                                     <h1>Cart is empty</h1>
                                     <% } %>
+                                
                                 </div>
 
                                         <script>
