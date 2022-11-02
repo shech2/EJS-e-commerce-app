@@ -29,20 +29,11 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                 <div>
                     <tr>
                         <th scope="row">
-                            <%= users[i].id %>
-                        </th>
-                        <td>
-                            <%= users[i].username %>
-                        </td>
-                        <td>
-                            <%= users[i].email %>
-                        </td>
-                        <td>
-                            <%= users[i].password %>
-                        </td>
-                        <td>
-                            <%= users[i].isAdmin %>
-                        </td>
+                            <%= users[i].id %></th>
+                        <td><%= users[i].username %></td>
+                        <td><%= users[i].email %></td>
+                        <td><%= users[i].password %></td>
+                        <td><%= users[i].isAdmin %></td>
                         <td>
                             <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none;">
                                 Update
