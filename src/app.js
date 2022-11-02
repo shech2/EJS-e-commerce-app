@@ -51,7 +51,7 @@ const ProductRouter = require("./routes/products");
 const userRouters = require("./routes/users");
 const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
-const brandRouters = require("./routes/brands");
+const brandRouters = require("./routes/brand");
 
 // DOTENV:
 const dotenv = require("dotenv");
