@@ -152,7 +152,7 @@ app.get('/homepage', (req, res) => {
 
 
 // GET SHOP:
-app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => {
+app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { // pgMiddleware.paginatedResults(ProductModel) --> this is the middleware
     var updatedItems =
     {
         results: [
@@ -227,7 +227,7 @@ app.get('/product-page', (req, res) => {
 
 
 // GET Admin page:
-app.get('/admin', authmw.authAdmin, (req, res) => {
+app.get('/admin', authmw.authAdmin, (req, res) => { // authmw.authAdmin --> this is the middleware
     User.find({}, async function (err, users) {
         if (err) {
             console.log(err);
