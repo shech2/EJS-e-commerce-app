@@ -205,7 +205,7 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => {
 app.get('/about', (req, res) => {
     Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
         if (err) { console.log(err); }
-        res.render('./pages/About.ejs', { title: "About", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/about.css", user: req.cookies.user, Cart: cart });
+        res.render('./pages/about.ejs', { title: "About", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/about.css", user: req.cookies.user, Cart: cart });
     });
 });
 
@@ -268,7 +268,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-                res.render('./pages/CreateProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands });
+                res.render('./pages/createProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands });
             });
         });
     });
@@ -312,7 +312,7 @@ app.get('/profile', authmw.authMiddleware, (req, res) => {
         }
         Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
             if (err) { console.log(err); }
-            res.render('./pages/Profile.ejs', { title: "Profile", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/profile.css", user: req.cookies.user, orders: orders, Cart: cart });
+            res.render('./pages/profile.ejs', { title: "Profile", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/profile.css", user: req.cookies.user, orders: orders, Cart: cart });
         });
     });
 });

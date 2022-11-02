@@ -1,7 +1,7 @@
-const { response } = require('express');
 const CartController = require('../models/cart');
 const product = require('../models/Product');
-const { post } = require('../routes/cart');
+
+
 // Add item to cart
 exports.addItemToCart = async (req, res) => {
     const POSTProduct = await product.findById(req.body.productId);
