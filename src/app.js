@@ -1,17 +1,6 @@
+// Express app initialization
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose'); // adds MongoDB to the Project
-const dotenv = require("dotenv");
-const express_session = require("express-session");
-const flash = require("connect-flash");
-const expressLayouts = require('express-ejs-layouts');
-const Cart = require("./models/cart");
-const User = require("./models/User");
-const Category = require("./models/category");
-const Brand = require("./models/brand");
-const Order = require("./models/order");
-const passport = require("passport");
-
 
 
 // SOCKET IO
@@ -33,19 +22,29 @@ const cookieparser = require('cookie-parser');
 app.use(cookieparser());
 
 
-//Layouts:
+// Layouts:
+const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 app.set('layout', "./layouts/full-width");
 
 
-//middleware:
+// Middleware:
 const authmw = require('./middleware/authMiddleWare');
+const pgMiddleware = require('./middleware/paginationMiddleWare');
 const bp = require('body-parser');
 const morgan = require("morgan");
 app.use(morgan('tiny'));
-const pgMiddleware = require('./middleware/paginationMiddleWare');
 
-//Routers:
+// Models:
+const ProductModel = require("./models/Product");
+const Brand = require("./models/brand");
+const Order = require("./models/order");
+const Cart = require("./models/cart");
+const User = require("./models/User");
+const Category = require("./models/category");
+
+
+// Routers:
 const cartRouter = require('./routes/cart');
 const authRouter = require("./routes/auth");
 const ProductRouter = require("./routes/products");
@@ -53,9 +52,9 @@ const userRouters = require("./routes/users");
 const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 const brandRouters = require("./routes/brands");
-const ProductModel = require("./models/Product");
 
 // DOTENV:
+const dotenv = require("dotenv");
 dotenv.config();
 
 // EXPRESS:
@@ -65,12 +64,15 @@ app.use(bp.urlencoded({ extended: false, limit: '50mb' }));
 app.use(bp.json());
 
 // Mongo DB Connection:
+const mongoose = require('mongoose'); // adds MongoDB to the Project
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfully!"))
     .catch((err) => {
         console.log(err);
     });
 
-// session + flash:
+// Session + Flash:
+const express_session = require("express-session");
+const flash = require("connect-flash");
 app.use(express_session({
     secret: process.env.SESSION_SEC,
     cookie: { maxAge: 6000 },
@@ -80,10 +82,11 @@ app.use(express_session({
 app.use(flash());
 
 // Passport:
+const passport = require("passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
-// EJS:
+// EJS + Views:
 app.use(express.static("public"));
 app.use('/css', express.static(__dirname + "public"));
 app.use('/images', express.static(__dirname + "public"));
@@ -132,7 +135,7 @@ app.get('/homepage', (req, res) => {
             });
         }
     }).populate('category').populate('brand');
-}); // Ori
+});
 
 
 // LOGOUT:
@@ -195,7 +198,7 @@ app.get('/about', (req, res) => {
     });
 });
 
-//Product-page:
+// GET Product-page:
 app.get('/product-page', (req, res) => {
     ProductModel.find({}, async function (err, products) {
         if (err) {
@@ -210,7 +213,7 @@ app.get('/product-page', (req, res) => {
     }).populate('category').populate('brand');
 });
 
-// Admin page:
+// GET Admin page:
 app.get('/admin', authmw.authAdmin, (req, res) => {
     User.find({}, async function (err, users) {
         if (err) {
@@ -237,7 +240,7 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
     })
 });
 
-// Create-Product page:
+// GET Create-Product page:
 app.get('/create-product', authmw.authAdmin, (req, res) => {
     Cart.findOne({ user: req.user.id }, async function (err, cart) {
         if (err) {
@@ -258,7 +261,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
 });
 
 
-// Checkout page:
+// GET Checkout page:
 app.get('/checkout', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.cookies.user }, function (err, cart) {
         if (err) { console.log(err); }
@@ -274,7 +277,7 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
     });
 });
 
-// Cart page:
+// GET Cart page:
 app.get('/cart', (req, res) => {
     Cart.findOne({ user: req.cookies.user }, (err, cart) => {
         if (err) {
@@ -285,7 +288,7 @@ app.get('/cart', (req, res) => {
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });
 
-// User Profile Page:
+// GET User Profile Page:
 app.get('/profile', authmw.authMiddleware, (req, res) => {
     Order.find({ user: req.user.id }, async function (err, orders) {
         if (err) {
@@ -297,12 +300,10 @@ app.get('/profile', authmw.authMiddleware, (req, res) => {
         });
     });
 });
+
 // POST for login and signup:
 app.post('/register', authRouter);
 app.post('/login', authRouter);
-
-// Main Route:
-// app.get('/', (req, res) => res.render('index'));
 
 // ROUTES:
 app.use("/api/", ProductRouter);
