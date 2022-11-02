@@ -368,6 +368,8 @@ h6{
    }
 
    #contact-details #map{
-    width: 30%;
+    width: 55%;
     height: 400px;
+    left: 55px;
+    bottom: 40px;
    }
