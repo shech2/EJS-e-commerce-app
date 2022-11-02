@@ -35,6 +35,7 @@ const bp = require('body-parser');
 const morgan = require("morgan");
 app.use(morgan('tiny'));
 
+
 // Models:
 const ProductModel = require("./models/Product");
 const Brand = require("./models/brand");
@@ -53,9 +54,11 @@ const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 const brandRouters = require("./routes/brand");
 
+
 // DOTENV:
 const dotenv = require("dotenv");
 dotenv.config();
+
 
 // EXPRESS:
 app.use(express.json());
@@ -63,12 +66,14 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bp.urlencoded({ extended: false, limit: '50mb' }));
 app.use(bp.json());
 
+
 // Mongo DB Connection:
 const mongoose = require('mongoose'); // adds MongoDB to the Project
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Successfully!"))
     .catch((err) => {
         console.log(err);
     });
+
 
 // Session + Flash:
 const express_session = require("express-session");
@@ -81,10 +86,12 @@ app.use(express_session({
 }));
 app.use(flash());
 
+
 // Passport:
 const passport = require("passport");
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // EJS + Views:
 app.use(express.static("public"));
@@ -101,10 +108,12 @@ app.get('/login', (req, res) => {
     res.render('./pages/login.ejs', { error, title: "Login", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/style-login.css", user: req.cookies.user });
 });
 
+
 app.get('/register', (req, res) => {
     const error = req.flash('error');
     res.render('./pages/register.ejs', { error, title: "Register", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/register.css", user: req.cookies.user });
 });
+
 
 // GET THE PRODUCTS AT THE HOMEPAGE
 app.get('/homepage', (req, res) => {
@@ -140,6 +149,7 @@ app.get('/homepage', (req, res) => {
 
 // LOGOUT:
 app.get('/logout', authRouter);
+
 
 // GET SHOP:
 app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => {
@@ -190,6 +200,7 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => {
 
 });
 
+
 // GET ABOUT:
 app.get('/about', (req, res) => {
     Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
@@ -197,6 +208,7 @@ app.get('/about', (req, res) => {
         res.render('./pages/About.ejs', { title: "About", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/about.css", user: req.cookies.user, Cart: cart });
     });
 });
+
 
 // GET Product-page:
 app.get('/product-page', (req, res) => {
@@ -212,6 +224,7 @@ app.get('/product-page', (req, res) => {
         });
     }).populate('category').populate('brand');
 });
+
 
 // GET Admin page:
 app.get('/admin', authmw.authAdmin, (req, res) => {
@@ -239,6 +252,7 @@ app.get('/admin', authmw.authAdmin, (req, res) => {
         }
     })
 });
+
 
 // GET Create-Product page:
 app.get('/create-product', authmw.authAdmin, (req, res) => {
@@ -277,6 +291,7 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
     });
 });
 
+
 // GET Cart page:
 app.get('/cart', (req, res) => {
     Cart.findOne({ user: req.cookies.user }, (err, cart) => {
@@ -287,6 +302,7 @@ app.get('/cart', (req, res) => {
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });
+
 
 // GET User Profile Page:
 app.get('/profile', authmw.authMiddleware, (req, res) => {
@@ -301,9 +317,11 @@ app.get('/profile', authmw.authMiddleware, (req, res) => {
     });
 });
 
+
 // POST for login and signup:
 app.post('/register', authRouter);
 app.post('/login', authRouter);
+
 
 // ROUTES:
 app.use("/api/", ProductRouter);
@@ -313,7 +331,6 @@ app.use("/api/", categoryRouters);
 app.use("/api/", brandRouters);
 app.use("/", orderRouters);
 app.use("/", cartRouter);
-
 
 
 // Server Connection:
