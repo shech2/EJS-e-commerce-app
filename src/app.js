@@ -104,15 +104,19 @@ app.set('views', __dirname + '/views');
 
 // GET for login,signup and logout:
 app.get('/login', (req, res) => {
-    const error = req.flash('error');
+    const error = req.flash('error'); // flash errors
     res.render('./pages/login.ejs', { error, title: "Login", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/style-login.css", user: req.cookies.user });
 });
 
 
 app.get('/register', (req, res) => {
-    const error = req.flash('error');
+    const error = req.flash('error'); // flash errors
     res.render('./pages/register.ejs', { error, title: "Register", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/register.css", user: req.cookies.user });
 });
+
+
+// LOGOUT:
+app.get('/logout', authRouter); // no need to create a new route for logout, just use the authRouter
 
 
 // GET THE PRODUCTS AT THE HOMEPAGE
@@ -145,10 +149,6 @@ app.get('/homepage', (req, res) => {
         }
     }).populate('category').populate('brand');
 });
-
-
-// LOGOUT:
-app.get('/logout', authRouter);
 
 
 // GET SHOP:
