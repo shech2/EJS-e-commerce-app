@@ -91,4 +91,62 @@ router.get("/stats", middleware.authAdmin, async (req, res) => {
   }
 });
 
+// PUT USER 
+router.put("/update/:id", middleware.authAdmin, async (req, res) => {
+  if (req.body.password) {
+    req.body.password = CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.PASS_SEC
+    ).toString();
+  }
+  try {
+    if(req.body.username){
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.user.email,
+          password: req.user.password,
+        } 
+      },
+      { new: true }
+    );
+      if (req.body.email){
+        const updatedUser = await User.findByIdAndUpdate(
+          req.params.id,
+          {
+            $set: {
+              username: req.user.username,
+              email: req.body.email,
+              password: req.user.password,
+            } 
+          },
+          { new: true }
+        );
+      }
+      if (req.body.password){
+        const updatedUser = await User.findByIdAndUpdate(
+          req.params.id,
+          {
+            $set: {
+              username: req.user.username,
+              email: req.user.email,
+              password: req.body.password,
+            } 
+          },
+          { new: true }
+        );
+      }
+    res.status(200).json(updatedUser);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
 module.exports = router;

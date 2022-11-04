@@ -28,7 +28,7 @@
     $(document).on('submit', "#formProfile", function(e) {
         e.preventDefault();
         var form = $(this);
-        var url = '/api/users/<%= user._id %>';
+        var url = '/api/users/update/<%= user._id %>';
         var data = form.serialize();
         $.ajax({
             type: 'PUT',
