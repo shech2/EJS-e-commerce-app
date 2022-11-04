@@ -268,7 +268,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-                res.render('./pages/createProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/full-width.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands });
+                res.render('./pages/createProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/create-product.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands });
             });
         });
     });
