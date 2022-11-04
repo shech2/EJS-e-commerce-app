@@ -34,6 +34,7 @@ const pgMiddleware = require('./middleware/paginationMiddleWare');
 const bp = require('body-parser');
 const morgan = require("morgan");
 app.use(morgan('tiny'));
+// const d3 = require('d3');
 
 
 // Models:
