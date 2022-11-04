@@ -9,8 +9,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
 </div>
 
 <div id="users" style="margin-top: 10rem;margin-bottom: 10rem;display: none;">
-
-   <b><u><h1 style="padding: 40px;">Users:</h1></u></b>
+   <b><u><h1 style="padding-left: 60px;">Users:</h1></u></b>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -35,14 +34,16 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                         <td><%= users[i].password %></td>
                         <td><%= users[i].isAdmin %></td>
                         <td>
-                            <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none;">
+                            <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
                                 Update
                             </button>
                         </td>
                         </form>
                         <td>
                             <form id="PutForm" method="POST" action="/api/users/<%=users[i].id%>">
-                                <button id="Btn" style="border: none;">
+                                <button id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
                                     Delete
                                 </button>
                         </td>
@@ -104,14 +105,16 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                         <td>
                             <%= Products[i].size %>
                         <td>
-                            <button onclick="updateMenu2(name)" name="<%= i %> " id="Btn" style="border: none;">
+                            <button onclick="updateMenu2(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
                                 Update
                             </button>
                         </td>
                         </form>
                         <td>
                             <form id="PutForm2" method="POST" action="/api/products/<%=Products[i].id%>">
-                                <button id="Btn" style="border: none;">
+                                <button id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
                                     Delete
                                 </button>
                         </td>
@@ -210,13 +213,15 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                             <%= Orders[i].status %>
                         </td>
                         <td>
-                            <button onclick="updateMenu3(name)" name="<%= i %> " id="Btn" style="border: none;">
+                            <button onclick="updateMenu3(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
                                 Update
                             </button>
                         </td>
                         <td>
                             <form id="PutForm3" method="POST" action="/order/<%=Orders[i].id%>">
-                                <button id="Btn" style="border: none;">
+                                <button id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
                                     Delete
                                 </button>
                         </td>

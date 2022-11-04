@@ -94,3 +94,8 @@ button.normal {
     background-color: #088178;
     color: #fff;
 }
+
+.table-striped thead{
+    background-color: #088178;
+    color: #fff;
+}
