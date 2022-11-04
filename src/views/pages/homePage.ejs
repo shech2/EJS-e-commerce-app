@@ -33,59 +33,58 @@
     <h6>F24/7 Support</h6>
   </div>
 </section>
+
 <section>
-  <div style="position:relative;left:3%;" class="container">
-    <iframe width="1000" height="400" src="https://www.youtube.com/embed/n-f8udP21Jg?autoplay=1&mute=0&controls=0" title="YouTube video player"
+  <div class="iframe-container">
+    <iframe src="https://www.youtube.com/embed/n-f8udP21Jg?autoplay=0&mute=0&controls=0" title="YouTube video player"
       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>
-  </div>
+</div>
 </section>
+
 <section>
   <div id="product1" class="section-p1">
     <h2>Our Products</h2>
     <p>Summer Collection New Modern Design</p>
 
     <section>
-      <div class="pro-container" id="container"></div>
+      <div class="pro-container" id="container">
+        
+      <% for (index = 0; index < 8; index++) { %>      
+        <div class="pro">
+          <form id="prodForm" action="/product-page" method="GET">
+            <button style="border: none;"><img src="<%= ProductModel[index].image %>" alt=""></button>
+              <input type="hidden" name="id" value="<%= ProductModel[index].id %>">
+              </form>
+        <div class="des">
+        <span><%=ProductModel[index].brand.name %></span>
+        &nbsp<span><%=ProductModel[index].category.name %></span><br>
+        <h5><%= ProductModel[index].Product_name %></h5>
+       <div id="rating">
+          <% for (rat = 0; rat < ProductModel[index].rating; rat++) { %>
+          <span class="star">
+             <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                           <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+              </i>
+          </span> 
+          <% } %> 
+      </div>
+               <h4><b>$<%=ProductModel[index].price %></b></h4>
+         </div>
+       <form id="Myform">
+          <input type="hidden" name="productId" value="<%= ProductModel[index]._id %>">
+           <button type="submit" class="fal fa-shopping-cart cart"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"   viewBox="0 0 16 16">
+                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+               </svg>
+           </button>
+       </form>
+      </div>
+  <% } %>
+</div>
+</div>
+      </div>
     </section>
-    <script>
-      "<% for (index = 0; index < 8; index++) { %>"
-      var code = `
-      
-            <div class="pro">
-              <form id="prodForm" action="/product-page" method="GET">
-                <button style="border: none;"><img src="<%= ProductModel[index].image %>" alt=""></button>
-                  <input type="hidden" name="id" value="<%= ProductModel[index].id %>">
-                  </form>
-            <div class="des">
-            <span><%=ProductModel[index].brand.name %></span>
-            &nbsp<span><%=ProductModel[index].category.name %></span><br>
-            <h5><%= ProductModel[index].Product_name %></h5>
-           <div id="rating">
-              <% for (rat = 0; rat < ProductModel[index].rating; rat++) { %>
-              <span class="star">
-                 <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                               <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                        </svg>
-                  </i>
-              </span> 
-              <% } %> 
-          </div>
-                   <h4><b>$<%=ProductModel[index].price %></b></h4>
-             </div>
-           <form action="/add-to-cart" method="POST" id="Myform">
-              <input type="hidden" name="productId" value="<%= ProductModel[index]._id %>">
-               <button class="fal fa-shopping-cart cart"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"   viewBox="0 0 16 16">
-                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                   </svg>
-               </button>
-           </form>
-          </div>`;
-      document.querySelector("#container").innerHTML += code;
-      "<% } %>"
-    </script>
-  </div>
-  </div>
 </section>
 
 <section id="banner" class="section-m1">
@@ -114,7 +113,7 @@
             <path
               d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
           </svg></i>
-        <p>contact@example.com</p>
+        <p>MYSO@gmail.com</p>
       </li>
       <li>
         <i class="fas fa-phone-alt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -122,7 +121,7 @@
             <path fill-rule="evenodd"
               d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
           </svg></i>
-        <p>contact@example.com</p>
+        <p>03-9667879</p>
       </li>
       <li>
         <i class="far fa-clock"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -199,8 +198,7 @@
 
 
 <script>
-  $(document).ready(() => {
-    $("form#Myform").submit(function (e) {
+    $(document).on('click',"form#Myform",function (e) {
       "<% if(typeof user  === 'undefined'){ %>"
       window.location.href = "/login";
       "<% }else{ %>"

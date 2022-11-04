@@ -1,109 +1,105 @@
 <div class="container">
-  <u>
-    <h1 class="text-center">Create New Product:</h1>
-  </u>
-  <form action="/api/create_product" method="POST" id="myForm">
-    <!-- 2 column grid layout with text inputs for the first and last names -->
-    <div class="row mb-4">
-      <div class="col">
-        <div class="form-outline mb-4">
-          <input name="Product_Name" type="text" id="form6Example1" class="form-control" />
-          <label class="form-label" for="form6Example1">Product name</label>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-outline mb-4">
-          <label class="form-label" for="form6Example2">Category</label>
-          <input autocomplete="off" list="categories" name="category">
-          <datalist id="categories">
-            <% for (i=0; i < category.length; i++) { %>
-              <option value="<%= category[i].id  %>">
-                <%= category[i].name %>
-              </option>
-              <% } %>
-          </datalist>
-        </div>
-      </div>
-    </div>
+  <header>Create New Product:</header>
 
-    <!--Brand Input-->
-    <div class="col">
-      <div class="form-outline mb-4">
-        <label class="form-label" for="form6Example3">Brand</label>
-        <input autocomplete="off" list="brands" name="brand">
-        <datalist id="brands">
-          <% for (j=0; j < brand.length; j++) { %>
+  <form action="#">
+    <div class="form first">
+
+        <span class="title">Product Details</span><br>
+        <form action="/api/create_product" method="POST" id="myForm">
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+          <div class="fields">
+            <div class="input-field">
+              <label>Product name</label>
+              <input name="Product_Name" type="text" placeholder="Enter Product name" required />
+            </div>
+            <div class="input-field">
+              <label>Category</label>
+              <input autocomplete="off" list="categories" name="category" placeholder="Choose the Category" required>
+              <datalist id="categories">
+                <% for (i=0; i < category.length; i++) { %>
+                  <option value="<%= category[i].id  %>">
+                    <%= category[i].name %>
+                  </option>
+                  <% } %>
+              </datalist>
+            </div>
+       </form>
+   
+         <!--Brand Input-->
+        
+          <div class="input-field">
+            <label>Brand</label>
+            <input autocomplete="off" list="brands" name="brand" placeholder="Choose the Brand" required>
+            <datalist id="brands">
+            <% for (j=0; j < brand.length; j++) { %>
             <option value="<%= brand[j].id  %>">
               <%= brand[j].name %>
             </option>
             <% } %>
-        </datalist>
+            </datalist>
+          </div>
+        </div>
+
+      <div class="fields">
+      <div class="input-field">
+        <label>Rating</label>
+        <input name="rating" type="number" max="5" min="1" placeholder="Enter Rating" required>
       </div>
-    </div>
-</div>
-<div class="container">
-<!-- Text input -->
-<div class="form-outline mb-4">
-  <input name="rating" type="number" id="form6Example3" class="form-control" max="5" min="1" />
-  <label class="form-label" for="form6Example3">Rating</label>
-</div>
 
-<!-- Text input -->
-<div class="form-outline mb-4">
-  <input name="image" type="text" id="form6Example4" class="form-control" />
-  <label class="form-label" for="form6Example4">Image 1</label>
-</div>
+      <div class="input-field">
+        <label>Image 1</label>
+        <input name="image" type="text" placeholder="Enter Image 1" required>
+      </div>
 
-<div class="form-outline mb-4">
-  <input name="image" type="text" id="form6Example4" class="form-control" />
-  <label class="form-label" for="form6Example4">Image 2</label>
-</div>
+      <div class="input-field">
+        <label>Image 2</label>
+        <input name="image" type="text" placeholder="Enter Image 2" required>
+      </div>
 
-<div class="form-outline mb-4">
-  <input name="image" type="text" id="form6Example4" class="form-control" />
-  <label class="form-label" for="form6Example4">Image 3</label>
-</div>
+      <div class="input-field">
+        <label>Image 3</label>
+        <input name="image" type="text" placeholder="Enter Image 3" required>
+      </div>
 
-<div class="form-outline mb-4">
-  <input name="image" type="text" id="form6Example4" class="form-control" />
-  <label class="form-label" for="form6Example4">Image 4</label>
-</div>
+      <div class="input-field">
+        <label>Image 4</label>
+        <input name="image" type="text" placeholder="Enter Image 4" required>
+      </div>
 
-<!-- Size input -->
-<div class="form-outline mb-4">
-  <input name="size" type="number" id="form6Example5" class="form-control" />
-  <label class="form-label" for="form6Example5">Size</label>
-</div>
+      <!-- Size input -->
+      <div class="input-field">
+        <label>Size</label>
+        <input name="size" type="number" placeholder="Enter the Shoes Size" required>
+      </div>
 
-<!-- Quan input -->
-<div class="form-outline mb-4">
-  <input name="quantity2" type="number" id="form6Example5" class="form-control" />
-  <label class="form-label" for="form6Example5">Quantity2</label>
-</div>
+      <!-- Shoes Quantity input -->
+      <div class="input-field">
+        <label>Shoes Quantity</label>
+        <input name="quantity2" type="number" placeholder="Enter the Shoes Quantity" required>
+      </div>
 
-<!-- Quantity input -->
-<div class="form-outline mb-4">
-  <input name="quantity" type="number" id="form6Example5" class="form-control" />
-  <label class="form-label" for="form6Example5">Quantity</label>
-</div>
+      <!-- Size Quantity input -->
+      <div class="input-field">
+        <label>Size Quantity</label>
+        <input name="quantity" type="number" placeholder="Enter the Size Quantity" required>
+      </div>
 
-<!-- Number input -->
-<div class="form-outline mb-4">
-  <input name="price" type="number" id="form6Example6" class="form-control" />
-  <label class="form-label" for="form6Example6">Price</label>
-</div>
+      <!-- Price input -->
+      <div class="input-field">
+        <label>Price</label>
+        <input name="price" type="number" placeholder="Enter the Price" required>
+      </div>
 
-<!-- Message input -->
-<div class="form-outline mb-4">
-  <textarea name="description" class="form-control" id="form6Example7" rows="4"></textarea>
-  <label class="form-label" for="form6Example7">Description</label>
-</div>
+      <div class="input-field">
+        <label>Description</label>
+        <textarea name="description"></textarea>
+      </div>
 
 <!-- Submit button -->
 <button type="submit"  class="btn btn-primary btn-block mb-4">Create </button>
 </form>
 </div>
-</div>
+
 
 <script>
   var token = "EAAHXdUsF3nQBAG76wbG2SZCqBxu8XLW9xg0WU3fCBak3KJZCvDCQXWTmJ1TP8q6iiPxngWY15qvEAjMgOTD7IrGxkYfaLIhQZCByKXEUqtiyWQWQDBG1xgmE43A6ukxNm5BgwZAVC3KvbJmPTiUSLNbZB9ZCY5NY0ovLsuEmTbaJ9uj652iuJ9w9pvtaauulSUReZAWhmUOXQfZAUjjpEQSc";

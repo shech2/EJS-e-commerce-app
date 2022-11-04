@@ -80,8 +80,6 @@ img{
     padding-bottom: 0.3125rem;
 }
 
-
-
 button.normal {
     font-size: 14px;
     font-weight: 600;
@@ -93,6 +91,11 @@ button.normal {
     border: none;
     outline: none;
     transition: 0.2s;
+    background-color: #088178;
+    color: #fff;
+}
+
+.table-striped thead{
     background-color: #088178;
     color: #fff;
 }

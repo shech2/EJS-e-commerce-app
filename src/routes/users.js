@@ -3,18 +3,7 @@ const User = require("../models/User");
 const router = require("express").Router();
 const CryptoJS = require("crypto-js");
 const Cart = require("../models/cart");
-const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, new Date().toISOString() + file.originalname);
-  }
-});
-
-const upload = multer({ storage : storage });
 // UPDATE
 router.put("/:id", middleware.authAdmin, async (req, res) => {
   if (req.body.password) {
@@ -101,22 +90,5 @@ router.get("/stats", middleware.authAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-router.post('/profile',upload.single('profilePicture'), middleware.authMiddleware, async (req, res) => {
-  console.log(req.file);
-  try {
-    const user = await User.findOneAndUpdate(
-      req.cookies.user,
-      {
-        $set: {
-          profilePicture: req.file.path,
-        }
-      })
-      res.status(200).json(user);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 
 module.exports = router;

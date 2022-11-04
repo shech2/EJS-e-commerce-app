@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const product = require("../models/Product");
 const Schema = mongoose.Schema; 
 const productSchema = new Schema(
     {
@@ -15,7 +14,19 @@ const productSchema = new Schema(
         type: Number,
         required:true
     },
-    size: [{type: Array,sizeQuantity: Number}],
+    size: [
+        {
+            Product_name: {
+                type: String,
+            },
+            size:{
+                type: Number,
+            },
+            quantity: {
+                type: Number,
+            }
+        }
+    ],
     
     brand: {
         type: mongoose.Schema.Types.ObjectId,

@@ -13,7 +13,7 @@ html,body,.wrapper{
 .steps {
     margin-top: -41px;
     display: inline-block;
-    float: right;
+    float: none;
     font-size: 16px
 }
 .step {
@@ -47,7 +47,7 @@ html,body,.wrapper{
     top: -3px
 }
 .step_complete {
-    background: #ff523b;
+    background: #088178;
     color: white;
 }
 .step_complete a.check-bc, .step_complete a.check-bc:hover,.afix-1,.afix-1:hover{
@@ -55,7 +55,7 @@ html,body,.wrapper{
 }
 .step_line.step_complete {
     background: 0;
-    border-left: 16px solid #ff523b;
+    border-left: 16px solid #088178;
 }
 .step_thankyou {
     float: left;
@@ -124,23 +124,19 @@ html,body,.wrapper{
 }
 
 .login-container-submit {
-  /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,0.1); 
-  background-color: #ff523b;/*#4d90fe;*/
+  background-color: #ff523b;
   padding: 17px 0px;
   font-family: roboto;
   font-size: 14px;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
 .login-container-submit:hover {
-  /* border: 1px solid #2f5bb7; */
   border: 0px;
   text-shadow: 0 1px rgba(0,0,0,0.3);
   background-color: #ff523b;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
 .login-help{
@@ -168,7 +164,6 @@ ol, ul {
   -ms-transition: all .2s;
   -o-transition: all .2s;
   transition: all .2s;
-  background-image: url('//c2.staticflickr.com/4/3713/20116660060_f1e51a5248_m.jpg');
   background-position: 0 0;
   float: left;
   height: 32px;
@@ -185,7 +180,6 @@ ol, ul {
   -ms-transition: all .2s;
   -o-transition: all .2s;
   transition: all .2s;
-  background-image: url('//c2.staticflickr.com/4/3713/20116660060_f1e51a5248_m.jpg');
   background-position: 0 0;
   float: left;
   height: 32px;
@@ -228,13 +222,13 @@ ol, ul {
 }
 .btn1{
     border-radius: 1px;
-    background-color: #ff523b;
-    border-color: #ff523b;
+    background-color: #088178;;
+    border-color: #088178;
     color: white;
 }
-.btn1::hover{
-    background-color: #ff523b;
-    border-color: #ff523b;
+.btn1:hover{
+    background-color: hsl(176, 92%, 20%);
+    border-color: hsl(176, 92%, 20%);
 }
 .btn-sm, .btn-group-sm > .btn{
     border-radius: 1px;
@@ -346,9 +340,3 @@ select{
     }
     
 }
-/*
-@media only screen and (max-width: 777px){
-    .container{
-        overflow-x: hidden;
-    }
-}*/

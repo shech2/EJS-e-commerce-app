@@ -190,6 +190,10 @@ h6{
     #page-header p {
         margin-left: 80px;
     }
+
+    #product1 .pro .cart:focus{
+        outline: none;
+    }
     
     #prodForm button:focus {
        outline: none;
@@ -205,11 +209,11 @@ h6{
         display: inline-block;
         margin: 5px;
         box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+        color: #fff;
     }
     
     
     .pagination li a {
-        color: #fff;
         text-decoration: none;
         font-size: 1.2rem;
         line-height: 35px;
@@ -251,8 +255,6 @@ h6{
     .disable {
         background: #ccc;
     }
-
-    
 
     .pagination li a, .pagination li span{
         float: none;

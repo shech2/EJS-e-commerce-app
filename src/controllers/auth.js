@@ -1,9 +1,9 @@
 const User = require("../models/User");
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
-const flash = require("connect-flash");
-const { findOne } = require("../models/User");
 const Cart = require("../models/cart");
+
+// register
 exports.auth_RegController = async (req, res) => {
     const newUser = new User({
         username: req.body.username,
@@ -43,6 +43,8 @@ exports.auth_RegController = async (req, res) => {
     }
 };
 
+
+// login
 exports.auth_LogController = async (req, res) => {
     try {
         const user = await User.findOne({
@@ -84,7 +86,7 @@ exports.auth_LogController = async (req, res) => {
     }
 };
 
-
+// logout
 exports.auth_LogoutController = (req, res) => {
     if (req.cookies.jwt) {
         res.clearCookie("jwt");

@@ -23,7 +23,8 @@
         <h6>Home / Shoes</h6>
         <h4><%=ProductModel.Product_name %></h4>
         <h2>$<%=ProductModel.price %></h2>
-        <select>
+        <form id="myForm">
+        <select name="size">
             <option>Select Size</option>
             <option>39</option>
             <option>40</option>
@@ -33,8 +34,10 @@
             <option>44</option>
             <option>45</option>
         </select>
-        <input type="number" value="1">
-        <button class="normal">Add To Cart</button>
+          <input type="number" value="1" name="quantity">
+          <input type="hidden" value="<%= ProductModel._id %>" name="productId">
+        <button type="submit" class="normal">Add To Cart</button>
+      </form>
         <h4>Product Details</h4>
         <span>
             <p><%=ProductModel.description %></p>
@@ -71,12 +74,8 @@
       <p>The Best Collection Ever</p>
   
       <section>
-        <div class="pro-container" id="container"></div>
-      </section>
-      <script>
-        "<% for (index = 0; index < 4; index++) { %>"
-        var code = `
-        
+        <div class="pro-container" id="container">
+        <% for (index = 0; index < 4; index++) { %>        
               <div class="pro">
                 <form id="prodForm" action="/product-page" method="GET">
                 <button style="border: none;"><img src="<%= ProductModels[index].image %>" alt=""></button>
@@ -105,18 +104,16 @@
                      </svg>
                  </button>
              </form>
-            </div>`;
-        document.querySelector("#container").innerHTML += code;
-        "<% } %>"
-      </script>
+            </div>
+        <% } %>
     </div>
     </div>
+  </div>
   </section>
 
 
   <script>
-    $(document).ready(() => {
-      $("form#Myform").submit(function (e) {
+      $(document).on('submit',"form#Myform",function (e) {
         "<% if(typeof user  === 'undefined'){ %>"
         window.location.href = "/login"
         "<% }else{ %>"
@@ -131,5 +128,25 @@
         });
         "<% } %>"
       });
-    });
+      $(document).on('submit',"form#myForm",function (e){
+        const quantity = $(this).find('input[name="quantity"]').val();
+        const size = $(this).find('select[name="size"]').val();
+        const productId = $(this).find('input[name="productId"]').val();
+        e.preventDefault();
+        $.ajax({
+          url: "/add-size-to-cart",
+          data: {
+            quantity,
+            size,
+            productId
+          },
+          type: 'POST',
+          success: function (data) {
+            $('.notification').load(" .notification");
+          }
+        })
+
+
+
+      })
   </script>
