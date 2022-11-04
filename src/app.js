@@ -15,17 +15,22 @@ const passport = require("passport");
 
 
 // SOCKET IO
-const ws = require('ws');
-const wss = new ws.WebSocketServer({ port : 3001 });
 
-wss.on('connection', function connection(ws) {
-    console.log("Client" + ws.listeners() + " Connected to Server on PORT : 3001");
-  ws.on('message', function message(data) {
-    console.log('received: %s', data);
-  });
+const { Server } = require('socket.io');
+const http = require('http');
 
-    ws.send('Welcome to the M.Y.S.O');
+const server = http.createServer(app);
+const io = new Server(server);
+
+io.on('connect', (socket) => {
+    socket.on('new_product', (data) => {
+        
+        io.emit('notification', `new product: ${data}!`)
+    })
+
+  
 });
+
 
 
 // COOKIES:
@@ -307,6 +312,6 @@ app.use("/", cartRouter);
 
 
 // Server Connection:
-app.listen(3000, () => console.log(`Example app listening on port 3000!`));
+server.listen(3000, () => console.log(`Example app listening on port 3000!`));
 
 

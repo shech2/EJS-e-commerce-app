@@ -197,6 +197,7 @@
   </div>
 </div>
 
+
 <script>
   $(document).ready(() => {
     $("form#Myform").submit(function (e) {
@@ -215,21 +216,9 @@
       "<% } %>"
     });
   });
-</script>
-
-<script>
-  // Create web socket connection
-  const socket = new WebSocket('ws://localhost:3001');
-  // Connection opened
-  socket.addEventListener('open', function (event) {
-    socket.send('Hello M.Y.S.O!');
-  });
-
-  // Listen for messages
-  socket.addEventListener('message', function (event) {
-    console.log('Message from server: ', event.data);
-  });
 
 </script>
+
+
 
 <!-- 9db0fa3fb47e9cdfd84281a3c8d6d9a3 API KEY -->

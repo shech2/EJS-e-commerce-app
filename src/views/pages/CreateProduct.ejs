@@ -100,22 +100,29 @@
 </div>
 
 <!-- Submit button -->
-<button type="submit" class="btn btn-primary btn-block mb-4">Create </button>
+<button type="submit"  class="btn btn-primary btn-block mb-4">Create </button>
 </form>
 </div>
 </div>
 
 <script>
-  var token = "EAAHXdUsF3nQBAFvaJxAHVGGSFp1rpguFRbH1j4q3iYqfR29oslJxjW4VLlu02IMtjTZAzurvHRBeLbrto6xOZBKudUIqzTCE2nm8gYSotaUkaXcUXhOYney36DCv8SxAGyZCP7weeRkgEOiVQvFLEx5lP59DhwJB1RzmUl11sE9F1ZCZC9e7YB3PaZA4YW5hPtZCQxvZAGbsODgDK8fksJG1";
+  var token = "EAAHXdUsF3nQBAG76wbG2SZCqBxu8XLW9xg0WU3fCBak3KJZCvDCQXWTmJ1TP8q6iiPxngWY15qvEAjMgOTD7IrGxkYfaLIhQZCByKXEUqtiyWQWQDBG1xgmE43A6ukxNm5BgwZAVC3KvbJmPTiUSLNbZB9ZCY5NY0ovLsuEmTbaJ9uj652iuJ9w9pvtaauulSUReZAWhmUOXQfZAUjjpEQSc";
 
   $(document).ready(function() {
+
+
+
+
     $('#myForm').submit(function(e) {
+      const newPR = $('#form6Example1').val();  //socket 
       e.preventDefault();
       $.ajax({
         url: '/api/create_product',
         data: $(this).serialize(),
         type: 'POST',
         success: function(data) {
+          socket.emit('new_product',newPR);
+
           var image = 'localhost:3000/product-page?id=' + data.id;
           $.ajax({
             url: 'https://graph.facebook.com/104491532469853/photos',
@@ -126,6 +133,8 @@
             },
             type: 'POST',
             success: function(data) {
+           
+
               window.location.href = "/shop";
             }
           });
@@ -133,4 +142,5 @@
       });
     });
   });
+
 </script>
