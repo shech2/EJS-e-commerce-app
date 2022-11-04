@@ -14,7 +14,7 @@ const io = new Server(server);
 io.on('connect', (socket) => {
     socket.on('new_product', (data) => {
         
-        io.emit('notification', `new product: ${data}!`)
+        io.emit('notification', `check our new product: ${data}!`)
     })
 
   
