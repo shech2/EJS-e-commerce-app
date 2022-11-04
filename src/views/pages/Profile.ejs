@@ -1,21 +1,20 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-5 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" id="pr" width="150px" src="<%=user.profilePicture%>"><span class="font-weight-bold"><%= user.username %></span><span class="text-black-50"><%=user.email%></span><span> </span></div>
-
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" id="pr" width="150px" src="img/profile_b1.png"><span class="font-weight-bold"><%= user.username %></span><span class="text-black-50"><%=user.email%></span><span> </span></div>
         </div>
         <div class="col-md-7 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Edit Profile Settings</h4>
                 </div>
-                <form action="/profile" method="POST">
+                <form id="formProfile" action="/profile" method="POST">
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Username</label><input type="text" name="username" class="form-control" placeholder="enter new username" value=""></div>
                     <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" name="email" placeholder="enter new email" value=""></div>
                     <div class="col-md-12"><label class="labels">Passowrd</label><input type="text" class="form-control" name="password" placeholder="enter new passoword" value=""></div>
                 </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" style="background-color:rgb(39, 133, 227); color: #fff;" type="submit" formnovalidate>Save Profile</button></div>
             </form>
             </div>
         </div>
@@ -26,37 +25,26 @@
 
 
 <script>
-
-    $(document).ready(function() {
-        // document.querySelector('#profilePicture').addEventListener("change", function() {
-        //     const reader = new FileReader();
-
-        //     reader.addEventListener("load" , () => {
-        //         localStorage.setItem("profilePicture", reader.result);
-        //     });
-
-        //     reader.readAsDataURL(this.files[0]);
-        // })
-
-        // document.querySelector('#pr').src = localStorage.getItem("profilePicture");
-
-        $('#profileImg').submit(function(e){
-            e.preventDefault();
-            const File = document.querySelector('#profilePicture').files[0];
-            $.ajax({
-                url: '/api/users/profile',
-                type: 'POST',
-                data: {
-                    profilePicture: File
-                },
-                success: function(data) {
-                    console.log(data);
+    $(document).on('submit', "#formProfile", function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = '/api/users/<%= user._id %>';
+        var data = form.serialize();
+        $.ajax({
+            type: 'PUT',
+            url: url,
+            data: data,
+            success: function(data) {
+                console.log(data);
+                if (data.success) {
+                    alert('Profile updated successfully');
+                } else {
+                    alert('Error updating profile');
                 }
-            })
-        })
-
+            }
         });
-
+    });
+   
 
 
 </script>
