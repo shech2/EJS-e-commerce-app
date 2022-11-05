@@ -14,19 +14,10 @@ const productSchema = new Schema(
         type: Number,
         required:true
     },
-    size: [
-        {
-            Product_name: {
-                type: String,
-            },
-            size:{
-                type: Number,
-            },
-            quantity: {
-                type: Number,
-            }
-        }
-    ],
+    size: {
+        type: Number,
+        required: true
+    },
     
     brand: {
         type: mongoose.Schema.Types.ObjectId,
