@@ -70,6 +70,10 @@
 <script type="text/javascript">
   var current_page = 1;
 
+  if("<%=search%>"){
+    document.getElementsByClassName("pagination")[0].style.display = "none";
+  }
+
   $(document).on('click', "form#Myform", function (e) {
     "<% if(typeof user  === 'undefined'){ %>"
     window.location.href = "/login";

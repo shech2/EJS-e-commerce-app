@@ -184,7 +184,7 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
             }
             Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                 if (err) { console.log(err); }
-                res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, ProductModel: updatedItems, Cart: cart });
+                res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, ProductModel: updatedItems, Cart: cart ,search : req.query.search });
             }).populate({
                 path: 'cartItems.product',
                 populate: ([
@@ -198,7 +198,7 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
                 if (err) { console.log(err); }
                 Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                     if (err) { console.log(err); }
-                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: res.paginatedResults, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart });
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: res.paginatedResults, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart , search : req.query.search });
 
                 }).populate({
                     path: 'cartItems.product',
