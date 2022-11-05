@@ -167,13 +167,13 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
     };
     ProductModel.find({}, async function (err, items) {
         if (err) { console.log(err); }
-        const search = await ProductModel.find({ Product_name : {$regex: req.query.search, $options: 'i' } }).populate('category').exec();
-        if(search){
-            for (let index = 0; index < search.length; index++) {
-                updatedItems.results.push(search[index]);
-            }
-        }
         if (req.query.search) {
+        const search = await ProductModel.find({ Product_name : {$regex: req.query.search, $options: 'i' } }).populate('category').exec();
+            if(search){
+                for (let index = 0; index < search.length; index++) {
+                    updatedItems.results.push(search[index]);
+                }
+            }
             for (var i = 0; i < items.length; i++) {
                 if (items[i].category.name == req.query.search) {
                     updatedItems.results.push(items[i]);
@@ -194,8 +194,7 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
             });
 
         } else {
-
-            ProductModel.find({}, async function (err, products) {
+            ProductModel.find({}, async function (err) {
                 if (err) { console.log(err); }
                 Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                     if (err) { console.log(err); }

@@ -96,7 +96,8 @@
 
 
 <script>
-  var token = "EAAHXdUsF3nQBAG76wbG2SZCqBxu8XLW9xg0WU3fCBak3KJZCvDCQXWTmJ1TP8q6iiPxngWY15qvEAjMgOTD7IrGxkYfaLIhQZCByKXEUqtiyWQWQDBG1xgmE43A6ukxNm5BgwZAVC3KvbJmPTiUSLNbZB9ZCY5NY0ovLsuEmTbaJ9uj652iuJ9w9pvtaauulSUReZAWhmUOXQfZAUjjpEQSc";
+  // Never expire token
+  var token = "EAAHXdUsF3nQBAOwIqkSM25Nh8hihB9Y7ZB0ktYhZBI3lZB9EN5DgR1wKimQfoWqtfXavcAoLZBdGNmBg59zqXcZCBdZCUv1nTZAfQqNcV42ZCoSRkGlEopienqDZBrbcZBcLNhdHsH4y6CIRKZBvT6s4ZAkW5vfyZAcsnThcTXqhk08KvN9mJUFqh3hPdzp7D7md64WgZD";
 
 
     $(document).on('submit',"form#myForm",function(e) {
@@ -119,9 +120,7 @@
             },
             type: 'POST',
             success: function(data) {
-           
-
-              window.location.href = "/shop";
+              window.location.href = "/shop?page=1&limit=12";
             }
           });
         },

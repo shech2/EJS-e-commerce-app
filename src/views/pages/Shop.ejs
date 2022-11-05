@@ -197,7 +197,7 @@
   });
   $("#6").click(function () {
     $.ajax({
-      url: "/shop?page=6&limit=4",
+      url: "/shop?page=6&limit=12",
       type: 'GET',
       success: function (data) {
         current_page = 6;
@@ -207,7 +207,7 @@
         $("#4").removeClass("active");
         $("#5").removeClass("active");
         $("#1").removeClass("active");
-        $(".pro-container").load("/shop?page=6&limit=4 .pro-container");
+        $(".pro-container").load("/shop?page=6&limit=12 .pro-container");
       }
     });
   });
