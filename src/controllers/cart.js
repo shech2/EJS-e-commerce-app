@@ -125,6 +125,15 @@ exports.addSizeToCart = async (req, res) => {
     const quantity = req.body.quantity;
     const productPOST = await product.findById(productId);
     if (productPOST) {
-        
+        product.findOneAndUpdate({ _id: productPOST.id}, {
+            "$set": {
+                size: size
+            }
+        }).exec((error, product) => {
+            if (error) return res.status(400).json({ error });
+            if (product) {
+                res.status(201).json({ product });
+            }
+        });
     }
 }

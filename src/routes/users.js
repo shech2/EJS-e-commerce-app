@@ -91,7 +91,7 @@ router.get("/stats", middleware.authAdmin, async (req, res) => {
   }
 });
 
-// PUT USER 
+// Update user per field: (bypass required fields)
 router.put("/update/:id", middleware.authAdmin, async (req, res) => {
 
   var user2 = await User.findById(req.params.id);
