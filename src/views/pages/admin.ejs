@@ -51,12 +51,12 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                     </tr>
                     <th scope="row" id="r<%= i %>" style="display: none;">
                         <div id="update">
-                            <form id="UpdateForm" method="POST" action="/api/users/<%=users[i].id%>">
+                            <form id="UpdateForm" method="POST" action="/api/users/update/<%=users[i].id%>">
                                 <input type="text" name="username" placeholder="Username">
                                 <input type="text" name="email" placeholder="Email">
-                                <input type="text" name="password" placeholder="Password">
+                                <input type="password" name="password" placeholder="Password">
                                 <input type="text" name="isAdmin" placeholder="Admin">
-                                <button id="Btn" style="border: none;">
+                                <button id="Btn" style="border: none;" formnovalidate>
                                     Update
                                 </button>
                             </form>
@@ -122,7 +122,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                     </tr>
                     <th scope="row" id="u<%= i %>" style="display: none;">
                         <div id="update">
-                            <form id="UpdateForm2" method="POST" action="/api/products/<%=Products[i].id%>">
+                            <form id="UpdateForm2" method="POST" action="/api/update/<%=Products[i].id%>">
                                 <input type="text" name="Product_name" placeholder="Name">
                                 <input type="text" name="description" placeholder="Description">
                                 <input type="text" name="price" placeholder="Price">
@@ -136,7 +136,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                                 <input type="text" name="image" placeholder="Image3">
                                 <input type="text" name="image" placeholder="Image4">
                                 <input type="text" name="raing" placeholder="Rating">
-                                <button id="Btn" style="border: none;">
+                                <button id="Btn" style="border: none;" formnovalidate>
                                     Update
                                 </button>
                             </form>

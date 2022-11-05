@@ -58,6 +58,41 @@ router.post("/create_product", async (req, res) => {
     });
 });
 
+// update product in admin panel
+router.put("/update/:id", async (req, res) => {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+        res.status(400).send("Invalid Product Id");
+    }
+
+    var product2 = await Product.findById(req.params.id);
+
+    console.log(product2);
+
+    if(req.body.Product_name){
+
+    const product = await Product.findByIdAndUpdate(
+        req.params.id,
+        {
+            Product_name: req.body.Product_Name,
+            price: product2.price,
+            description: product2.description,
+            category: product2.category,
+            size: [{ size : product2.size , sizeQuantity: product2.sizeQuantity }],
+            brand: product2.brand,
+            quantity: product2.quantity,
+            rating: product2.rating,
+            image: product2.image,
+        },
+        { new: true }
+    );
+        product2 = product; 
+    }
+
+    res.send(product2);
+});
+
+
+
 //update product
 router.put("/products/:id", async (req, res) => {
     //validate id check

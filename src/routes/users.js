@@ -93,56 +93,113 @@ router.get("/stats", middleware.authAdmin, async (req, res) => {
 
 // PUT USER 
 router.put("/update/:id", middleware.authAdmin, async (req, res) => {
+
+  var user2 = await User.findById(req.params.id);
+
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
       process.env.PASS_SEC
     ).toString();
+      const user = await User.findByIdAndUpdate(req.params.id, {
+        $set: {
+          username: req.user.username,
+          email: req.user.email,
+          password: req.body.password,
+        },
+      });
+      user2 = user;
   }
-  try {
+  if(req.body.isAdmin){
+    const user = await User.findByIdAndUpdate(req.params.id, {
+      $set: {
+        username: req.user.username,
+        email: req.user.email,
+        password: req.user.password,
+        isAdmin: req.body.isAdmin,
+      },
+    });
+    user2 = user;
+  }
     if(req.body.username){
-    const updatedUser = await User.findByIdAndUpdate(
+    const user = await User.findByIdAndUpdate(
       req.params.id,
       {
         $set: {
           username: req.body.username,
           email: req.user.email,
           password: req.user.password,
-        } 
+        },
+
       },
       { new: true }
     );
-      if (req.body.email){
-        const updatedUser = await User.findByIdAndUpdate(
+    user2 = user;
+    }
+
+    if(req.body.email){
+      const user = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: {
+            username: req.user.username,
+            email: req.body.email,
+            password: req.user.password,
+          },
+
+        },
+        { new: true }
+      );
+      user2 = user;
+      }
+      if(req.body.username && req.body.email){
+        const user = await User.findByIdAndUpdate(
           req.params.id,
           {
             $set: {
-              username: req.user.username,
+              username: req.body.username,
               email: req.body.email,
               password: req.user.password,
-            } 
+            },
+
+
           },
           { new: true }
         );
-      }
-      if (req.body.password){
-        const updatedUser = await User.findByIdAndUpdate(
-          req.params.id,
-          {
-            $set: {
-              username: req.user.username,
-              email: req.user.email,
-              password: req.body.password,
-            } 
-          },
-          { new: true }
-        );
-      }
-    res.status(200).json(updatedUser);
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
+        user2 = user;
+
+        }
+        if(req.body.username && req.body.password){
+          const user = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+              $set: {
+                username: req.body.username,
+                email: req.user.email,
+                password: req.body.password,
+              },
+
+            },
+            { new: true }
+          );
+            user2 = user;
+          }
+          if(req.body.email && req.body.password){
+            const user = await User.findByIdAndUpdate(
+              req.params.id,
+              {
+                $set: {
+                  username: req.user.username,
+                  email: req.body.email,
+                  password: req.body.password,
+                },
+
+              },
+              { new: true }
+            );
+            user2 = user;
+         }
+          res.status(200).json(user2);
 });
 
 
