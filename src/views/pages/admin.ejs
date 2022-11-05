@@ -7,9 +7,9 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
     <button class="normal" style="border-radius: 5px;padding: 10px;">Statistics Menu</button>
 
 </div>
-
 <div id="users" style="margin-top: 10rem;margin-bottom: 10rem;display: none;">
-   <b><u><h1 style="padding-left: 60px;">Users:</h1></u></b>
+    <b><u><h1 style="padding-left: 80px;">Users:</h1></u></b>
+    <div style="overflow-x:auto;">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -65,15 +65,17 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                     <% } %>
         </tbody>
     </table>
+    </div>
 </div>
 </div>
 <div id="Products" style="display: none;">
     <div class="" style="position: absolute;
 left: 50%;
 transform: translate(-50%, -50%); margin-top: 3rem;">
-        <a href="/create-product"><button class="normal" style="border-radius: 5px;padding: 10px;margin-top: 75px;">Create Product</button></a>
+        <a href="/create-product"><button class="normal" style="border-radius: 5px;padding: 10px;margin-top: 90px;">Create Product</button></a>
     </div>
-    <b><u><h1 style="padding: 40px;font-family: 'Poppins', sans-serif;">Products:</h1></u></b>
+    <b><u><h1 style="padding: 100px;font-family: 'Poppins', sans-serif;">Products:</h1></u></b>
+    <div style="overflow-x:auto;">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -144,10 +146,11 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                     <% } %>
         </tbody>
     </table>
-
+    </div>
 </div>
 <div id="Orders" style="display: none;">
-    <b><u><h1 style="padding: 40px;">Orders:</h1></u></b>
+    <b><u><h1 style="padding: 80px;">Orders:</h1></u></b>
+    <div style="overflow-x:auto;">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -240,6 +243,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                     <% } %>
                 </tbody>
             </table>
+            </div>
             <% var totalOrders = 0 %>
             <% for(var i = 0 ; i < Orders.length;i++) {  %>
             <% totalOrders += Orders[i].totalPrice %>
