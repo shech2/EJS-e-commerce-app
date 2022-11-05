@@ -73,7 +73,8 @@ router.put("/update/:id", async (req, res) => {
     const product = await Product.findByIdAndUpdate(
         req.params.id,
         {
-            Product_name: req.body.Product_Name,
+        $set:{
+            Product_name: req.body.Product_name,
             price: product2.price,
             description: product2.description,
             category: product2.category,
@@ -82,6 +83,7 @@ router.put("/update/:id", async (req, res) => {
             quantity: product2.quantity,
             rating: product2.rating,
             image: product2.image,
+            }
         },
         { new: true }
     );
