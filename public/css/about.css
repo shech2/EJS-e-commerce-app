@@ -66,6 +66,7 @@ img{
     width: 100%;
     max-width: 420px;
     margin-left: 120px;
+    bottom: 50px;
     font-family: 'Open Sans', sans-serif;
     background-image: url("/img/weather-b4.jpg");
     font-size: 120%;
@@ -77,7 +78,7 @@ img{
     font-size: 2em;
   }
   
-   .cardo .search{
+  .cardo .search{
     display: flex;
     align-items: center;
     justify-content: center;
