@@ -28,24 +28,19 @@
                     Review Order <div class="pull-right"><small><a class="afix-1" href="/cart">Edit Cart</a></small></div>
                 </div>
                 <div class="panel-body cart">
-                    <div class="form-group" id="cartItems">
-                    </div>
-                    
-                        <script>
-                            "<% for(cartIndex = 0; cartIndex<Cart.cartItems.length; cartIndex++){ %>"
-                                var code = `
-                        <div class="product">
-                            <img class="img-responsive" src="<%= Cart.cartItems[cartIndex].product.image %>" >
-                            <div class="product-info"><%=Cart.cartItems[cartIndex].product.Product_name%> </div>
-                            <div class="product-info">Size: <%=Cart.cartItems[cartIndex].product.size.size %></div>
-                            <div class="product-info">Quantity: <%=Cart.cartItems[cartIndex].quantity%></div>
-                            <div class="text-right price">
-                               price: $</span><%= Cart.cartItems[cartIndex].price%>
+                    <div class="form-group" id="cartItems">                     
+                        <% for(cartIndex = 0; cartIndex<Cart.cartItems.length; cartIndex++){ %>
+                            <div class="product">
+                                <img class="img-responsive" src="<%= Cart.cartItems[cartIndex].product.image %>" >
+                                <div class="product-info"><%=Cart.cartItems[cartIndex].product.Product_name%> </div>
+                                <div id="size" class="product-info">Size: <%=Cart.cartItems[cartIndex].product.size.size %></div>
+                                <div class="product-info">Quantity: <%=Cart.cartItems[cartIndex].quantity%></div>
+                                <div class="text-right price">
+                                   price: $</span><%= Cart.cartItems[cartIndex].price%>
+                                </div>
                             </div>
-                        </div>`;
-                    document.querySelector("#cartItems").innerHTML += code;
-            "<% } %>"
-                    </script>
+                <% } %>
+                    </div>
                     <div class="form-group"><hr /></div>
                     <div class="form-group">
                         <div class="col-xs-12">
@@ -231,15 +226,14 @@
                     $.ajax({
                         url: "/update-size-array",
                         data: {
-                            size: size,
-                            product: productId
+                            sizeArray: size,
+                            productId: productId
                         },
                         type: 'POST',
                         success: function (data) {
                             console.log(data);
                         }
-                    })
-
+                    });
                 }
             })
           }

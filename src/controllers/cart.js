@@ -175,8 +175,9 @@ exports.updateSizeArray = async (req, res) => {
     
     product.findOneAndUpdate({ _id: productPOST.id }, {
         $pull:{
-            "size.sizeArray" : sizeCart
-            }
+            "size.sizeArray.$" : {
+                size: sizeCart
+            }            }
         }).exec((error, cart) => {
             if (error) return res.status(400).json({ error });
             if (cart) {
