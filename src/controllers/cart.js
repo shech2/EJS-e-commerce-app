@@ -170,14 +170,14 @@ exports.addSizeToCart = async (req, res) => {
 
 exports.updateSizeArray = async (req, res) => {
     const productId = req.body.productId;
-    const sizeCart = req.body.size;
+    const sizeCart = req.body.sizeArray;
     const productPOST = await product.findById(productId);
-    
+
+    productPOST.size.sizeArray = productPOST.size.sizeArray.filter((item) => item != sizeCart);
     product.findOneAndUpdate({ _id: productPOST.id }, {
-        $pull:{
-            "size.sizeArray.$" : {
-                size: sizeCart
-            }            }
+            $set: {
+                "size.sizeArray" : productPOST.size.sizeArray
+            }
         }).exec((error, cart) => {
             if (error) return res.status(400).json({ error });
             if (cart) {
