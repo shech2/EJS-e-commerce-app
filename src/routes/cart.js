@@ -12,8 +12,6 @@ router.post('/update-cart', authmw.authMiddleware , CartController.updateQuantit
 
 router.post('/add-size-to-cart', authmw.authMiddleware , CartController.addSizeToCart);
 
-
-
-
+router.post('/update-size-array', authmw.authMiddleware , CartController.updateSizeArray);
 
 module.exports = router;

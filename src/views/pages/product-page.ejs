@@ -26,8 +26,8 @@
         <form id="myForm">
         <select name="size">
             <option>Select Size</option>
-            <% for (i = 0; i < ProductModel.size.length; i++) { %>
-            <option value="<%= ProductModel.size[i] %>"><%= ProductModel.size[i] %></option>
+            <% for (i = 0; i < Size.sizeArray.length; i++) { %>
+            <option value="<%= Size.sizeArray[i] %>"><%= Size.sizeArray[i] %></option>
            <% } %>
         </select>
           <input type="number" value="1" name="quantity">
@@ -138,8 +138,5 @@
             $('.notification').load(" .notification");
           }
         })
-
-
-
       })
   </script>

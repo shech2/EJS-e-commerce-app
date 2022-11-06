@@ -15,9 +15,15 @@ const productSchema = new Schema(
         required:true
     },
     size:{
-        type: Array,
-        required: true,
+            size:{
+                type: Number, 
+            },
+            sizeArray:{
+               type: Array,
+               default: [39,40,41,42,43,44,45]
+            }
     },
+    
     
     brand: {
         type: mongoose.Schema.Types.ObjectId,

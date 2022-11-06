@@ -41,7 +41,7 @@
                          <td><img src="<%= cartItems[i].product.image %>" alt=""></td>
                          <td><%= cartItems[i].product.Product_name %></td>
                          <td>$<%= cartItems[i].product.price %></td>
-                         <td><%= cartItems[i].product.size %></td>
+                         <td><%= cartItems[i].product.size.size %></td>
                          <td><input type="number" id="quantity" min="1" value="<%= cartItems[i].quantity %>"></td>
                          <td>$<%=cartItems[i].price * cartItems[i].quantity%></td>
                         </tr>

@@ -232,7 +232,7 @@ app.get('/product-page', (req, res) => {
         Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
             if (err) { console.log(err); }
             ProductModel.findOne({ _id: req.query.id }, async function (err, product) {
-                res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", ProductModel: product, ProductModels: products, cssfile: "/css/product-page.css", user: req.cookies.user, Cart: cart });
+                res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", Size : product.size ,ProductModel: product, ProductModels: products, cssfile: "/css/product-page.css", user: req.cookies.user, Cart: cart });
             });
         });
     }).populate('category').populate('brand');
