@@ -14,9 +14,9 @@ const productSchema = new Schema(
         type: Number,
         required:true
     },
-    size: {
-        type: Number,
-        required: true
+    size:{
+        type: Array,
+        required: true,
     },
     
     brand: {

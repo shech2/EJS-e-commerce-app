@@ -39,7 +39,7 @@ router.post("/create_product", async (req, res) => {
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
-        size: req.body.size,
+        size: [{size: req.body.size}],
         brand: req.body.brand,
         quantity: req.body.quantity,
         rating: req.body.rating,
@@ -48,7 +48,6 @@ router.post("/create_product", async (req, res) => {
 
 
     product.save().then((createdProduct => {
-        // res.redirect("/shop");
         res.status(201).json(createdProduct);
     })).catch((err) => {
         res.status(500).json({
@@ -78,7 +77,7 @@ router.put("/update/:id", async (req, res) => {
             price: product2.price,
             description: product2.description,
             category: product2.category,
-            size: product2.size,
+            size: [{size : product2.size}],
             brand: product2.brand,
             quantity: product2.quantity,
             rating: product2.rating,
@@ -111,7 +110,7 @@ router.put("/products/:id", async (req, res) => {
             price: req.body.price,
             description: req.body.description,
             category: req.body.category,
-            size: req.body.size,
+            size: [{ size: req.body.size}],
             brand: req.body.brand,
             quantity: req.body.quantity,
             rating: req.body.rating,

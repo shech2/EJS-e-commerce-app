@@ -122,7 +122,6 @@ exports.updateQuantity = async (req, res) => {
 exports.addSizeToCart = async (req, res) => {
     const productId = req.body.productId;
     const size = req.body.size;
-    const quantity = req.body.quantity;
     const productPOST = await product.findById(productId);
     if (productPOST) {
         product.findOneAndUpdate({ _id: productPOST.id}, {
