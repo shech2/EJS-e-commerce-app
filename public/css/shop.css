@@ -297,14 +297,16 @@ h6{
         display: flex;
     }
 
-    .filter-condition{
-        /* padding-left: 400px; */
+    .filtering .filter-condition{
+        display: inline-block;
+        text-align: right;
+        padding-top: 30px;
         height: 100px;
         font-size: 20px;
         font-weight: bold;
     }
     .filter-condition select{
-        width: 120px;
+        width: 250px;
         padding: 0 0 0 10px;
         border: none;
         outline: none;
