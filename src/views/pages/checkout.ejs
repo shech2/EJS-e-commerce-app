@@ -1,249 +1,274 @@
-<% { %> 
-    <% var tax = parseInt(total * 0.17) %>
+<% { %>
+    <% var tax=parseInt(total * 0.17) %>
 
-<div class="container wrapper">
-    <div class="row cart-head">
-        <div class="container">
-        <div class="row">
-            <p></p>
-        </div>
-        <div class="row">
-            <div style="display: table; margin: auto; z-index: 0;">
-                <span class="step step_complete"> <a href="/cart" class="check-bc">Cart</a> <span class="step_line step_complete"> </span> <span class="step_line backline"> </span> </span>
-                <span class="step step_complete"> <a class="check-bc ml-3"> Checkout</a> <span class="step_line "> </span> <span class="step_line step_complete"> </span> </span>
-                <span style="display: none;" id="Ty" class="step_thankyou check-bc step_complete">Thank you</span>
-            </div>
-        </div>
-        <div class="row">
-            <p></p>
-        </div>
-        </div>
-    </div>    
-    <div class="row cart-body">
-        <form class="form-horizontal" method="POST" action="/create-order" id="createForm">
-        <div class="area review">
-            <!--REVIEW ORDER-->
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    Review Order <div class="pull-right"><small><a class="afix-1" href="/cart">Edit Cart</a></small></div>
+        <div class="container wrapper">
+            <div class="row cart-head">
+                <div class="container">
+                    <div class="row">
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <div style="display: table; margin: auto; z-index: 0;">
+                            <span class="step step_complete"> <a href="/cart" class="check-bc">Cart</a> <span
+                                    class="step_line step_complete"> </span> <span class="step_line backline"> </span>
+                            </span>
+                            <span class="step step_complete"> <a class="check-bc ml-3"> Checkout</a> <span
+                                    class="step_line "> </span> <span class="step_line step_complete"> </span> </span>
+                            <span style="display: none;" id="Ty" class="step_thankyou check-bc step_complete">Thank
+                                you</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p></p>
+                    </div>
                 </div>
-                <div class="panel-body cart">
-                    <div class="form-group" id="cartItems">                     
-                        <% for(cartIndex = 0; cartIndex<Cart.cartItems.length; cartIndex++){ %>
-                            <div class="product">
-                                <img class="img-responsive" src="<%= Cart.cartItems[cartIndex].product.image %>" >
-                                <div class="product-info"><%=Cart.cartItems[cartIndex].product.Product_name%> </div>
-                                <div id="size" class="product-info">Size: <%=Cart.cartItems[cartIndex].product.size.size %></div>
-                                <div class="product-info">Quantity: <%=Cart.cartItems[cartIndex].quantity%></div>
-                                <input type="hidden" name="productId" value="<%= Cart.cartItems[cartIndex].product._id %>">
-                                <div class="text-right price">
-                                   price: $</span><%= Cart.cartItems[cartIndex].price%>
+            </div>
+            <div class="row cart-body">
+                <form class="form-horizontal" method="POST" action="/create-order" id="createForm">
+                    <div class="area review">
+                        <!--REVIEW ORDER-->
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Review Order <div class="pull-right"><small><a class="afix-1" href="/cart">Edit
+                                            Cart</a></small></div>
+                            </div>
+                            <div class="panel-body cart">
+                                <div class="form-group" id="cartItems">
+                                    <% for(cartIndex=0; cartIndex<Cart.cartItems.length; cartIndex++){ %>
+                                        <div class="product">
+                                            <img class="img-responsive"
+                                                src="<%= Cart.cartItems[cartIndex].product.image %>">
+                                            <div class="product-info">
+                                                <%=Cart.cartItems[cartIndex].product.Product_name%>
+                                            </div>
+                                            <div id="size" class="product-info">Size:
+                                                <%=Cart.cartItems[cartIndex].product.size.size %>
+                                            </div>
+                                            <div class="product-info">Quantity: <%=Cart.cartItems[cartIndex].quantity%>
+                                            </div>
+                                            <input type="hidden" name="productId"
+                                                value="<%= Cart.cartItems[cartIndex].product._id %>">
+                                            <div class="text-right price">
+                                                price: $</span>
+                                                <%= Cart.cartItems[cartIndex].price%>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <div class="form-group">
+                                    <hr />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <strong>Subtotal</strong>
+                                        <div class="pull-right"><span>$</span><span>
+                                                <%= total %>
+                                            </span></div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <small>taxes</small>
+                                        <div class="pull-right"><span>$</span><span>
+                                                <%= tax %>
+                                            </span></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <hr />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <strong>Order Total</strong>
+                                        <div class="pull-right"><span>$</span><span>
+                                                <%= +tax + + total %>
+                                            </span></div>
+                                    </div>
                                 </div>
                             </div>
-                <% } %>
-                    </div>
-                    <div class="form-group"><hr /></div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <strong>Subtotal</strong>
-                            <div class="pull-right"><span>$</span><span><%= total %> </span></div>
                         </div>
-                        <div class="col-xs-12">
-                            <small>taxes</small>
-                            <div class="pull-right"><span>$</span><span><%= tax %> </span></div>
-                        </div>
+                        <!--REVIEW ORDER END-->
                     </div>
-                    <div class="form-group"><hr /></div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <strong>Order Total</strong>
-                            <div class="pull-right"><span>$</span><span><%= +tax +  + total %> </span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--REVIEW ORDER END-->
-        </div>
-        <div class="area adress">
-            <!--SHIPPING METHOD-->
-            <div class="panel panel-info adress">
-                <div class="panel-heading">Address</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <h4>Shipping Address</h4>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>Country:</strong></div>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" name="country" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>Address:</strong></div>
-                        <div class="col-md-12">
-                            <input type="text" name="shippingAddress" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>City:</strong></div>
-                        <div class="col-md-12">
-                            <input type="text" name="city" class="form-control" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>State:</strong></div>
-                        <div class="col-md-12">
-                            <input type="text" name="state" class="form-control" value="" />
+                    <div class="area adress">
+                        <!--SHIPPING METHOD-->
+                        <div class="panel panel-info adress">
+                            <div class="panel-heading">Address</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <h4>Shipping Address</h4>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Country:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="country" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Address:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="shippingAddress" class="form-control" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>City:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="city" class="form-control" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>State:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="state" class="form-control" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="zip" class="form-control" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Phone Number:</strong></div>
+                                    <div class="col-md-12"><input type="text" name="phone" class="form-control"
+                                            value="" /></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
-                        <div class="col-md-12">
-                            <input type="text" name="zip" class="form-control" value="" />
+                    <div class="area payment">
+                        <div class="panel panel-info">
+                            <div class="panel-heading"><span><i class="glyphicon glyphicon-lock"></i></span> Secure
+                                Payment</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Card Type:</strong></div>
+                                    <div class="col-md-12">
+                                        <select id="CreditCardType" name="CreditCardType" class="form-control">
+                                            <option value="5">Visa</option>
+                                            <option value="6">MasterCard</option>
+                                            <option value="7">American Express</option>
+                                            <option value="8">Discover</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Credit Card Number:</strong></div>
+                                    <div class="col-md-12"><input type="text" class="form-control" name="car_number"
+                                            value="" /></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Card CVV:</strong></div>
+                                    <div class="col-md-12"><input type="text" class="form-control" name="car_code"
+                                            value="" /></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <strong>Expiration Date</strong>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <select class="form-control card_exp" name="">
+                                            <option value="">Month</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <select class="form-control" name="">
+                                            <option value="">Year</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <span>Pay secure using your credit card.</span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <ul class="cards">
+                                            <li class="visa hand">Visa</li>
+                                            <li class="mastercard hand">MasterCard</li>
+                                            <li class="amex hand">Amex</li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="hidden" name="user" value="<%- user._id %>">
+                                        <input type="hidden" name="totalPrice" value="<%= tax + + total %>">
+                                        <input type="hidden" name="orderItems" value="<%= JSON.stringify(cartItems) %>">
+                                        <button type="submit" class="btn1 btn-submit-fix">Place Order</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <!--CREDIT CART PAYMENT END-->
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>Phone Number:</strong></div>
-                        <div class="col-md-12"><input type="text" name="phone" class="form-control" value="" /></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="area payment">
-            <div class="panel panel-info">
-                <div class="panel-heading"><span><i class="glyphicon glyphicon-lock"></i></span> Secure Payment</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>Card Type:</strong></div>
-                        <div class="col-md-12">
-                            <select id="CreditCardType" name="CreditCardType" class="form-control">
-                                <option value="5">Visa</option>
-                                <option value="6">MasterCard</option>
-                                <option value="7">American Express</option>
-                                <option value="8">Discover</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>Credit Card Number:</strong></div>
-                        <div class="col-md-12"><input type="text" class="form-control" name="car_number" value="" /></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>Card CVV:</strong></div>
-                        <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="" /></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <strong>Expiration Date</strong>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <select class="form-control card_exp" name="">
-                                <option value="">Month</option>
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                                <option value="07">07</option>
-                                <option value="08">08</option>
-                                <option value="09">09</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                        </select>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <select class="form-control" name="">
-                                <option value="">Year</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
-                                <option value="2027">2027</option>
-                                <option value="2028">2028</option>
-                                <option value="2029">2029</option>
-                                <option value="2030">2030</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <span>Pay secure using your credit card.</span>
-                        </div>
-                        <div class="col-md-12">
-                            <ul class="cards">
-                                <li class="visa hand">Visa</li>
-                                <li class="mastercard hand">MasterCard</li>
-                                <li class="amex hand">Amex</li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="hidden" name="user" value="<%- user._id %>">
-                            <input type="hidden" name="totalPrice" value="<%= tax + + total %>">
-                            <input type="hidden" name="orderItems" value="<%= JSON.stringify(cartItems) %>">
-                            <button type="submit" class="btn1 btn-submit-fix">Place Order</button> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--CREDIT CART PAYMENT END-->
-        </div>
-        
-        </form>
-    </div>
-    <div class="row cart-footer">
 
-    </div>
-</div>
-<% } %>
+                </form>
+            </div>
+            <div class="row cart-footer">
 
-<script>
-    $(document).on('submit',"form#createForm",function (e) {
-        const size = $(this).find('div[id="size"]')[0].outerText.slice(6);
-        const product = $(this).find('input[name="productId"]').val();
-        console.log(product);
-        "<% if(typeof user  === 'undefined'){ %>"
-        window.location.href = "/login";
-        "<% }else{ %>"
-        e.preventDefault();
-        $.ajax({
-          url: "/create-order",
-          data: $(this).serialize(),
-          type: 'POST',
-          success: function (data) {
-            console.log(data);
-            $.ajax({
-                url: "/remove-all",
-                data: $(this).serialize(),
-                type: 'POST',
-                success: function (data) {
-                    $('.notification').load(" .notification");
-                    document.getElementById("Ty").style.display = "block";
+            </div>
+        </div>
+        <% } %>
+
+            <script>
+                $(document).on('submit', "form#createForm", function (e) {
+                    const size = $(this).find('div[id="size"]')[0].outerText.slice(6);
+                    "<% if(typeof user  === 'undefined'){ %>"
+                    window.location.href = "/login";
+                    "<% }else{ %>"
+                    e.preventDefault();
                     $.ajax({
-                        url: "/update-size-array",
-                        data: {
-                            sizeArray: size,
-                            productId: product
-                        },
+                        url: "/create-order",
+                        data: $(this).serialize(),
                         type: 'POST',
                         success: function (data) {
                             console.log(data);
+                            $.ajax({
+                                url: "/update-size-array",
+                                data: {
+                                    sizeArray: size,
+                                },
+                                type: 'POST',
+                                success: function (data) {
+                                    console.log(data);
+                                    $.ajax({
+                                        url: "/remove-all",
+                                        data: $(this).serialize(),
+                                        type: 'POST',
+                                        success: function (data) {
+                                            $('.notification').load(" .notification");
+                                            document.getElementById("Ty").style.display = "block";
+
+                                        }
+                                    })
+                                }
+                            });
                         }
                     });
-                }
-            })
-          }
-        });
-        "<% } %>"
-      });
+                    "<% } %>"
+                });
 
 
 
-</script>
+            </script>
