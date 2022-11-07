@@ -6,9 +6,30 @@
 <div id="product1" class="section-p1">
   <h2>Our Products</h2>
   <p>Summer Collection New Modern Design</p>
-  <div class="test">
-    <div class="pro-container" id="container">
 
+          <header>
+            <div class="filtering">
+              <ul class="indicator">
+                <li data-filter="all" class="active"><a href="#">All</a></li>
+			    	    <li data-filter="Nike"><a href="#">Nike</a></li>
+				        <li data-filter="Adidas"><a href="#">Adidas</a></li>
+				        <li data-filter="Puma"><a href="#">Puma</a></li>
+				        <li data-filter="New Balance"><a href="#">New Balance</a></li>
+			       </ul>
+
+			       <div class="filter-condition">
+				          <span>View As a</span>
+				          <select name="" id="select">
+					        <option value="Default">Default</option>
+					        <option value="LowToHigh">Low to high</option>
+					        <option value="HighToLow">High to low</option>
+				        </select>
+			       </div>
+          </div>
+          </header>   
+          
+          <div class="test">
+            <header class="pro-container" id="container">
       <% for (index=0; index < ProductModel.results.length; index++) { %>
 
         <div class="pro">
@@ -51,9 +72,10 @@
           </form>
         </div>
         <% } %>
+      </div>
     </div>
-  </div>
-</div>
+   </div>
+
 
 <div class="pagination" style="margin-left: 37%;">
   <li class="page-item previous-page" id="previous"><a class="page-link">Prev</a></li>
