@@ -2,6 +2,12 @@
 const express = require('express');
 const app = express();
 
+// DOTENV:
+const dotenv = require("dotenv");
+dotenv.config();
+
+// STRIPE token
+const token = process.env.STRIPE_SECRET_KEY;
 
 // SOCKET IO
 
@@ -19,8 +25,6 @@ io.on('connect', (socket) => {
 
   
 });
-
-
 
 // COOKIES:
 const cookieparser = require('cookie-parser');
@@ -60,10 +64,6 @@ const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 const brandRouters = require("./routes/brand");
 
-
-// DOTENV:
-const dotenv = require("dotenv");
-dotenv.config();
 
 
 // EXPRESS:
@@ -169,11 +169,8 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
         if (err) { console.log(err); }
         if (req.query.search) {
         const search = await ProductModel.find({ Product_name : {$regex: req.query.search, $options: 'i' } }).populate('category').exec();
-            if(search){
-                for (let index = 0; index < search.length; index++) {
-                    updatedItems.results.push(search[index]);
-                }
-            }
+            if(search){   
+            if(req.query.search == "Men" || "Women" || "Nike" || "Adidas"){
             for (var i = 0; i < items.length; i++) {
                 if (items[i].category.name == req.query.search) {
                     updatedItems.results.push(items[i]);
@@ -182,6 +179,12 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
                     updatedItems.results.push(items[i]);
                 }
             }
+        }else{
+                for (let index = 0; index < search.length; index++) {
+                    updatedItems.results.push(search[index]);
+                }
+            }
+        }
             Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                 if (err) { console.log(err); }
                 res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, ProductModel: updatedItems, Cart: cart ,search : req.query.search });
@@ -281,7 +284,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-                res.render('./pages/createProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/create-product.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands });
+                res.render('./pages/createProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/create-product.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands , token : process.env.FACEBOOK_TOKEN });
             });
         });
     });
@@ -293,7 +296,7 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.cookies.user }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.cookies.user, total: req.query.total, Cart: cart, cartItems: cart.cartItems });
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.cookies.user, total: req.query.total, Cart: cart, cartItems: cart.cartItems , stripeToken : token });
         }
     }).populate({
         path: 'cartItems.product',
