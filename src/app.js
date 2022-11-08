@@ -154,9 +154,13 @@ app.get('/homepage', (req, res) => {
     }).populate('category').populate('brand');
 });
 
+// Pagination +  Pagination Sorted by Price:
+const Pagination = pgMiddleware.paginatedResults(ProductModel);
+const PaginationSorted = pgMiddleware.paginatedResultsSortedByPrice(ProductModel);
+
 
 // GET SHOP:
-app.get('/shop', pgMiddleware.paginatedResults(ProductModel),pgMiddleware.paginatedResultsSortedByPrice(ProductModel), (req, res) => {
+app.get('/shop',Pagination,PaginationSorted, (req, res) => {
     console.log(req);
     if(req.query.sorter){
         const sorter = req.query.sorter;

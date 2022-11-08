@@ -32,7 +32,7 @@
                 <% if (cartItems.length> 0) { %>
                     <% for (i=0; i < cartItems.length; i++) { %>
                         <tbody>
-                            <tr class="cartRow">
+                            <tr class="cartRows">
                                 <td>
                                     <form id="remForm">
                                         <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
@@ -108,13 +108,12 @@
             url: "/remove-from-cart",
             data: $(this).serialize(),
             type: 'POST',
-            success: function (data) {
-                if(document.getElementsByClassName("cartRow")){
+            success: function (data) {                
+                if($(".cartRows").length == 1){
                     location.reload();
-                }
-                else{
-                $('.notification').load(" .notification");
-                $(".ajax").load(" .ajax");
+                }else{
+                    $('.notification').load(" .notification");
+                    $("main").load(" main");
                 }
             }
         });
