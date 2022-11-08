@@ -119,11 +119,17 @@ exports.updateQuantity = async (req, res) => {
 exports.addSizeToCart = async (req, res) => {
     const POSTProduct = await product.findById(req.body.productId);
     const size = req.body.size;
+    if(size=="Select Size"){
+        return res.status(500).json({message: "Error! choose size"});
+    }
     product.findOneAndUpdate({ _id: POSTProduct.id }, {
         $set: {
             "size.size" : size
         }
+        
     }).exec();
+
+
 
     CartController.findOne({ user: req.user.id }).exec((error, cart) => {
         if (error) return res.status(400).json({ error });

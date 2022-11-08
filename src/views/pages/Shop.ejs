@@ -53,7 +53,7 @@
 
 			       <div class="filter-condition">
 				          <span>Sort by</span>
-				          <select name="sorter" id="select">
+				          <select name="sort" id="sorter">
 					        <option value="Default">Default</option>
 					        <option value="LowToHigh">Price (low to high)</option>
 					        <option value="HighToLow">Price (high to low)</option>
@@ -156,6 +156,18 @@
         }
       });
     }
+  });
+
+  $(document).on('change',"#sorter",async function() {
+    const sorter = $("#sorter").val();
+    console.log(sorter)
+    $.ajax({
+      url: "/shop?page=1&limit=12",
+      type: "GET",
+      data:{
+        sorter : sorter
+      }
+    })  
   });
 
   $("#1").click(function () {

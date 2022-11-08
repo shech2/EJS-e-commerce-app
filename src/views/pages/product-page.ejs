@@ -121,7 +121,13 @@
           type: 'POST',
           success: function (data) {
             $('.notification').load(" .notification");
+          },
+          error: function(error){
+            if(error.status == 500){
+              alert("Please choose size!");
+            }
           }
         })
       })
+      
   </script>
