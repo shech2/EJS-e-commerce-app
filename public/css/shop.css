@@ -322,7 +322,13 @@ h6{
         color: rgba(243, 181, 25);
         font-size: 12px;
     }
+    .clickable{
+       cursor: pointer !important; 
+    }
 
+    .invisible{
+        display: none;
+    }
     
     
 

@@ -10,53 +10,21 @@
           <header>
             <div class="filtering">
               <ul class="indicator">
-                <li data-filter="all" class="active"><a href="/shop?page=1&limit=12">All</a></li>
-			    	    <li data-filter="Nike"><a href="/shop?search=Nike">Nike</a></li>
-				        <li data-filter="Adidas"><a href="/shop?search=Adidas">Adidas</a></li>
-				        <li data-filter="Puma"><a href="/shop?search=Puma">Puma</a></li>
-				        <li data-filter="New Balance"><a href="/shop?search=New Balance">New Balance</a></li>
+                <li data-filter="all" class="clickable active" id="all">All</li>
+			    	    <li data-filter="Nike" class="clickable" id="nike">Nike</li>
+				        <li data-filter="Adidas" class="clickable" id="adidas">Adidas</li>
+				        <li data-filter="Puma" class="clickable" id="puma">Puma</li>
+				        <li data-filter="New Balance" class="clickable" id="newBalance">New Balance</li>
 			       </ul>
 
-             <div class="filter-condition">
-              <span>Rating</span>
-              <select name="" id="select">
-              <option value="Default">Default</option>
-              <option data-icon="glyphicon-star" value="Star 1">
-                Star 1 
-              </option>
-                <option value="2 starts"><% for (rat2 = 0; rat2 < 2; rat2++) { %>
-                <span class="star">
-                     <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
-                                   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg></i></span> 
-                  <% } %> </option>
-                  <option value="3 starts"><% for (rat3 = 0; rat3 < 3; rat3++) { %>
-                    <span class="star">
-                       <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
-                                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg></i></span> 
-                    <% } %> </option>
-                    <option value="4 starts"><% for (rat4 = 0; rat4 < 4; rat4++) { %>
-                      <span class="star">
-                         <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
-                                       <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                </svg></i></span> 
-                      <% } %> </option>
-                      <option value="5 starts"><% for (rat5 = 0; rat5 < 5; rat5++) { %>
-                        <span class="star">
-                           <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
-                                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                  </svg></i></span> 
-                        <% } %> </option>
-                  </select>
-              </div>
-
+            
 			       <div class="filter-condition">
 				          <span>Sort by</span>
 				          <select name="sort" id="sorter">
 					        <option value="Default">Default</option>
 					        <option value="LowToHigh">Price (low to high)</option>
 					        <option value="HighToLow">Price (high to low)</option>
+                  <option value="Rating">Rating</option>
 				        </select>
 			       </div>
           </div>
@@ -111,7 +79,7 @@
    </div>
 
 
-<div class="pagination" style="margin-left: 37%;">
+<div class="pagination" id="pages" style="margin-left: 37%;">
   <li class="page-item previous-page" id="previous"><a class="page-link">Prev</a></li>
   <li class="page-item current-page active" id="1"><a class="page-link">1</a></li>
   <li class="page-item current-page" id="2"><a class="page-link">2</a></li>
@@ -267,4 +235,82 @@
     });
   });
 
+
+  $("#nike").click(function() {
+    $.ajax({
+      url:"/shop?search=Nike",
+      type: 'GET',
+      success: function (data){
+        $("#nike").addClass("active");
+        $("#all").removeClass("active");
+        $("#adidas").removeClass("active");
+        $("#puma").removeClass("active");
+        $("#newBalance").removeClass("active");
+        $("#pages").addClass("invisible");
+        $(".pro-container").load("/shop?search=Nike .pro-container");
+      }
+    });
+  });
+
+  $("#adidas").click(function() {
+    $.ajax({
+      url:"/shop?search=Adidas",
+      type: 'GET',
+      success: function (data){
+        $("#adidas").addClass("active");
+        $("#all").removeClass("active");
+        $("#nike").removeClass("active");
+        $("#puma").removeClass("active");
+        $("#newBalance").removeClass("active");
+        $("#pages").addClass("invisible");
+        $(".pro-container").load("/shop?search=Adidas .pro-container");
+      }
+    });
+  });
+
+  $("#puma").click(function() {
+    $.ajax({
+      url:"/shop?search=Puma",
+      type: 'GET',
+      success: function (data){
+        $("#puma").addClass("active");
+        $("#all").removeClass("active");
+        $("#nike").removeClass("active");
+        $("#adidas").removeClass("active");
+        $("#newBalance").removeClass("active");
+        $("#pages").addClass("invisible");
+        $(".pro-container").load("/shop?search=Puma .pro-container");
+      }
+    });
+  });
+  $("#newBalance").click(function() {
+    $.ajax({
+      url:"/shop?search=New Balance",
+      type: 'GET',
+      success: function (data){
+        $("#newBalance").addClass("active");
+        $("#all").removeClass("active");
+        $("#nike").removeClass("active");
+        $("#puma").removeClass("active");
+        $("#adidas").removeClass("active");
+        $("#pages").addClass("invisible");
+        $(".pro-container").load("/shop?search=New .pro-container");
+      }
+    });
+  });
+  $("#all").click(function() {
+    $.ajax({
+      url:"/shop",
+      type: 'GET',
+      success: function (data){
+        $("#all").addClass("active");
+        $("#newBalance").removeClass("active");
+        $("#nike").removeClass("active");
+        $("#puma").removeClass("active");
+        $("#adidas").removeClass("active");
+        $("#pages").removeClass("invisible");
+        $(".pro-container").load("/shop?page=1&limit=12 .pro-container");
+      }
+    });
+  });
 </script>
