@@ -172,21 +172,21 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
     ProductModel.find({}, async function (err, items) {
         if (err) { console.log(err); }
         if (req.query.search) {
-            const search = await ProductModel.find({ Product_name: { $regex: req.query.search, $options: 'i' } }).populate('category').exec();
-            if (search) {
-                if (req.query.search == "Men" || "Women" || "Nike" || "Adidas") {
-                    for (var i = 0; i < items.length; i++) {
-                        if (items[i].category.name == req.query.search) {
-                            updatedItems.results.push(items[i]);
-                        }
-                        if (items[i].brand.name == req.query.search) {
-                            updatedItems.results.push(items[i]);
-                        }
-                    }
+        const search = await ProductModel.find({ Product_name : {$regex: req.query.search, $options: 'i' } }).populate('category').exec();
+            if(search){   
+            if(req.query.search == "Men" || "Women" || "Nike" || "Adidas"){
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].category.name == req.query.search) {
+                    updatedItems.results.push(items[i]);
                 }
-                    for (let index = 0; index < search.length; index++) {
-                        updatedItems.results.push(search[index]);
-                    }
+                if (items[i].brand.name == req.query.search) {
+                    updatedItems.results.push(items[i]);
+                }
+            }
+            }
+                for (let index = 0; index < search.length; index++) {
+                    updatedItems.results.push(search[index]);
+                }
             }
             Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                 if (err) { console.log(err); }
