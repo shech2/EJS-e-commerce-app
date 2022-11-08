@@ -30,7 +30,7 @@
             <option value="<%= Size.sizeArray[i] %>"><%= Size.sizeArray[i] %></option>
            <% } %>
         </select>
-        <b><div class="error"> </div></b>
+        <b><div class="error" id="error"> </div></b>
           <input type="number" value="1" name="quantity">
           <input type="hidden" value="<%= ProductModel._id %>" name="productId">
         <button type="submit" class="normal">Add To Cart</button>
@@ -125,7 +125,7 @@
           },
           error: function(error){
             if(error.status == 500){
-              $(".error").append("Please select size")
+              document.getElementById("error").innerHTML="Please select size";
             }
           }
         })

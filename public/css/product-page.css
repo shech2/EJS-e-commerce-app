@@ -198,4 +198,7 @@ h4 {
    .pro button:focus{
     outline: none;
    }
+   .error{
+    color: red;
+   }
    
