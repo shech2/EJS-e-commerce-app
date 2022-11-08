@@ -53,7 +53,7 @@
 
 			       <div class="filter-condition">
 				          <span>Sort by</span>
-				          <select name="" id="select">
+				          <select name="sorter" id="select">
 					        <option value="Default">Default</option>
 					        <option value="LowToHigh">Price (low to high)</option>
 					        <option value="HighToLow">Price (high to low)</option>
@@ -253,4 +253,14 @@
       }
     });
   });
+  
+  $(document).on('change',"#sorter",function (){
+    const data = $('#sorter').val();
+    const items = "<%= ProductModel.results %>"
+    
+    $.ajax({ 
+      
+    })
+  })
+
 </script>
