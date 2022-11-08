@@ -19,11 +19,11 @@ const io = new Server(server);
 
 io.on('connect', (socket) => {
     socket.on('new_product', (data) => {
-        
+
         io.emit('notification', `check our new product: ${data}!`)
     })
 
-  
+
 });
 
 // COOKIES:
@@ -64,7 +64,11 @@ const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 const brandRouters = require("./routes/brand");
 
+// Controllers:
+CartController = require("./controllers/cart");
 
+// OrderItem
+const OrderItem = require("./models/orderItem");
 
 // EXPRESS:
 app.use(express.json());
@@ -179,15 +183,14 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
                     updatedItems.results.push(items[i]);
                 }
             }
-        }else{
+            }
                 for (let index = 0; index < search.length; index++) {
                     updatedItems.results.push(search[index]);
                 }
             }
-        }
             Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                 if (err) { console.log(err); }
-                res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, ProductModel: updatedItems, Cart: cart ,search : req.query.search });
+                res.render('./pages/shop.ejs', { title: "Shop", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, ProductModel: updatedItems, Cart: cart, search: req.query.search });
             }).populate({
                 path: 'cartItems.product',
                 populate: ([
@@ -201,7 +204,7 @@ app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { //
                 if (err) { console.log(err); }
                 Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                     if (err) { console.log(err); }
-                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: res.paginatedResults, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart , search : req.query.search });
+                    res.render('./pages/shop.ejs', { title: "Shop", ProductModel: res.paginatedResults, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart, search: req.query.search });
 
                 }).populate({
                     path: 'cartItems.product',
@@ -235,7 +238,7 @@ app.get('/product-page', (req, res) => {
         Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
             if (err) { console.log(err); }
             ProductModel.findOne({ _id: req.query.id }, async function (err, product) {
-                res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", Size : product.size ,ProductModel: product, ProductModels: products, cssfile: "/css/product-page.css", user: req.cookies.user, Cart: cart });
+                res.render('./pages/product-page.ejs', { title: "Product-Page", headercss: "/css/header.css", footercss: "/css/footer.css", Size: product.size, ProductModel: product, ProductModels: products, cssfile: "/css/product-page.css", user: req.cookies.user, Cart: cart });
             });
         });
     }).populate('category').populate('brand');
@@ -284,7 +287,7 @@ app.get('/create-product', authmw.authAdmin, (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-                res.render('./pages/createProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/create-product.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands , token : process.env.FACEBOOK_TOKEN });
+                res.render('./pages/createProduct.ejs', { title: "Create Product", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/create-product.css", user: req.cookies.user, Cart: cart, category: categories, brand: brands, token: process.env.FACEBOOK_TOKEN });
             });
         });
     });
@@ -296,7 +299,7 @@ app.get('/checkout', authmw.authMiddleware, (req, res) => {
     Cart.findOne({ user: req.cookies.user }, function (err, cart) {
         if (err) { console.log(err); }
         if (cart) {
-            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.cookies.user, total: req.query.total, Cart: cart, cartItems: cart.cartItems , stripeToken : token });
+            res.render('./pages/checkout.ejs', { title: "Checkout", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/checkout.css", user: req.cookies.user, total: req.query.total, Cart: cart, cartItems: cart.cartItems, stripeToken: token });
         }
     }).populate({
         path: 'cartItems.product',
@@ -314,7 +317,7 @@ app.get('/cart', (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.render('./pages/cart.ejs', {title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", user: req.cookies.user, cartItems: cart.cartItems, Cart: cart });
+        res.render('./pages/cart.ejs', { title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", user: req.cookies.user, cartItems: cart.cartItems, Cart: cart });
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand' } });
 });

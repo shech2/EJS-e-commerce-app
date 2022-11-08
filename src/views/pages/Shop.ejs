@@ -10,12 +10,47 @@
           <header>
             <div class="filtering">
               <ul class="indicator">
-                <li data-filter="all" class="active"><a href="#">All</a></li>
-			    	    <li data-filter="Nike"><a href="#">Nike</a></li>
-				        <li data-filter="Adidas"><a href="#">Adidas</a></li>
-				        <li data-filter="Puma"><a href="#">Puma</a></li>
-				        <li data-filter="New Balance"><a href="#">New Balance</a></li>
+                <li data-filter="all" class="active"><a href="/shop?page=1&limit=12">All</a></li>
+			    	    <li data-filter="Nike"><a href="/shop?search=Nike">Nike</a></li>
+				        <li data-filter="Adidas"><a href="/shop?search=Adidas">Adidas</a></li>
+				        <li data-filter="Puma"><a href="/shop?search=Puma">Puma</a></li>
+				        <li data-filter="New Balance"><a href="/shop?search=New Balance">New Balance</a></li>
 			       </ul>
+
+             <div class="filter-condition">
+              <span>Rating</span>
+              <select name="" id="select">
+              <option value="Default">Default</option>
+              <option value="1 start"><span class="star">
+                          <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
+                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg></i></span> </option>
+                <option value="2 starts"><% for (rat2 = 0; rat2 < 2; rat2++) { %>
+                <span class="star">
+                     <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
+                                   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg></i></span> 
+                  <% } %> </option>
+                  <option value="3 starts"><% for (rat3 = 0; rat3 < 3; rat3++) { %>
+                    <span class="star">
+                       <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
+                                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg></i></span> 
+                    <% } %> </option>
+                    <option value="4 starts"><% for (rat4 = 0; rat4 < 4; rat4++) { %>
+                      <span class="star">
+                         <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
+                                       <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg></i></span> 
+                      <% } %> </option>
+                      <option value="5 starts"><% for (rat5 = 0; rat5 < 5; rat5++) { %>
+                        <span class="star">
+                           <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
+                                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                  </svg></i></span> 
+                        <% } %> </option>
+                  </select>
+              </div>
 
 			       <div class="filter-condition">
 				          <span>Sort by</span>
@@ -23,7 +58,6 @@
 					        <option value="Default">Default</option>
 					        <option value="LowToHigh">Price (low to high)</option>
 					        <option value="HighToLow">Price (high to low)</option>
-                  <option value="Rating">Rating</option>
 				        </select>
 			       </div>
           </div>
@@ -52,7 +86,7 @@
               <% for (rat=0; rat < ProductModel.results[index].rating; rat++) { %>
                 <span class="star">
                   <i class="fas fa-start"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                      fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                      fill="currentColor" class="fas fa-start" viewBox="0 0 16 16">
                       <path
                         d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                     </svg>

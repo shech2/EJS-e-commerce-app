@@ -153,6 +153,8 @@ h6{
     font-size: 12px;
    }
 
+ 
+
    #product1 .pro .des h4{
     padding-top: 7px;
     font-size: 15px;
@@ -306,7 +308,7 @@ h6{
         font-weight: bold;
     }
     .filter-condition select{
-        width: 250px;
+        width: 200px;
         padding: 0 0 0 10px;
         border: none;
         outline: none;
@@ -315,6 +317,14 @@ h6{
         background: transparent;
         cursor: pointer;
     }
+
+    .filter-condition .start i .fa-start{
+        color: rgba(243, 181, 25);
+        font-size: 12px;
+    }
+
+    
+    
 
 
     
