@@ -93,14 +93,14 @@
      var token = "EAAHXdUsF3nQBAOwIqkSM25Nh8hihB9Y7ZB0ktYhZBI3lZB9EN5DgR1wKimQfoWqtfXavcAoLZBdGNmBg59zqXcZCBdZCUv1nTZAfQqNcV42ZCoSRkGlEopienqDZBrbcZBcLNhdHsH4y6CIRKZBvT6s4ZAkW5vfyZAcsnThcTXqhk08KvN9mJUFqh3hPdzp7D7md64WgZD";
 
     $(document).on('submit',"form#myForm",function(e) {
-      const newPR = $('#product_name').val();  //socket 
+      const newPR = $('#product_name').val();  //for socket 
       e.preventDefault();
       $.ajax({
         url: '/api/create_product',
         data: $(this).serialize(),
         type: 'POST',
         success: function(data) {
-          socket.emit('new_product',newPR);
+          socket.emit('new_product',newPR);// socket emit 
 
           var image = 'localhost:3000/product-page?id=' + data.id;
           $.ajax({
