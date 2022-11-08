@@ -74,7 +74,6 @@ exports.auth_LogController = async (req, res) => {
         );
         
         const { password, ...others } = user._doc;
-        // res.status(200).json({...others, accessToken});
         console.log(JSON.stringify({ ...others, accessToken }));
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
         res.cookie("user", user, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });

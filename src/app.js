@@ -156,20 +156,17 @@ app.get('/homepage', (req, res) => {
 
 
 // GET SHOP:
-app.get('/shop', pgMiddleware.paginatedResults(ProductModel), (req, res) => { // pgMiddleware.paginatedResults(ProductModel) --> this is the middleware
-    console.log(req.query.sorter);
+app.get('/shop', pgMiddleware.paginatedResults(ProductModel),pgMiddleware.paginatedResultsSortedByPrice(ProductModel), (req, res) => {
+    console.log(req);
     if(req.query.sorter){
         const sorter = req.query.sorter;
-        if(sorter=='LowToHigh')
+        if(sorter == 'LowToHigh')
             {
                 ProductModel.find({}, async function (err) {
                     if (err) { console.log(err); }
                     Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
                         if (err) { console.log(err); }
-                        res.paginatedResults.results.sort((a,b) => {
-                            return a.price -  b.price;
-                        });
-                        res.render('./pages/shop.ejs', { title: "Shop", ProductModel: res.paginatedResults, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart, search: req.query.search });
+                        res.render('./pages/shop.ejs', { title: "Shop", ProductModel: res.paginatedResultsSortedByPrice, headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/shop.css", user: req.cookies.user, Cart: cart, search: req.query.search });
     
                     }).populate({
                         path: 'cartItems.product',

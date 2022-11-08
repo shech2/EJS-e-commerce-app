@@ -94,6 +94,7 @@
 <script type="text/javascript">
   var current_page = 1;
 
+
   if("<%=search%>"){
     document.getElementsByClassName("pagination")[0].style.display = "none";
   }
@@ -134,6 +135,9 @@
       type: "GET",
       data:{
         sorter : sorter
+      },
+      success : function(data) {
+        $(".pro-container").load("/shop?page=1&limit=12&sorter=LowToHigh .pro-container");
       }
     })  
   });
@@ -300,7 +304,7 @@
   });
   $("#all").click(function() {
     $.ajax({
-      url:"/shop",
+      url:"/shop?page=1&lmit=12",
       type: 'GET',
       success: function (data){
         $("#all").addClass("active");
