@@ -118,6 +118,7 @@ exports.updateQuantity = async (req, res) => {
 // Add size to an Item in the cart
 exports.addSizeToCart = async (req, res) => {
     const POSTProduct = await product.findById(req.body.productId);
+    const quantity = req.body.quantity;
     const size = req.body.size;
     if(size=="Select Size"){
         return res.status(500).json({message: "Error! choose size"});
@@ -135,15 +136,15 @@ exports.addSizeToCart = async (req, res) => {
         if (error) return res.status(400).json({ error });
         if (cart) { // if cart already exists // if cartItem does not exist
             const product = POSTProduct;
-            const item = cart.cartItems.find(c => c.product == product.id);
+            const item = cart.cartItems.find(c => c.product.toString() == product._id.toString());
             if (item) {
                 CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": product }, {
                     "$set": {
                         "cartItems.$": {
-                            product: POSTProduct.id,
-                            quantity: POSTProduct.quantity + item.quantity,
-                            price: POSTProduct.price,
-                            brand: POSTProduct.brand
+                            product: item.product,
+                            quantity: item.quantity + parseInt(quantity),
+                            price: item.price,
+                            brand: item.brand
                         }
                     }
                 }).exec((error, cart) => {
@@ -158,7 +159,7 @@ exports.addSizeToCart = async (req, res) => {
                     $push: {
                         cartItems: {
                             product: product.id,
-                            quantity: product.quantity,
+                            quantity: quantity,
                             price: product.price,
                             brand: product.brand
                         }
