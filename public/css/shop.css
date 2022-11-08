@@ -318,10 +318,6 @@ h6{
         cursor: pointer;
     }
 
-    .filter-condition .start i .fa-start{
-        color: rgba(243, 181, 25);
-        font-size: 12px;
-    }
     .clickable{
        cursor: pointer !important; 
     }
