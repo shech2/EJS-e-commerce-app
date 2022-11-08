@@ -64,12 +64,6 @@ const orderRouters = require("./routes/orders");
 const categoryRouters = require("./routes/categories");
 const brandRouters = require("./routes/brand");
 
-// Controllers:
-CartController = require("./controllers/cart");
-
-// OrderItem
-const OrderItem = require("./models/orderItem");
-
 // EXPRESS:
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));

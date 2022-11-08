@@ -16,7 +16,7 @@
 				        <li data-filter="Puma"><a href="/shop?search=Puma">Puma</a></li>
 				        <li data-filter="New Balance"><a href="/shop?search=New Balance">New Balance</a></li>
 			       </ul>
-             
+
              <div class="filter-condition">
               <span>Rating</span>
               <select name="" id="select">
@@ -125,6 +125,7 @@
 
 <script type="text/javascript">
   var current_page = 1;
+
   if("<%=search%>"){
     document.getElementsByClassName("pagination")[0].style.display = "none";
   }
@@ -253,14 +254,5 @@
       }
     });
   });
-  
-  $(document).on('change',"#sorter",function (){
-    const data = $('#sorter').val();
-    const items = "<%= ProductModel.results %>"
-    
-    $.ajax({ 
-      
-    })
-  })
 
 </script>
