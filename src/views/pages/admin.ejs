@@ -1,10 +1,11 @@
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <div class="" style="position: absolute;
 left: 50%;
 transform: translate(-50%, -50%); margin-top: 3rem;">
     <button class="normal" style="border-radius: 5px; padding: 10px;" onclick="usersMenu()">Users Menu</button>
     <button class="normal" style="border-radius: 5px;padding: 10px;" onclick="productMenu()">Products Menu</button>
     <button class="normal" style="border-radius: 5px;padding: 10px;" onclick="orderMenu()">Orders Menu</button>
-    <button class="normal" style="border-radius: 5px;padding: 10px;">Statistics Menu</button>
+    <button class="normal" style="border-radius: 5px;padding: 10px;" onclick="StatisticsMenu()">Statistics Menu</button>
 
 </div>
 <div id="users" style="margin-top: 10rem;margin-bottom: 10rem;display: none;">
@@ -148,6 +149,22 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
     </table>
     </div>
 </div>
+
+<div id="statistics" style="display: none;">
+    <b><u><h1 style="padding:80px;">Statistics Menu:</h1></u></b>
+    <div class="stat-buttons">
+        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;" onclick="ordersStatistics()">Orders</button>
+        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;" onclick="usersStatistics()">Users</button>
+    </div class="graph" id="ordersGraph">
+        <svg id="orders-graph"></svg>
+    </div>
+    </div class="graph" id="usersGraph" style="display:none;">
+
+    </div>
+
+
+</div>
+
 <div id="Orders" style="display: none;">
     <b><u><h1 style="padding: 80px;">Orders:</h1></u></b>
     <div style="overflow-x:auto;">
@@ -386,5 +403,16 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             x.style.display = "none";
         }
     }
-
+    function StatisticsMenu() {
+        var x = document.getElementById("statistics");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+const graphX = 12;
+const graphY = 100;
+const margin = 40;
+const data=[];
 </script>
