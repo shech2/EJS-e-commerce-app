@@ -1,6 +1,17 @@
-<div class="head">
-    <h1>M.Y.S.O - About us</h1>
+<div>
+<canvas id="canvas"> </canvas>
 </div>
+
+<script>
+  const canvas = document.querySelector("#canvas");
+  const ctx = canvas.getContext("2d");
+  ctx.font= "30px Spartan";
+  ctx.textAlign = "center";
+  ctx.fillStyle = "grey";
+  ctx.fillText("M.Y.S.O", canvas.width/2, canvas.height/2);
+</script>
+
+
 <section style=" display: flex;">
 <div class="text">
     <p>Welcome to M.Y.S.O, the best sports brands shop.</p>
@@ -35,6 +46,7 @@
     </div>
   </div>
   </section>
+
 
   <script>
     let weather = {
