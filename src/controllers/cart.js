@@ -100,9 +100,10 @@ exports.updateQuantity = async (req, res) => {
     const size = req.body.size;
 
     const productPOST = await product.findById(productId);
+    
     if(quantity > 0){
     if (productId == productPOST.id && size == req.body.size) {
-        CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
+        CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id , "cartItems.size" : size }, {
             "$set": {
                 "cartItems.$": {
                     product: productPOST.id,

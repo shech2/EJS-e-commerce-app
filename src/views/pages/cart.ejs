@@ -126,7 +126,8 @@
             url: "/update-cart",
             data: {
                 productId: product,
-                quantity: quantity
+                quantity: quantity,
+                size: $(this).parent().parent().parent().find("input[name='size']").val()
             },
             type: 'POST',
             success: function (data) {
