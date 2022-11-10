@@ -95,36 +95,38 @@ exports.removeAll = async (req, res) => {
 
 // Update quantity of item in cart
 exports.updateQuantity = async (req, res) => {
-    const productId = req.body.productId;
-    const quantity = req.body.quantity;
-   
+  const productId = req.body.productId;
+  const quantity = req.body.quantity;
+  const size = req.body.size;
 
-    const productPOST = await product.findById(productId);
-    const size = productPOST.size.size;
+  const productPOST = await product.findById(productId);
 
-    if(quantity > 0){
+  if (quantity > 0) {
     if (product) {
-        CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
-            "$set": {
-                "cartItems.$": {
-                    product: productPOST.id,
-                    quantity: quantity,
-                    price: productPOST.price,
-                    brand: productPOST.brand,
-                    size : size
-                }
-            }
-        }).exec((error, _cart) => {
-            if (error) return res.status(400).json({ error });
-            if (_cart) {
-                res.status(201).json({ _cart });
-            }
-        })
+      CartController.findOneAndUpdate(
+        { user: req.user.id, "cartItems.product": productPOST.id , "cartItems.size": size},
+        {
+          $set: {
+            "cartItems.$": {
+              product: productPOST.id,
+              quantity: quantity,
+              price: productPOST.price,
+              brand: productPOST.brand,
+              size: size,
+            },
+          },
+        }
+      ).exec((error, _cart) => {
+        if (error) return res.status(400).json({ error });
+        if (_cart) {
+          res.status(201).json({ _cart });
+        }
+      });
     }
-    } else{
-    return res.status(400).json({ error: 'Quantity cannot be less than 1' });
-    }
-}
+  } else {
+    return res.status(400).json({ error: "Quantity cannot be less than 1" });
+  }
+};
 
 // Add size to an Item in the cart
 exports.addSizeToCart = async (req, res) => {
