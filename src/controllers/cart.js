@@ -1,6 +1,7 @@
 const CartController = require('../models/cart');
 const product = require('../models/Product');
 
+
 // Add item to cart
 exports.addItemToCart = async (req, res) => {
     const POSTProduct = await product.findById(req.body.productId);
@@ -49,6 +50,7 @@ exports.addItemToCart = async (req, res) => {
         }
     })
 }
+
 
 // Remove item from cart
 exports.RemoveFromCart = async (req, res) => {
@@ -188,6 +190,7 @@ exports.updateSizeArray = async (req, res) => {
     cart.cartItems.forEach(async (item) => {
     const sizeCart = item.product.size.size;
     item.product.size.sizeArray = item.product.size.sizeArray.filter((item) => item != sizeCart);
+    console.log(item.product.size.sizeArray);
     product.findOneAndUpdate({ _id: item.product._id }, {
             $set: {
                 "size.sizeArray" : item.product.size.sizeArray

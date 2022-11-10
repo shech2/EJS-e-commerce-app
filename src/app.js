@@ -279,7 +279,6 @@ app.get('/admin', authmw.authAdmin, (req, res) => { // authmw.authAdmin --> this
                     if (err) {
                         console.log(err);
                     }
-                    console.log(products);
                     Order.find({}, async function (err, orders) {
                         if (err) {
                             console.log(err);
@@ -337,7 +336,6 @@ app.get('/cart', (req, res) => {
         if (err) {
             console.log(err);
         }
-        console.log(cart);
         res.render('./pages/cart.ejs', { title: "Cart", headercss: "/css/header.css", footercss: "/css/footer.css", cssfile: "/css/cart.css", user: req.cookies.user, cartItems: cart.cartItems, Cart: cart });
     }
     ).populate({ path: 'cartItems.product', populate: { path: 'brand'} });  
