@@ -1,6 +1,7 @@
 const CartController = require('../models/cart');
 const product = require('../models/Product');
 
+
 // Add item to cart
 exports.addItemToCart = async (req, res) => {
     const POSTProduct = await product.findById(req.body.productId);
@@ -50,6 +51,7 @@ exports.addItemToCart = async (req, res) => {
     })
 }
 
+
 // Remove item from cart
 exports.RemoveFromCart = async (req, res) => {
     const productId = req.body.productId;
@@ -95,23 +97,9 @@ exports.removeAll = async (req, res) => {
 exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
     const quantity = req.body.quantity;
-   
+    const size = req.body.size;
 
     const productPOST = await product.findById(productId);
-<<<<<<< HEAD
-
-    CartController.findOne({ user: req.user.id }).exec((error, cart) => {
-        if (error) return res.status(400).json({ error });
-        if (cart) { // if cart already exists // if cartItem does not exist
-            const product = productPOST;
-
-            let exist = false;
-            for(let i=0;i<cart.cartItems.length;i++){
-                if(cart.cartItems[i].product.toString()==product.id.toString() && cart.cartItems[i].size.size==size){
-                    exist = true;
-                    cart.cartItems[i].quantity+=1;
-                    break;
-=======
     if(quantity > 0){
     if (productId == productPOST.id && size == req.body.size) {
         CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
@@ -122,28 +110,18 @@ exports.updateQuantity = async (req, res) => {
                     price: productPOST.price,
                     brand: productPOST.brand,
                     size : size
->>>>>>> d364215f77d0d1bb3b3606fe6f35db5de1cb090a
                 }
-                    exist
-                    ? cart.save()
-                    : cart
-                        .updateOne({
-                          $set: {
-                           "cartItems.$": {
-                              product: product.id,
-                              quantity: quantity,
-                              price: product.price,
-                              brand: product.brand,
-                              size: size,
-                            },
-                          },
-                        })
-                        .exec(() => res.status(201).json({ cart }));
             }
-        }else{
-            console.log('no cart found')
-        }
-    })
+        }).exec((error, _cart) => {
+            if (error) return res.status(400).json({ error });
+            if (_cart) {
+                res.status(201).json({ _cart });
+            }
+        })
+    }
+    } else{
+    return res.status(400).json({ error: 'Quantity cannot be less than 1' });
+    }
 }
 
 // Add size to an Item in the cart
@@ -202,6 +180,7 @@ exports.updateSizeArray = async (req, res) => {
     cart.cartItems.forEach(async (item) => {
     const sizeCart = item.product.size.size;
     item.product.size.sizeArray = item.product.size.sizeArray.filter((item) => item != sizeCart);
+    console.log(item.product.size.sizeArray);
     product.findOneAndUpdate({ _id: item.product._id }, {
             $set: {
                 "size.sizeArray" : item.product.size.sizeArray
