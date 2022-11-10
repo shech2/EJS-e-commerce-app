@@ -413,10 +413,16 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             x.style.display = "none";
         }
     }
-const graphX = 12;
-const graphY = 100;
-const margin = 40;
-const data=[];
-console.log("--------------------------------------------------------")
-console.log("orders:", orders);
+
+   async function ordersStatistics() {
+        $.ajax({
+            url: "/ordersStatistics",
+            type: 'GET',
+            success: function (data)
+            {
+                
+            }
+        })
+    }
+
 </script>
