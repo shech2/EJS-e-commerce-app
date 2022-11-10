@@ -157,6 +157,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
         <button class="normal centerButton" style="border-radius: 5px;padding: 10px;" onclick="usersStatistics()">Users</button>
     </div class="graph" id="ordersGraph">
         <svg id="orders-graph"></svg>
+        
     </div>
     </div class="graph" id="usersGraph" style="display:none;">
 
@@ -266,6 +267,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
             <% totalOrders += Orders[i].totalPrice %>
                 <% } %>
                 <h1 class="container" style="left: 15%;position:relative;padding:10px">Total Orders price : $<%= totalOrders%></h1>
+                
 <script>
 
     $('form#PutForm').submit(function (e) {
@@ -415,4 +417,6 @@ const graphX = 12;
 const graphY = 100;
 const margin = 40;
 const data=[];
+console.log("--------------------------------------------------------")
+console.log("orders:", orders);
 </script>
