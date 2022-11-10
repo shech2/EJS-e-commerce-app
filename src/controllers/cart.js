@@ -97,9 +97,10 @@ exports.removeAll = async (req, res) => {
 exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
     const quantity = req.body.quantity;
-    const size = req.body.size;
+   
 
     const productPOST = await product.findById(productId);
+    const size = productPOST.size.size;
 
     if(quantity > 0){
     if (product) {
