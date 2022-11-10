@@ -36,6 +36,7 @@
                                 <td>
                                     <form id="remForm">
                                         <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
+                                        <input type="hidden" name="size" value="<%- cartItems[i].product.size.size %>">
                                         <button type="submit"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                     height="16" fill="currentColor" class="fa-time" viewBox="0 0 16 16">
                                                     <path
@@ -122,6 +123,8 @@
     $(document).on('change', "#quantity", function (e) {
         const quantity = $(this).val();
         const product = $(this).parent().parent().parent().find("input[name='productId']").val();
+        const size = $(this).parent().parent().parent().find("input[name='size']").val();
+        console.log(size);
         $.ajax({
             url: "/update-cart",
             data: {
