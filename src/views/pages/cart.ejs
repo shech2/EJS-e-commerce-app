@@ -53,7 +53,7 @@
                                 <td>$<%= cartItems[i].product.price %>
                                 </td>
                                 <td>
-                                    <%= cartItems[i].product.size.size %>
+                                    <%= cartItems[i].size %>
                                 </td>
                                 <td><input type="number" id="quantity" min="1" value="<%= cartItems[i].quantity %>">
                                 </td>
@@ -100,7 +100,6 @@
                         <% } %>
 
 </div>
-
 
 <script>
     $(document).on('click', "form#remForm", function (e) {

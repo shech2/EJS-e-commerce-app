@@ -194,7 +194,7 @@ app.get('/shop',Pagination,PaginationSorted, (req, res) => {
         if (req.query.search) {
         const search = await ProductModel.find({ Product_name : {$regex: req.query.search, $options: 'i' } }).populate('category').exec();
             if(search){   
-            if(req.query.search == "Men" || "Women" || "Nike" || "Adidas"){
+            if(req.query.search == "Men" || "Women" || "Nike" || "Adidas" || "men" || "women"){
             for (var i = 0; i < items.length; i++) {
                 if (items[i].category.name == req.query.search) {
                     updatedItems.results.push(items[i]);
