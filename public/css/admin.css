@@ -104,5 +104,18 @@ button.normal {
 #users h1{
     font-family: 'Poppins', sans-serif;
 }
+#statistics{
+    display: inline-block;
+    align-items: center;
+}
 
+.stat-buttons{
+    text-align: center;
+    
+}
+
+#orders-graph{
+    width: 500px;
+    height: 500px;
+}
 
