@@ -36,6 +36,7 @@
                                 <td>
                                     <form id="remForm">
                                         <input type="hidden" name="productId" value="<%- cartItems[i].product.id %>">
+                                        <input type="hidden" name="size" value="<%- cartItems[i].size %>">
                                         <button type="submit"><i><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                     height="16" fill="currentColor" class="fa-time" viewBox="0 0 16 16">
                                                     <path
@@ -52,7 +53,7 @@
                                 <td>$<%= cartItems[i].product.price %>
                                 </td>
                                 <td>
-                                    <%= cartItems[i].product.size.size %>
+                                    <%= cartItems[i].size %>
                                 </td>
                                 <td><input type="number" id="quantity" min="1" value="<%= cartItems[i].quantity %>">
                                 </td>
@@ -99,7 +100,6 @@
                         <% } %>
 
 </div>
-
 
 <script>
     $(document).on('click', "form#remForm", function (e) {
