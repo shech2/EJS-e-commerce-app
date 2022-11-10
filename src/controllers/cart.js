@@ -95,10 +95,11 @@ exports.removeAll = async (req, res) => {
 exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
     const quantity = req.body.quantity;
-    const size = req.body.size;
-
+    
     const productPOST = await product.findById(productId);
-
+    const size = productPOST.size.size;
+    console.log("This is the size: ",size);
+    
     CartController.findOne({ user: req.user.id }).exec((error, cart) => {
         if (error) return res.status(400).json({ error });
         if (cart) { // if cart already exists // if cartItem does not exist
@@ -115,7 +116,7 @@ exports.updateQuantity = async (req, res) => {
                     ? cart.save()
                     : cart
                         .updateOne({
-                          $set: {
+                          $push: {
                            "cartItems.$": {
                               product: product.id,
                               quantity: quantity,
@@ -126,11 +127,9 @@ exports.updateQuantity = async (req, res) => {
                           },
                         })
                         .exec(() => res.status(201).json({ cart }));
-            }
-        }else{
-            console.log('no cart found')
-        }
-    })
+                    }
+                }
+            });
 }
 
 // Add size to an Item in the cart
