@@ -95,9 +95,10 @@ exports.removeAll = async (req, res) => {
 exports.updateQuantity = async (req, res) => {
     const productId = req.body.productId;
     const quantity = req.body.quantity;
-    const size = req.body.size;
+   
 
     const productPOST = await product.findById(productId);
+<<<<<<< HEAD
 
     CartController.findOne({ user: req.user.id }).exec((error, cart) => {
         if (error) return res.status(400).json({ error });
@@ -110,6 +111,18 @@ exports.updateQuantity = async (req, res) => {
                     exist = true;
                     cart.cartItems[i].quantity+=1;
                     break;
+=======
+    if(quantity > 0){
+    if (productId == productPOST.id && size == req.body.size) {
+        CartController.findOneAndUpdate({ user: req.user.id, "cartItems.product": productPOST.id }, {
+            "$set": {
+                "cartItems.$": {
+                    product: productPOST.id,
+                    quantity: quantity,
+                    price: productPOST.price,
+                    brand: productPOST.brand,
+                    size : size
+>>>>>>> d364215f77d0d1bb3b3606fe6f35db5de1cb090a
                 }
                     exist
                     ? cart.save()
