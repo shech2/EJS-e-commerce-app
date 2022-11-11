@@ -397,8 +397,9 @@ select {
 
 /* Stripe */
 
-form {
-    width: 30vw;
+.forms {
+    width: 70vw;
+    height: 50%;
     min-width: 500px;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
@@ -424,7 +425,8 @@ form {
 }
 
 /* Buttons and links */
-button {
+#payment-stripe button,
+#payment-stripe span {
     background: #5469d4;
     font-family: Arial, sans-serif;
     color: #ffffff;
@@ -440,11 +442,13 @@ button {
     width: 100%;
 }
 
-button:hover {
+#payment-stripe button:hover,
+#payment-stripe span:hover {
     filter: contrast(115%);
 }
 
-button:disabled {
+#payment-stripe button:disabled,
+#payment-stripe span:disabled {
     opacity: 0.5;
     cursor: default;
 }

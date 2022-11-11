@@ -23,139 +23,137 @@
                     </div>
                 </div>
             </div>
-            <div class="row cart-body">
-                <form class="form-horizontal" id="createForm">
-                    <div class="area review">
-                        <!--REVIEW ORDER-->
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                Review Order <div class="pull-right"><small><a class="afix-1" href="/cart">Edit
-                                            Cart</a></small></div>
-                            </div>
-                            <div class="panel-body cart">
-                                <div class="form-group" id="cartItems">
-                                    <% for(cartIndex=0; cartIndex<Cart.cartItems.length; cartIndex++){ %>
-                                        <div class="product">
-                                            <img class="img-responsive"
-                                                src="<%= Cart.cartItems[cartIndex].product.image %>">
-                                            <div class="product-info">
-                                                <%=Cart.cartItems[cartIndex].product.Product_name%>
+            <div class="forms row cart-body">
+                <div>
+                    <form class="form-horizontal" id="createForm">
+                        <div class="area review">
+                            <!--REVIEW ORDER-->
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    Review Order <div class="pull-right"><small><a class="afix-1" href="/cart">Edit
+                                                Cart</a></small></div>
+                                </div>
+                                <div class="panel-body cart">
+                                    <div class="form-group" id="cartItems">
+                                        <% for(cartIndex=0; cartIndex<Cart.cartItems.length; cartIndex++){ %>
+                                            <div class="product">
+                                                <img class="img-responsive"
+                                                    src="<%= Cart.cartItems[cartIndex].product.image %>">
+                                                <div class="product-info">
+                                                    <%=Cart.cartItems[cartIndex].product.Product_name%>
+                                                </div>
+                                                <div id="size" class="product-info">Size:
+                                                    <%=Cart.cartItems[cartIndex].product.size.size %>
+                                                </div>
+                                                <div class="product-info">Quantity:
+                                                    <%=Cart.cartItems[cartIndex].quantity%>
+                                                </div>
+                                                <input type="hidden" name="productId"
+                                                    value="<%= Cart.cartItems[cartIndex].product._id %>">
+                                                <div class="text-right price">
+                                                    price: $</span>
+                                                    <%= Cart.cartItems[cartIndex].price%>
+                                                </div>
                                             </div>
-                                            <div id="size" class="product-info">Size:
-                                                <%=Cart.cartItems[cartIndex].product.size.size %>
-                                            </div>
-                                            <div class="product-info">Quantity: <%=Cart.cartItems[cartIndex].quantity%>
-                                            </div>
-                                            <input type="hidden" name="productId"
-                                                value="<%= Cart.cartItems[cartIndex].product._id %>">
-                                            <div class="text-right price">
-                                                price: $</span>
-                                                <%= Cart.cartItems[cartIndex].price%>
-                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <strong>Subtotal</strong>
+                                            <div class="pull-right"><span>$</span><span>
+                                                    <%= total %>
+                                                </span></div>
                                         </div>
-                                        <% } %>
-                                </div>
-                                <div class="form-group">
-                                    <hr />
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <strong>Subtotal</strong>
-                                        <div class="pull-right"><span>$</span><span>
-                                                <%= total %>
-                                            </span></div>
+                                        <div class="col-xs-12">
+                                            <small>taxes</small>
+                                            <div class="pull-right"><span>$</span><span>
+                                                    <%= tax %>
+                                                </span></div>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-12">
-                                        <small>taxes</small>
-                                        <div class="pull-right"><span>$</span><span>
-                                                <%= tax %>
-                                            </span></div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <strong>Order Total</strong>
+                                            <div class="pull-right"><span>$</span><span>
+                                                    <%= +tax + + total %>
+                                                </span></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <hr />
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <strong>Order Total</strong>
-                                        <div class="pull-right"><span>$</span><span>
-                                                <%= +tax + + total %>
-                                            </span></div>
+                            </div>
+                            <!--REVIEW ORDER END-->
+                        </div>
+                        <div class="area adress">
+                            <!--SHIPPING METHOD-->
+                            <div class="panel panel-info adress">
+                                <div class="panel-heading">Address</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <h4>Shipping Address</h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>Country:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" name="country" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>Address:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" name="shippingAddress" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>City:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" name="city" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>State:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" name="state" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" name="zip" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>Phone Number:</strong></div>
+                                        <div class="col-md-12"><input type="text" name="phone" class="form-control"
+                                                value="" /></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--REVIEW ORDER END-->
-                    </div>
-                    <div class="area adress">
-                        <!--SHIPPING METHOD-->
-                        <div class="panel panel-info adress">
-                            <div class="panel-heading">Address</div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <h4>Shipping Address</h4>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>Country:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="country" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>Address:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="text" name="shippingAddress" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>City:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="text" name="city" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>State:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="text" name="state" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="text" name="zip" class="form-control" value="" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>Phone Number:</strong></div>
-                                    <div class="col-md-12"><input type="text" name="phone" class="form-control"
-                                            value="" /></div>
-                                </div>
-                            </div>
+                        <input type="hidden" name="user" value="<%- user._id %>">
+                        <input type="hidden" name="totalPrice" value="<%= tax + + total %>">
+                        <input type="hidden" name="orderItems" value="<%= JSON.stringify(cartItems) %>">
+                    </form>
+                    <form id="payment-stripe" class="container">
+                        <div id="payment-element">
+                            <!--Stripe.js injects the Payment Element-->
                         </div>
-                    </div>
-                    <input type="hidden" name="user" value="<%- user._id %>">
-                    <input type="hidden" name="totalPrice" value="<%= tax + + total %>">
-                    <input type="hidden" name="orderItems" value="<%= JSON.stringify(cartItems) %>">
-                </form>
-                <form id="payment-stripe" class="container">
-                    <div id="payment-element">
-                        <!--Stripe.js injects the Payment Element-->
-                    </div>
-                    <button id="submit">
-                        <div class="spinner hidden" id="spinner"></div>
-                        <span id="button-text">Pay now</span>
-                    </button>
-                    <div id="payment-message" class="hidden"></div>
-                </form>
-                <script src="https://js.stripe.com/v3/"></script>
+                        <button id="submit">
+                            <div class="spinner hidden" id="spinner"></div>
+                            <span id="button-text">Pay now</span>
+                        </button>
+                        <div id="payment-message" class="hidden"></div>
+                    </form>
+                    <script src="https://js.stripe.com/v3/"></script>
+                </div>
             </div>
             <div class="row cart-footer">
-
             </div>
         </div>
         <% } %>
+
+
             <script>window.onbeforeunload = function () {
                     localStorage.setItem("city", $("#createForm").find("input[name='city']").val());
                     localStorage.setItem("country", $("#createForm").find("input[name='country']").val());
