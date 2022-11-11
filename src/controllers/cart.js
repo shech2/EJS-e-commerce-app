@@ -218,17 +218,19 @@ exports.checkout = async (req, res) => {
     totalAmount = totalAmount + totalAmount * tax;
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: parseInt(totalAmount),
-        currency: "usd",
+        amount: totalAmount * 100,
+        currency: 'usd',
         automatic_payment_methods: {
             enabled: true,
         },
-
+        customer: {
+            customer: req.user.username,
+            email: req.user.email
+        },
 
     });
-
-
     res.send({
         clientSecret: paymentIntent.client_secret,
     });
-}
+};
+
