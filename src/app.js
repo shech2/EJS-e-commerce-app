@@ -38,7 +38,7 @@ const pgMiddleware = require("./middleware/paginationMiddleWare");
 const bp = require("body-parser");
 const morgan = require("morgan");
 app.use(morgan("tiny"));
-// const d3 = require('d3');
+const d3 = require('d3');
 
 // Models:
 const ProductModel = require("./models/Product");
@@ -387,7 +387,7 @@ app.get("/admin", authmw.authAdmin, (req, res) => {
 });
 
 app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
-  console.log("innnnnnnnnnnnnnnnn");
+
   const Orders = await Order.aggregate(
     [
       {
@@ -400,7 +400,7 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     ]
   )
   console.log("dateOrdered", Orders);
-  console.log("-----------------------");
+  
   const orderByDays = [
     {day:"Sunday", amount:0},
     {day:"Monday", amount:0},
@@ -415,7 +415,8 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     const day = Orders[index].orderDayInWeek;
     orderByDays[day-1].amount++;
  }
-    console.log("orderByDays: ", orderByDays)
+    
+    res.send(orderByDays)
   
 });
 
