@@ -500,7 +500,7 @@ app.get("/cart", (req, res) => {
 
 // GET User Profile Page:
 app.get("/profile", authmw.authMiddleware, (req, res) => {
-  Order.find({ user: req.user.id }, async function (err, orders) {
+  Order.find({ user: req.cookies.user }, async function (err, orders) {
     if (err) {
       console.log(err);
     }
@@ -508,6 +508,7 @@ app.get("/profile", authmw.authMiddleware, (req, res) => {
       if (err) {
         console.log(err);
       }
+      console.log("orders", orders);
       res.render("./pages/profile.ejs", {
         title: "Profile",
         headercss: "/css/header.css",
@@ -517,8 +518,10 @@ app.get("/profile", authmw.authMiddleware, (req, res) => {
         orders: orders,
         Cart: cart,
       });
-    });
-  });
+    })
+  })
+    .populate({ path: "orderItems", populate: { path: "product" } })
+    .populate("user");
 });
 
 // POST for login and signup:
