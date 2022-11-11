@@ -135,6 +135,7 @@
                         <input type="hidden" name="totalPrice" value="<%= tax + + total %>">
                         <input type="hidden" name="orderItems" value="<%= JSON.stringify(cartItems) %>">
                     </form>
+                    <h3 style="color: red;font-size: small;" class="error"></h3>
                     <form id="payment-stripe" class="container">
                         <div id="payment-element">
                             <!--Stripe.js injects the Payment Element-->
@@ -152,7 +153,6 @@
             </div>
         </div>
         <% } %>
-
 
             <script>window.onbeforeunload = function () {
                     localStorage.setItem("city", $("#createForm").find("input[name='city']").val());
@@ -258,6 +258,12 @@
                                 type: "POST",
                                 data: OrderJson,
                                 contentType: "application/json",
+                                error: function (data) {
+                                    if (data.status == 400) {
+                                        $(".error").append(data.responseJSON.error);
+                                    }
+
+                                },
                                 success: function (data) {
                                     $.ajax({
                                         url: "/update-size-array",
@@ -266,8 +272,7 @@
                                             sizeArray: size,
                                         },
                                         success: function (data) {
-                                            // localStorage.clear();
-                                            console.log("Success", data);
+                                            localStorage.clear();
                                             $.ajax({
                                                 url: "/remove-all",
                                                 data: OrderJson,
@@ -328,7 +333,4 @@
                         document.querySelector("#button-text").classList.remove("hidden");
                     }
                 }
-
-
-
             </script>

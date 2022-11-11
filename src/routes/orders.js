@@ -9,8 +9,8 @@ router.get("/", async (req, res) => {
     .sort({ dateOrdered: -1 }); // -1 it means descending order
 
   if (!orderList) {
-   res.status(500).json({ success: false });
-  
+    res.status(500).json({ success: false });
+
   }
   res.send(orderList);
 });
@@ -65,7 +65,7 @@ router.post("/create-order", async (req, res) => {
   );
 
   const orderItemsIdsResolved = await orderItemsIds;
-  
+
   //attach the orderItemsIds to the order
   let order = new Order({
     orderItems: orderItemsIdsResolved,
@@ -79,26 +79,28 @@ router.post("/create-order", async (req, res) => {
     totalPrice: req.body.totalPrice,
     user: req.body.user,
   });
-  order = await order.save();
+  try {
+    order = await order.save();
 
-  if (!order) return res.status(400).send("the order cannot be created!");
-
-  res.send(order);
+    res.send(order);
+  } catch (error) {
+    return res.status(400).send({ error: error.message });
+  }
 });
 
 //delete order
 router.delete("/order/:id", (req, res) => {
   Order.findByIdAndRemove(req.params.id).then(async order => {
-      if (order) {
-        await order.orderItems.map(async orderItem => {
-          await OrderItem.findByIdAndRemove(orderItem);
-        });
-        return res
-          .status(200).json({ success: true, message: "the order is deleted!" });
-      } else {
-        return res.status(404).json({ success: false, message: "order not found!" });
-      }
-    })
+    if (order) {
+      await order.orderItems.map(async orderItem => {
+        await OrderItem.findByIdAndRemove(orderItem);
+      });
+      return res
+        .status(200).json({ success: true, message: "the order is deleted!" });
+    } else {
+      return res.status(404).json({ success: false, message: "order not found!" });
+    }
+  })
     .catch((err) => {
       return res.status(400).json({ success: false, error: err });
     });

@@ -392,32 +392,32 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     [
       {
         $project:
-          {
-            _id: 0,
-            orderDayInWeek: { $dayOfWeek: "$dateOrdered" }
-          }
+        {
+          _id: 0,
+          orderDayInWeek: { $dayOfWeek: "$dateOrdered" }
+        }
       }
     ]
   )
   console.log("dateOrdered", Orders);
-  
+
   const orderByDays = [
-    {day:"Sunday", amount:0},
-    {day:"Monday", amount:0},
-    {day:"Tuesday", amount:0},
-    {day:"Wednesday", amount:0},
-    {day:"Thursay", amount:0},
-    {day:"Friday", amount:0},
-    {day:"Saturday", amount:0}
+    { day: "Sunday", amount: 0 },
+    { day: "Monday", amount: 0 },
+    { day: "Tuesday", amount: 0 },
+    { day: "Wednesday", amount: 0 },
+    { day: "Thursay", amount: 0 },
+    { day: "Friday", amount: 0 },
+    { day: "Saturday", amount: 0 }
   ]
 
   for (let index = 0; index < Orders.length; index++) {
     const day = Orders[index].orderDayInWeek;
-    orderByDays[day-1].amount++;
- }
-    
-    res.send(orderByDays)
-  
+    orderByDays[day - 1].amount++;
+  }
+
+  res.send(orderByDays)
+
 });
 
 
@@ -457,6 +457,10 @@ app.get("/checkout", authmw.authMiddleware, (req, res) => {
     if (err) {
       console.log(err);
     }
+    var total = 0;
+    cart.cartItems.forEach((item) => {
+      total += item.price * item.quantity;
+    });
     if (cart) {
       res.render("./pages/checkout.ejs", {
         title: "Checkout",
@@ -464,7 +468,7 @@ app.get("/checkout", authmw.authMiddleware, (req, res) => {
         footercss: "/css/footer.css",
         cssfile: "/css/checkout.css",
         user: req.cookies.user,
-        total: req.query.total,
+        total: total,
         Cart: cart,
         cartItems: cart.cartItems,
         stripeToken: token,
