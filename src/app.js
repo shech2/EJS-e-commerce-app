@@ -388,7 +388,6 @@ app.get("/admin", authmw.authAdmin, (req, res) => {
 
 app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
   console.log("innnnnnnnnnnnnnnnn");
-  
   const Orders = await Order.aggregate(
     [
       {
@@ -408,38 +407,17 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     {day:"Tuesday", amount:0},
     {day:"Wednesday", amount:0},
     {day:"Thursay", amount:0},
-    {day:"Friday", amount:0}
+    {day:"Friday", amount:0},
+    {day:"Saturday", amount:0}
   ]
 
-    for (let index = 0; index < Orders.length; index++) {
-      // orderByDays[Order[index]].amount ++;
-     const {orderDayInWeek} = Orders;
-     console.log("------------------------------");
-     console.log(orderDayInWeek);
-
-      orderByDays[ Order[index].orderDayInWeek ].amount++;
-    }
+  for (let index = 0; index < Orders.length; index++) {
+    const day = Orders[index].orderDayInWeek;
+    orderByDays[day-1].amount++;
+ }
     console.log("orderByDays: ", orderByDays)
-    
-    
-  
-
   
 });
-
-
-
-//   $match: {
-    //     dateOrdered: {
-    //       $gte: "2022-09-10T20:22:19.930+00:00",
-    //       $lte: "2022-11-10T20:22:33.929+00:00",
-    //     },
-    //   },
-    // },
-    // { $group: { status: "Pending", count: { $sum: 1 } } },
-
-
-
 
 
 // GET Create-Product page:
