@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row cart-body">
-                <form class="form-horizontal" method="POST" action="/create-order" id="createForm">
+                <form class="form-horizontal" id="createForm">
                     <div class="area review">
                         <!--REVIEW ORDER-->
                         <div class="panel panel-info">
@@ -135,139 +135,200 @@
                             </div>
                         </div>
                     </div>
-                    <div class="area payment">
-                        <div class="panel panel-info">
-                            <div class="panel-heading"><span><i class="glyphicon glyphicon-lock"></i></span> Secure
-                                Payment</div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>Card Type:</strong></div>
-                                    <div class="col-md-12">
-                                        <select id="CreditCardType" name="CreditCardType" class="form-control">
-                                            <option value="5">Visa</option>
-                                            <option value="6">MasterCard</option>
-                                            <option value="7">American Express</option>
-                                            <option value="8">Discover</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>Credit Card Number:</strong></div>
-                                    <div class="col-md-12"><input type="text" class="form-control" name="car_number"
-                                            value="" /></div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><strong>Card CVV:</strong></div>
-                                    <div class="col-md-12"><input type="text" class="form-control" name="car_code"
-                                            value="" /></div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <strong>Expiration Date</strong>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control card_exp" name="">
-                                            <option value="">Month</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                            <option value="07">07</option>
-                                            <option value="08">08</option>
-                                            <option value="09">09</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="">
-                                            <option value="">Year</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2023">2023</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2025">2025</option>
-                                            <option value="2026">2026</option>
-                                            <option value="2027">2027</option>
-                                            <option value="2028">2028</option>
-                                            <option value="2029">2029</option>
-                                            <option value="2030">2030</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <span>Pay secure using your credit card.</span>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <ul class="cards">
-                                            <li class="visa hand">Visa</li>
-                                            <li class="mastercard hand">MasterCard</li>
-                                            <li class="amex hand">Amex</li>
-                                        </ul>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="hidden" name="user" value="<%- user._id %>">
-                                        <input type="hidden" name="totalPrice" value="<%= tax + + total %>">
-                                        <input type="hidden" name="orderItems" value="<%= JSON.stringify(cartItems) %>">
-                                        <button type="submit" class="btn1 btn-submit-fix">Place Order</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--CREDIT CART PAYMENT END-->
-                    </div>
-
+                    <input type="hidden" name="user" value="<%- user._id %>">
+                    <input type="hidden" name="totalPrice" value="<%= tax + + total %>">
+                    <input type="hidden" name="orderItems" value="<%= JSON.stringify(cartItems) %>">
                 </form>
+                <form id="payment-stripe" class="container">
+                    <div id="payment-element">
+                        <!--Stripe.js injects the Payment Element-->
+                    </div>
+                    <button id="submit">
+                        <div class="spinner hidden" id="spinner"></div>
+                        <span id="button-text">Pay now</span>
+                    </button>
+                    <div id="payment-message" class="hidden"></div>
+                </form>
+                <script src="https://js.stripe.com/v3/"></script>
             </div>
             <div class="row cart-footer">
 
             </div>
         </div>
         <% } %>
-
+            <script>window.onbeforeunload = function () {
+                    localStorage.setItem("city", $("#createForm").find("input[name='city']").val());
+                    localStorage.setItem("country", $("#createForm").find("input[name='country']").val());
+                    localStorage.setItem("shippingAddress", $("#createForm").find("input[name='shippingAddress']").val());
+                    localStorage.setItem("state", $("#createForm").find("input[name='state']").val());
+                    localStorage.setItem("zip", $("#createForm").find("input[name='zip']").val());
+                    localStorage.setItem("phone", $("#createForm").find("input[name='phone']").val());
+                    localStorage.setItem("orderItems", $("#createForm").find("input[name='orderItems']").val());
+                    localStorage.setItem("user", $("#createForm").find("input[name='user']").val());
+                    localStorage.setItem("totalPrice", $("#createForm").find("input[name='totalPrice']").val());
+                    localStorage.setItem("size", $("#createForm").find("div[id='size']")[0].outerText.slice(6));
+                    // ...
+                }</script>
             <script>
-                $(document).on('submit', "form#createForm", function (e) {
-                    const size = $(this).find('div[id="size"]')[0].outerText.slice(6);
-                    "<% if(typeof user  === 'undefined'){ %>"
-                    window.location.href = "/login";
-                    "<% }else{ %>"
-                    e.preventDefault();
-                    $.ajax({
-                        url: "/create-order",
-                        data: $(this).serialize(),
-                        type: 'POST',
-                        success: function (data) {
-                            console.log(data);
-                            $.ajax({
-                                url: "/update-size-array",
-                                data: {
-                                    sizeArray: size,
-                                },
-                                type: 'POST',
-                                success: function (data) {
-                                    console.log(data);
-                                    $.ajax({
-                                        url: "/remove-all",
-                                        data: $(this).serialize(),
-                                        type: 'POST',
-                                        success: function (data) {
-                                            $('.notification').load(" .notification");
-                                            document.getElementById("Ty").style.display = "block";
+                // This is your test publishable API key.
+                const stripe = Stripe("pk_test_51M1TVWH8e0iQz01ZTjkPI76H3ijfIcOzfpq5HPilu5uIV3iwTAJFxqUOMTiWCGYMLRVnGZkGMG6bJMPmM6ilJweG008p91hgon");
 
-                                        }
-                                    })
-                                }
-                            });
+
+                // The items the customer wants to buy
+                let elements;
+
+                initialize();
+                checkStatus();
+
+                document.
+                    querySelector("#payment-stripe")
+                    .addEventListener("submit", handleSubmit);
+
+                // Fetches a payment intent and captures the client secret
+                async function initialize() {
+                    $.ajax({
+                        url: "/checkout",
+                        type: "POST",
+                        contentType: "application/json",
+                        success: async function ({ clientSecret }) {
+                            const appearance = {
+                                theme: 'stripe',
+                            };
+                            elements = stripe.elements({ appearance, clientSecret });
+
+                            const paymentElement = elements.create("payment");
+                            paymentElement.mount("#payment-element");
                         }
                     });
-                    "<% } %>"
-                });
+                }
+
+                async function handleSubmit(e) {
+                    e.preventDefault();
+                    setLoading(true);
+
+                    const { error } = await stripe.confirmPayment({
+                        elements,
+                        confirmParams: {
+                            // Make sure to change this to your payment completion page
+                            return_url: "http://localhost:3000/checkout",
+                        },
+                    });
+
+                    // This point will only be reached if there is an immediate error when
+                    // confirming the payment. Otherwise, your customer will be redirected to
+                    // your `return_url`. For some payment methods like iDEAL, your customer will
+                    // be redirected to an intermediate site first to authorize the payment, then
+                    // redirected to the `return_url`.
+                    if (error.type === "card_error" || error.type === "validation_error") {
+                        showMessage(error.message);
+                    } else {
+                        showMessage("An unexpected error occurred.");
+                    }
+
+                    setLoading(false);
+                }
+
+                // Fetches the payment intent status after payment submission
+                async function checkStatus() {
+                    const clientSecret = new URLSearchParams(window.location.search).get(
+                        "payment_intent_client_secret"
+                    );
+
+                    if (!clientSecret) {
+                        return;
+                    }
+
+                    const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+                    const size = JSON.stringify(localStorage.getItem("size"));
+
+                    const OrderJson = JSON.stringify({
+                        city: localStorage.getItem("city"),
+                        country: localStorage.getItem("country"),
+                        shippingAddress: localStorage.getItem("shippingAddress"),
+                        state: localStorage.getItem("state"),
+                        zip: localStorage.getItem("zip"),
+                        phone: localStorage.getItem("phone"),
+                        orderItems: localStorage.getItem("orderItems"),
+                        user: localStorage.getItem("user"),
+                        totalPrice: localStorage.getItem("totalPrice"),
+                    });
+                    switch (paymentIntent.status) {
+                        case "succeeded":
+                            $.ajax({
+                                url: "/create-order",
+                                type: "POST",
+                                data: OrderJson,
+                                contentType: "application/json",
+                                success: function (data) {
+                                    $.ajax({
+                                        url: "/update-size-array",
+                                        type: "POST",
+                                        data: {
+                                            sizeArray: size,
+                                        },
+                                        success: function (data) {
+                                            // localStorage.clear();
+                                            console.log("Success", data);
+                                            $.ajax({
+                                                url: "/remove-all",
+                                                data: OrderJson,
+                                                type: "POST",
+                                                contentType: "application/json",
+                                                success: function (data) {
+                                                    console.log("last function");
+                                                    $('.notification').load(" .notification");
+                                                    document.getElementById("Ty").style.display = "block";
+
+                                                },
+                                            })
+                                        }
+                                    })
+
+                                }
+                            })
+                            console.log(paymentIntent);
+                            showMessage("Payment succeeded!");
+                            break;
+                        case "processing":
+                            showMessage("Your payment is processing.");
+                            break;
+                        case "requires_payment_method":
+                            showMessage("Your payment was not successful, please try again.");
+                            break;
+                        default:
+                            showMessage("Something went wrong.");
+                            break;
+                    }
+                }
+
+                // ------- UI helpers -------
+
+                function showMessage(messageText) {
+                    const messageContainer = document.querySelector("#payment-message");
+
+                    messageContainer.classList.remove("hidden");
+                    messageContainer.textContent = messageText;
+
+                    setTimeout(function () {
+                        messageContainer.classList.add("hidden");
+                        messageText.textContent = "";
+                    }, 4000);
+                }
+
+                // Show a spinner on payment submission
+                function setLoading(isLoading) {
+                    if (isLoading) {
+                        // Disable the button and show a spinner
+                        document.querySelector("#submit").disabled = true;
+                        document.querySelector("#spinner").classList.remove("hidden");
+                        document.querySelector("#button-text").classList.add("hidden");
+                    } else {
+                        document.querySelector("#submit").disabled = false;
+                        document.querySelector("#spinner").classList.add("hidden");
+                        document.querySelector("#button-text").classList.remove("hidden");
+                    }
+                }
 
 
 
