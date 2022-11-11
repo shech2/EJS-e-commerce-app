@@ -388,21 +388,59 @@ app.get("/admin", authmw.authAdmin, (req, res) => {
 
 app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
   console.log("innnnnnnnnnnnnnnnn");
-
-  const Orders = await Order.aggregate([
-    {
-      $match: {
-        dateOrdered: {
-          $gte: "2022-09-10T20:22:19.930+00:00",
-          $lte: "2022-11-10T20:22:33.929+00:00",
-        },
-      },
-    },
-    { $group: { status: "Pending", count: { $sum: 1 } } },
-  ]);
-
+  
+  const Orders = await Order.aggregate(
+    [
+      {
+        $project:
+          {
+            _id: 0,
+            orderDayInWeek: { $dayOfWeek: "$dateOrdered" }
+          }
+      }
+    ]
+  )
   console.log("dateOrdered", Orders);
+  console.log("-----------------------");
+  const orderByDays = [
+    {day:"Sunday", amount:0},
+    {day:"Monday", amount:0},
+    {day:"Tuesday", amount:0},
+    {day:"Wednesday", amount:0},
+    {day:"Thursay", amount:0},
+    {day:"Friday", amount:0}
+  ]
+
+    for (let index = 0; index < Orders.length; index++) {
+      // orderByDays[Order[index]].amount ++;
+     const {orderDayInWeek} = Orders;
+     console.log("------------------------------");
+     console.log(orderDayInWeek);
+
+      orderByDays[ Order[index].orderDayInWeek ].amount++;
+    }
+    console.log("orderByDays: ", orderByDays)
+    
+    
+  
+
+  
 });
+
+
+
+//   $match: {
+    //     dateOrdered: {
+    //       $gte: "2022-09-10T20:22:19.930+00:00",
+    //       $lte: "2022-11-10T20:22:33.929+00:00",
+    //     },
+    //   },
+    // },
+    // { $group: { status: "Pending", count: { $sum: 1 } } },
+
+
+
+
 
 // GET Create-Product page:
 app.get("/create-product", authmw.authAdmin, (req, res) => {
