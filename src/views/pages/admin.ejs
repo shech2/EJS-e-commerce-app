@@ -174,8 +174,12 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
         <button class="normal centerButton" style="border-radius: 5px;padding: 10px;"
             onclick="usersStatistics()">Users</button>
     </div class="graph" id="ordersGraph">
-    <svg id="orders-graph"></svg>
+    <svg id="orders-graph" width="960" height ="500"></svg>
+    <script>
 
+
+     
+    </script>
 </div>
 </div class="graph" id="usersGraph" style="display:none;">
 
@@ -287,8 +291,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
         <% for(var i=0 ; i < Orders.length;i++) { %>
             <% totalOrders +=Orders[i].totalPrice %>
                 <% } %>
-                    <h1 class="container" style="left: 15%;position:relative;padding:10px">Total Orders price : $<%=
-                            totalOrders%>
+                    <h1 class="container" style="left: 15%;position:relative;padding:10px">Total Orders price : $<%=totalOrders%>
                     </h1>
 
                     <script>
@@ -418,16 +421,63 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                             }
                         }
 
-                        async function ordersStatistics() {
+                        async function ordersStatistics() 
+                        {
+                            
                             $.ajax({
                                 url: "/ordersStatistics",
                                 type: 'GET',
                                 success: function (data) {
-                                    console.log(data);
+                                    
+                                    d3.csv("https://raw.githubusercontent.com/alex-rinf/viztutorial/master/disabetes-small.csv")
+                                        .then((data) => {
+                                            return data.map((d) => {
+                                                d.orderAmount = +d.orderAmount;
 
+                                                return d;
+                                            });
+                                        })
 
+                                        .then((data) => {
+                                            day.domain(data.map(function(d) { return d.day }));
+                                            orderAmount.domain([0, d3.max(data, function(d) { return d.orderAmount; })]);
+
+                                            g.append("g")
+                                                .attr("class", "axis axis--x")
+                                                .attr("transform", "translate(0," + height + ")")
+                                                .call(d3.axisBottom(x));
+
+                                            g.append("g")
+                                                .attr("class", "axis axis--y")
+                                                .call(d3.axisLeft(y))
+                                                .append("text")
+                                                .attr("transform", "rotate(-90)")
+                                                .attr("y", 6)
+                                                .attr("dy", "0.71em")
+                                                .attr("text-anchor", "end")
+                                                .text("Frequency"); 
+                                                
+                                            g.selectAll(".bar")
+                                                .data(data)
+                                                .enter().append("rect")
+                                                .attr("class", "bar")
+                                                .attr("x", function(d) { return x(d.Name); })
+                                                .attr("y", function(d) { return y(d.BMI); })
+                                                .attr("width", x.bandwidth())
+                                                .attr("height", function(d) { return height - y(d.BMI); });    
+                                        })
+                                        .catch((error) => {
+                                            throw error;
+                                        });
+                                        }
+                                });
+
+                                 var x = document.getElementById("ordersStatistics");
+                                if (x.style.display === "none") {
+                                x.style.display = "block";
+                                } else {
+                                x.style.display = "none";
                                 }
-                            })
-                        }
 
+                        }
                     </script>
