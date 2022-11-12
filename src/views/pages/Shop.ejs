@@ -154,7 +154,13 @@
         sorter: sorter
       },
       success: function (data) {
-        $(".pro-container").load("/shop?page=1&limit=12&sorter=" + sorter + " .pro-container");
+         $("#1").addClass("active");
+        $("#2").removeClass("active");
+        $("#3").removeClass("active");
+        $("#4").removeClass("active");
+        $("#5").removeClass("active");
+        $("#6").removeClass("active");
+         $(".pro-container").load("/shop?page=1&limit=12&sorter=" + sorter + " .pro-container");
       }
     })
   });
