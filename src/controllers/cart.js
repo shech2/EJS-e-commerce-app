@@ -1,4 +1,5 @@
 const CartController = require('../models/cart');
+const OrderController = require('../models/order');
 const product = require('../models/Product');
 
 // This is your test secret API key.
@@ -201,6 +202,8 @@ exports.updateSizeArray = async (req, res) => {
 
 exports.checkout = async (req, res) => {
     const cart = await CartController.findOne({ user: req.user.id }).populate('cartItems.product', '_id name price brand quantity size').exec();
+    // get user order
+    const order = await OrderController.findOne({ user: req.user.id }).exec();
 
     let products = [];
     let totalAmount = 0;
@@ -224,9 +227,11 @@ exports.checkout = async (req, res) => {
             enabled: true,
         },
         customer: {
-            customer: req.user.username,
-            email: req.user.email
+            description: order.description,
+            name: req.user.username,
+            email: req.user.email,
         },
+        recipt_email: req.user.email,
 
     });
     res.send({

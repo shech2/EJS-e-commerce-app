@@ -171,7 +171,6 @@
                 // This is your test publishable API key.
                 const stripe = Stripe("pk_test_51M1TVWH8e0iQz01ZTjkPI76H3ijfIcOzfpq5HPilu5uIV3iwTAJFxqUOMTiWCGYMLRVnGZkGMG6bJMPmM6ilJweG008p91hgon");
 
-
                 // The items the customer wants to buy
                 let elements;
 
@@ -238,6 +237,7 @@
 
                     const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
 
+
                     const size = JSON.stringify(localStorage.getItem("size"));
 
                     const OrderJson = JSON.stringify({
@@ -251,6 +251,7 @@
                         user: localStorage.getItem("user"),
                         totalPrice: localStorage.getItem("totalPrice"),
                     });
+
                     switch (paymentIntent.status) {
                         case "succeeded":
                             $.ajax({
