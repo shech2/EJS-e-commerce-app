@@ -203,7 +203,8 @@ exports.updateSizeArray = async (req, res) => {
 exports.checkout = async (req, res) => {
     const cart = await CartController.findOne({ user: req.user.id }).populate('cartItems.product', '_id name price brand quantity size').exec();
     // get user order
-    const order = await OrderController.findOne({ user: req.user.id }).exec();
+    const order = await OrderController.findOne({ user: req.user.id }).populate({ path: "orderItems", populate: { path: "product" } }).exec();
+
 
     let products = [];
     let totalAmount = 0;

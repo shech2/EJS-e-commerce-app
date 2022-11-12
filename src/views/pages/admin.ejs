@@ -9,63 +9,74 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
 
 </div>
 <div id="users" style="margin-top: 10rem;margin-bottom: 10rem;display: none;">
-    <b><u><h1 style="padding-left: 80px;">Users:</h1></u></b>
+    <b><u>
+            <h1 style="padding-left: 80px;">Users:</h1>
+        </u></b>
     <div style="overflow-x:auto;">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
-                <th scope="col">Admin</th>
-                <th scope="col">Update</th>
-                <th scope="col">Delete</th>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Admin</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0; i < users.length; i++){ %>
-                <div>
-                    <tr>
-                        <th scope="row">
-                            <%= users[i].id %></th>
-                        <td><%= users[i].username %></td>
-                        <td><%= users[i].email %></td>
-                        <td><%= users[i].password %></td>
-                        <td><%= users[i].isAdmin %></td>
-                        <td>
-                            <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i < users.length; i++){ %>
+                    <div>
+                        <tr>
+                            <th scope="row">
+                                <%= users[i].id %>
+                            </th>
+                            <td>
+                                <%= users[i].username %>
+                            </td>
+                            <td>
+                                <%= users[i].email %>
+                            </td>
+                            <td>
+                                <%= users[i].password %>
+                            </td>
+                            <td>
+                                <%= users[i].isAdmin %>
+                            </td>
+                            <td>
+                                <button onclick="updateMenu(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
                                 color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
-                                Update
-                            </button>
-                        </td>
-                        </form>
-                        <td>
-                            <form id="PutForm" method="POST" action="/api/users/<%=users[i].id%>">
-                                <button id="Btn" style="border: none; background-color: #088178;
-                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
-                                    Delete
-                                </button>
-                        </td>
-                        </form>
-                    </tr>
-                    <th scope="row" id="r<%= i %>" style="display: none;">
-                        <div id="update">
-                            <form id="UpdateForm" method="POST" action="/api/users/update/<%=users[i].id%>">
-                                <input type="text" name="username" placeholder="Username">
-                                <input type="text" name="email" placeholder="Email">
-                                <input type="password" name="password" placeholder="Password">
-                                <input type="text" name="isAdmin" placeholder="Admin">
-                                <button id="Btn" style="border: none;" formnovalidate>
                                     Update
                                 </button>
+                            </td>
                             </form>
-                        </div>
-                    </th>
-                    <% } %>
-        </tbody>
-    </table>
+                            <td>
+                                <form id="PutForm" method="POST" action="/api/users/<%=users[i].id%>">
+                                    <button id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
+                                        Delete
+                                    </button>
+                            </td>
+                            </form>
+                        </tr>
+                        <th scope="row" id="r<%= i %>" style="display: none;">
+                            <div id="update">
+                                <form id="UpdateForm" method="POST" action="/api/users/update/<%=users[i].id%>">
+                                    <input type="text" name="username" placeholder="Username">
+                                    <input type="text" name="email" placeholder="Email">
+                                    <input type="password" name="password" placeholder="Password">
+                                    <input type="text" name="isAdmin" placeholder="Admin">
+                                    <button id="Btn" style="border: none;" formnovalidate>
+                                        Update
+                                    </button>
+                                </form>
+                            </div>
+                        </th>
+                        <% } %>
+            </tbody>
+        </table>
     </div>
 </div>
 </div>
@@ -73,357 +84,350 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
     <div class="" style="position: absolute;
 left: 50%;
 transform: translate(-50%, -50%); margin-top: 3rem;">
-        <a href="/create-product"><button class="normal" style="border-radius: 5px;padding: 10px;margin-top: 90px;">Create Product</button></a>
+        <a href="/create-product"><button class="normal"
+                style="border-radius: 5px;padding: 10px;margin-top: 90px;">Create Product</button></a>
     </div>
-    <b><u><h1 style="padding: 100px;font-family: 'Poppins', sans-serif;">Products:</h1></u></b>
+    <b><u>
+            <h1 style="padding: 100px;font-family: 'Poppins', sans-serif;">Products:</h1>
+        </u></b>
     <div style="overflow-x:auto;">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Description</th>
-                <th scope="col">Sizes in Stock</th>
-                <th scope="col">Update</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0; i < Products.length; i++){ %>
-                <div>
-                    <tr>
-                        <th scope="row">
-                            <%= Products[i].id %>
-                        </th>
-                        <td>
-                            <%= Products[i].Product_name %>
-                        </td>
-                        <td>
-                            <%= "$"+Products[i].price %>
-                        </td>
-                        <td>
-                            <%= Products[i].description %>
-                        </td>
-                        <td>
-                            <%= Products[i].size.sizeArray %>
-                        <td>
-                            <button onclick="updateMenu2(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Sizes in Stock</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i < Products.length; i++){ %>
+                    <div>
+                        <tr>
+                            <th scope="row">
+                                <%= Products[i].id %>
+                            </th>
+                            <td>
+                                <%= Products[i].Product_name %>
+                            </td>
+                            <td>
+                                <%= "$" +Products[i].price %>
+                            </td>
+                            <td>
+                                <%= Products[i].description %>
+                            </td>
+                            <td>
+                                <%= Products[i].size.sizeArray %>
+                            <td>
+                                <button onclick="updateMenu2(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
                                 color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
-                                Update
-                            </button>
-                        </td>
-                        </form>
-                        <td>
-                            <form id="PutForm2" method="POST" action="/api/products/<%=Products[i].id%>">
-                                <button id="Btn" style="border: none; background-color: #088178;
-                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
-                                    Delete
-                                </button>
-                        </td>
-                        </form>
-                    </tr>
-                    <th scope="row" id="u<%= i %>" style="display: none;">
-                        <div id="update">
-                            <form id="UpdateForm2" method="POST" action="/api/update/<%=Products[i].id%>">
-                                <input type="text" name="Product_name" placeholder="Name">
-                                <input type="text" name="description" placeholder="Description">
-                                <input type="text" name="price" placeholder="Price">
-                                <input type="text" name="size" placeholder="Size">
-                                <input type="text" name="brand" placeholder="Brand">
-                                <input type="text" name="category" placeholder="Category">
-                                <input type="text" name="quantity" placeholder="Quantity">
-                                <input type="text" name="image" placeholder="Image1">
-                                <input type="text" name="image" placeholder="Image2">
-                                <input type="text" name="image" placeholder="Image3">
-                                <input type="text" name="image" placeholder="Image4">
-                                <input type="text" name="rating" placeholder="Rating">
-                                <button id="Btn" style="border: none;" formnovalidate>
                                     Update
                                 </button>
+                            </td>
                             </form>
-                        </div>
-                    </th>
-                    <% } %>
-        </tbody>
-    </table>
+                            <td>
+                                <form id="PutForm2" method="POST" action="/api/products/<%=Products[i].id%>">
+                                    <button id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
+                                        Delete
+                                    </button>
+                            </td>
+                            </form>
+                        </tr>
+                        <th scope="row" id="u<%= i %>" style="display: none;">
+                            <div id="update">
+                                <form id="UpdateForm2" method="POST" action="/api/update/<%=Products[i].id%>">
+                                    <input type="text" name="Product_name" placeholder="Name">
+                                    <input type="text" name="description" placeholder="Description">
+                                    <input type="text" name="price" placeholder="Price">
+                                    <input type="text" name="size" placeholder="Size">
+                                    <input type="text" name="brand" placeholder="Brand">
+                                    <input type="text" name="category" placeholder="Category">
+                                    <input type="text" name="quantity" placeholder="Quantity">
+                                    <input type="text" name="image" placeholder="Image1">
+                                    <input type="text" name="image" placeholder="Image2">
+                                    <input type="text" name="image" placeholder="Image3">
+                                    <input type="text" name="image" placeholder="Image4">
+                                    <input type="text" name="rating" placeholder="Rating">
+                                    <button id="Btn" style="border: none;" formnovalidate>
+                                        Update
+                                    </button>
+                                </form>
+                            </div>
+                        </th>
+                        <% } %>
+            </tbody>
+        </table>
     </div>
 </div>
 
 <div id="statistics" style="display: none;">
-    <b><u><h1 style="padding:80px;">Statistics Menu:</h1></u></b>
+    <b><u>
+            <h1 style="padding:80px;">Statistics Menu:</h1>
+        </u></b>
     <div class="stat-buttons">
-        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;" onclick="ordersStatistics()">Orders</button>
-        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;" onclick="usersStatistics()">Users</button>
+        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;"
+            onclick="ordersStatistics()">Orders</button>
+        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;"
+            onclick="usersStatistics()">Users</button>
     </div class="graph" id="ordersGraph">
-        <svg id="orders-graph"></svg>
-        
-    </div>
-    </div class="graph" id="usersGraph" style="display:none;">
+    <svg id="orders-graph"></svg>
 
-    </div>
+</div>
+</div class="graph" id="usersGraph" style="display:none;">
+
+</div>
 
 
 </div>
 
 <div id="Orders" style="display: none;">
-    <b><u><h1 style="padding: 80px;">Orders:</h1></u></b>
+    <b><u>
+            <h1 style="padding: 80px;">Orders:</h1>
+        </u></b>
     <div style="overflow-x:auto;">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">User Ordered</th>
-                <th scope="col">Order Items</th>
-                <th scope="col">Shipping Address</th>
-                <th scope="col">City</th>
-                <th scope="col">State</th>
-                <th scope="col">Zip</th>
-                <th scope="col">Country</th>
-                <th scope="col">Phone</th>
-                <th scope="col">TotalPrice</th>
-                <th scope="col">Date Ordered</th>
-                <th scope="col">Status</th>
-                <th scope="col">Update</th>
-                <th scope="col">Delete</th>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">User Ordered</th>
+                    <th scope="col">Order Items</th>
+                    <th scope="col">Shipping Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Zip</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">TotalPrice</th>
+                    <th scope="col">Date Ordered</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
 
 
-            </tr>
-        </thead>
-        <tbody>
-            <% for(let i=0; i < Orders.length; i++){ %>
-                <div>
-                    <tr>
-                        <th scope="row">
-                            <%= Orders[i].id %>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i < Orders.length; i++){ %>
+                    <div>
+                        <tr>
+                            <th scope="row">
+                                <%= Orders[i].id %>
+                            </th>
+                            <td>
+                                <%= Orders[i].user.username %>
+                            </td>
+                            <% for(let j=0 ; j < Orders[i].orderItems.length ; j++) { %>
+                                <td style="display: block;color: black;">
+                                    <%= "Item " + (j+1) + ": " + Orders[i].orderItems[j].product.Product_name %>
+                                </td>
+                                <% } %>
+                                    <td>
+                                        <%= Orders[i].shippingAddress %>
+                                    </td>
+                                    <td>
+                                        <%= Orders[i].city %>
+                                    </td>
+                                    <td>
+                                        <%= Orders[i].state %>
+                                    </td>
+                                    <td>
+                                        <%= Orders[i].zip %>
+                                    </td>
+                                    <td>
+                                        <%= Orders[i].country %>
+                                    </td>
+                                    <td>
+                                        <%= Orders[i].phone %>
+                                    </td>
+                                    <td>
+                                        <%= "$" +Orders[i].totalPrice %>
+                                    </td>
+                                    <td>
+                                        <%= Orders[i].dateOrdered %>
+                                    </td>
+                                    <td id="stat">
+                                        <%= Orders[i].status %>
+                                    </td>
+                                    <td>
+                                        <button onclick="updateMenu3(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
+                                            Update
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <form id="PutForm3" method="POST" action="/order/<%=Orders[i].id%>">
+                                            <button id="Btn" style="border: none; background-color: #088178;
+                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
+                                                Delete
+                                            </button>
+                                    </td>
+                                    </form>
+                        </tr>
+                        <th scope="row" id="o<%= i %>" style="display: none;">
+                            <div id="update">
+                                <form id="UpdateForm3" method="POST" action="/order/<%=Orders[i].id%>">
+                                    <input type="text" name="status"
+                                        placeholder="Status (Pending,Shipped,Delivered,Cancelled)">
+                                    <button id="Btn" style="border: none;">
+                                        Update
+                                    </button>
+                                </form>
+                            </div>
                         </th>
-                        <td>
-                            <%= Orders[i].user.username %>
-                        </td>
-                        <% for(let j = 0 ; j < Orders[i].orderItems.length ; j++) { %>
-                        <td style="display: block;color: black;">
-                            <%=  "Item " + (j+1) + ": " + Orders[i].orderItems[j].product.Product_name %>
-                        </td>
-                        <% } %>
-                        <td>
-                            <%= Orders[i].shippingAddress %>
-                        </td>
-                        <td>
-                            <%= Orders[i].city %>
-                        </td>
-                        <td>
-                            <%= Orders[i].state %>
-                        </td>
-                        <td>
-                            <%= Orders[i].zip %>
-                        </td>
-                        <td>
-                            <%= Orders[i].country %>
-                        </td>
-                        <td>
-                            <%= Orders[i].phone %>
-                        </td>
-                        <td>
-                            <%= "$"+Orders[i].totalPrice %>
-                        </td>
-                        <td>
-                            <%= Orders[i].dateOrdered %>
-                        </td>
-                        <td id="stat">
-                            <%= Orders[i].status %>
-                        </td>
-                        <td>
-                            <button onclick="updateMenu3(name)" name="<%= i %> " id="Btn" style="border: none; background-color: #088178;
-                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
-                                Update
-                            </button>
-                        </td>
-                        <td>
-                            <form id="PutForm3" method="POST" action="/order/<%=Orders[i].id%>">
-                                <button id="Btn" style="border: none; background-color: #088178;
-                                color: #fff; border-radius: 2px; font-size: 10px; padding: 10px 20px;cursor: pointer;">
-                                    Delete
-                                </button>
-                        </td>
-                        </form>
-                    </tr>
-                    <th scope="row" id="o<%= i %>" style="display: none;">
-                        <div id="update">
-                            <form id="UpdateForm3" method="POST" action="/order/<%=Orders[i].id%>">
-                                <input type="text" name="status" placeholder="Status (Pending,Shipped,Delivered,Cancelled)">
-                                <button id="Btn" style="border: none;">
-                                    Update
-                                </button>
-                            </form>
-                        </div>
-                    </th>
-                </div>
+                    </div>
                     <% } %>
-                </tbody>
-            </table>
-            </div>
-            <% var totalOrders = 0 %>
-            <% for(var i = 0 ; i < Orders.length;i++) {  %>
-            <% totalOrders += Orders[i].totalPrice %>
+            </tbody>
+        </table>
+    </div>
+    <% var totalOrders=0 %>
+        <% for(var i=0 ; i < Orders.length;i++) { %>
+            <% totalOrders +=Orders[i].totalPrice %>
                 <% } %>
-                <h1 class="container" style="left: 15%;position:relative;padding:10px">Total Orders price : $<%= totalOrders%></h1>
-                
-<script>
+                    <h1 class="container" style="left: 15%;position:relative;padding:10px">Total Orders price : $<%=
+                            totalOrders%>
+                    </h1>
 
-    $('form#PutForm').submit(function (e) {
-        e.preventDefault();
-        var formAction = $(this).attr('action');
-        $.ajax({
-            url: formAction,
-            type: 'DELETE',
-            success: function (data) {
-                $("main").load(" main");
-                $('#users').style.display = "block";
-            }
-        });
-    });
-    $('form#UpdateForm').submit(function (e) {
-        e.preventDefault();
-        var formAction = $(this).attr('action');
-        $.ajax({
-            url: formAction,
-            data: $(this).serialize(),
-            type: 'PUT',
-            success: function (data) {
-                console.log(JSON.stringify(data));
-            }
-        });
-    });
-    $('form#PutForm2').submit(function (e) {
-        e.preventDefault();
-        var formAction = $(this).attr('action');
-        $.ajax({
-            url: formAction,
-            type: 'DELETE',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-    });
-    $('form#UpdateForm2').submit(function (e) {
-        e.preventDefault();
-        var formAction = $(this).attr('action');
-        $.ajax({
-            url: formAction,
-            data: $(this).serialize(),
-            type: 'PUT',
-            success: function (data) {
-                console.log(JSON.stringify(data));
-            }
-        });
-    });
-    $('form#UpdateForm').submit(function (e) {
-        e.preventDefault();
-        var formAction = $(this).attr('action');
-        $.ajax({
-            url: formAction,
-            data: $(this).serialize(),
-            type: 'PUT',
-            success: function (data) {
-                console.log(JSON.stringify(data));
-            }
-        });
-    });
-    $('form#PutForm3').submit(function (e) {
-        e.preventDefault();
-        var formAction = $(this).attr('action');
-        $.ajax({
-            url: formAction,
-            type: 'DELETE',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-    });
-    $('form#UpdateForm3').submit(function (e) {
-        e.preventDefault();
-        var formAction = $(this).attr('action');
-        $.ajax({
-            url: formAction,
-            data: $(this).serialize(),
-            type: 'PUT',
-            success: function (data) {
-                console.log(JSON.stringify(data));
-                                   
-            }
-        });
-    });
+                    <script>
 
-    function usersMenu() {
-        var x = document.getElementById("users");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function productMenu() {
-        var x = document.getElementById("Products");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function orderMenu() {
-        var x = document.getElementById("Orders");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function updateMenu(i) {
-        var x = document.querySelector("#r" + i);
+                        $('form#PutForm').submit(function (e) {
+                            e.preventDefault();
+                            var formAction = $(this).attr('action');
+                            $.ajax({
+                                url: formAction,
+                                type: 'DELETE',
+                                success: function (data) {
+                                    $("main").load(" main");
+                                    $('#users').style.display = "block";
+                                }
+                            });
+                        });
+                        $('form#UpdateForm').submit(function (e) {
+                            e.preventDefault();
+                            var formAction = $(this).attr('action');
+                            $.ajax({
+                                url: formAction,
+                                data: $(this).serialize(),
+                                type: 'PUT',
+                            });
+                        });
+                        $('form#PutForm2').submit(function (e) {
+                            e.preventDefault();
+                            var formAction = $(this).attr('action');
+                            $.ajax({
+                                url: formAction,
+                                type: 'DELETE',
+                            });
+                        });
+                        $('form#UpdateForm2').submit(function (e) {
+                            e.preventDefault();
+                            var formAction = $(this).attr('action');
+                            $.ajax({
+                                url: formAction,
+                                data: $(this).serialize(),
+                                type: 'PUT',
+                            });
+                        });
+                        $('form#UpdateForm').submit(function (e) {
+                            e.preventDefault();
+                            var formAction = $(this).attr('action');
+                            $.ajax({
+                                url: formAction,
+                                data: $(this).serialize(),
+                                type: 'PUT',
+                            });
+                        });
+                        $('form#PutForm3').submit(function (e) {
+                            e.preventDefault();
+                            var formAction = $(this).attr('action');
+                            $.ajax({
+                                url: formAction,
+                                type: 'DELETE',
+                            });
+                        });
+                        $('form#UpdateForm3').submit(function (e) {
+                            e.preventDefault();
+                            var formAction = $(this).attr('action');
+                            $.ajax({
+                                url: formAction,
+                                data: $(this).serialize(),
+                                type: 'PUT',
+                            });
+                        });
 
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function updateMenu2(i) {
-        var x = document.querySelector("#u" + i);
+                        function usersMenu() {
+                            var x = document.getElementById("users");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+                        function productMenu() {
+                            var x = document.getElementById("Products");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+                        function orderMenu() {
+                            var x = document.getElementById("Orders");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+                        function updateMenu(i) {
+                            var x = document.querySelector("#r" + i);
 
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function updateMenu3(i) {
-        var x = document.querySelector("#o" + i);
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+                        function updateMenu2(i) {
+                            var x = document.querySelector("#u" + i);
 
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-    function StatisticsMenu() {
-        var x = document.getElementById("statistics");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+                        function updateMenu3(i) {
+                            var x = document.querySelector("#o" + i);
 
-   async function ordersStatistics() {
-        $.ajax({
-            url: "/ordersStatistics",
-            type: 'GET',
-            success: function (data)
-            { console.log(data);
-                
-           
-            }
-        })
-    }
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
+                        function StatisticsMenu() {
+                            var x = document.getElementById("statistics");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                        }
 
-</script>
+                        async function ordersStatistics() {
+                            $.ajax({
+                                url: "/ordersStatistics",
+                                type: 'GET',
+                                success: function (data) {
+                                    console.log(data);
+
+
+                                }
+                            })
+                        }
+
+                    </script>
