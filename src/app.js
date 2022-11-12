@@ -177,11 +177,15 @@ app.get("/homepage", (req, res) => {
 
 // Pagination +  Pagination Sorted by Price:
 const Pagination = pgMiddleware.paginatedResults(ProductModel);
-const PaginationSorted =
-  pgMiddleware.paginatedResultsSortedByPrice(ProductModel);
+const LowToHigh =
+  pgMiddleware.LowToHigh(ProductModel);
+const HighToLow =
+  pgMiddleware.HighToLow(ProductModel);
+const Rating =
+  pgMiddleware.Rating(ProductModel);
 
 // GET SHOP:
-app.get("/shop", Pagination, PaginationSorted, (req, res) => {
+app.get("/shop", Pagination, LowToHigh, HighToLow, Rating, (req, res) => {
   console.log(req);
   if (req.query.sorter) {
     const sorter = req.query.sorter;
@@ -196,7 +200,82 @@ app.get("/shop", Pagination, PaginationSorted, (req, res) => {
           }
           res.render("./pages/shop.ejs", {
             title: "Shop",
-            ProductModel: res.paginatedResultsSortedByPrice,
+            ProductModel: res.LowToHigh,
+            headercss: "/css/header.css",
+            footercss: "/css/footer.css",
+            cssfile: "/css/shop.css",
+            user: req.cookies.user,
+            Cart: cart,
+            search: req.query.search,
+          });
+        }).populate({
+          path: "cartItems.product",
+          populate: [{ path: "category" }, { path: "brand" }], // Multiple populate populate([{},{}]) --> this is the syntax .
+        });
+      });
+    }
+    if (sorter == "HighToLow") {
+      ProductModel.find({}, async function (err) {
+        if (err) {
+          console.log(err);
+        }
+        Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
+          if (err) {
+            console.log(err);
+          }
+          res.render("./pages/shop.ejs", {
+            title: "Shop",
+            ProductModel: res.HighToLow,
+            headercss: "/css/header.css",
+            footercss: "/css/footer.css",
+            cssfile: "/css/shop.css",
+            user: req.cookies.user,
+            Cart: cart,
+            search: req.query.search,
+          });
+        }).populate({
+          path: "cartItems.product",
+          populate: [{ path: "category" }, { path: "brand" }], // Multiple populate populate([{},{}]) --> this is the syntax .
+        });
+      });
+    }
+    if (sorter == "Default") {
+      ProductModel.find({}, async function (err) {
+        if (err) {
+          console.log(err);
+        }
+        Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
+          if (err) {
+            console.log(err);
+          }
+          res.render("./pages/shop.ejs", {
+            title: "Shop",
+            ProductModel: res.paginatedResults,
+            headercss: "/css/header.css",
+            footercss: "/css/footer.css",
+            cssfile: "/css/shop.css",
+            user: req.cookies.user,
+            Cart: cart,
+            search: req.query.search,
+          });
+        }).populate({
+          path: "cartItems.product",
+          populate: [{ path: "category" }, { path: "brand" }], // Multiple populate populate([{},{}]) --> this is the syntax .
+        });
+      });
+    }
+    if (sorter == "Rating") {
+      ProductModel.find({}, async function (err) {
+        if (err) {
+          console.log(err);
+        }
+        Cart.findOne({ user: req.cookies.user }, async function (err, cart) {
+          if (err) {
+            console.log(err);
+          }
+          res.render("./pages/shop.ejs", {
+            title: "Shop",
+            ProductModel: res.Rating,
             headercss: "/css/header.css",
             footercss: "/css/footer.css",
             cssfile: "/css/shop.css",

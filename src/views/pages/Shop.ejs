@@ -7,31 +7,31 @@
   <h2>Our Products</h2>
   <p>Summer Collection New Modern Design</p>
 
-          <header>
-            <div class="filtering">
-              <ul class="indicator">
-                <li data-filter="all" class="clickable active" id="all">All</li>
-			    	    <li data-filter="Nike" class="clickable" id="nike">Nike</li>
-				        <li data-filter="Adidas" class="clickable" id="adidas">Adidas</li>
-				        <li data-filter="Puma" class="clickable" id="puma">Puma</li>
-				        <li data-filter="New Balance" class="clickable" id="newBalance">New Balance</li>
-			       </ul>
+  <header>
+    <div class="filtering">
+      <ul class="indicator">
+        <li data-filter="all" class="clickable active" id="all">All</li>
+        <li data-filter="Nike" class="clickable" id="nike">Nike</li>
+        <li data-filter="Adidas" class="clickable" id="adidas">Adidas</li>
+        <li data-filter="Puma" class="clickable" id="puma">Puma</li>
+        <li data-filter="New Balance" class="clickable" id="newBalance">New Balance</li>
+      </ul>
 
-            
-			       <div class="filter-condition">
-				          <span>Sort by</span>
-				          <select name="sort" id="sorter">
-					        <option value="Default">Default</option>
-					        <option value="LowToHigh">Price (low to high)</option>
-					        <option value="HighToLow">Price (high to low)</option>
-                  <option value="Rating">Rating</option>
-				        </select>
-			       </div>
-          </div>
-          </header>   
-          
-          <div class="test">
-            <header class="pro-container" id="container">
+
+      <div class="filter-condition">
+        <span>Sort by</span>
+        <select name="sort" id="sorter">
+          <option value="Default">Default</option>
+          <option value="LowToHigh">Price (low to high)</option>
+          <option value="HighToLow">Price (high to low)</option>
+          <option value="Rating">Rating</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <div class="test">
+    <header class="pro-container" id="container">
       <% for (index=0; index < ProductModel.results.length; index++) { %>
 
         <div class="pro">
@@ -74,9 +74,9 @@
           </form>
         </div>
         <% } %>
-      </div>
-    </div>
-   </div>
+  </div>
+</div>
+</div>
 
 
 <div class="pagination" id="pages" style="margin-left: 37%;">
@@ -93,21 +93,23 @@
 
 <script type="text/javascript">
   var current_page = 1;
+  var sorter = "Default";
+  var url = "";
 
-
-  if("<%=search%>"){
+  if ("<%=search%>") {
     document.getElementsByClassName("pagination")[0].style.display = "none";
   }
 
   $(document).on('click', "#next", function () {
     if (current_page < 6) {
       $.ajax({
-        url: "/shop?page=" + (++current_page) + "&limit=12",
+        url: "/shop?page=" + (++current_page) + "&limit=12&sorter=" + sorter,
         type: 'GET',
         success: function (data) {
-          $(".pro-container").load("/shop?page=" + (current_page) + "&limit=12" + " .pro-container");
-          $("#"+current_page).addClass("active");
-          $("#"+(current_page-1)).removeClass("active");
+          console.log(url);
+          $(".pro-container").load("/shop?page=" + (current_page) + "&limit=12&sorter=" + sorter + " .pro-container");
+          $("#" + current_page).addClass("active");
+          $("#" + (current_page - 1)).removeClass("active");
         }
       });
     }
@@ -116,51 +118,68 @@
   $(document).on('click', "#previous", function () {
     if (current_page > 1) {
       $.ajax({
-        url: "/shop?page=" + (--current_page) + "&limit=12",
+        url: "/shop?page=" + (--current_page) + "&limit=12&sorter=" + sorter,
         type: 'GET',
         success: function (data) {
-          $(".pro-container").load("/shop?page=" + (current_page) + "&limit=12" + " .pro-container");
-          $("#"+current_page).addClass("active");
-          $("#"+(current_page+1)).removeClass("active");
+          $(".pro-container").load("/shop?page=" + (current_page) + "&limit=12&sorter=" + sorter + " .pro-container");
+          $("#" + current_page).addClass("active");
+          $("#" + (current_page + 1)).removeClass("active");
         }
       });
     }
   });
 
-  $(document).on('change',"#sorter",async function() {
-    const sorter = $("#sorter").val();
-    console.log(sorter)
+  $(document).on('change', "#sorter", async function () {
+    sorter = $(this).val();
+    if (sorter == "LowToHigh") {
+      console.log("Success");
+      url = "/shop?page=" + current_page + "&limit=12&sorter=LowToHigh"
+    }
+    if (sorter == "HighToLow") {
+      url = "/shop?page=" + current_page + "&limit=12&sorter=HighToLow";
+    }
+
+    if (sorter == "Rating") {
+      url = "/shop?page=" + current_page + "&limit=12&sorter=Rating";
+    }
+
+    if (sorter == "Default") {
+      url = "/shop?page=" + current_page + "&limit=12&sorter=Default";
+    }
+
     $.ajax({
       url: "/shop?page=1&limit=12",
       type: "GET",
-      data:{
-        sorter : sorter
+      data: {
+        sorter: sorter
       },
-      success : function(data) {
-        $(".pro-container").load("/shop?page=1&limit=12&sorter=LowToHigh .pro-container");
+      success: function (data) {
+        $(".pro-container").load("/shop?page=1&limit=12&sorter=" + sorter + " .pro-container");
       }
-    })  
+    })
   });
 
   $("#1").click(function () {
     $.ajax({
-      url: "/shop?page=1&limit=12",
+      url: url,
       type: 'GET',
       success: function (data) {
         current_page = 1;
+        console.log(url);
         $("#1").addClass("active");
         $("#2").removeClass("active");
         $("#3").removeClass("active");
         $("#4").removeClass("active");
         $("#5").removeClass("active");
         $("#6").removeClass("active");
-        $(".pro-container").load("/shop?page=1&limit=12 .pro-container");
+        $(".pro-container").load("/shop?page=" + current_page + "&limit=12&sorter=" + sorter + " .pro-container");
+
       }
     });
   });
   $("#2").click(function () {
     $.ajax({
-      url: "/shop?page=2&limit=12",
+      url: url,
       type: 'GET',
       success: function (data) {
         current_page = 2;
@@ -170,13 +189,13 @@
         $("#4").removeClass("active");
         $("#5").removeClass("active");
         $("#6").removeClass("active");
-        $(".pro-container").load("/shop?page=2&limit=12 .pro-container");
+        $(".pro-container").load("/shop?page=" + current_page + "&limit=12&sorter=" + sorter + " .pro-container");
       }
     });
   });
   $("#3").click(function () {
     $.ajax({
-      url: "/shop?page=3&limit=12",
+      url: url,
       type: 'GET',
       success: function (data) {
         current_page = 3;
@@ -186,13 +205,14 @@
         $("#4").removeClass("active");
         $("#5").removeClass("active");
         $("#6").removeClass("active");
-        $(".pro-container").load("/shop?page=3&limit=12 .pro-container");
+        $(".pro-container").load("/shop?page=" + current_page + "&limit=12&sorter=" + sorter + " .pro-container");
+
       }
     });
   });
   $("#4").click(function () {
     $.ajax({
-      url: "/shop?page=4&limit=12",
+      url: url,
       type: 'GET',
       success: function (data) {
         current_page = 4;
@@ -202,13 +222,14 @@
         $("#1").removeClass("active");
         $("#5").removeClass("active");
         $("#6").removeClass("active");
-        $(".pro-container").load("/shop?page=4&limit=12 .pro-container");
+        $(".pro-container").load("/shop?page=" + current_page + "&limit=12&sorter=" + sorter + " .pro-container");
+
       }
     });
   });
   $("#5").click(function () {
     $.ajax({
-      url: "/shop?page=5&limit=12",
+      url: url,
       type: 'GET',
       success: function (data) {
         current_page = 5;
@@ -218,13 +239,14 @@
         $("#4").removeClass("active");
         $("#1").removeClass("active");
         $("#6").removeClass("active");
-        $(".pro-container").load("/shop?page=5&limit=12 .pro-container");
+        $(".pro-container").load("/shop?page=" + current_page + "&limit=12&sorter=" + sorter + " .pro-container");
+
       }
     });
   });
   $("#6").click(function () {
     $.ajax({
-      url: "/shop?page=6&limit=12",
+      url: url,
       type: 'GET',
       success: function (data) {
         current_page = 6;
@@ -234,17 +256,18 @@
         $("#4").removeClass("active");
         $("#5").removeClass("active");
         $("#1").removeClass("active");
-        $(".pro-container").load("/shop?page=6&limit=12 .pro-container");
+        $(".pro-container").load("/shop?page=" + current_page + "&limit=12&sorter=" + sorter + " .pro-container");
+
       }
     });
   });
 
 
-  $("#nike").click(function() {
+  $("#nike").click(function () {
     $.ajax({
-      url:"/shop?search=Nike",
+      url: "/shop?search=Nike",
       type: 'GET',
-      success: function (data){
+      success: function (data) {
         $("#nike").addClass("active");
         $("#all").removeClass("active");
         $("#adidas").removeClass("active");
@@ -256,11 +279,11 @@
     });
   });
 
-  $("#adidas").click(function() {
+  $("#adidas").click(function () {
     $.ajax({
-      url:"/shop?search=Adidas",
+      url: "/shop?search=Adidas",
       type: 'GET',
-      success: function (data){
+      success: function (data) {
         $("#adidas").addClass("active");
         $("#all").removeClass("active");
         $("#nike").removeClass("active");
@@ -272,11 +295,11 @@
     });
   });
 
-  $("#puma").click(function() {
+  $("#puma").click(function () {
     $.ajax({
-      url:"/shop?search=Puma",
+      url: "/shop?search=Puma",
       type: 'GET',
-      success: function (data){
+      success: function (data) {
         $("#puma").addClass("active");
         $("#all").removeClass("active");
         $("#nike").removeClass("active");
@@ -287,11 +310,11 @@
       }
     });
   });
-  $("#newBalance").click(function() {
+  $("#newBalance").click(function () {
     $.ajax({
-      url:"/shop?search=New Balance",
+      url: "/shop?search=New Balance",
       type: 'GET',
-      success: function (data){
+      success: function (data) {
         $("#newBalance").addClass("active");
         $("#all").removeClass("active");
         $("#nike").removeClass("active");
@@ -302,11 +325,11 @@
       }
     });
   });
-  $("#all").click(function() {
+  $("#all").click(function () {
     $.ajax({
-      url:"/shop?page=1&lmit=12",
+      url: "/shop?page=1&lmit=12",
       type: 'GET',
-      success: function (data){
+      success: function (data) {
         $("#all").addClass("active");
         $("#newBalance").removeClass("active");
         $("#nike").removeClass("active");
