@@ -174,7 +174,18 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
         <button class="normal centerButton" style="border-radius: 5px;padding: 10px;"
             onclick="usersStatistics()">Users</button>
     </div class="graph" id="ordersGraph">
-    <svg id="orders-graph"></svg>
+   
+   
+    <svg id="orders-graph" width = "960" height="500"></svg>
+    <script>
+    var svg = d3.getElementById("orders-graph"),
+                margin = {top:20,right:20,bottom:30,left:40},
+                width = +svg.attr("width") - margin.left - margin.right,
+                height = +svg.attr("height") - margin.top - margin.bottom;
+
+    var x = d3.scaleBand().rangeRound([0,width]).padding(0.1),
+        y = d3.scaleBand().rangeRound([height,0]);
+    </script>
 
 </div>
 </div class="graph" id="usersGraph" style="display:none;">
@@ -424,7 +435,6 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                                 type: 'GET',
                                 success: function (data) {
                                     console.log(data);
-
 
                                 }
                             })
