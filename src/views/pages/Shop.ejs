@@ -21,7 +21,7 @@
       <div class="filter-condition">
         <span>Sort by</span>
         <select name="sort" id="sorter">
-          <option value="Default">Default</option>
+          <option value="Newest">Newest</option>
           <option value="LowToHigh">Price (low to high)</option>
           <option value="HighToLow">Price (high to low)</option>
           <option value="Rating">Rating</option>
@@ -93,7 +93,7 @@
 
 <script type="text/javascript">
   var current_page = 1;
-  var sorter = "Default";
+  var sorter = "Newest";
   var url = "";
 
   if ("<%=search%>") {
@@ -143,8 +143,8 @@
       url = "/shop?page=" + current_page + "&limit=12&sorter=Rating";
     }
 
-    if (sorter == "Default") {
-      url = "/shop?page=" + current_page + "&limit=12&sorter=Default";
+    if (sorter == "Newest") {
+      url = "/shop?page=" + current_page + "&limit=12&sorter=Newest";
     }
 
     $.ajax({
@@ -154,13 +154,13 @@
         sorter: sorter
       },
       success: function (data) {
-         $("#1").addClass("active");
+        $("#1").addClass("active");
         $("#2").removeClass("active");
         $("#3").removeClass("active");
         $("#4").removeClass("active");
         $("#5").removeClass("active");
         $("#6").removeClass("active");
-         $(".pro-container").load("/shop?page=1&limit=12&sorter=" + sorter + " .pro-container");
+        $(".pro-container").load("/shop?page=1&limit=12&sorter=" + sorter + " .pro-container");
       }
     })
   });

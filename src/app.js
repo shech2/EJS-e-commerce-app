@@ -176,7 +176,7 @@ app.get("/homepage", (req, res) => {
 });
 
 // Pagination +  Pagination Sorted by Price:
-const Pagination = pgMiddleware.paginatedResults(ProductModel);
+const Newest = pgMiddleware.Newest(ProductModel);
 const LowToHigh =
   pgMiddleware.LowToHigh(ProductModel);
 const HighToLow =
@@ -185,7 +185,7 @@ const Rating =
   pgMiddleware.Rating(ProductModel);
 
 // GET SHOP:
-app.get("/shop", Pagination, LowToHigh, HighToLow, Rating, (req, res) => {
+app.get("/shop", Newest, LowToHigh, HighToLow, Rating, (req, res) => {
   console.log(req);
   if (req.query.sorter) {
     const sorter = req.query.sorter;
@@ -239,7 +239,7 @@ app.get("/shop", Pagination, LowToHigh, HighToLow, Rating, (req, res) => {
         });
       });
     }
-    if (sorter == "Default") {
+    if (sorter == "Newest") {
       ProductModel.find({}, async function (err) {
         if (err) {
           console.log(err);
@@ -250,7 +250,7 @@ app.get("/shop", Pagination, LowToHigh, HighToLow, Rating, (req, res) => {
           }
           res.render("./pages/shop.ejs", {
             title: "Shop",
-            ProductModel: res.paginatedResults,
+            ProductModel: res.Newest,
             headercss: "/css/header.css",
             footercss: "/css/footer.css",
             cssfile: "/css/shop.css",
@@ -355,7 +355,7 @@ app.get("/shop", Pagination, LowToHigh, HighToLow, Rating, (req, res) => {
           }
           res.render("./pages/shop.ejs", {
             title: "Shop",
-            ProductModel: res.paginatedResults,
+            ProductModel: res.Newest,
             headercss: "/css/header.css",
             footercss: "/css/footer.css",
             cssfile: "/css/shop.css",

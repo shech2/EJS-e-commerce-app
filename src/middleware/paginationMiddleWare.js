@@ -1,6 +1,6 @@
 
 
-function paginatedResults(model) {
+function Newest(model) {
     return async (req, res, next) => {
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
@@ -27,8 +27,8 @@ function paginatedResults(model) {
 
         try {
 
-            results.results = await model.find().limit(limit).skip(startIndex).exec();
-            res.paginatedResults = results;
+            results.results = await model.find().sort({ createdAt: -1 }).limit(limit).skip(startIndex).exec();
+            res.Newest = results;
             next();
         } catch (e) {
             res.status(500).json({ message: e.message });
@@ -143,7 +143,7 @@ function Rating(model) {
 
 
 
-module.exports = { paginatedResults, LowToHigh, HighToLow, Rating };
+module.exports = { Newest, LowToHigh, HighToLow, Rating };
 
 
 
