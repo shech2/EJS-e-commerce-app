@@ -524,6 +524,9 @@ console.log("ordersByusers", ordersByUsers);
     if (user.user == "6361574eca58fef0f504f83d"){
       orderByNames[3].amount++;
     }
+    if (user.user == "635cf8231a21761b8310abc6") {
+      orderByNames[2].amount++;
+    }
   }
   console.log("orderByNames", orderByNames);
   const answer=[orderByDays,orderByNames];
