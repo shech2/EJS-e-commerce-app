@@ -134,7 +134,7 @@
 
     const cart = "<%= JSON.stringify(Cart) %>";
     if (cart == "null") {
-      window.location = "/login";
+      document.getElementById("error").innerHTML = "Please Login First";
     }
     else {
       $.ajax({
