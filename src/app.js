@@ -477,21 +477,21 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
         }
       }
     ]
-  )
+  );
   console.log("dateOrdered", Orders);
 
   const ordersByUsers = await Order.aggregate(
     [
       {
-        $project:
-        {
+        $project: {
           _id: 0,
-          user: "$user",
+          user: "$user"
         }
       }
     ]
-  )
-  console.log("ordersByusers", ordersByUsers);
+  );
+  await Order.populate(ordersByUsers, { path: "user" });
+
   const orderByDays = [
     { day: "Sunday", amount: 0 },
     { day: "Monday", amount: 0 },
@@ -501,37 +501,29 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     { day: "Friday", amount: 0 },
     { day: "Saturday", amount: 0 }
   ]
-  const orderByNames = [
-    { name: "Yuval", amount: 0 },
-    { name: "Sassy", amount: 0 },
-    { name: "Ori", amount: 0 },
-    { name: "May", amount: 0 },
+  // Get all users from DB
+  const users = await User.find({});
+  var amountOfOrdersPerUser = [['Users', 'Orders']];
+  // Get amount of orders per user 
+  users.forEach(user => {
+    var amount = 0;
+    ordersByUsers.forEach(order => {
+      if (order.user._id.toString() === user._id.toString()) {
+        amount++;
+      }
+    });
+    amountOfOrdersPerUser.push([user.username, amount]);
+  });
+  console.log(amountOfOrdersPerUser);
 
-  ]
   for (let index = 0; index < Orders.length; index++) {
     const day = Orders[index].orderDayInWeek;
     orderByDays[day - 1].amount++;
   }
 
-  for (let index = 0; index < ordersByUsers.length; index++) {
-    const user = ordersByUsers[index];
-    if (user.user == "634eb0401a5b6f3ca1bf2f9e") {
-      orderByNames[0].amount++;
-    }
-    if (user.user == "634eb9ec873664e4f96c9828") {
-      orderByNames[1].amount++;
-    }
-    if (user.user == "6361574eca58fef0f504f83d") {
-      orderByNames[3].amount++;
-    }
-    if (user.user == "635cf8231a21761b8310abc6") {
-      orderByNames[2].amount++;
-    }
-  }
-  console.log("orderByNames", orderByNames);
-  const answer = [orderByDays, orderByNames];
+  const answer = [orderByDays, amountOfOrdersPerUser];
   res.send(answer)
-});
+})
 
 
 // GET Create-Product page:
