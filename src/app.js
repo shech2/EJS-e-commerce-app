@@ -503,7 +503,10 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
   ]
   // Get all users from DB
   const users = await User.find({});
+
+
   var amountOfOrdersPerUser = [['Users', 'Orders']];
+
   // Get amount of orders per user 
   users.forEach(user => {
     var amount = 0;
@@ -514,12 +517,15 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     });
     amountOfOrdersPerUser.push([user.username, amount]);
   });
+
+
   console.log(amountOfOrdersPerUser);
 
   for (let index = 0; index < Orders.length; index++) {
     const day = Orders[index].orderDayInWeek;
     orderByDays[day - 1].amount++;
   }
+
 
   const answer = [orderByDays, amountOfOrdersPerUser];
   res.send(answer)

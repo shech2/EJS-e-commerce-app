@@ -228,7 +228,6 @@ exports.checkout = async (req, res) => {
             enabled: true,
         },
         customer: {
-            description: order.description,
             name: req.user.username,
             email: req.user.email,
         },
