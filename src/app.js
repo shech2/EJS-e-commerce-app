@@ -491,7 +491,7 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
       }
     ]
   )
-console.log("ordersByusers", ordersByUsers);
+  console.log("ordersByusers", ordersByUsers);
   const orderByDays = [
     { day: "Sunday", amount: 0 },
     { day: "Monday", amount: 0 },
@@ -501,11 +501,11 @@ console.log("ordersByusers", ordersByUsers);
     { day: "Friday", amount: 0 },
     { day: "Saturday", amount: 0 }
   ]
-  const orderByNames=[
-    {name:"Yuval",amount:0},
-    {name:"Sassy",amount:0},
-    {name:"Ori",amount:0},
-    {name:"May",amount:0},
+  const orderByNames = [
+    { name: "Yuval", amount: 0 },
+    { name: "Sassy", amount: 0 },
+    { name: "Ori", amount: 0 },
+    { name: "May", amount: 0 },
 
   ]
   for (let index = 0; index < Orders.length; index++) {
@@ -513,15 +513,15 @@ console.log("ordersByusers", ordersByUsers);
     orderByDays[day - 1].amount++;
   }
 
-  for (let index = 0; index < ordersByUsers.length; index++){
+  for (let index = 0; index < ordersByUsers.length; index++) {
     const user = ordersByUsers[index];
-    if (user.user == "634eb0401a5b6f3ca1bf2f9e"){
+    if (user.user == "634eb0401a5b6f3ca1bf2f9e") {
       orderByNames[0].amount++;
     }
-    if (user.user == "634eb9ec873664e4f96c9828"){
+    if (user.user == "634eb9ec873664e4f96c9828") {
       orderByNames[1].amount++;
     }
-    if (user.user == "6361574eca58fef0f504f83d"){
+    if (user.user == "6361574eca58fef0f504f83d") {
       orderByNames[3].amount++;
     }
     if (user.user == "635cf8231a21761b8310abc6") {
@@ -529,7 +529,7 @@ console.log("ordersByusers", ordersByUsers);
     }
   }
   console.log("orderByNames", orderByNames);
-  const answer=[orderByDays,orderByNames];
+  const answer = [orderByDays, orderByNames];
   res.send(answer)
 });
 
@@ -595,20 +595,24 @@ app.get("/checkout", authmw.authMiddleware, (req, res) => {
 
 // GET Cart page:
 app.get("/cart", (req, res) => {
-  Cart.findOne({ user: req.cookies.user }, (err, cart) => {
-    if (err) {
-      console.log(err);
-    }
-    res.render("./pages/cart.ejs", {
-      title: "Cart",
-      headercss: "/css/header.css",
-      footercss: "/css/footer.css",
-      cssfile: "/css/cart.css",
-      user: req.cookies.user,
-      cartItems: cart.cartItems,
-      Cart: cart,
-    });
-  }).populate({ path: "cartItems.product", populate: { path: "brand" } });
+  if (req.cookies.user) {
+    Cart.findOne({ user: req.cookies.user }, (err, cart) => {
+      if (err) {
+        console.log(err);
+      }
+      res.render("./pages/cart.ejs", {
+        title: "Cart",
+        headercss: "/css/header.css",
+        footercss: "/css/footer.css",
+        cssfile: "/css/cart.css",
+        user: req.cookies.user,
+        cartItems: cart.cartItems,
+        Cart: cart,
+      });
+    }).populate({ path: "cartItems.product", populate: { path: "brand" } });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 // GET User Profile Page:
