@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Spartan', sans-serif;
 }
 
-.section-m1{
+.section-m1 {
     margin: 40px 0;
 }
 
@@ -26,13 +26,13 @@ button.normal {
 
 h1 {
     font-size: 50px;
-    line-height:64px;
+    line-height: 64px;
     color: #222;
 }
 
 h2 {
     font-size: 46px;
-    line-height:54px;
+    line-height: 54px;
     color: #222;
 }
 
@@ -52,52 +52,52 @@ h4 {
     padding: 40px 80px;
 }
 
-#product{
+#product {
     display: flex;
     margin-top: 20px;
 }
 
-#product .single-pro-image{
-    width:400px;
+#product .single-pro-image {
+    width: 400px;
     height: 300px;
     margin-right: 50px;
-} 
-
-.small-img-group{
-    display:flex;
-    justify-content: space-between;  
 }
 
-.small-img-col{
+.small-img-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col {
     flex-basis: 24%;
     cursor: pointer;
 }
 
-.small-img-col img{
+.small-img-col img {
     width: 100px;
     height: 60px;
 }
 
-#product .single-pro-details{
+#product .single-pro-details {
     width: 40%;
     padding-top: 30px;
 }
 
-#product .single-pro-details h4{
+#product .single-pro-details h4 {
     padding-top: 40px 0 20px 0;
 }
 
-#product .single-pro-details h2{
+#product .single-pro-details h2 {
     font-size: 26px;
 }
 
-#product .single-pro-details select{
+#product .single-pro-details select {
     display: block;
     padding: 5px 10px;
     margin-bottom: 10px;
 }
 
-#product .single-pro-details input{
+#product .single-pro-details input {
     width: 50px;
     height: 47px;
     padding-left: 10px;
@@ -105,33 +105,33 @@ h4 {
     margin-right: 10px;
 }
 
-#product .single-pro-details input:focus{
+#product .single-pro-details input:focus {
     outline: none;
 }
 
-#product .single-pro-details button{
+#product .single-pro-details button {
     background: #088178;
     color: #fff;
 }
 
-#product .single-pro-details span{
+#product .single-pro-details span {
     line-height: 25px;
 }
 
 
 
 #product1 {
-    text-align:center;
-   }
+    text-align: center;
+}
 
-   #product1 .pro-container{
+#product1 .pro-container {
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
     flex-wrap: wrap;
-   }
+}
 
-   #product1 .pro{
+#product1 .pro {
     width: 23%;
     min-width: 250px;
     padding: 10px 12px;
@@ -142,46 +142,46 @@ h4 {
     margin: 15px 0;
     transition: 0.2s ease;
     position: relative;
-   }
+}
 
-   #product1 .pro:hover{
+#product1 .pro:hover {
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
-   }
+}
 
-   #product1 .pro img{
+#product1 .pro img {
     width: 210px;
-    height: 160px; 
-   }
+    height: 160px;
+}
 
-   #product1 .pro .des{
+#product1 .pro .des {
     text-align: start;
     padding: 10px 0;
-   }
+}
 
-   #product1 .pro .des span{
+#product1 .pro .des span {
     color: #606063;
     font-size: 12px;
-   }
+}
 
-   #product1 .pro .des h5{
+#product1 .pro .des h5 {
     padding-top: 7px;
     color: #1a1a1a;
     font-size: 14px;
-   }
+}
 
-   #product1 .pro .des i{
+#product1 .pro .des i {
     color: rgba(243, 181, 25);
     font-size: 12px;
-   }
+}
 
-   #product1 .pro .des h4{
+#product1 .pro .des h4 {
     padding-top: 7px;
     font-size: 15px;
     font-weight: 700;
-    color:#088178;
-   }
+    color: #088178;
+}
 
-   #product1 .pro .cart{
+#product1 .pro .cart {
     width: 40px;
     height: 40px;
     line-height: 50px;
@@ -192,13 +192,13 @@ h4 {
     border: 1px solid #cce7d0;
     position: absolute;
     bottom: 20px;
-    right:10px;
-   }
+    right: 10px;
+}
 
-   .pro button:focus{
+.pro button:focus {
     outline: none;
-   }
-   .error{
+}
+
+.error {
     color: red;
-   }
-   
+}

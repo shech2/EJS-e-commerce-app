@@ -135,6 +135,9 @@
     const cart = "<%= JSON.stringify(Cart) %>";
     if (cart == "null") {
       document.getElementById("error").innerHTML = "Please Login First";
+      setTimeout(function () {
+        document.getElementById("error").innerHTML = "";
+      }, 1500);
     }
     else {
       $.ajax({
@@ -151,6 +154,9 @@
         error: function (error) {
           if (error.status == 500) {
             document.getElementById("error").innerHTML = "Please select size";
+            setTimeout(function () {
+              document.getElementById("error").innerHTML = "";
+            }, 1500);
           }
         }
       })
