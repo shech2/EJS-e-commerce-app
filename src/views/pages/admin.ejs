@@ -410,7 +410,6 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                                 url: "/ordersStatistics",
                                 type: 'GET',
                                 success: function (data) {
-                                    console.log(data, " AVIVVVVVVVVV");
                                     const pieChart = {
                                         chart: null,
                                         data: [
@@ -422,7 +421,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                                         ],
                                         element: '#pie-chart',
                                         options: {
-                                            title: 'Users Orders',
+                                            title: 'Admins Orders',
                                             width: 500,
                                             height: 300
                                         }
@@ -442,8 +441,8 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                                         ],
                                         element: '#column-chart',
                                         options: {
-                                            title: 'MYSO Orders',
-                                            width: 700,
+                                           title: 'Orders By Days',
+                                            width: 900,
                                             height: 300
                                         }
                                     };
