@@ -3,6 +3,8 @@ const User = require("../models/User");
 const router = require("express").Router();
 const CryptoJS = require("crypto-js");
 const Cart = require("../models/cart");
+const Order = require("../models/order");
+const OrderItem = require("../models/orderItem");
 
 // UPDATE
 router.put("/:id", middleware.authAdmin, async (req, res) => {
@@ -32,6 +34,14 @@ router.delete("/:id", middleware.authAdmin, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     await Cart.findOneAndDelete({ user: req.params.id });
+    await Order.find({ user: req.params.id }).then(async (orders) => {
+      for (let i = 0; i < orders.length; i++) {
+        orders[i].orderItems.map(async (orderItem) => {
+          await OrderItem.findByIdAndRemove(orderItem);
+        });
+        await Order.findByIdAndDelete(orders[i]._id);
+      }
+    })
     res.status(200).json("User has been deleted...");
   } catch (err) {
     res.status(500).json(err);
@@ -101,16 +111,16 @@ router.put("/update/:id", middleware.authAdmin, async (req, res) => {
       req.body.password,
       process.env.PASS_SEC
     ).toString();
-      const user = await User.findByIdAndUpdate(req.params.id, {
-        $set: {
-          username: req.user.username,
-          email: req.user.email,
-          password: req.body.password,
-        },
-      });
-      user2 = user;
+    const user = await User.findByIdAndUpdate(req.params.id, {
+      $set: {
+        username: req.user.username,
+        email: req.user.email,
+        password: req.body.password,
+      },
+    });
+    user2 = user;
   }
-  if(req.body.isAdmin){
+  if (req.body.isAdmin) {
     const user = await User.findByIdAndUpdate(req.params.id, {
       $set: {
         username: req.user.username,
@@ -121,7 +131,7 @@ router.put("/update/:id", middleware.authAdmin, async (req, res) => {
     });
     user2 = user;
   }
-    if(req.body.username){
+  if (req.body.username) {
     const user = await User.findByIdAndUpdate(
       req.params.id,
       {
@@ -135,71 +145,71 @@ router.put("/update/:id", middleware.authAdmin, async (req, res) => {
       { new: true }
     );
     user2 = user;
-    }
+  }
 
-    if(req.body.email){
-      const user = await User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: {
-            username: req.user.username,
-            email: req.body.email,
-            password: req.user.password,
-          },
-
+  if (req.body.email) {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.user.username,
+          email: req.body.email,
+          password: req.user.password,
         },
-        { new: true }
-      );
-      user2 = user;
-      }
-      if(req.body.username && req.body.email){
-        const user = await User.findByIdAndUpdate(
-          req.params.id,
-          {
-            $set: {
-              username: req.body.username,
-              email: req.body.email,
-              password: req.user.password,
-            },
+
+      },
+      { new: true }
+    );
+    user2 = user;
+  }
+  if (req.body.username && req.body.email) {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.user.password,
+        },
 
 
-          },
-          { new: true }
-        );
-        user2 = user;
+      },
+      { new: true }
+    );
+    user2 = user;
 
-        }
-        if(req.body.username && req.body.password){
-          const user = await User.findByIdAndUpdate(
-            req.params.id,
-            {
-              $set: {
-                username: req.body.username,
-                email: req.user.email,
-                password: req.body.password,
-              },
+  }
+  if (req.body.username && req.body.password) {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.user.email,
+          password: req.body.password,
+        },
 
-            },
-            { new: true }
-          );
-            user2 = user;
-          }
-          if(req.body.email && req.body.password){
-            const user = await User.findByIdAndUpdate(
-              req.params.id,
-              {
-                $set: {
-                  username: req.user.username,
-                  email: req.body.email,
-                  password: req.body.password,
-                },
+      },
+      { new: true }
+    );
+    user2 = user;
+  }
+  if (req.body.email && req.body.password) {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.user.username,
+          email: req.body.email,
+          password: req.body.password,
+        },
 
-              },
-              { new: true }
-            );
-            user2 = user;
-         }
-          res.status(200).json(user2);
+      },
+      { new: true }
+    );
+    user2 = user;
+  }
+  res.status(200).json(user2);
 });
 
 
