@@ -480,6 +480,18 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
   )
   console.log("dateOrdered", Orders);
 
+  const ordersByUsers = await Order.aggregate(
+    [
+      {
+        $project:
+        {
+          _id: 0,
+          user: "$user",
+        }
+      }
+    ]
+  )
+console.log("ordersByusers", ordersByUsers);
   const orderByDays = [
     { day: "Sunday", amount: 0 },
     { day: "Monday", amount: 0 },
@@ -489,13 +501,33 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     { day: "Friday", amount: 0 },
     { day: "Saturday", amount: 0 }
   ]
+  const orderByNames=[
+    {name:"Yuval",amount:0},
+    {name:"Sassy",amount:0},
+    {name:"Ori",amount:0},
+    {name:"May",amount:0},
 
+  ]
   for (let index = 0; index < Orders.length; index++) {
     const day = Orders[index].orderDayInWeek;
     orderByDays[day - 1].amount++;
   }
 
-  res.send(orderByDays)
+  for (let index = 0; index < ordersByUsers.length; index++){
+    const user = ordersByUsers[index];
+    if (user.user == "634eb0401a5b6f3ca1bf2f9e"){
+      orderByNames[0].amount++;
+    }
+    if (user.user == "634eb9ec873664e4f96c9828"){
+      orderByNames[1].amount++;
+    }
+    if (user.user == "6361574eca58fef0f504f83d"){
+      orderByNames[3].amount++;
+    }
+  }
+  console.log("orderByNames", orderByNames);
+  const answer=[orderByDays,orderByNames];
+  res.send(answer)
 });
 
 
