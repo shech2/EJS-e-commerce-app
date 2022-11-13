@@ -165,25 +165,11 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
 </div>
 
 <div id="statistics" style="display: none;">
-    <b><u>
-            <h1 style="padding:80px;">Statistics Menu:</h1>
-        </u></b>
-    <div class="stat-buttons">
-        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;"
-            onclick="ordersStatistics()">Orders</button>
-        <button class="normal centerButton" style="border-radius: 5px;padding: 10px;"
-            onclick="usersStatistics()">Users</button>
-    </div class="graph" id="ordersGraph">
-    <div id="my_dataviz" style=" display:none"></div>
-
-
-
-</div>
-</div class="graph" id="usersGraph" style="display:none;">
-
-</div>
-
-
+    <b><u><h1 style="padding:80px;">Statistics Menu:</h1></u></b>
+    <div class="container" style=" display: flex;">
+        <div id="pie-chart"></div>
+        <div id="column-chart"></div>
+    </div>
 </div>
 
 <div id="Orders" style="display: none;">
@@ -292,6 +278,7 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                     <h1 class="container" style="left: 15%;position:relative;padding:10px">Total Orders price : $
                         <%=totalOrders%>
                     </h1>
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
                     <script>
 
@@ -418,52 +405,75 @@ transform: translate(-50%, -50%); margin-top: 3rem;">
                             } else {
                                 x.style.display = "none";
                             }
-                        }
 
-                        async function ordersStatistics() {
-                            var x = document.getElementById("my_dataviz");
-                            console.log(x);
-                            if (x.style.display === "none") {
-                                x.style.display = "block";
-                            } else {
-                                x.style.display = "none";
-                            }
-
-                            $.ajax({
+                              $.ajax({
                                 url: "/ordersStatistics",
                                 type: 'GET',
                                 success: function (data) {
+                                    console.log(data, " AVIVVVVVVVVV");
+                                    const pieChart = {
+                                        chart: null,
+                                        data: [
+                                            ['Users', 'Orders'],
+                                            ['Yuval', 1708],
+                                            ['May', 1457],
+                                            ['Sassi', 660],
+                                            ['Ori', 1507],
+                                        ],
+                                        element: '#pie-chart',
+                                        options: {
+                                            title: 'Users Orders',
+                                            width: 500,
+                                            height: 300
+                                        }
+                                    };
 
-                                    const width = 960, height = 500;
+                                    const columnChart = {
+                                        chart: null,
+                                        data: [
+                                            ['Days', 'Orders'],
+                                            ['Sunday', data[0].amount],
+                                            ['Monday', data[1].amount],
+                                            ['Tuesday', data[2].amount],
+                                            ['Wednesday', data[3].amount],
+                                            ['Thursday', data[4].amount],
+                                            ['Friday', data[5].amount],
+                                            ['Saturday', data[6].amount],
+                                        ],
+                                        element: '#column-chart',
+                                        options: {
+                                            title: 'MYSO Orders',
+                                            width: 700,
+                                            height: 300
+                                        }
+                                    };
 
-                                    const x_scale = d3.scaleBand().range([0, width]).padding(0.1);
-                                    const y_scale = d3.scaleLinear().range([height, 0]);
+                                    const init = () => {
+                                        pieChart.chart = new google.visualization.PieChart(
+                                            document.querySelector(pieChart.element)
+                                        );
+                                        pieChart.chart.draw(
+                                            google.visualization.arrayToDataTable(pieChart.data),
+                                            pieChart.options
+                                        );
 
-                                    const svg = d3.select("#d3_demo")
-                                        .attr("width", width)
-                                        .attr("height", height);
-                                    console.log("This is the data : ", data);
-                                    d3.json(data)
-                                        .then(({ data }) => {
+                                        columnChart.chart = new google.visualization.ColumnChart(
+                                            document.querySelector(columnChart.element)
+                                        );
+                                        columnChart.chart.draw(
+                                            google.visualization.arrayToDataTable(columnChart.data),
+                                            columnChart.options
+                                        );
+                                    }
 
-                                            data.forEach((d) => (d.Population = +d.info.Population));
+                                    google.charts.load('current', {
+                                        packages: ['corechart'],
+                                        callback: init
+                                    });
 
-                                            // Scale the Domain
-                                            x_scale.domain(data.map((d) => d.Name));
-                                            y_scale.domain([0, d3.max(data, (d) => d.Population)]);
-
-                                            // add the rectangles for the bar chart
-                                            svg
-                                                .selectAll("rect")
-                                                .data(data)
-                                                .join("rect")
-                                                .attr("class", "bar")
-                                                .attr("x", (d) => x_scale(d.Name))
-                                                .attr("y", (d) => y_scale(d.Population))
-                                                .attr("width", x_scale.bandwidth())
-                                                .attr("height", (d) => height - y_scale(d.Population));
-                                        });
                                 }
                             });
                         }
                     </script>
+
+

@@ -485,7 +485,7 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     { day: "Monday", amount: 0 },
     { day: "Tuesday", amount: 0 },
     { day: "Wednesday", amount: 0 },
-    { day: "Thursay", amount: 0 },
+    { day: "Thursday", amount: 0 },
     { day: "Friday", amount: 0 },
     { day: "Saturday", amount: 0 }
   ]
@@ -496,7 +496,6 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
   }
 
   res.send(orderByDays)
-
 });
 
 
