@@ -6,8 +6,6 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 
-// STRIPE token
-const token = process.env.STRIPE_SECRET_KEY;
 
 // SOCKET IO
 
@@ -501,6 +499,8 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     { day: "Friday", amount: 0 },
     { day: "Saturday", amount: 0 }
   ]
+
+
   // Get all users from DB
   const users = await User.find({});
 
@@ -517,9 +517,6 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
     });
     amountOfOrdersPerUser.push([user.username, amount]);
   });
-
-
-  console.log(amountOfOrdersPerUser);
 
   for (let index = 0; index < Orders.length; index++) {
     const day = Orders[index].orderDayInWeek;
@@ -582,7 +579,6 @@ app.get("/checkout", authmw.authMiddleware, (req, res) => {
         total: total,
         Cart: cart,
         cartItems: cart.cartItems,
-        stripeToken: token,
       });
     }
   }).populate({
