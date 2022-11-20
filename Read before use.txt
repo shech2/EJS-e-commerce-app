@@ -1,0 +1,5 @@
+Facebook login for facebook API check :
+ 
+username : may745@cs.colman.ac.il
+password : may745MISO!
+
