@@ -4,12 +4,6 @@ Online Shoes store:
 Project is Complete.
 
 
-# Final-Web-Project
-
-Online Shoes store:
-Project is Complete.
-
-
 Homepage :
 ![image](https://user-images.githubusercontent.com/7353245/202896809-0cf8c7d6-5659-48ae-a699-89fc47318c1b.png)
 
