@@ -72,7 +72,7 @@ exports.auth_LogController = async (req, res) => {
         }, process.env.JWT_SEC,
             { expiresIn: "3d" }
         );
-        
+
         const { password, ...others } = user._doc;
         console.log(JSON.stringify({ ...others, accessToken }));
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 });
