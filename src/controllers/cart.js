@@ -188,7 +188,6 @@ exports.updateSizeArray = async (req, res) => {
     cart.cartItems.forEach(async (item) => {
         const sizeCart = item.product.size.size;
         item.product.size.sizeArray = item.product.size.sizeArray.filter((item) => item != sizeCart);
-        console.log(item.product.size.sizeArray);
         product.findOneAndUpdate({ _id: item.product._id }, {
             $set: {
                 "size.sizeArray": item.product.size.sizeArray

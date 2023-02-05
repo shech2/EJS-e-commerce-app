@@ -184,7 +184,6 @@ const Rating =
 
 // GET SHOP:
 app.get("/shop", Newest, LowToHigh, HighToLow, Rating, (req, res) => {
-  console.log(req);
   if (req.query.sorter) {
     const sorter = req.query.sorter;
     if (sorter == "LowToHigh") {
@@ -476,8 +475,6 @@ app.get("/ordersStatistics", authmw.authAdmin, async (req, res) => {
       }
     ]
   );
-  console.log("dateOrdered", Orders);
-
   const ordersByUsers = await Order.aggregate(
     [
       {

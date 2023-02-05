@@ -3,65 +3,69 @@
         <!---LOGO-->
         <a href="/homepage"><img src="img/logo_sneakers1.png" class="logo" alt=""></a>
         <ul class="header-list">
-                 <!-- USING CHECKBOX HACK -->
-       <input type="checkbox" id="checkbox_toggle" />
-       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-       <!---nav menu-->
-       <div class="menu">
-            <li>
-                <a href="/about">M.Y.S.O</a>
-            </li>
-            <li>
-                <a href="/profile">
-                    <% if(user){ %>
-                        Hello, <%= user.username %>
-                            <% } else { %>
-                                Hello, Guest
-                                <% } %>
-                                    %>
-            </li>
-           
-            <li><a href="/homepage">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="/shop?page=1&limit=12">Shop</a></li>
-            <li class="pruducts-dropdown"><a href="#">Products</a>
-                <!-- DROPDOWN MENU -->
-                <ul class="dropdown">
-                    <li><a class="dropdown-item" href="/shop?search=Men">Men</a></li>
-                    <li><a class="dropdown-item" href="/shop?search=Women">Women</a></li>
-                </ul>
+            <!-- USING CHECKBOX HACK -->
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <!---nav menu-->
+            <div class="menu">
+                <li>
+                    <a href="/about">M.Y.S.O</a>
                 </li>
-            <li class="nav-item"><a href="/about">About</a></li>
-            <li>
-                <% if(user){ %>
-                    <a href="/cart" class="notification"><img src="/img/Cart.png" class="cart-img">
-                        <span class="badge"><%= Cart.cartItems.length %> </span>
-                      </a>       
-                    <% } %>
-            </li> 
-            <li>
-                    <% if(user){  %>  <!--if user is logged in-->
-                                <a href="/logout"><img class="logout-img" src="/img/logout-exit.png" alt="logout"></a>                          
-                    <% }else{ %>  
-                                <a class="login kol" href="/login"><img class="login-img" src="/img/login2.png" alt="login"></a>
-                        <% } %>
-            </li>
-            </li>
-            <li> <% if(user) { %> 
-                <% console.log(user) %> 
-                <% if(user.isAdmin === true) { %>
-                <button id="adminPanel" style="border: none;background-color: transparent;">
-                    <a href="/admin">Admin Panel</a>
-                </button>
-                <% } %> 
-                <% } %>
+                <li>
+                    <a href="/profile">
+                        <% if(user){ %>
+                            Hello, <%= user.username %>
+                                <% } else { %>
+                                    Hello, Guest
+                                    <% } %>
+                                        %>
+                </li>
 
-            </li>
-                    <form class="form-inline my-2 my-lg-0" action="/shop" method="get">
-                        <input class="form-control mr-sm-2" type="search"  name="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-        </div>
+                <li><a href="/homepage">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="/shop?page=1&limit=12">Shop</a></li>
+                <li class="pruducts-dropdown"><a href="#">Products</a>
+                    <!-- DROPDOWN MENU -->
+                    <ul class="dropdown">
+                        <li><a class="dropdown-item" href="/shop?search=Men">Men</a></li>
+                        <li><a class="dropdown-item" href="/shop?search=Women">Women</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="/about">About</a></li>
+                <li>
+                    <% if(user){ %>
+                        <a href="/cart" class="notification"><img src="/img/Cart.png" class="cart-img">
+                            <span class="badge">
+                                <%= Cart.cartItems.length %>
+                            </span>
+                        </a>
+                        <% } %>
+                </li>
+                <li>
+                    <% if(user){ %>
+                        <!--if user is logged in-->
+                        <a href="/logout"><img class="logout-img" src="/img/logout-exit.png" alt="logout"></a>
+                        <% }else{ %>
+                            <a class="login kol" href="/login"><img class="login-img" src="/img/login2.png"
+                                    alt="login"></a>
+                            <% } %>
+                </li>
+                </li>
+                <li>
+                    <% if(user) { %>
+                        <% if(user.isAdmin===true) { %>
+                            <button id="adminPanel" style="border: none;background-color: transparent;">
+                                <a href="/admin">Admin Panel</a>
+                            </button>
+                            <% } %>
+                                <% } %>
+
+                </li>
+                <form class="form-inline my-2 my-lg-0" action="/shop" method="get">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
         </ul>
     </nav>
 </header>
-

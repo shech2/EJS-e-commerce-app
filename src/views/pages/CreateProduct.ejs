@@ -1,106 +1,105 @@
-
 <div class="container">
   <header>Create New Product:</header>
 
-    <div class="form first">
+  <div class="form first">
 
-        <br><span class="title">Product Details</span><br>
-        <form action="/api/create_product" method="POST" id="myForm">
-          <!-- 2 column grid layout with text inputs for the first and last names -->
-          <div class="fields">
-            <div class="input-field">
-              <label>Product name</label>
-              <input id="product_name" name="Product_Name" type="text" placeholder="Enter Product name" required />
-            </div>
-            <div class="input-field">
-              <label>Category</label>
-              <input autocomplete="off" list="categories" name="category" placeholder="Choose the Category" required>
-              <datalist id="categories">
-                <% for (i=0; i < category.length; i++) { %>
-                  <option value="<%= category[i].id  %>">
-                    <%= category[i].name %>
-                  </option>
-                  <% } %>
-              </datalist>
-            </div>
-   
-         <!--Brand Input-->
-        
-          <div class="input-field">
-            <label>Brand</label>
-            <input autocomplete="off" list="brands" name="brand" placeholder="Choose the Brand" required>
-            <datalist id="brands">
-            <% for (j=0; j < brand.length; j++) { %>
-            <option value="<%= brand[j].id  %>">
-              <%= brand[j].name %>
-            </option>
-            <% } %>
-            </datalist>
-          </div>
+    <br><span class="title">Product Details</span><br>
+    <form action="/api/create_product" method="POST" id="myForm">
+      <!-- 2 column grid layout with text inputs for the first and last names -->
+      <div class="fields">
+        <div class="input-field">
+          <label>Product name</label>
+          <input id="product_name" name="Product_Name" type="text" placeholder="Enter Product name" required />
+        </div>
+        <div class="input-field">
+          <label>Category</label>
+          <input autocomplete="off" list="categories" name="category" placeholder="Choose the Category" required>
+          <datalist id="categories">
+            <% for (i=0; i < category.length; i++) { %>
+              <option value="<%= category[i].id  %>">
+                <%= category[i].name %>
+              </option>
+              <% } %>
+          </datalist>
         </div>
 
+        <!--Brand Input-->
+
+        <div class="input-field">
+          <label>Brand</label>
+          <input autocomplete="off" list="brands" name="brand" placeholder="Choose the Brand" required>
+          <datalist id="brands">
+            <% for (j=0; j < brand.length; j++) { %>
+              <option value="<%= brand[j].id  %>">
+                <%= brand[j].name %>
+              </option>
+              <% } %>
+          </datalist>
+        </div>
+      </div>
+
       <div class="fields">
-      <div class="input-field">
-        <label>Rating</label>
-        <input name="rating" type="number" max="5" min="1" placeholder="Enter Rating" required>
-      </div>
+        <div class="input-field">
+          <label>Rating</label>
+          <input name="rating" type="number" max="5" min="1" placeholder="Enter Rating" required>
+        </div>
 
-      <div class="input-field">
-        <label>Image 1</label>
-        <input name="image" type="text" placeholder="Enter Image 1" required>
-      </div>
+        <div class="input-field">
+          <label>Image 1</label>
+          <input name="image" type="text" placeholder="Enter Image 1" required>
+        </div>
 
-      <div class="input-field">
-        <label>Image 2</label>
-        <input name="image" type="text" placeholder="Enter Image 2" required>
-      </div>
+        <div class="input-field">
+          <label>Image 2</label>
+          <input name="image" type="text" placeholder="Enter Image 2" required>
+        </div>
 
-      <div class="input-field">
-        <label>Image 3</label>
-        <input name="image" type="text" placeholder="Enter Image 3" required>
-      </div>
+        <div class="input-field">
+          <label>Image 3</label>
+          <input name="image" type="text" placeholder="Enter Image 3" required>
+        </div>
 
-      <div class="input-field">
-        <label>Image 4</label>
-        <input name="image" type="text" placeholder="Enter Image 4" required>
-      </div>
+        <div class="input-field">
+          <label>Image 4</label>
+          <input name="image" type="text" placeholder="Enter Image 4" required>
+        </div>
 
-      <!-- Shoes Quantity input -->
-      <div class="input-field">
-        <label>Shoes Quantity</label>
-        <input name="quantity" type="number" placeholder="Enter the Shoes Quantity" required>
-      </div>
+        <!-- Shoes Quantity input -->
+        <div class="input-field">
+          <label>Shoes Quantity</label>
+          <input name="quantity" type="number" placeholder="Enter the Shoes Quantity" required>
+        </div>
 
-      <!-- Price input -->
-      <div class="input-field">
-        <label>Price</label>
-        <input name="price" type="number" placeholder="Enter the Price" required>
-      </div>
+        <!-- Price input -->
+        <div class="input-field">
+          <label>Price</label>
+          <input name="price" type="number" placeholder="Enter the Price" required>
+        </div>
 
-      <div class="input-field" style=" width: 66%;" >
-        <label>Description</label>
-        <textarea name="description" required></textarea>
-      </div>
+        <div class="input-field" style=" width: 66%;">
+          <label>Description</label>
+          <textarea name="description" required></textarea>
+        </div>
 
-<!-- Submit button -->
-<button type="submit"  class="btn btn-primary btn-block mb-4">Create </button>
-</form>
-</div>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Create </button>
+    </form>
+  </div>
 
 
-<script>
-     // unlimited token
-     var token = "EAAHXdUsF3nQBAOwIqkSM25Nh8hihB9Y7ZB0ktYhZBI3lZB9EN5DgR1wKimQfoWqtfXavcAoLZBdGNmBg59zqXcZCBdZCUv1nTZAfQqNcV42ZCoSRkGlEopienqDZBrbcZBcLNhdHsH4y6CIRKZBvT6s4ZAkW5vfyZAcsnThcTXqhk08KvN9mJUFqh3hPdzp7D7md64WgZD";
+  <script>
+    // unlimited token
+    var token = "EAAHXdUsF3nQBALFq0I0TtM2CWMDlFmj4V6wMR7TeNWHhl8tFxvpB7ZBCZBY2tIrJZAeHTwTmbfZCcqn6OfRSHZCCbolstHf6lZBMwyq7C8m6ONCzPCLLws9wp2p4KZCwO8mStv6wM1WSfHpLqFBt1txiY9VI9wSo5NZAuv1Fkwe8ZAVdCtquOvr0PMpkAxSIxrUfSHMCRVrdA1FxjmTCFtySz";
 
-    $(document).on('submit',"form#myForm",function(e) {
+    $(document).on('submit', "form#myForm", function (e) {
       const newPR = $('#product_name').val();  //for socket 
       e.preventDefault();
       $.ajax({
         url: '/api/create_product',
         data: $(this).serialize(),
         type: 'POST',
-        success: function(data) {
-          socket.emit('new_product',newPR);// socket emit 
+        success: function (data) {
+          socket.emit('new_product', newPR);// socket emit 
 
           var image = 'localhost:3000/product-page?id=' + data.id;
           $.ajax({
@@ -111,7 +110,7 @@
               access_token: token
             },
             type: 'POST',
-            success: function(data) {
+            success: function (data) {
               window.location.href = "/shop?page=1&limit=12";
             }
           });
@@ -119,4 +118,4 @@
       });
     });
 
-</script>
+  </script>
